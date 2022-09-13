@@ -1,6 +1,8 @@
 # MÓDULO FULL STACK
-Presentación Proyecto Integrador
+Presentación del Proyecto Integrador
+
 Repositorio de alumnos de la Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales del ISPC.
+
 Integrantes:
 1.	Moyano Lucas
 2.	Nastrai Maximiliano Nicolás
