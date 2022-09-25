@@ -1,7 +1,7 @@
 # MÓDULO FULL STACK
-Presentación del Proyecto Integrador
+Presentación del Proyecto Integrador, Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales del ISPC.
 
-Repositorio de alumnos de la Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales del ISPC.
+**Repositorio del GRUPO 40. Proyecto: Gardening Friend.**
 
 Integrantes:
 1.	Moyano Lucas
