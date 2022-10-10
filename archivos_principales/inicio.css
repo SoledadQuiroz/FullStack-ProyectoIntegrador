@@ -1,0 +1,60 @@
+/*------------------------------ IMPORTS ---------------------------------*/
+
+@import url("../archivos_modulos/variables.css");
+@import url("../archivos_modulos/reset.css");
+@import url("../archivos_modulos/headerNav.css");
+
+
+/*------------------------------ LAYOUT GENERAL ---------------------------------*/
+/* vista movil como predeterminada*/
+body{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 4% 1% 96%;
+    height: 500vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/*------------------------------ FOOTER ---------------------------------*/
+
+section{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    grid-template-columns: 100%;
+    grid-template-rows: 98% 2%;
+    height: 100%;
+    width: 100%;
+}
+
+footer{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    height: 100%;
+    width: 100%;
+    background: var(--verde3);
+    font-family: Principal, Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--fuenteAlt);
+    justify-content: center;
+    align-items: center;
+}
+
+/*------------------------------ MEDIA QUERIES ---------------------------------*/
+/* Medium devices (landscape tablets, 768px and up) */
+
+
+@media only screen and (min-width: 768px) {
+    body{
+        height: 400vh;
+    }
+}
+
+
+
+
+
+
+
