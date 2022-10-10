@@ -28,7 +28,7 @@ function desplegarMenu(){
         });
         nav.style.overflowY = "hidden";
         nav.style.transition = "0.25s ease-in-out";
-        nav.style.height = "300px";
+        nav.style.height = "400px";
         navMenu.textContent = "Cerrar menu ↑";
         toggleEffect = true;
 
