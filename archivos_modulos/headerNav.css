@@ -24,11 +24,9 @@ nav{
     flex-direction: column;
     height: 40px;
     width: 100%;
-    background: var(--verde2);
+    background:   #56ab2f;
     justify-content: space-around;
     align-items: center;
-    border-top: 3px solid var(--verde1);
-    border-bottom: 3px solid var(--verde1);
     color: var(--fuenteAlt);
     font-family: principal, Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;

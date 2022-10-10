@@ -13,7 +13,7 @@
 
 body {
     font-family: 'Roboto';
-    background: linear-gradient(to right, #38ef7d, #11998e);
+    background: linear-gradient(to right,#56ab2f, #a8e063);
     height: 650px;
     display: flex;
     justify-content: center;
@@ -22,12 +22,12 @@ body {
 
 h1 {
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 form {
     background: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
     box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
     border-radius: 10px;
 }
@@ -87,7 +87,7 @@ input:valid~label {
     width: 0%;
     bottom: 0;
     position: absolute;
-    background: linear-gradient(to right, #38ef7d, #11998e);
+    background:  #56ab2f;
     transition: 0.3s ease width;
     left: 0;
 }
@@ -99,7 +99,7 @@ input:focus~.barra::before {
 
 button {
     font-family: 'roboto';
-     background: linear-gradient(to right, #38ef7d, #11998e);
+     background: #56ab2f;
     border: none;
     display: block;
     width: 80%;
