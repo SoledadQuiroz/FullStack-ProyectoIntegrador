@@ -3,6 +3,7 @@
 @import url("../archivos_modulos/variables.css");
 @import url("../archivos_modulos/reset.css");
 @import url("../archivos_modulos/headerNav.css");
+@import url("../archivos_modulos/footer.css");
 
 
 /*------------------------------ LAYOUT GENERAL ---------------------------------*/
@@ -10,52 +11,134 @@
 body{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 4% 1% 96%;
-    height: 500vh;
+    grid-template-rows: 5% 1% 94%;
+    height: 400vh;
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-/*------------------------------ FOOTER ---------------------------------*/
+/*------------------------ SECTION ---------------------------------*/
 
 section{
     display: grid;
     grid-column: 1/2;
     grid-row: 3/4;
     grid-template-columns: 100%;
-    grid-template-rows: 98% 2%;
+    grid-template-rows: 18% 26.66% 26.66% 26.66% 2%;
     height: 100%;
     width: 100%;
 }
 
-footer{
+/*------------------------ INTRODUCCION ---------------------------*/
+
+section #introduccion{
     display: flex;
     flex-direction: column;
     grid-column: 1/2;
-    grid-row: 2/3;
+    grid-row: 1/2;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: principal, Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    padding-top: 25%;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-image:  url("../recursos/plantas-borde-inf.png");
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* border-bottom: 5px solid var(--verde4); */
+}
+
+#introduccion h2{
+    color: var(--verde3);
+    font-weight: bolder;
+    line-height: 150%;
+    font-size: 2.5rem;
+    border-bottom: 2px solid lightgray;
+    padding-bottom: 10px;
+}
+
+#introduccion p{
+    font-size: 1.25rem;
+    margin-top: 20px;
+    line-height: 170%;
+}
+
+/*------------------------ ARTICLES ---------------------------*/
+
+/* ---------------Clase para los items de fondo verde*---------------*/
+.funciones_pag_1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
-    background: var(--verde3);
-    font-family: Principal, Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.3rem;
+    background: var(--verde6);
+    text-align: center;
+}
+
+article img{
+    height: 250px;
+}
+
+.funciones_pag_1 h3 a{
+    font-family: principal,Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    text-decoration: underline;
     color: var(--fuenteAlt);
-    justify-content: space-evenly;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.funciones_pag_1 p{
+    margin-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--fuenteAlt);
+    line-height: 150%;
+    font-size: 1.2rem;
+}
+
+/* ---------------Clase para los items de fondo blanco---------------*/
+.funciones_pag_2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
+    background: white;
+    text-align: center;
 }
 
-footer div img{
-    height: 20px;
+article img{
+    height: 250px;
 }
 
-footer p{
-    font-size: 1rem;
+.funciones_pag_2 h3 a{
+    font-family: principal,Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--verde7);
+    font-size: 2rem;
+    cursor: pointer;
 }
 
+.funciones_pag_2 p{
+    margin-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--verde3);
+    line-height: 150%;
+    font-size: 1.2rem;
+}
 /*------------------------------ MEDIA QUERIES ---------------------------------*/
 /* Medium devices (landscape tablets, 768px and up) */
-
-
 @media only screen and (min-width: 768px) {
     body{
         height: 400vh;
