@@ -41,7 +41,7 @@ section #introduccion{
     align-items: center;
     font-family: principal, Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
-    padding-top: 25%;
+    padding-top: 10%;
     padding-left: 10%;
     padding-right: 10%;
     background-image:  url("../recursos/plantas-borde-inf.png");
@@ -55,13 +55,13 @@ section #introduccion{
     color: var(--verde3);
     font-weight: bolder;
     line-height: 150%;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     border-bottom: 2px solid lightgray;
     padding-bottom: 10px;
 }
 
 #introduccion p{
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     margin-top: 20px;
     line-height: 170%;
 }
@@ -138,14 +138,80 @@ article img{
     font-size: 1.2rem;
 }
 /*------------------------------ MEDIA QUERIES ---------------------------------*/
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    body{
-        height: 400vh;
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px){
+    section #introduccion{
+        padding-top: 20%;
+    }
+
+    section .funciones_pag_1 p, section .funciones_pag_2 p{
+        font-size: 1.5rem;
     }
 }
 
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    section #introduccion{
+        padding-top: 5%;
+        background-image: url("../recursos/plantas-borde-inf-medium-2.png");
+    }
 
+    section #introduccion h2{
+        font-size: 2rem !important;
+
+    }
+    section #introduccion p{
+        font-size: 1.25rem;
+    }
+
+    section .funciones_pag_1 p, section .funciones_pag_2 p{
+        font-size: 1.2rem;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px){
+    body{
+        grid-template-rows: 4% 1% 95%;
+        height: 300vh;
+        width: 100%;
+    }
+
+    header img{
+        width: 200px;
+    }
+
+    section #introduccion{
+        justify-content: flex-start;
+        padding-top: 8%;
+    }
+
+    section #introduccion h2{
+        font-size: 2.4rem !important;
+    }
+
+    section .funciones_pag_1 p, section .funciones_pag_2 p{
+        font-size: 1.3rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    section #introduccion{
+        padding-top: 5%;
+        background-image: url("../recursos/plantas-borde-inf-large.png");
+    }
+
+    section #introduccion{
+        justify-content: flex-start;
+        padding-top: 7.5%;
+    }
+
+    section #introduccion h2{
+        font-size: 3rem !important;
+    }
+}
 
 
 

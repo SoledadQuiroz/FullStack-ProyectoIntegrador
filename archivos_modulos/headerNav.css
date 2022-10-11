@@ -83,7 +83,7 @@ nav #inicio{
     }
     
     header img{
-        width: 275px;
+        width: 200px;
     }
 
     nav{
@@ -101,5 +101,12 @@ nav #inicio{
     nav .nav_item{
         display: flex !important;
         border: none !important;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    header img{
+        width: 280px;
     }
 }
