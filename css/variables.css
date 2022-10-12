@@ -28,3 +28,8 @@
     font-family: "secundaria1";
     src: url("../recursos/fuentes/LEMONMILK-Medium.otf");
 }
+
+@font-face {
+    font-family: "secundaria2";
+    src: url("../recursos/fuentes/MADEOkineSansPERSONALUSE-Medium.otf");
+}
