@@ -1,0 +1,105 @@
+/*-------------------------- IMPORTS --------------------------*/
+@import url("variables.css");
+@import url("reset.css");
+@import url("headerNav.css");
+@import url("footer.css");
+
+/*-------------------------- BODY - LAYOUT GENERAL --------------------------*/
+/* vista movil como predeterminada*/
+body{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5% 1% 94%;
+    height: 400vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/*-------------------------- SECTION --------------------------*/
+section{
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*-------------------------- TARJETAS --------------------------*/
+.tarjeta{
+    display: grid;
+    grid-template-columns: 35% 65%;
+    grid-template-rows: 100%;
+    height: 250px;
+    width: 90%;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--verde2);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--fuenteAlt);
+    box-shadow: var(--sombra1);
+    border: 4px solid var(--verde1);
+    cursor: pointer;
+}
+
+.tarjeta:hover{
+    transition: 0.5s;
+    border: 4px solid var(--verde8);
+}
+
+.tarjeta .imagen_wrapper{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: var(--verde1);
+}
+
+.tarjeta .imagen_wrapper img{
+    height: 140px;
+}
+
+.tarjeta .contenido{
+    display: flex;
+    flex-direction: column;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+.tarjeta .contenido h5{
+    font-family: principal, Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline;
+    color: var(--fuenteAlt);
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.tarjeta .botones button{
+    background: var(--verde1);
+    border: none;
+    height: 40px;
+    width: 120px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--sombra1);
+}
+
+.tarjeta .botones button:hover{
+    background: var(--verde8);
+    transition: 0.5s ease-in-out;
+    text-decoration: underline;
+}
