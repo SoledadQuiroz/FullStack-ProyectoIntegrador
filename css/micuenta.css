@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(39, 141, 39);
+}
+
+.my-account{
+    width: 400px;
+    background-color: whitesmoke;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    box-shadow: 10px 23px 47px #000;
+}
+
+.my-account h2{
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.controls {
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid gray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.my-account a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.my-account p{
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.my-account .boton {
+    width: 100%;
+    background-color: rgb(123, 182, 88);
+    border: none;
+    padding: 12px;
+    color: rgb(0, 0, 0);
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+.imagen {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+}
