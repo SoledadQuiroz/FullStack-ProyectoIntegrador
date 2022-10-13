@@ -33,3 +33,8 @@
     font-family: "secundaria2";
     src: url("../recursos/fuentes/MADEOkineSansPERSONALUSE-Medium.otf");
 }
+
+@font-face {
+    font-family: "secundaria3";
+    src: url("../recursos/fuentes/TangoSans.ttf");
+}
