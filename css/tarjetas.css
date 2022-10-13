@@ -1,0 +1,295 @@
+/*-------------------------- IMPORTS --------------------------*/
+@import url("variables.css");
+@import url("reset.css");
+@import url("headerNav.css");
+@import url("footer.css");
+
+/*-------------------------- BODY - LAYOUT GENERAL --------------------------*/
+/* vista movil como predeterminada*/
+body{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5% 1% 94%;
+    height: 400vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/*-------------------------- SECTION --------------------------*/
+section{
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*-------------------------- TARJETAS MODELO 1 --------------------------*/
+.tarjeta{
+    display: grid;
+    grid-template-columns: 35% 65%;
+    grid-template-rows: 100%;
+    height: 250px;
+    width: 90%;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--verde2);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--fuenteAlt);
+    box-shadow: var(--sombra1);
+    border: 4px solid var(--verde1);
+    cursor: pointer;
+}
+
+.tarjeta:hover{
+    transition: 0.5s;
+    border: 4px solid var(--verde8);
+}
+
+.tarjeta .imagen_wrapper{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: var(--verde1);
+}
+
+.tarjeta .imagen_wrapper img{
+    height: 140px;
+}
+
+.tarjeta .contenido{
+    display: flex;
+    flex-direction: column;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+.tarjeta .contenido h5{
+    font-family: principal, Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline;
+    color: var(--fuenteAlt);
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.tarjeta .botones button{
+    background: var(--verde1);
+    border: none;
+    height: 40px;
+    width: 120px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--sombra1);
+}
+
+.tarjeta .botones button:hover{
+    background: var(--verde8);
+    transition: 0.5s ease-in-out;
+    text-decoration: underline;
+}
+
+/*-------------------------- TARJETAS MODELO 2 --------------------------*/
+.tarjeta_2{
+    display: grid;
+    grid-template-columns: 35% 60% 5%;
+    grid-template-rows: 100%;
+    height: 250px;
+    width: 90%;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--verde2);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--fuenteAlt);
+    box-shadow: var(--sombra1);
+    border: 4px solid var(--verde1);
+    cursor: pointer;
+}
+
+.tarjeta_2:hover{
+    transition: 0.5s;
+    border: 4px solid var(--verde8);
+}
+
+.tarjeta_2 .imagen_wrapper_2{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: var(--verde1);
+}
+
+.tarjeta_2 .imagen_wrapper_2 img{
+    height: 140px;
+}
+
+.tarjeta_2 .contenido_2{
+    display: flex;
+    flex-direction: column;
+    grid-column: 2/4;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+.tarjeta_2 .contenido_2 h5{
+    font-family: principal, Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline;
+    color: var(--fuenteAlt);
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+
+
+.tarjeta_2 .botones_2 button{
+    background: var(--verde1);
+    border: none;
+    height: 40px;
+    width: 250px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--sombra1);
+    justify-self: center !important;
+}
+
+.tarjeta_2 .botones_2 button:hover{
+    background: var(--verde8);
+    transition: 0.5s ease-in-out;
+    text-decoration: underline;
+}
+
+.tarjeta_2 .favoritos{
+    display: flex;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.tarjeta_2 .favoritos .icono_favoritos{
+    font-size: 2.5rem;
+    padding-right: 30px;
+    z-index: 100;
+}
+
+.tarjeta_2 .favoritos .icono_favoritos:hover{
+    color: yellow;
+    font-size: 2.8rem;
+    transition: 0.2s ease-in-out;
+}
+
+/*-------------------------- TARJETAS MODELO 3 --------------------------*/
+
+.tarjeta_3{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 30% 50% 20%;
+    height: 550px;
+    width: 90%;
+    background: var(--verde2);
+    border-radius: 10px;
+    border: 5px solid var(--verde1);
+    color: var(--fuenteAlt);
+    box-shadow: var(--sombra1);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.tarjeta_3:hover{
+    border: 5px solid var(--verde8);
+    transition: 0.5s ease-in-out;
+}
+
+.tarjeta_3 .imagen_wrapper_3{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    background: var(--verde1);
+}
+
+.tarjeta_3 .imagen_wrapper_3 img{
+    height: 270px;
+    cursor: pointer;
+}
+
+.tarjeta_3 .contenido_3{
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.tarjeta_3 .contenido_3 h5{
+    font-family: principal,Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 2rem;
+    color: var(--fuenteAlt);
+    cursor: pointer;
+}
+
+.tarjeta_3 .contenido_3 p{
+    font-size: 1.25rem;
+    font-weight: lighter;
+}
+
+.tarjeta_3 .botones_3{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.tarjeta_3 .botones_3 button{
+    background: var(--verde1);
+    border: none;
+    height: 50px;
+    width: 190px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--sombra1);
+    justify-self: center !important;
+}
+
+.tarjeta_3 .botones_3 button:hover{
+    background: var(--verde8);
+    transition: 0.5s ease-in-out;
+}
