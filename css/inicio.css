@@ -54,7 +54,7 @@ section #introduccion{
     color: var(--verde3);
     font-weight: bolder;
     line-height: 150%;
-    font-size: 2.25rem;
+    font-size: 2.2rem;
     border-bottom: 2px solid lightgray;
     padding-bottom: 10px;
 }
@@ -99,7 +99,7 @@ article img{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: var(--fuenteAlt);
     line-height: 150%;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 /* ---------------Clase para los items de fondo blanco---------------*/
@@ -149,23 +149,24 @@ article img{
     }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
+/* Medium devices (portrait tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     section #introduccion{
-        padding-top: 5%;
+        justify-content: center;
+        padding-top: 0;
         background-image: url("../recursos/plantas-borde-inf-medium-2.png");
     }
 
     section #introduccion h2{
-        font-size: 2rem !important;
+        font-size: 3rem !important;
 
     }
     section #introduccion p{
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
 
     section .funciones_pag_1 p, section .funciones_pag_2 p{
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 }
 

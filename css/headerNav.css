@@ -104,8 +104,20 @@ nav #inicio{
     }
 }
 
+/* horizontal tablets */
+@media only screen and (orientation: landscape) {
+    header{
+        background-image: url("../recursos/fondo-izq.png"), url("../recursos/fondo-der.png");
+    }
+}
+
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+
+    header{
+        background-image: url("../recursos/fondo-izq.png"), url("../recursos/fondo-der.png");
+    }
+
     header img{
         width: 280px;
     }
