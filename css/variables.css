@@ -62,3 +62,8 @@
     font-family: "secundaria3";
     src: url("../recursos/fuentes/TangoSans.ttf");
 }
+
+@font-face {
+    font-family: "secundaria4";
+    src: url("../recursos/fuentes/Telex-Regular.ttf");
+}

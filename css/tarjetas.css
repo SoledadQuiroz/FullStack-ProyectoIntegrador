@@ -34,8 +34,8 @@ section{
 .tarjeta{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 30% 50% 20%;
-    height: 400px;
+    grid-template-rows: 30% 40% 30%;
+    height: 300px;
     width: 85%;
     /*background: var(--verde9);*/
     background: var(--verde3B);
@@ -46,7 +46,7 @@ section{
 }
 
 .tarjeta:hover{
-    border: 5px solid var(--verde12);
+    border: 5px solid var(--verde3A);
     transition: 0.5s ease-in-out;
 }
 
@@ -60,10 +60,12 @@ section{
     width: 100%;
     /*background: var(--verde5)*/;
     background: var(--verde3D);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
 }
 
 .tarjeta .imagen_wrapper img{
-    height: 170px;
+    height: 140px;
     cursor: pointer;
     margin-bottom: 10px;
 }
@@ -90,9 +92,9 @@ section{
 }
 
 .tarjeta .contenido p{
-    font-family: secundaria2;
+    font-family: secundaria4;
     font-size: 1.1rem;
-    font-weight: lighter;
+    font-weight: bold;
     text-align: center;
     margin-left: 15px;
     margin-right: 15px;
@@ -114,7 +116,7 @@ section{
 
 .tarjeta .botones button{
     /*background: var(--verde5);*/
-    background: var(--verde6);
+    background: var(--verde3B);
     border: none;
     height: 50px;
     width: 130px;
@@ -123,12 +125,12 @@ section{
     cursor: pointer;
     box-shadow: var(--sombra1);
     justify-self: center !important;
-    font-family: secundaria1;
+    font-family: secundaria4;
     color: var(--fuenteAlt);
 }
 
 .tarjeta .botones button:hover{
-    /*background: var(--verde12);*/
+    background: var(--verde3A);
     text-decoration: underline;
     transition: 0.5s ease-in-out;
 }
