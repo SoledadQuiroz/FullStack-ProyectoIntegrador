@@ -2,6 +2,10 @@
 let d = {
     titulos: document.querySelectorAll(".titulos"),
     body: document.querySelector("body"),
+    botones: document.querySelectorAll(".botones button"),
+    botonesSembrar: document.querySelectorAll(".sembrar"),
+    botonesFavoritos: document.querySelectorAll(".favoritos"),
+    boton_seleccionado: null,
     titulo_seleccionado: null,
     lightbox: null,
     modal: null,
@@ -16,6 +20,7 @@ let d = {
 
 //----------------- METODOS  -----------------//
 let m = {
+    // --------- elemento modal -------- //
     agregandoEventos:function(){
         d.titulos.forEach(element => {
             element.addEventListener("click", m.identificarTarjeta);
@@ -74,12 +79,27 @@ let m = {
 
     cerrarModal:function(){
         d.lightbox.remove();
+    },
+
+    agregandoEventosBotones:function(){
+        d.botones.forEach(element => {
+            element.addEventListener("click", m.alertaBotones);
+        });
+    },
+
+    // ----- alerta de prueba para botones ---------//
+    alertaBotones:function(boton){
+        d.boton_seleccionado = boton.target.className;
+
+        if (d.boton_seleccionado == "sembrar") {
+            alert("el cultivo ha sido sembrado y guardado en 'mi jardin'");
+        
+        } else if(d.boton_seleccionado == "favoritos"){
+            alert("el cultivo ha sido añadido a favoritos, puedes encontrarlo en 'mi jardin'");
+        } 
+
     }
-
-
-
-
-
 }
 
 m.agregandoEventos();
+m.agregandoEventosBotones();
