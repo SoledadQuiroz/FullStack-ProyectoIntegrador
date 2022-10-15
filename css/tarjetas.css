@@ -182,3 +182,17 @@ section{
     }
 
 }*/
+
+
+/*-------------------------- CLASES PARA JS --------------------------*/
+#lightbox{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/4;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: var(--fondo_transparente);
+    z-index: 100;
+}
