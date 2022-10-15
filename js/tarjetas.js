@@ -30,7 +30,6 @@ let m = {
 
     crearLightbox:function(){
         d.body.appendChild(document.createElement("div")).setAttribute("class","lightbox");
-        //los estilos se añaden via CSS
         d.lightbox = document.querySelector(".lightbox");
         m.crearModal(d.lightbox);
     },
@@ -46,9 +45,8 @@ let m = {
         //----se agrega elemento modal-----
         lightbox.appendChild(document.createElement("div")).setAttribute("id","modal_tarjetas");
         d.modal = document.querySelector("#modal_tarjetas")
-        //los estilos se añaden via CSS, los cuales varian dependiendo la resolución*/
-        d.modal.classList.add("modal_tarjetas_movil");
-        
+        d.modal.classList.add("modal_tarjetas");
+
         //------- icono cerrar ------
         d.modal.appendChild(document.createElement("div")).setAttribute("class", "icono_cerrar");
         d.icono_cerrar = document.querySelector(".icono_cerrar");
