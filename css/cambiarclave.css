@@ -5,7 +5,12 @@
 }
 
 body {
-    background-color: rgb(67, 211, 67);
+    font-family: 'Roboto';
+    background: linear-gradient(to right,#56ab2f, #a8e063);
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .camb-clave {
@@ -39,10 +44,10 @@ body {
 
 .camb-clave .boton {
     width: 100%;
-    background-color: rgb(25, 226, 25);
+    background-color: #56ab2f;
     border: none;
     padding: 12px;
-    color: rgb(0, 0, 0);
+    color: #fff;
     margin: 16px 0;
     font-size: 16px;
 }
