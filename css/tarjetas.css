@@ -141,14 +141,18 @@ section{
 @media only screen and (min-width: 768px) {
     .tarjeta{
         display: grid;
-        grid-template-columns: 30% 70% ;
+        grid-template-columns: 35% 65% ;
         grid-template-rows: 30% 70%;
-        height: 300px;
+        height: 200PX;
     }
 
     .tarjeta .imagen_wrapper{
         grid-column: 1/3;
         grid-row: 1/2;
+    }
+
+    .tarjeta .imagen_wrapper img{
+        height: 125px;
     }
 
     .tarjeta .contenido{
@@ -168,24 +172,69 @@ section{
         flex-direction: column;
         grid-column: 1/2;
         grid-row: 2/3;
+        background: var(--verde3B);
+    }
+
+    .tarjeta .botones button{
+        background: var(--verde3A);
     }
 
     
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-/*@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) {
     section{
         display: grid;
-        grid-template-columns: repeat(2,1fr);
-        grid-template-rows: repeat(8,1fr);
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: repeat(5,1fr);
+        justify-content: center;
+        align-items: center;
     }
 
-}*/
+    .tarjeta{
+        justify-self: center;
+        align-self: center;
+        grid-template-columns: 100%;
+        grid-template-rows: 30% 40% 30%;
+        height: 350px;
+    }
+
+    .tarjeta .imagen_wrapper{
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .tarjeta .contenido{
+        display: flex;
+        flex-direction: column;
+        grid-column: 1/2;
+        grid-row: 2/3;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .tarjeta .botones{
+        display: flex;
+        flex-direction: row !important;
+        grid-column: 1/2;
+        grid-row: 3/4;
+        justify-content: space-evenly;
+        align-items: center;
+        background: var(--verde3D);
+    }
+
+    .tarjeta .botones button{
+        background: var(--verde3B);
+    }
+}
 
 
 /*-------------------------- CLASES PARA JS --------------------------*/
-#lightbox{
+
+.lightbox{
     display: flex;
     grid-column: 1/2;
     grid-row: 1/4;
@@ -196,3 +245,90 @@ section{
     background: var(--fondo_transparente);
     z-index: 100;
 }
+
+.modal_tarjetas_movil{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5% 20% 60% 15%;
+    height: 60%;
+    width: 90%;
+    justify-content: center;
+    align-content: center;
+    border-radius: 10px;
+    background: white;
+    z-index: 150;
+    overflow: hidden;
+    border: 5px solid var(--verde3B);
+    box-sizing: border-box;
+}
+
+.icono_cerrar{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    background: var(--verde3B);
+}
+
+.icono_cerrar img{
+    margin-right: 10px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.header_modal{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: var(--verde3A);
+}
+
+.header_modal img{
+    height: 60% !important;
+}
+
+.descripcion_modal{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-family: secundaria4;
+}
+
+.botones_modal{
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 4/5;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background: var(--verde3A);
+    
+}
+
+.botones_modal button{
+    background: var(--verde3B);
+    border: none;
+    height: 50px;
+    width: 70%;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--sombra1);
+    justify-self: center !important;
+    font-family: secundaria4;
+    color: var(--fuenteAlt);
+}
+

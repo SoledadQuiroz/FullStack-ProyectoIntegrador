@@ -28,7 +28,7 @@ nav{
     justify-content: space-around;
     align-items: center;
     color: var(--fuenteAlt);
-    font-family: principal, Verdana, Geneva, Tahoma, sans-serif;
+    font-family: secundaria3, Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     list-style: none;
 }
@@ -83,7 +83,7 @@ nav #inicio{
     }
     
     header img{
-        width: 400px;
+        width: 350px;
     }
 
     nav{
