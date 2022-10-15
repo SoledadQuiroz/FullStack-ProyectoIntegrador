@@ -24,7 +24,7 @@ nav{
     flex-direction: column;
     height: 40px;
     width: 100%;
-    background:   #56ab2f;
+    background: var(--verde3B);
     justify-content: space-around;
     align-items: center;
     color: var(--fuenteAlt);
