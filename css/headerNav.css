@@ -31,6 +31,7 @@ nav{
     font-family: secundaria3, Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     list-style: none;
+    z-index: 90;
 }
 
 nav li{

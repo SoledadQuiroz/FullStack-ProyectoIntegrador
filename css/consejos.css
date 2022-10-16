@@ -7,6 +7,9 @@
 /*-------------------------- BODY - LAYOUT GENERAL --------------------------*/
 /* vista movil como predeterminada*/
 body {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5% 1% 94%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
