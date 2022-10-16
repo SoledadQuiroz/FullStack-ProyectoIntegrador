@@ -92,10 +92,10 @@ let m = {
         d.boton_seleccionado = boton.target.className;
 
         if (d.boton_seleccionado == "sembrar") {
-            alert("el cultivo ha sido sembrado y guardado en 'mi jardin'");
+            alert("El cultivo ha sido sembrado y guardado en la sección 'MI JARDÍN'.");
         
         } else if(d.boton_seleccionado == "favoritos"){
-            alert("el cultivo ha sido añadido a favoritos, puedes encontrarlo en 'mi jardin'");
+            alert("El cultivo ha sido añadido a favoritos, puedes encontrarlo en la sección 'MI JARDÍN'.");
         } 
 
     }
