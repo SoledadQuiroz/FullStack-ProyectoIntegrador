@@ -172,19 +172,10 @@ article img{
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px){
-    body{
-        grid-template-rows: 6% 1% 93%;
-        height: 300vh;
-        width: 100%;
-    }
-
-    /* header img{
-        width: 200px;
-    } */
-
+   
     section #introduccion{
         justify-content: flex-start;
-        padding-top: 4%;
+        padding-top: 8% !important;
     }
 
     section #introduccion h2{
@@ -205,7 +196,7 @@ article img{
 
     section #introduccion{
         justify-content: flex-start;
-        padding-top: 7.5%;
+        padding-top: 8% !important;
     }
 
     section #introduccion h2{
