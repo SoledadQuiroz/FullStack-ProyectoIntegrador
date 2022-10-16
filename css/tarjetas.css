@@ -16,6 +16,11 @@ body{
     overflow-x: hidden;
 }
 
+nav #cultivos{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /*-------------------------- SECTION --------------------------*/
 section{
     display: grid;

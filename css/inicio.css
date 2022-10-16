@@ -17,6 +17,11 @@ body{
     overflow-x: hidden;
 }
 
+nav #inicio{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /*------------------------ SECTION ---------------------------------*/
 
 section{
