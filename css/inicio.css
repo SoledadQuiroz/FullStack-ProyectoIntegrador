@@ -173,14 +173,14 @@ article img{
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px){
     body{
-        grid-template-rows: 4% 1% 95%;
+        grid-template-rows: 6% 1% 93%;
         height: 300vh;
         width: 100%;
     }
 
-    header img{
+    /* header img{
         width: 200px;
-    }
+    } */
 
     section #introduccion{
         justify-content: flex-start;
@@ -199,7 +199,7 @@ article img{
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     section #introduccion{
-        padding-top: 5% !important;
+        padding-top: 4% !important;
         background-image: url("../recursos/plantas-borde-inf-large.png");
     }
 

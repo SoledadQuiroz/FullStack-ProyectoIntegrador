@@ -79,7 +79,10 @@ section{
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
+    background: white;
+    color: var(--verde3A);
 }
+
 
 .tarjeta .contenido h5{
     font-family: secundaria1,Verdana, Geneva, Tahoma, sans-serif;
@@ -89,6 +92,7 @@ section{
     letter-spacing: 0.2rem;
     color: var(--fuenteAlt);
     cursor: pointer;
+    color: var(--verde3A);
 }
 
 .tarjeta .contenido p{
