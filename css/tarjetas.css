@@ -151,7 +151,8 @@ section{
 
 /*-------------------------- FOOTER --------------------------*/
 footer{
-    display: none;
+    display: flex;
+    position: absolute;
     grid-column: 1/2;
     grid-row: 3/4;
     flex-direction: column;
@@ -307,11 +308,7 @@ footer #descripcion_footer{
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
-    footer{
-        display: flex;
-    }
-
+    
     .lightbox{
         align-items: center;
         position: absolute;
