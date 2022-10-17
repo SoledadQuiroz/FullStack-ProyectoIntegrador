@@ -14,8 +14,8 @@ body {
 }
 
 .my-account{
-    width: 600px;
-    background-color: #fff;
+    width: 400px;
+    background-color: whitesmoke;
     display: flex;
     padding: 30px;
     margin: auto;
@@ -24,6 +24,7 @@ body {
     font-family: 'Roboto';
     color: black;
     box-shadow: 10px 23px 47px #000;
+    flex-direction: column;
 }
 
 .my-account h2{
