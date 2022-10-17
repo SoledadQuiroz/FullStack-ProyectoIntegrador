@@ -2,52 +2,68 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="recursos/isologo.png" />
+    <link rel="stylesheet" href="css/inicio.css" />
     <title>GardeningFriend - Inicio</title>
-    <link rel="icon" href="recursos/isologo.png">
-    <link rel="stylesheet" href="css/inicio.css">
 </head>
 
-
 <body onscroll="stickyNav()">
-
     <header>
-        <img src="recursos/logo-version-1.png" alt="logo">
+        <img src="recursos/logo-version-1.png" alt="logo" />
     </header>
 
     <nav>
-        <li id="menu" onclick="desplegarMenu()"> <u> Abrir Menu ↓</u></li>
+        <li id="menu" onclick="desplegarMenu()"><u> Abrir Menu ↓</u></li>
         <li id="inicio" class="nav_item"><a href="inicio.html">INICIO</a></li>
-        <li id="mi_jardin" class="nav_item"><a href="#">MI JARDIN</a></li>
-        <li id="cultivos" class="nav_item"><a href="pages/tarjetas.html">CULTIVOS</a></li>
-        <li id="ventas" class="nav_item"><a href="pages/ventas.html">VENTAS</a></li>
-        <li id="mi_cuenta" class="nav_item"><a href="pages/micuenta.html"> MI CUENTA</a></li>
-        <li id="login" class="nav_item"><a href="pages/login.html" target="_blank">LOGIN</a></li>
-        <li id="consejos" class="nav_item"><a href="pages/consejos.html"> CONSEJOS</a></li>
+        <li id="mi_jardin" class="nav_item">
+            <a href="pages/mijardin.html">MI JARDIN</a>
+        </li>
+        <li id="cultivos" class="nav_item">
+            <a href="pages/tarjetas.html">CULTIVOS</a>
+        </li>
+        <li id="ventas" class="nav_item">
+            <a href="pages/ventas.html">VENTAS</a>
+        </li>
+        <li id="mi_cuenta" class="nav_item">
+            <a href="pages/micuenta.html"> MI CUENTA</a>
+        </li>
+        <li id="login" class="nav_item">
+            <a href="pages/login.html" target="_blank">LOGIN</a>
+        </li>
+        <li id="consejos" class="nav_item">
+            <a href="pages/consejos.html"> CONSEJOS</a>
+        </li>
     </nav>
 
     <section>
-
         <div id="introduccion">
-            <h2> "Bienvenido a Gardening Friend" </h2>
-            <p>Aqui podras encontrar toda la informacion necesaria para empezar tu huerto casero</p>
+            <h2>"Bienvenido a Gardening Friend"</h2>
+            <p>
+                Aqui podras encontrar toda la informacion necesaria para empezar tu
+                huerto casero.
+            </p>
         </div>
 
         <article id="cultivos" class="funciones_pag_1">
-            <img src="recursos/icono-cultivos.png" alt="icono-cultivos" id="icono_cultivos">
-            <h3><a href="/pages/tarjetas.html" id="titulo_cultivos">CULTIVOS</a></h3>
-            <p> En esta sección puedes acceder a intructivos sobre numerosos cultivos,
-                los cuales te brindaran toda la información necesaria para comenzar a cultivar.
-                ademas, puedes monitorear en que etapa se encuentra el cultivo en la seccion "mi jardin"
-                (para acceder a esta ultima funcion debes estar registrado).
+            <img src="recursos/icono-cultivos.png" alt="icono-cultivos" id="icono_cultivos" />
+            <h3>
+                <a href="/pages/tarjetas.html" id="titulo_cultivos">CULTIVOS</a>
+            </h3>
+            <p>
+                En esta sección puedes acceder a intructivos sobre numerosos cultivos,
+                los cuales te brindaran toda la información necesaria para comenzar a
+                cultivar. Además, puedes monitorear en que etapa se encuentra el
+                cultivo en la seccion "MI JARDÍN" (para acceder a esta ultima funcion
+                debes estar registrado).
             </p>
         </article>
 
         <article id="ventas" class="funciones_pag_2">
             <img src="recursos/icono-ventas.png" alt="icono-ventas" id="icono_ventas">
-            <h3><a href="#" id="titulo_ventas"> VENTAS</a></h3>
+            <h3><a href="pages/ventas.html" id="titulo_ventas"> VENTAS</a></h3>
             <p> sección ecommerce del sitio. <br>
                 Basicamente en esta seccion podras conectar con otros usuarios
                 que esten interesados en vender / comprar productos organicos.
@@ -56,25 +72,28 @@
         </article>
 
         <article id="consejos" class="funciones_pag_1">
-            <img src="recursos/icono-consejos.png" alt="icono-user" id="icono_consejos">
+            <img src="recursos/icono-consejos.png" alt="icono-user" id="icono_consejos" />
             <h3><a href="pages/consejos.html" id="titulo_consejos">CONSEJOS</a></h3>
-            <p> Información extra de utilidad<br>
-                En esta sección encontraras una gran variedad de consejos
-                que te pueden ayudar en tus proyectos y adentrarte en el mundo
-                de los cultivos organicos.
+            <p>
+                Información extra de utilidad.<br />
+                En esta sección encontrarás una gran variedad de consejos que te
+                pueden ayudar en tus proyectos y adentrarte en el mundo de los
+                cultivos orgánicos.
             </p>
         </article>
 
         <footer>
-            <div id="contacto"> <a href="https://www.facebook.com/" target="_blank"><img src="recursos/logo-face.png" alt="logo"></a>
-                <a href="https://www.instagram.com/" target="_blank"> <img src="recursos/logo-insta.png" alt="logo"></a>
+            <div id="contacto">
+                <a href="https://www.facebook.com/" target="_blank"><img src="recursos/logo-face.png" alt="logo" /></a>
+                <a href="https://www.instagram.com/" target="_blank">
+                    <img src="recursos/logo-insta.png" alt="logo" /></a>
                 @GardeningFriend
             </div>
-            <p id="descripcion_footer"> Puedes contactarnos a traves de nuestras redes</p>
+            <p id="descripcion_footer">
+                Puedes contactarnos a traves de nuestras redes sociales.
+            </p>
         </footer>
-
     </section>
-
 </body>
 
 </html>
