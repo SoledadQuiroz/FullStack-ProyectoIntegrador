@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto';
+    background: linear-gradient(to right,#56ab2f, #a8e063);
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-account{
+    width: 400px;
+    background-color: whitesmoke;
+    display: flex;
+    padding: 30px;
+    margin: auto;
+    margin-top: 70px;
+    border-radius: 18px;
+    font-family: 'Roboto';
+    color: black;
+    box-shadow: 10px 23px 47px #000;
+    flex-direction: column;
+}
+
+.my-account h2{
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.controls {
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid gray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.my-account a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.my-account p{
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.my-account .boton {
+    width: 100%;
+    background: #56ab2f;
+    border: none;
+    padding: 12px;
+    color: #fff;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+.imagen {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+}

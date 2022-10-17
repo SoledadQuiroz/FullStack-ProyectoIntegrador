@@ -1,0 +1,350 @@
+/*-------------------------- IMPORTS --------------------------*/
+@import url("variables.css");
+@import url("reset.css");
+@import url("headerNav.css");
+/* @import url("footer.css"); */
+
+/*-------------------------- BODY - LAYOUT GENERAL --------------------------*/
+/* vista movil como predeterminada*/
+body{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5% 1% 89%;
+    height: 400vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+nav #cultivos{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/*-------------------------- SECTION --------------------------*/
+section{
+    display: grid;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    grid-template-columns: repeat(auto-fit, minmax(20rem,5fr));
+    grid-template-rows: 30rem;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding-top: 125px;
+}
+/*-------------------------- TARJETAS FINAL --------------------------*/
+
+.tarjeta{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 30% 40% 30%;
+    height: 300px;
+    width: 85%;
+    box-sizing: border-box;
+    /*background: var(--verde9);*/
+    background: var(--verde3B);
+    border-radius: 10px;
+    border: 5px solid var(--verde3B);
+    color: var(--fuenteAlt);
+    box-shadow: var(--sombra1);
+    justify-self: center;
+    align-self: flex-start;
+}
+
+.tarjeta:hover{
+    border: 5px solid var(--verde3A);
+    transition: 0.5s ease-in-out;
+}
+
+.tarjeta .imagen_wrapper{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    /*background: var(--verde5)*/;
+    background: var(--verde3D);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.tarjeta .imagen_wrapper img{
+    height: 140px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.tarjeta .contenido{
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background: white;
+    color: var(--verde3A);
+}
+
+
+.tarjeta .contenido h5{
+    font-family: secundaria1,Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    /*text-decoration: underline;*/
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    color: var(--fuenteAlt);
+    cursor: pointer;
+    color: var(--verde3A);
+}
+
+.tarjeta .contenido p{
+    font-family: secundaria4;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.tarjeta .botones{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    /*background: var(--verde10)*/;
+    background: var(--verde3D);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.tarjeta .botones button{
+    /*background: var(--verde5);*/
+    background: var(--verde3B);
+    border: none;
+    height: 50px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--sombra1);
+    justify-self: center !important;
+    font-family: secundaria4;
+    color: var(--fuenteAlt);
+}
+
+.tarjeta .botones button:hover{
+    background: var(--verde3A);
+    text-decoration: underline;
+    transition: 0.5s ease-in-out;
+}
+
+/*-------------------------- FOOTER --------------------------*/
+footer{
+    display: flex;
+    position: absolute;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    flex-direction: column;
+    align-self: flex-end !important;
+    height: 50px;
+    width: 100%;
+    background: var(--verde3);
+    font-family: Principal, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.3rem;
+    color: var(--fuenteAlt);
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 50;
+}
+
+footer div img{
+    height: 20px;
+}
+
+footer #descripcion_footer{
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/*-------------------------- CLASES PARA JS --------------------------*/
+
+.lightbox{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/4;
+    height: 400vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: var(--fondo_transparente);
+    z-index: 100;
+}
+
+.modal_tarjetas{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5% 20% 60% 15%;
+    height: 60%;
+    width: 90%;
+    justify-content: center;
+    align-content: center;
+    border-radius: 10px;
+    background: white;
+    z-index: 150;
+    overflow: hidden;
+    border: 5px solid var(--verde3B);
+    box-sizing: border-box;
+}
+
+.icono_cerrar{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    background: var(--verde3B);
+}
+
+.icono_cerrar img{
+    margin-right: 10px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.header_modal{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: var(--verde3A);
+    background-image: url("../recursos/plantas-borde-inf.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+}
+
+.header_modal img{
+    height: 60% !important;
+}
+
+.descripcion_modal{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-family: secundaria4;
+}
+
+.botones_modal{
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 4/5;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background: var(--verde3A);
+    
+}
+
+.botones_modal button{
+    background: var(--verde3B);
+    border: none;
+    height: 50px;
+    width: 70%;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: var(--sombra1);
+    justify-self: center !important;
+    font-family: secundaria4;
+    color: var(--fuenteAlt);
+}
+
+.botones_modal button:hover{
+    text-decoration: underline;
+    
+}
+
+/* ------------------ MEDIA QUERIES -------------------*/
+
+/* Medium devices (landscape tablets, 768px and up) */
+ @media only screen and (min-width: 768px) {
+
+    body{
+        height: 200vh;
+        grid-template-rows: 10% 2% 88%;
+    }
+
+    .lightbox{
+        height: 200vh;
+    }
+
+    .modal_tarjetas{
+        height: 40%;
+        width: 90%;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    
+    .lightbox{
+        align-items: center;
+        position: absolute;
+    }
+
+    .modal_tarjetas{
+        height: 85%;
+    }
+
+    .modal_tarjetas .header_modal{
+        background-image:url("../recursos/plantas-borde-inf-large.png");;
+    }
+
+    .modal_tarjetas .botones_modal{
+        flex-direction: row;
+    }
+
+    .modal_tarjetas .botones_modal button{
+        width: 30%;
+        font-size: 1.1rem;
+    }
+
+    .modal_tarjetas .icono_cerrar img{
+        height: 30px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    body{
+        height: 100vh;
+        grid-template-rows: 20% 4% 76%;
+    }
+
+    .lightbox{
+        height: 100vh;
+    }
+}
+
