@@ -10,7 +10,11 @@
 body{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 5% 1% 94%;
+    grid-template-rows: 5% 1% 86% 8%;
+    grid-template-areas: "header"
+                          "nav"
+                          "section"
+                          "footer";
     height: 400vh;
     width: 100%;
     overflow-y: scroll;
@@ -26,10 +30,9 @@ nav #inicio{
 
 section{
     display: grid;
-    grid-column: 1/2;
-    grid-row: 3/4;
+    grid-area: section;
     grid-template-columns: 100%;
-    grid-template-rows: 18% 26.66% 26.66% 26.66% 2%;
+    grid-template-rows: 18% 27.333% 27.333% 27.333%;
     height: 100%;
     width: 100%;
 }
@@ -62,12 +65,16 @@ section #introduccion{
     font-size: 2.2rem;
     border-bottom: 2px solid lightgray;
     padding-bottom: 10px;
+    animation-name: efectoIntro;
+    animation-duration: 2s;
 }
 
 #introduccion p{
     font-size: 1.1rem;
     margin-top: 20px;
     line-height: 170%;
+    animation-name: efectoIntro;
+    animation-duration: 2s;
 }
 
 /*------------------------ ARTICLES ---------------------------*/
@@ -119,10 +126,6 @@ article img{
     text-align: center;
 }
 
-article img{
-    height: 250px;
-}
-
 .funciones_pag_2 h3 a{
     font-family: principal,Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
@@ -141,6 +144,19 @@ article img{
     line-height: 150%;
     font-size: 1.2rem;
 }
+
+/*------------------------------ ANIMACIONES ---------------------------------*/
+
+@keyframes efectoIntro {
+    0%{
+        filter: opacity(0%);
+    }
+    100%{
+        filter: opacity(100%);
+    }
+}
+
+
 /*------------------------------ MEDIA QUERIES ---------------------------------*/
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -151,6 +167,57 @@ article img{
 
     section .funciones_pag_1 p, section .funciones_pag_2 p{
         font-size: 1.5rem;
+    }
+}
+
+/* horizontal phones*/
+@media only screen and (max-height: 575.98px) and (orientation: landscape) {
+    body{
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 8% 2% 80% 10%;
+        grid-template-areas: "header"
+                              "nav"
+                              "section"
+                              "footer";
+        height: 400vh !important;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    header #logo_contenedor img{
+        width: 175px;
+    }
+
+    header #opciones{
+        padding-bottom: 20px;
+    }
+    
+    section #introduccion{
+        background-image: url("../recursos/plantas-borde-inf-large.png") !important;
+        justify-content: flex-start !important;
+        padding-top: 5% !important;
+    }
+
+    body section #introduccion h2{
+        font-size: 1.25rem !important;
+    }
+
+    section #introduccion p{
+        font-size: 0.8rem !important;
+    }
+
+    section article img{
+        height: 130px !important;
+    }
+
+    section .funciones_pag_1 p, section .funciones_pag_2 p{
+        font-size: 1rem !important;
+    }
+
+    section .funciones_pag_1 h3 a, section .funciones_pag_2 h3 a{
+        font-size: 1.25rem !important;
     }
 }
 

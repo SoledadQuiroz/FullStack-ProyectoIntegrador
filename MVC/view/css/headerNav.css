@@ -1,8 +1,9 @@
 /*------------------------------ HEADER ---------------------------------*/
 header{
-    display: flex;
-    grid-column: 1/2;
-    grid-row: 1/2;
+    display: grid;
+    grid-area: header;
+    grid-template-columns: 100%;
+    grid-template-rows: 75% 25%;
     height: 100%;
     width: 100%;
     justify-content: center;
@@ -13,8 +14,53 @@ header{
     background-size: contain;
 }
 
-header img{
+header #logo_contenedor{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/3;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+header #logo_contenedor img{
     width: 240px;
+}
+
+header #opciones{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+header #opciones li{
+    list-style: none;
+    font-family: secundaria4;
+    background: var(--verde3B);
+    border-radius: 5px;
+    padding: 3px;
+}
+
+header #opciones #cuenta_boton{
+    list-style-image: url("../recursos/icono-user-mini.png");
+    list-style-position: outside;
+    margin-left: 5px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+header #opciones li a{
+    color: white;
+    text-decoration: none;
+}
+
+header #opciones li a:hover{
+    text-decoration: underline;
 }
 
 /*------------------------------ NAV ---------------------------------*/

@@ -9,7 +9,11 @@
 body{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 5% 1% 89%;
+    grid-template-rows: 5% 1% 86% 8%;
+    grid-template-areas: "header"
+                          "nav"
+                          "section"
+                          "footer";
     height: 400vh;
     width: 100%;
     overflow-y: scroll;
@@ -25,16 +29,15 @@ nav #cultivos{
 section{
     display: grid;
     flex-direction: column;
-    grid-column: 1/2;
-    grid-row: 3/4;
-    grid-template-columns: repeat(auto-fit, minmax(20rem,5fr));
+    grid-area: section;
+    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
     grid-template-rows: 30rem;
     height: 100%;
     width: 100%;
-    justify-content: center;
+    justify-content: center !important;
     align-items: flex-start;
     box-sizing: border-box;
-    padding-top: 125px;
+    margin-top: 125px;
 }
 /*-------------------------- TARJETAS FINAL --------------------------*/
 
@@ -45,7 +48,6 @@ section{
     height: 300px;
     width: 85%;
     box-sizing: border-box;
-    /*background: var(--verde9);*/
     background: var(--verde3B);
     border-radius: 10px;
     border: 5px solid var(--verde3B);
@@ -68,7 +70,6 @@ section{
     align-items: flex-end;
     height: 100%;
     width: 100%;
-    /*background: var(--verde5)*/;
     background: var(--verde3D);
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
@@ -97,7 +98,6 @@ section{
 .tarjeta .contenido h5{
     font-family: secundaria1,Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    /*text-decoration: underline;*/
     font-size: 2rem;
     letter-spacing: 0.2rem;
     color: var(--fuenteAlt);
@@ -122,14 +122,12 @@ section{
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
-    /*background: var(--verde10)*/;
     background: var(--verde3D);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
 
 .tarjeta .botones button{
-    /*background: var(--verde5);*/
     background: var(--verde3B);
     border: none;
     height: 50px;
@@ -152,12 +150,9 @@ section{
 /*-------------------------- FOOTER --------------------------*/
 footer{
     display: flex;
-    position: absolute;
-    grid-column: 1/2;
-    grid-row: 3/4;
+    grid-area: footer !important;
     flex-direction: column;
-    align-self: flex-end !important;
-    height: 50px;
+    height: 100%;
     width: 100%;
     background: var(--verde3);
     font-family: Principal, Verdana, Geneva, Tahoma, sans-serif;
@@ -165,10 +160,16 @@ footer{
     color: var(--fuenteAlt);
     justify-content: space-evenly;
     align-items: center;
+    overflow: hidden;
     z-index: 50;
+    margin-bottom: 0 !important;
 }
 
-footer div img{
+footer #contenedor_isologo img{
+    height: 75px;
+}
+
+footer #contacto img{
     height: 20px;
 }
 
@@ -285,15 +286,47 @@ footer #descripcion_footer{
     text-decoration: underline;
     
 }
-
 /* ------------------ MEDIA QUERIES -------------------*/
+
+/* horizontal phones*/
+@media only screen and (max-height: 575.98px) and (orientation: landscape) {
+    body{
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 8% 2% 75% 15%;
+        grid-template-areas: "header"
+                              "nav"
+                              "section"
+                              "footer";
+        height: 400vh !important;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    header #logo_contenedor img{
+        width: 175px;
+    }
+
+    header #opciones{
+        padding-bottom: 20px;
+    }
+    
+    .lightbox{
+        height: 400vh !important;
+    }
+
+    .modal_tarjetas{
+        height: 85% !important;
+    }
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
  @media only screen and (min-width: 768px) {
 
     body{
         height: 200vh;
-        grid-template-rows: 10% 2% 88%;
+        grid-template-rows: 10% 2% 78% 10%;
     }
 
     .lightbox{
@@ -308,8 +341,14 @@ footer #descripcion_footer{
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+
+    body{
+        height: 200vh;
+        grid-template-rows: 10% 2% 68% 20%;
+    }
     
     .lightbox{
+        height: 200vh;
         align-items: center;
         position: absolute;
     }
@@ -334,17 +373,22 @@ footer #descripcion_footer{
     .modal_tarjetas .icono_cerrar img{
         height: 30px;
     }
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1400px) {
     body{
-        height: 100vh;
-        grid-template-rows: 20% 4% 76%;
+        height: 150vh;
+        grid-template-rows: 12.5% 2.5% 65% 20%;
+    }
+    
+    .lightbox{
+        height: 150vh;
     }
 
-    .lightbox{
-        height: 100vh;
+    .modal_tarjetas{
+        height: 60%;
     }
 }
 

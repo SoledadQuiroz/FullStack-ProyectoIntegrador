@@ -3,8 +3,7 @@
 footer{
     display: flex;
     flex-direction: column;
-    grid-column: 1/2;
-    grid-row: 5/6;
+    grid-area: footer;
     height: 100%;
     width: 100%;
     background: var(--verde3);
@@ -15,7 +14,15 @@ footer{
     align-items: center;
 }
 
-footer div img{
+footer #contenedor_isologo img{
+    height: 80px;
+}
+
+footer #contacto{
+    border-bottom: 2px solid white;
+}
+
+footer #contacto img{
     height: 20px;
 }
 

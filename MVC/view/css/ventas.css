@@ -10,8 +10,12 @@
 body{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 20% 4% 70% 6%;
-    height: 100vh;
+    grid-template-rows: 10% 2% 76% 12%;
+    grid-template-areas: "header"
+                         "nav"
+                         "section"
+                         "footer";
+    height: 200vh;
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -39,6 +43,41 @@ section img{
 
 /* -------------------- FOOTER ------------------------*/
 footer{
-    grid-row: 4/5 !important;
+    grid-area: footer;
+    height: 100% !important;
+    width: 100%;
 }
 
+/* ------------------- MEDIA QUERIES ------------------- */
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    section img{
+        height: 500px;
+     }
+}
+
+/* horizontal phones*/
+@media only screen and (max-height: 575.98px) and (orientation: landscape) {
+    body{
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 8% 2% 80% 10%;
+        grid-template-areas: "header"
+                              "nav"
+                              "section"
+                              "footer";
+        height: 400vh !important;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    header #logo_contenedor img{
+        width: 175px;
+    }
+
+    header #opciones{
+        padding-bottom: 20px;
+    }
+    
+}
