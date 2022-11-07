@@ -14,7 +14,7 @@ class Conectar():
             print('No se pudo conectar', descripcionError)
 
     #OPERACION CRUD: CREATE
-    def InsertValor(self,idUsuario,Nombre,Apellido,Email,Contraseña,FechaNacimiento):
+    def crearUsuario(self,idUsuario,Nombre,Apellido,Email,Contraseña,FechaNacimiento):
         if self.conexion.is_connected():
             try:
                 cursor= self.conexion.cursor()
@@ -30,7 +30,7 @@ class Conectar():
                 print("No se pudo insertar registro")
 
     #OPERACION CRUD: READ
-    def BuscarObjeto(self,nombre):
+    def buscarUsuario(self,nombre):
         if self.conexion.is_connected():
             try:
                 cursor= self.conexion.cursor()
@@ -45,7 +45,7 @@ class Conectar():
                 print("No se pudo leer los datos")
 
     #OPERACION CRUD: UPDATE
-    def ActualizarRegistro(self,id,Contraseña):
+    def cambiarPassword(self,id,Contraseña):
         try:
             cursor= self.conexion.cursor()
             sentenciaSQL= """UPDATE usuario SET Contraseña= %s WHERE idUsuario = %s;"""
@@ -64,7 +64,7 @@ class Conectar():
 
 
     #OPERACION CRUD: DELETE
-    def EliminarObjeto(self,id):
+    def EliminarUsuario(self,id):
         if self.conexion.is_connected():
             try:
                 cursor= self.conexion.cursor()
@@ -84,8 +84,8 @@ class Conectar():
 
 
 nuevoUsuario = Conectar()
-#nuevoUsuario.InsertValor(3,"Pablo","Gonzales","pablo_g@gmail.com","1234","2000-05-25")
-#nuevoUsuario.BuscarObjeto("Nombre")
-#nuevoUsuario.ActualizarRegistro(3,'Gonzales12')
-nuevoUsuario.EliminarObjeto(3)
+#nuevoUsuario.crearUsuario(3,"Pablo","Gonzales","pablo_g@gmail.com","1234","2000-05-25")
+#nuevoUsuario.buscarUsuario("Nombre")
+#nuevoUsuario.cambiarPassword(3,'Gonzales12')
+nuevoUsuario.EliminarUsuario(3)
 print(nuevoUsuario)
