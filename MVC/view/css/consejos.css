@@ -5,25 +5,30 @@
 @import url("footer.css");
 
 /*-------------------------- BODY - LAYOUT GENERAL --------------------------*/
-/* vista movil como predeterminada*/
 body {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 5% 1% 94%;
-    /*height: fit-content;*/
+    grid-template-rows: 8% 1% 85% 9%;
+    grid-template-areas: "header"
+                          "nav"
+                          "section"
+                          "footer";
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
 section{
-      grid-column: 1/2;
-      grid-row: 3/4;
+      display: flex;
+      grid-area: section;
       background-color: #96E8BC;
       padding-top: 30px;
+      padding-bottom: 30px;
 }
 
 /*CARDS*/
-.card {
+.card{
+    height: 93% !important;
     width: 90%;
     margin: 30px;
     border-radius: 6px;
@@ -32,6 +37,8 @@ section{
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
     transition: all 400ms ease-out;
     cursor: default;
+    justify-self: center;
+    align-self: center;
 }
 
 .cards {
@@ -42,7 +49,13 @@ section{
   
 }
 
-@media (min-width: 600px) {
+@media (max-width: 768px) {
+    body{
+        grid-template-rows: 4% 1% 88% 10%;
+    }
+}
+
+@media (min-width: 768px) {
     .cards {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -100,4 +113,12 @@ section{
 .card .contenido-card a:hover {
     background: #2fb4cc;
     color: #fff;
+}
+
+nav li a:hover{
+    color: white;
+}
+
+nav #consejos a{
+    text-decoration: underline;
 }

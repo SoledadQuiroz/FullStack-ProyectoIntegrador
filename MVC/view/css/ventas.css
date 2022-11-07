@@ -51,8 +51,12 @@ footer{
 /* ------------------- MEDIA QUERIES ------------------- */
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+    body{
+        grid-template-rows: 20% 4% 56% 20%;
+        height: 100vh;
+    }
     section img{
-        height: 500px;
+        height: 300px;
      }
 }
 
