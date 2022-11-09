@@ -45,12 +45,12 @@
 /*------------------------------ FUENTES ---------------------------------*/
 @font-face {
     font-family: "principal";
-    src: url("../recursos/fuentes/LithosPro-Regular.otf");
+    src: url("../recursos/fuentes/Karma-Regular.ttf");
 }
 
 @font-face {
     font-family: "secundaria1";
-    src: url("../recursos/fuentes/LEMONMILK-Medium.otf");
+    src: url("../recursos/fuentes/Quicksand-Regular.ttf");
 }
 
 @font-face {
@@ -60,7 +60,7 @@
 
 @font-face {
     font-family: "secundaria3";
-    src: url("../recursos/fuentes/TangoSans.ttf");
+    src: url("../recursos/fuentes/LibreFranklin-VariableFont_wght.ttf");
 }
 
 @font-face {
