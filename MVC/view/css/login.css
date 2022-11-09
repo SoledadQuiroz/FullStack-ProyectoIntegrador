@@ -1,3 +1,4 @@
+@import url("variables.css");
 :root {
     --colorTextos: #49454567;
 }
@@ -72,7 +73,7 @@ input:focus~label,
 input:valid~label {
     top: -14px;
     font-size: 12px;
-    color: #2196f3;
+    color: var(--verde4);
 }
 
 .barra {
@@ -112,6 +113,11 @@ button {
 
 .cuenta{
     text-align: center;
+    font-family: 'roboto';
+    width: 200px;
+    margin: auto;
+    color: var(--verde4);
+    padding-top: 20px;
 }
 
 @media screen and (max-width:500px) {
@@ -124,4 +130,13 @@ img{
     width: 125px;
     margin:10px auto;
     display:block;
+}
+
+#mensaje_login{
+    text-align: center;
+    font-family: 'roboto';
+    width: 200px;
+    margin: auto;
+    color: var(--verde4);
+    padding-top: 20px;
 }

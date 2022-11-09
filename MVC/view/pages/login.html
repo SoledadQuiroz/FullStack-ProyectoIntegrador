@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../recursos/isologo.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../recursos/isologo.png" />
     <title>Iniciar sesión</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <form action="" method="POST" id="form">
-        <div class="form">
-            <img src="../recursos/isologo.png">
-            <h1>Iniciar sesión</h1>
-            <div class="grupo">
-                <input type="email" name="" id="email" required><span class="barra"></span>
-                <label for="">Email</label>
-            </div>
-            <div class="grupo">
-                <input type="password" name="" id="password" required><span class="barra"></span>
-                <label for="">Password</label>
-            </div>
-
-            <button type="submit">Ingresar</button>
-            <div class="cuenta">
-                <p>¿No tienes cuenta?</p>
-                <a href="micuenta.html">Registrarse</a>
-            </div>
+      <div class="form">
+        <img src="../recursos/isologo.png" />
+        <h1>Iniciar sesión</h1>
+        <div class="grupo">
+          <input type="email" name="" id="email" required /><span
+            class="barra"
+          ></span>
+          <label for="">Email</label>
         </div>
+        <div class="grupo">
+          <input type="password" name="" id="password" required /><span
+            class="barra"
+          ></span>
+          <label for="">Password</label>
+        </div>
+        <p id="mensaje_login"></p>
+        <button type="submit" onclick="return validarDatos()">Ingresar</button>
+        <div class="cuenta">
+          <p>¿No tienes cuenta?</p>
+          <a href="micuenta.html">Registrarse</a>
+        </div>
+      </div>
     </form>
-    <script src="main.js"></script>
-</body>
-
+    <script src="../js/validar.js"></script>
+  </body>
 </html>
