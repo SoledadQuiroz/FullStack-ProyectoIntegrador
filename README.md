@@ -9,8 +9,5 @@ Integrantes:
 3.	Nieto Máximo
 4.	Oviedo Braian
 5.	Quiroz Angelica Soledad
-6.	Romero Gerardo Lauro
-7.	Sesek Julián Nicolás
-8.	Silva Bayón Iara Solange
-9.	Vallejos Leonela Anabel
-10.	Valles Cristian	
+6.	Silva Bayón Iara Solange
+7.	Valles Cristian	
