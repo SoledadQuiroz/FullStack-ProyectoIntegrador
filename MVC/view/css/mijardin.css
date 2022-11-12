@@ -96,7 +96,7 @@ section{
 
 
 .tarjeta .contenido h5{
-    font-family: secundaria1,Verdana, Geneva, Tahoma, sans-serif;
+    font-family: secundaria3,Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-size: 2rem;
     letter-spacing: 0.2rem;
@@ -137,7 +137,7 @@ section{
     cursor: pointer;
     box-shadow: var(--sombra1);
     justify-self: center !important;
-    font-family: secundaria4;
+    font-family: secundaria3;
     color: var(--fuenteAlt);
 }
 

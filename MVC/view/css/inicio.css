@@ -67,6 +67,7 @@ section #introduccion{
     padding-bottom: 10px;
     animation-name: efectoIntro;
     animation-duration: 2s;
+
 }
 
 #introduccion p{
@@ -76,6 +77,7 @@ section #introduccion{
     animation-name: efectoIntro;
     animation-duration: 2s;
 }
+
 
 /*------------------------ ARTICLES ---------------------------*/
 
@@ -96,7 +98,7 @@ article img{
 }
 
 .funciones_pag_1 h3 a{
-    font-family: principal,Verdana, Geneva, Tahoma, sans-serif;
+    font-family: secundaria3,Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     text-decoration: underline;
     color: var(--fuenteAlt);
@@ -127,7 +129,7 @@ article img{
 }
 
 .funciones_pag_2 h3 a{
-    font-family: principal,Verdana, Geneva, Tahoma, sans-serif;
+    font-family: secundaria3,Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     text-decoration: underline;
     color: var(--verde7);

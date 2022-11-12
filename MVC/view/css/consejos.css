@@ -84,11 +84,13 @@ section{
 .card .contenido-card {
     padding: 15px;
     text-align: center;
+    
 }
 
 .card .contenido-card h3 {
     margin-bottom: 15px;
     color: #7a7a7a;
+    font-family: secundaria2;
 }
 
 .card .contenido-card p {
@@ -103,15 +105,15 @@ section{
     padding: 10px;
     margin-top: 10px;
     text-decoration: none;
-    color: #2fb4cc;
-    border: 1px solid #2fb4cc;
+    color: black;
+    border: 1px solid var(--verde3);
     border-radius: 4px;
     transition: all 400ms ease;
     margin-bottom: 5px;
 }
 
 .card .contenido-card a:hover {
-    background: #2fb4cc;
+    background:  var(--verde3B);
     color: #fff;
 }
 

@@ -22,6 +22,7 @@ header #logo_contenedor{
     align-items: center;
     height: 100%;
     width: 100%;
+    font-family: secundaria3;
 }
 
 header #logo_contenedor img{
