@@ -17,22 +17,24 @@
             <img src="../recursos/isologo.png" width="200px" height="170px">
         </div>
         <h1>Mi Cuenta</h1>
-        <form method="post" action="MiCuenta.php">
+        <form action="#">
             <label for="usuario">Usuario:</label><br>
-            <input class="controls" type="text" name="usuario" id="usuario"><br>
+            <input class="controls" type="text" name="usuario" id="usuario" required minlength="8" maxlength="16"><br>
             <label for="nombre">Nombre:</label><br>
-            <input class="controls" type="text" name="nombre" id="nombre"><br>
+            <input class="controls" type="text" name="nombre" id="nombre" required minlength="8" maxlength="16"><br>
             <label for="email">Correo electronico:</label><br>
-            <input class="controls" type="email" name="email" id="email"><br>
+            <input class="controls" type="email" name="email" id="email" required><br>
             <label for="nacimiento">Fecha de nacimiento:</label><br>
-            <input class="controls" type="date" name="nacimiento" id="nacimiento"><br>
+            <input class="controls" type="date" name="nacimiento" id="nacimiento" required><br>
+            <p id="mensaje_login"></p>
 
             <p><a href="cambiarclave.html">Cambiar contraseña</a><br></p>
 
-            <input class="boton" type="submit" value="guardar cambios">
+            <input class="boton" type="submit" value="guardar cambios" onclick="return validarDatosPersonales()">
         </form>
     </section>
 
+<script src="../js/validar.js"></script>
 </body>
 
 </html>
