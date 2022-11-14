@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/micuenta.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../recursos/isologo.png">
-    <title>Crear mi cuenta</title>
+    <title>Mi Cuenta</title>
 </head>
-
 <body>
-    <section class="my-account">
-        <div class="imagen">
-            <img src="../recursos/isologo.png" width="200px" height="170px">
-        </div>
-        <h1>Mi Cuenta</h1>
-        <form action="#">
-            <label for="usuario">Usuario:</label><br>
-            <input class="controls" type="text" name="usuario" id="usuario" required minlength="8" maxlength="16"><br>
-            <label for="nombre">Nombre:</label><br>
-            <input class="controls" type="text" name="nombre" id="nombre" required minlength="8" maxlength="16"><br>
-            <label for="email">Correo electronico:</label><br>
-            <input class="controls" type="email" name="email" id="email" required><br>
-            <label for="nacimiento">Fecha de nacimiento:</label><br>
-            <input class="controls" type="date" name="nacimiento" id="nacimiento" required><br>
-            <p id="mensaje_login"></p>
-
+    <div class="container">
+        <form action="#" class="form" id="form">
+            <div class="imagen">
+                <img src="../recursos/isologo.png" width="150px" height="130px">
+            </div>
+            <h1>Mi Cuenta</h1>
+            <div class="form-input usuario">
+                <input type="text" id="usuario">
+                <label for="usuario">Usuario</label>
+                <p class="mensajeError"></p>
+            </div>
+            <div class="form-input nombre">
+                <input type="text" name="nombre" id="nombre">
+                <label for="nombre">Nombre</label>
+                <p class="mensajeError"></p>
+            </div>
+            <div class="form-input email">
+                <input type="email" name="email" id="email">
+                <label for="email">Correo electronico</label>
+                <p class="mensajeError"></p>
+            </div>
+            <div class="form-input nacimiento">
+                <input type="date" name="nacimiento" id="nacimiento">
+                <label for="nacimiento">Fecha de nacimiento</label>
+                <p class="mensajeError"></p>
+            </div>
+            <div class="form-input password">
+                <input type="password" name="password" id="password" >
+                <label for="nueva contraseña">Nueva contraseña</label>
+                <p class="mensajeError"></p>
+            </div>
+            <div class="form-input reppassword">
+                <input type="password" name="password" id="reppassword">
+                <label for="repetir contraseña">Repetir contraseña</label>
+                <p class="mensajeError"></p>
+            </div>
+            <div class="chclave">
             <p><a href="cambiarclave.html">Cambiar contraseña</a><br></p>
-
-            <input class="boton" type="submit" value="guardar cambios" onclick="return validarDatosPersonales()">
-        </form>
-    </section>
-
-<script src="../js/validar.js"></script>
-</body>
-
-</html>
+            </div>
+            <div class="boton">
+                <input type="submit" value="Guardar datos">
+            </div>
