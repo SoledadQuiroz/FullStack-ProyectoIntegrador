@@ -1,6 +1,5 @@
-
 /* -------------------- FOOTER ------------------------*/
-footer{
+footer {
     display: flex;
     flex-direction: column;
     grid-area: footer;
@@ -14,19 +13,19 @@ footer{
     align-items: center;
 }
 
-footer #contenedor_isologo img{
+footer #contenedor_isologo img {
     height: 80px;
 }
 
-footer #contacto{
+footer #contacto {
     border-bottom: 2px solid white;
 }
 
-footer #contacto img{
+footer #contacto img {
     height: 20px;
 }
 
-footer #descripcion_footer{
+footer #descripcion_footer {
     font-size: 0.8rem;
     text-align: center;
 }

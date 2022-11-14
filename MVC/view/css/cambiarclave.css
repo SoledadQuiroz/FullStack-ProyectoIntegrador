@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Roboto';
-    background: linear-gradient(to right,#56ab2f, #a8e063);
+    background: linear-gradient(to right, #56ab2f, #a8e063);
     height: 650px;
     display: flex;
     justify-content: center;
@@ -59,7 +59,7 @@ body {
     text-decoration: underline;
 }
 
-.camb-clave p{
+.camb-clave p {
     height: 40px;
     text-align: center;
     font-size: 18px;

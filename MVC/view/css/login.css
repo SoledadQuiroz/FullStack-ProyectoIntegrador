@@ -1,4 +1,5 @@
 @import url("variables.css");
+
 :root {
     --colorTextos: #49454567;
 }
@@ -14,7 +15,7 @@
 
 body {
     font-family: 'Roboto';
-    background: linear-gradient(to right,#56ab2f, #a8e063);
+    background: linear-gradient(to right, #56ab2f, #a8e063);
     height: 650px;
     display: flex;
     justify-content: center;
@@ -88,7 +89,7 @@ input:valid~label {
     width: 0%;
     bottom: 0;
     position: absolute;
-    background:  #56ab2f;
+    background: #56ab2f;
     transition: 0.3s ease width;
     left: 0;
 }
@@ -100,7 +101,7 @@ input:focus~.barra::before {
 
 button {
     font-family: 'roboto';
-     background: #56ab2f;
+    background: #56ab2f;
     border: none;
     display: block;
     width: 80%;
@@ -111,7 +112,7 @@ button {
     cursor: pointer;
 }
 
-.cuenta{
+.cuenta {
     text-align: center;
     font-family: 'roboto';
     width: 200px;
@@ -126,13 +127,13 @@ button {
     }
 }
 
-img{
+img {
     width: 125px;
-    margin:10px auto;
-    display:block;
+    margin: 10px auto;
+    display: block;
 }
 
-#mensaje_login{
+#mensaje_login {
     text-align: center;
     font-family: 'roboto';
     width: 200px;

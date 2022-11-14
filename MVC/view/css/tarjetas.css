@@ -6,31 +6,31 @@
 
 /*-------------------------- BODY - LAYOUT GENERAL --------------------------*/
 /* vista movil como predeterminada*/
-body{
+body {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 5% 1% 86% 8%;
     grid-template-areas: "header"
-                          "nav"
-                          "section"
-                          "footer";
+        "nav"
+        "section"
+        "footer";
     height: 400vh;
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-nav #cultivos{
+nav #cultivos {
     text-decoration: underline;
     cursor: pointer;
 }
 
 /*-------------------------- SECTION --------------------------*/
-section{
+section {
     display: grid;
     flex-direction: column;
     grid-area: section;
-    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-template-rows: 30rem;
     height: 100%;
     width: 100%;
@@ -39,9 +39,10 @@ section{
     box-sizing: border-box;
     margin-top: 125px;
 }
+
 /*-------------------------- TARJETAS FINAL --------------------------*/
 
-.tarjeta{
+.tarjeta {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 30% 40% 30%;
@@ -57,12 +58,12 @@ section{
     align-self: flex-start;
 }
 
-.tarjeta:hover{
+.tarjeta:hover {
     border: 5px solid var(--verde3A);
     transition: 0.5s ease-in-out;
 }
 
-.tarjeta .imagen_wrapper{
+.tarjeta .imagen_wrapper {
     display: flex;
     grid-column: 1/2;
     grid-row: 1/2;
@@ -75,13 +76,13 @@ section{
     border-top-right-radius: 7px;
 }
 
-.tarjeta .imagen_wrapper img{
+.tarjeta .imagen_wrapper img {
     height: 140px;
     cursor: pointer;
     margin-bottom: 10px;
 }
 
-.tarjeta .contenido{
+.tarjeta .contenido {
     display: flex;
     flex-direction: column;
     grid-column: 1/2;
@@ -95,8 +96,8 @@ section{
 }
 
 
-.tarjeta .contenido h5{
-    font-family: secundaria3,Verdana, Geneva, Tahoma, sans-serif;
+.tarjeta .contenido h5 {
+    font-family: secundaria3, Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-size: 2rem;
     letter-spacing: 0.2rem;
@@ -105,7 +106,7 @@ section{
     color: var(--verde3A);
 }
 
-.tarjeta .contenido p{
+.tarjeta .contenido p {
     font-family: secundaria4;
     font-size: 1.1rem;
     font-weight: bold;
@@ -114,7 +115,7 @@ section{
     margin-right: 15px;
 }
 
-.tarjeta .botones{
+.tarjeta .botones {
     display: flex;
     grid-column: 1/2;
     grid-row: 3/4;
@@ -127,7 +128,7 @@ section{
     border-bottom-right-radius: 8px;
 }
 
-.tarjeta .botones button{
+.tarjeta .botones button {
     background: var(--verde3B);
     border: none;
     height: 50px;
@@ -141,14 +142,14 @@ section{
     color: var(--fuenteAlt);
 }
 
-.tarjeta .botones button:hover{
+.tarjeta .botones button:hover {
     background: var(--verde3A);
     text-decoration: underline;
     transition: 0.5s ease-in-out;
 }
 
 /*-------------------------- FOOTER --------------------------*/
-footer{
+footer {
     display: flex;
     grid-area: footer !important;
     flex-direction: column;
@@ -165,22 +166,22 @@ footer{
     margin-bottom: 0 !important;
 }
 
-footer #contenedor_isologo img{
+footer #contenedor_isologo img {
     height: 75px;
 }
 
-footer #contacto img{
+footer #contacto img {
     height: 20px;
 }
 
-footer #descripcion_footer{
+footer #descripcion_footer {
     font-size: 0.8rem;
     text-align: center;
 }
 
 /*-------------------------- CLASES PARA JS --------------------------*/
 
-.lightbox{
+.lightbox {
     display: flex;
     grid-column: 1/2;
     grid-row: 1/4;
@@ -192,7 +193,7 @@ footer #descripcion_footer{
     z-index: 100;
 }
 
-.modal_tarjetas{
+.modal_tarjetas {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 5% 20% 60% 15%;
@@ -208,7 +209,7 @@ footer #descripcion_footer{
     box-sizing: border-box;
 }
 
-.icono_cerrar{
+.icono_cerrar {
     display: flex;
     grid-column: 1/2;
     grid-row: 1/2;
@@ -219,13 +220,13 @@ footer #descripcion_footer{
     background: var(--verde3B);
 }
 
-.icono_cerrar img{
+.icono_cerrar img {
     margin-right: 10px;
     height: 45px;
     cursor: pointer;
 }
 
-.header_modal{
+.header_modal {
     display: flex;
     grid-column: 1/2;
     grid-row: 2/3;
@@ -240,11 +241,11 @@ footer #descripcion_footer{
     background-position: bottom;
 }
 
-.header_modal img{
+.header_modal img {
     height: 60% !important;
 }
 
-.descripcion_modal{
+.descripcion_modal {
     display: flex;
     grid-column: 1/2;
     grid-row: 3/4;
@@ -255,7 +256,7 @@ footer #descripcion_footer{
     font-family: secundaria4;
 }
 
-.botones_modal{
+.botones_modal {
     display: flex;
     flex-direction: column;
     grid-column: 1/2;
@@ -265,10 +266,10 @@ footer #descripcion_footer{
     justify-content: space-evenly;
     align-items: center;
     background: var(--verde3A);
-    
+
 }
 
-.botones_modal button{
+.botones_modal button {
     background: var(--verde3B);
     border: none;
     height: 50px;
@@ -282,95 +283,97 @@ footer #descripcion_footer{
     color: var(--fuenteAlt);
 }
 
-.botones_modal button:hover{
+.botones_modal button:hover {
     text-decoration: underline;
-    
+
 }
+
 /* ------------------ MEDIA QUERIES -------------------*/
 
 /* horizontal phones*/
 @media only screen and (max-height: 575.98px) and (orientation: landscape) {
-    body{
+    body {
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: 8% 2% 75% 15%;
         grid-template-areas: "header"
-                              "nav"
-                              "section"
-                              "footer";
+            "nav"
+            "section"
+            "footer";
         height: 400vh !important;
         width: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
     }
 
-    header #logo_contenedor img{
+    header #logo_contenedor img {
         width: 175px;
     }
 
-    header #opciones{
+    header #opciones {
         padding-bottom: 20px;
     }
-    
-    .lightbox{
+
+    .lightbox {
         height: 400vh !important;
     }
 
-    .modal_tarjetas{
+    .modal_tarjetas {
         height: 85% !important;
     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
- @media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
 
-    body{
+    body {
         height: 200vh;
         grid-template-rows: 10% 2% 78% 10%;
     }
 
-    .lightbox{
+    .lightbox {
         height: 200vh;
     }
 
-    .modal_tarjetas{
+    .modal_tarjetas {
         height: 40%;
         width: 90%;
     }
-} 
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 
-    body{
+    body {
         height: 200vh;
         grid-template-rows: 10% 2% 68% 20%;
     }
-    
-    .lightbox{
+
+    .lightbox {
         height: 200vh;
         align-items: center;
         position: absolute;
     }
 
-    .modal_tarjetas{
+    .modal_tarjetas {
         height: 85%;
     }
 
-    .modal_tarjetas .header_modal{
-        background-image:url("../recursos/plantas-borde-inf-large.png");;
+    .modal_tarjetas .header_modal {
+        background-image: url("../recursos/plantas-borde-inf-large.png");
+        ;
     }
 
-    .modal_tarjetas .botones_modal{
+    .modal_tarjetas .botones_modal {
         flex-direction: row;
     }
 
-    .modal_tarjetas .botones_modal button{
+    .modal_tarjetas .botones_modal button {
         width: 30%;
         font-size: 1.1rem;
     }
 
-    .modal_tarjetas .icono_cerrar img{
+    .modal_tarjetas .icono_cerrar img {
         height: 30px;
     }
 
@@ -378,17 +381,16 @@ footer #descripcion_footer{
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1400px) {
-    body{
+    body {
         height: 125vh;
         grid-template-rows: 16% 3% 59% 22%;
     }
-    
-    .lightbox{
+
+    .lightbox {
         height: 125vh;
     }
 
-    .modal_tarjetas{
+    .modal_tarjetas {
         height: 75%;
     }
 }
-

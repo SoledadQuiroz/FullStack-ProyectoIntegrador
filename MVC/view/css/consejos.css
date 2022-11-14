@@ -10,24 +10,24 @@ body {
     grid-template-columns: 100%;
     grid-template-rows: 8% 1% 85% 9%;
     grid-template-areas: "header"
-                          "nav"
-                          "section"
-                          "footer";
+        "nav"
+        "section"
+        "footer";
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-section{
-      display: flex;
-      grid-area: section;
-      background-color: #96E8BC;
-      padding-top: 30px;
-      padding-bottom: 30px;
+section {
+    display: flex;
+    grid-area: section;
+    background-color: #96E8BC;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 /*CARDS*/
-.card{
+.card {
     height: 93% !important;
     width: 90%;
     margin: 30px;
@@ -46,11 +46,11 @@ section{
     margin: 0 auto;
     display: grid;
     gap: 1rem;
-  
+
 }
 
 @media (max-width: 768px) {
-    body{
+    body {
         grid-template-rows: 4% 1% 88% 10%;
     }
 }
@@ -84,7 +84,7 @@ section{
 .card .contenido-card {
     padding: 15px;
     text-align: center;
-    
+
 }
 
 .card .contenido-card h3 {
@@ -113,14 +113,14 @@ section{
 }
 
 .card .contenido-card a:hover {
-    background:  var(--verde3B);
+    background: var(--verde3B);
     color: #fff;
 }
 
-nav li a:hover{
+nav li a:hover {
     color: white;
 }
 
-nav #consejos a{
+nav #consejos a {
     text-decoration: underline;
 }

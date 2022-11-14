@@ -7,28 +7,28 @@
 
 /*------------------------------ LAYOUT GENERAL ---------------------------------*/
 /* vista movil como predeterminada*/
-body{
+body {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 5% 1% 86% 8%;
     grid-template-areas: "header"
-                          "nav"
-                          "section"
-                          "footer";
+        "nav"
+        "section"
+        "footer";
     height: 400vh;
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-nav #inicio{
+nav #inicio {
     text-decoration: underline;
     cursor: pointer;
 }
 
 /*------------------------ SECTION ---------------------------------*/
 
-section{
+section {
     display: grid;
     grid-area: section;
     grid-template-columns: 100%;
@@ -39,7 +39,7 @@ section{
 
 /*------------------------ INTRODUCCION ---------------------------*/
 
-section #introduccion{
+section #introduccion {
     display: flex;
     flex-direction: column;
     grid-column: 1/2;
@@ -51,14 +51,14 @@ section #introduccion{
     padding-top: 10%;
     padding-left: 10%;
     padding-right: 10%;
-    background-image:  url("../recursos/plantas-borde-inf.png");
+    background-image: url("../recursos/plantas-borde-inf.png");
     background-position: bottom;
     background-size: contain;
     background-repeat: no-repeat;
     /* border-bottom: 5px solid var(--verde4); */
 }
 
-#introduccion h2{
+#introduccion h2 {
     color: var(--verde3);
     font-weight: bolder;
     line-height: 150%;
@@ -70,7 +70,7 @@ section #introduccion{
 
 }
 
-#introduccion p{
+#introduccion p {
     font-size: 1.1rem;
     margin-top: 20px;
     line-height: 170%;
@@ -82,7 +82,7 @@ section #introduccion{
 /*------------------------ ARTICLES ---------------------------*/
 
 /* ---------------Clase para los items de fondo verde*---------------*/
-.funciones_pag_1{
+.funciones_pag_1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,12 +93,12 @@ section #introduccion{
     text-align: center;
 }
 
-article img{
+article img {
     height: 250px;
 }
 
-.funciones_pag_1 h3 a{
-    font-family: secundaria3,Verdana, Geneva, Tahoma, sans-serif;
+.funciones_pag_1 h3 a {
+    font-family: secundaria3, Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     text-decoration: underline;
     color: var(--fuenteAlt);
@@ -106,7 +106,7 @@ article img{
     cursor: pointer;
 }
 
-.funciones_pag_1 p{
+.funciones_pag_1 p {
     margin-top: 20px;
     padding-left: 5%;
     padding-right: 5%;
@@ -117,7 +117,7 @@ article img{
 }
 
 /* ---------------Clase para los items de fondo blanco---------------*/
-.funciones_pag_2{
+.funciones_pag_2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -128,8 +128,8 @@ article img{
     text-align: center;
 }
 
-.funciones_pag_2 h3 a{
-    font-family: secundaria3,Verdana, Geneva, Tahoma, sans-serif;
+.funciones_pag_2 h3 a {
+    font-family: secundaria3, Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     text-decoration: underline;
     color: var(--verde7);
@@ -137,11 +137,11 @@ article img{
     cursor: pointer;
 }
 
-.funciones_pag_2 p{
+.funciones_pag_2 p {
     margin-top: 20px;
     padding-left: 5%;
     padding-right: 5%;
-    font-family:principal2;
+    font-family: principal2;
     color: var(--verde3);
     line-height: 150%;
     font-size: 1.2rem;
@@ -150,10 +150,11 @@ article img{
 /*------------------------------ ANIMACIONES ---------------------------------*/
 
 @keyframes efectoIntro {
-    0%{
+    0% {
         filter: opacity(0%);
     }
-    100%{
+
+    100% {
         filter: opacity(100%);
     }
 }
@@ -162,127 +163,128 @@ article img{
 /*------------------------------ MEDIA QUERIES ---------------------------------*/
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px){
-    section #introduccion{
+@media only screen and (min-width: 600px) {
+    section #introduccion {
         padding-top: 20%;
     }
 
-    section .funciones_pag_1 p, section .funciones_pag_2 p{
+    section .funciones_pag_1 p,
+    section .funciones_pag_2 p {
         font-size: 1.5rem;
     }
 }
 
 /* horizontal phones*/
 @media only screen and (max-height: 575.98px) and (orientation: landscape) {
-    body{
+    body {
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: 8% 2% 80% 10%;
         grid-template-areas: "header"
-                              "nav"
-                              "section"
-                              "footer";
+            "nav"
+            "section"
+            "footer";
         height: 400vh !important;
         width: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
     }
 
-    header #logo_contenedor img{
+    header #logo_contenedor img {
         width: 175px;
     }
 
-    header #opciones{
+    header #opciones {
         padding-bottom: 20px;
     }
-    
-    section #introduccion{
+
+    section #introduccion {
         background-image: url("../recursos/plantas-borde-inf-large.png") !important;
         justify-content: flex-start !important;
         padding-top: 5% !important;
     }
 
-    body section #introduccion h2{
+    body section #introduccion h2 {
         font-size: 1.25rem !important;
     }
 
-    section #introduccion p{
+    section #introduccion p {
         font-size: 0.8rem !important;
     }
 
-    section article img{
+    section article img {
         height: 130px !important;
     }
 
-    section .funciones_pag_1 p, section .funciones_pag_2 p{
+    section .funciones_pag_1 p,
+    section .funciones_pag_2 p {
         font-size: 1rem !important;
     }
 
-    section .funciones_pag_1 h3 a, section .funciones_pag_2 h3 a{
+    section .funciones_pag_1 h3 a,
+    section .funciones_pag_2 h3 a {
         font-size: 1.25rem !important;
     }
 }
 
 /* Medium devices (portrait tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    section #introduccion{
+    section #introduccion {
         justify-content: center;
         padding-top: 0;
         background-image: url("../recursos/plantas-borde-inf-medium-2.png");
     }
 
-    section #introduccion h2{
+    section #introduccion h2 {
         font-size: 3rem !important;
 
     }
-    section #introduccion p{
+
+    section #introduccion p {
         font-size: 1.5rem;
     }
 
-    section .funciones_pag_1 p, section .funciones_pag_2 p{
+    section .funciones_pag_1 p,
+    section .funciones_pag_2 p {
         font-size: 1.4rem;
     }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px){
-   
-    section #introduccion{
+@media only screen and (min-width: 992px) {
+
+    section #introduccion {
         justify-content: flex-start;
         padding-top: 8% !important;
     }
 
-    section #introduccion h2{
+    section #introduccion h2 {
         font-size: 2.4rem !important;
     }
 
-    section .funciones_pag_1 p, section .funciones_pag_2 p{
+    section .funciones_pag_1 p,
+    section .funciones_pag_2 p {
         font-size: 1.3rem;
     }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    section #introduccion{
+    section #introduccion {
         padding-top: 4% !important;
         background-image: url("../recursos/plantas-borde-inf-large.png");
     }
 
-    section #introduccion{
+    section #introduccion {
         justify-content: flex-start;
         padding-top: 8% !important;
     }
 
-    section #introduccion h2{
+    section #introduccion h2 {
         font-size: 2.75rem !important;
     }
 
-    section #introduccion p{
+    section #introduccion p {
         font-size: 1.5rem;
     }
 }
-
-
-
-
-
