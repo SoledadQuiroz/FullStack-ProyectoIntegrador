@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/micuenta.css">
+    <link rel="icon" href="../recursos/isologo.png">
     <title>Mi Cuenta</title>
 </head>
+
 <body>
     <div class="container">
         <form action="#" class="form" id="form">
@@ -35,7 +38,7 @@
                 <p class="mensajeError"></p>
             </div>
             <div class="form-input password">
-                <input type="password" name="password" id="password" >
+                <input type="password" name="password" id="password">
                 <label for="nueva contraseña">Nueva contraseña</label>
                 <p class="mensajeError"></p>
             </div>
@@ -45,8 +48,15 @@
                 <p class="mensajeError"></p>
             </div>
             <div class="chclave">
-            <p><a href="cambiarclave.html">Cambiar contraseña</a><br></p>
+                <p><a href="cambiarclave.html">Cambiar contraseña</a><br></p>
             </div>
             <div class="boton">
                 <input type="submit" value="Guardar datos">
             </div>
+            <p class="mensajeCorrecto"></p>
+        </form>
+    </div>
+    <script src="../js/micuenta.js"></script>
+</body>
+
+</html>
