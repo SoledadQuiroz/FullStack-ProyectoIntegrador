@@ -9,11 +9,11 @@ const sticky = nav.offsetTop;
 let toggleEffect = false;
 
 //------------------------ FUNCIONALIDADES ----------------------//
-function stickyNav(){
+function stickyNav() {
     // si la distancia "scrolleada" es mayor o igual al margen sup. 
     // del nav, la posicion del elemento cambia a "fixed".
     // para que se quede permanentemente en la parte sup. de la pantalla
-    if (window.pageYOffset >= sticky){
+    if (window.pageYOffset >= sticky) {
         nav.style.position = "fixed";
     } else {
         // de lo contrario vuelve a su estado original
@@ -21,8 +21,8 @@ function stickyNav(){
     }
 }
 
-function desplegarMenu(){
-    if(toggleEffect == false){
+function desplegarMenu() {
+    if (toggleEffect == false) {
         navItems.forEach(element => {
             element.style.display = "flex";
         });
@@ -32,7 +32,7 @@ function desplegarMenu(){
         navMenu.textContent = "Cerrar menu ↑";
         toggleEffect = true;
 
-    } else{
+    } else {
         navItems.forEach(element => {
             element.style.display = "none";
         });

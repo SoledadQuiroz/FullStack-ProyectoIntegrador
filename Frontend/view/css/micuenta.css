@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --colorTextos: #49454567
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(to right, #56ab2f, #a8e063);
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 90%;
+    margin: auto;
+
+}
+
+form {
+    background: #fff;
+    padding: 10px 0;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+    border-radius: 18px;
+}
+
+.form {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 10px;
+    padding: 30px 50px;
+    background: white
+}
+
+h1 {
+    text-align: center;
+    font-weight: 600;
+}
+
+.imagen {
+    text-align: center;
+}
+
+.form-input {
+    margin-bottom: 30px;
+}
+
+.form-input label {
+    display: block;
+    margin-top: 10px;
+    font-size: 15px;
+    color: #8f8b8b;
+}
+
+.form-input input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #8f8b8b;
+}
+
+.form-input input:focus+label {
+    font-weight: bold;
+    color: #8f8b8b
+}
+
+.boton input {
+    text-align: center;
+    background-color: #56ab2f;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 10px 50px;
+    font-size: 20px;
+    border: none;
+    color: #fff;
+}
+
+.chclave {
+    text-align: center;
+}
+
+.mensajeError {
+    color: red;
+    margin-top: 0px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.mensajeCorrecto {
+    color: rgb(14, 165, 14);
+    margin-top: 0px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}

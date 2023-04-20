@@ -16,12 +16,14 @@ html {
     padding: 0 .8em;
 }
 
-@media screen and(min-width:52em) {   
+@media screen and(min-width:52em) {
     .centrado {
         margin: 0 auto;
         padding: 0 .8em;
     }
-} /*fin media*/
+}
+
+/*fin media*/
 
 .titulo1 {
     margin: 0 0 1em;
@@ -30,7 +32,7 @@ html {
     color: hsl(0, 0%, 100%);
 }
 
-.tarjeta a{
+.tarjeta a {
     color: hsl(0, 0%, 80%);
     text-decoration: none;
 }
@@ -71,6 +73,7 @@ img {
     margin-bottom: 2em;
     width: 33%;
 }
+
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -78,7 +81,7 @@ img {
 }
 
 /*------------------------------ HEADER ---------------------------------*/
-header{
+header {
     display: flex;
     grid-column: 1/2;
     grid-row: 1/2;
@@ -92,18 +95,18 @@ header{
     background-size: contain;
 }
 
-header img{
+header img {
     width: 325px;
 }
 
 /*------------------------------ NAV ---------------------------------*/
-nav{
+nav {
     display: flex;
     position: relative;
     flex-direction: column;
     height: 40px;
     width: 100%;
-    background:   #56ab2f;
+    background: #56ab2f;
     justify-content: space-around;
     align-items: center;
     color: var(--fuenteAlt);
@@ -112,7 +115,7 @@ nav{
     list-style: none;
 }
 
-nav li{
+nav li {
     display: flex;
     width: 100%;
     height: 100%;
@@ -122,11 +125,11 @@ nav li{
     user-select: none;
 }
 
-nav li:hover{
+nav li:hover {
     background: var(--verde3);
     transition: 0.5s ease-in-out;
     text-decoration: underline;
-    
+
 }
 
 nav li a {
@@ -134,38 +137,38 @@ nav li a {
     color: var(--fuenteAlt);
 }
 
-nav .nav_item{
+nav .nav_item {
     display: none;
 }
 
-nav #menu{
+nav #menu {
     background: var(--verde3);
 }
 
-nav #menu:hover{
+nav #menu:hover {
     text-decoration: underline;
     cursor: pointer;
 }
 
-nav #inicio{
+nav #inicio {
     text-decoration: underline;
 }
 
 /*------------------------------ MEDIA QUERIES ---------------------------------*/
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    header{
+    header {
         background-image: url("../recursos/fondo-izq.png"), url("../recursos/fondo-der.png");
         background-position: left, right;
         background-repeat: no-repeat;
         background-size: contain;
     }
-    
-    header img{
+
+    header img {
         width: 275px;
     }
 
-    nav{
+    nav {
         display: flex;
         height: 40px !important;
         flex-direction: row;
@@ -173,18 +176,18 @@ nav #inicio{
         align-items: center;
     }
 
-    nav #menu{
+    nav #menu {
         display: none;
     }
 
-    nav .nav_item{
+    nav .nav_item {
         display: flex !important;
         border: none !important;
     }
 }
 
 /* -------------------- FOOTER ------------------------*/
-footer{
+footer {
     display: flex;
     flex-direction: column;
     grid-column: 1/2;
@@ -199,10 +202,10 @@ footer{
     align-items: center;
 }
 
-footer div img{
+footer div img {
     height: 20px;
 }
 
-footer #descripcion_footer{
+footer #descripcion_footer {
     font-size: 0.8rem;
 }

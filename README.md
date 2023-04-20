@@ -3,9 +3,11 @@ Presentación del Proyecto Integrador, Tecnicatura Superior en Desarrollo Web y 
 
 **Repositorio del GRUPO 40. Proyecto: Gardening Friend.**
 
-Sitio en WordPress: [GRUPO 40](https://gardeningfriend.online/)
+Sitio institucional en WordPress: [GRUPO 40](https://gardeningfriend.online/)
 
 Sitio web del proyecto: [GARDENING FRIEND](https://site.gardeningfriend.online/)
+
+Video de presentación final: [Ver video](https://drive.google.com/file/d/1bxHToqtZa6S_AOb5vKKQDwRiQ6uT-6Ur/view)
 
 Integrantes:
 1.	Moyano Lucas

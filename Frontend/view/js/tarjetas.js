@@ -21,25 +21,25 @@ let d = {
 //----------------- METODOS  -----------------//
 let m = {
     // --------- elemento modal -------- //
-    agregandoEventos:function(){
+    agregandoEventos: function () {
         d.titulos.forEach(element => {
             element.addEventListener("click", m.identificarTarjeta);
         });
     },
 
-    identificarTarjeta:function(tarjeta){
+    identificarTarjeta: function (tarjeta) {
         d.titulo_seleccionado = tarjeta.target.id;
         console.log(d.titulo_seleccionado);
         m.crearLightbox();
     },
 
-    crearLightbox:function(){
-        d.body.appendChild(document.createElement("div")).setAttribute("class","lightbox");
+    crearLightbox: function () {
+        d.body.appendChild(document.createElement("div")).setAttribute("class", "lightbox");
         d.lightbox = document.querySelector(".lightbox");
         m.crearModal(d.lightbox);
     },
 
-    crearModal:function(lightbox){
+    crearModal: function (lightbox) {
         //---- variables para estructura html
         let cerrar_img = "<img src='../recursos/icono-cerrar.png'>";
         let isologo = "<img src='../recursos/icono-isologo.png'>";
@@ -48,7 +48,7 @@ let m = {
         let botonFav = '<button type="button" class="favoritos"> A FAVORITOS ★</button>';
 
         //----se agrega elemento modal-----
-        lightbox.appendChild(document.createElement("div")).setAttribute("id","modal_tarjetas");
+        lightbox.appendChild(document.createElement("div")).setAttribute("id", "modal_tarjetas");
         d.modal = document.querySelector("#modal_tarjetas")
         d.modal.classList.add("modal_tarjetas");
 
@@ -57,46 +57,46 @@ let m = {
         d.icono_cerrar = document.querySelector(".icono_cerrar");
         d.icono_cerrar.insertAdjacentHTML("afterbegin", cerrar_img);
         d.img_cerrar = document.querySelector(".icono_cerrar img")
-        d.img_cerrar.addEventListener("click",m.cerrarModal);      
+        d.img_cerrar.addEventListener("click", m.cerrarModal);
 
         //-------header modal------
-        d.modal.appendChild(document.createElement("div")).setAttribute("class","header_modal");
+        d.modal.appendChild(document.createElement("div")).setAttribute("class", "header_modal");
         d.header_modal = document.querySelector(".header_modal");
         d.header_modal.insertAdjacentHTML("afterbegin", isologo);
 
         //-------descripcion modal------
-        d.modal.appendChild(document.createElement("div")).setAttribute("class","descripcion_modal");
+        d.modal.appendChild(document.createElement("div")).setAttribute("class", "descripcion_modal");
         d.descripcion_modal = document.querySelector(".descripcion_modal");
         d.descripcion_modal.insertAdjacentHTML("afterbegin", infoModal);
 
         //-------botones modal------
-        d.modal.appendChild(document.createElement("div")).setAttribute("class","botones_modal");
+        d.modal.appendChild(document.createElement("div")).setAttribute("class", "botones_modal");
         d.botones_modal = document.querySelector(".botones_modal");
         d.botones_modal.insertAdjacentHTML("afterbegin", botonSembrar);
         d.botones_modal.insertAdjacentHTML("beforeend", botonFav);
-        
+
     },
 
-    cerrarModal:function(){
+    cerrarModal: function () {
         d.lightbox.remove();
     },
 
-    agregandoEventosBotones:function(){
+    agregandoEventosBotones: function () {
         d.botones.forEach(element => {
             element.addEventListener("click", m.alertaBotones);
         });
     },
 
     // ----- alerta de prueba para botones ---------//
-    alertaBotones:function(boton){
+    alertaBotones: function (boton) {
         d.boton_seleccionado = boton.target.className;
 
         if (d.boton_seleccionado == "sembrar") {
             alert("El cultivo ha sido sembrado y guardado en la sección 'MI JARDÍN'.");
-        
-        } else if(d.boton_seleccionado == "favoritos"){
+
+        } else if (d.boton_seleccionado == "favoritos") {
             alert("El cultivo ha sido añadido a favoritos, puedes encontrarlo en la sección 'MI JARDÍN'.");
-        } 
+        }
 
     }
 }
