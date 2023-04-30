@@ -8,11 +8,16 @@
     overflow: hidden;
     font-family: secundaria2;
     margin: 20px;
-    height: 300px;
-    width: 250px;
+    max-height: 500px;
+    max-width: 500px;
     box-shadow: 3px 3px 10px 5px var(--fondo_transparente);
     border-radius: 5px;
     color: var(--fuentePrin2);
+    margin-top: 50px;
+}
+.productos:hover{
+    box-shadow: 3px 3px 10px 5px rgba(0,0,0,.6);
+    transition: 0.5s;
 }
 
 
@@ -64,4 +69,9 @@
     font-family: secundaria1;
     border: none;
     border-radius: 2px;
+}
+
+.boton_wrapper .boton_carrito:hover{
+    background: var(--verde2);
+    transition: 0.5s;
 }

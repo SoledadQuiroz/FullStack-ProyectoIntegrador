@@ -1,5 +1,43 @@
-#layout_productos{
+#grid_principal{
+    /* vista movil por default */
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 150px 35px auto 250px;
+    height: 300vh;
     width: 100%;
-    height: 100%;
-    justify-content: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
+#tienda_grid{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    grid-template-areas: 'portada'
+                         'buscador'
+                         'productos'; 
+}
+
+#tienda_grid #productos_grid{
+    display: grid;
+    grid-area: productos;
+    /* grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+    grid-auto-rows: auto; */
+}
+
+/*------------------------MEDIA QUERIES --------------------------- */
+
+/* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-width: 600px) {...} */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {...} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {...} */
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px){} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {...} */
