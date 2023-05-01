@@ -6,7 +6,7 @@
     height: 50px;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 40px;
     font-family: secundaria1;
 }
 
@@ -32,4 +32,9 @@
     border-radius: 2px;
     cursor: pointer;
     margin-left: 5px;
+    border: none;
+}
+#ok_buscar:hover{
+    background: var(--verde2);
+    transition: 0.5s;
 }

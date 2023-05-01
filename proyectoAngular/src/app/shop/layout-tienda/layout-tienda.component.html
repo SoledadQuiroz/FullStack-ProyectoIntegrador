@@ -1,14 +1,13 @@
-<body id="grid_principal">
-    <app-header></app-header>
+<app-carrito></app-carrito>
 
+<body id="grid_principal" [ngClass]="getScreenSize()">
+    <app-header></app-header>
     <app-nav></app-nav>
 
     <section id="tienda_grid">
         <app-portada></app-portada>
         <app-buscador></app-buscador>
-        <div id="productos_grid">
-            <app-productos></app-productos>
-        </div>
+        <app-productos></app-productos>
     </section>
 
     <app-footer></app-footer>

@@ -1,7 +1,16 @@
+
+/* ------------------------GRID GENERAL----------------------- */
+#grid_productos{
+    display: grid;
+    grid-area: productos;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    grid-auto-rows: minmax(150px, 700px);
+}
+/* ------------------------ARTICULOS----------------------- */
 .productos{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 40% 40% 20% !important;
+    grid-template-rows: 40% 45% 15% !important;
     justify-content: center;
     justify-self: center;
     align-items: center;
@@ -33,7 +42,7 @@
     height: 100%;
 }
 .productos .img_wrapper .icono_producto{
-    width: 100%;
+    height: 125%;
 }
 
 
@@ -43,12 +52,17 @@
     grid-row: 2/3;
     flex-direction: column;
     justify-content: space-evenly;
+    justify-self: center;
     align-items: center;
-    width: 100%;
+    width: 85%;
     height: 100%;
 }
 .detalles_producto h4{
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.detalles_producto ul{
+    line-height: 1.5rem;
 }
 
 
@@ -67,6 +81,7 @@
     background: var(--fuentePrin2);
     padding: 5px;
     font-family: secundaria1;
+    font-size: 1.1rem;
     border: none;
     border-radius: 2px;
 }
