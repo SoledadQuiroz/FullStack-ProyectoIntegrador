@@ -19,6 +19,31 @@ section {
 
 
 
+.my-garden{
+    font-size: 42px;
+    font-weight: bold;
+    color: #7DD181;
+    text-align: center;
+    margin: 50px 0;
+    text-shadow: 2px 3px 2px darkgreen;
+}
+
+.titulo-h2{
+    font-size: 32px;
+    font-weight: bold;
+    color: yellowgreen;
+    margin: 100px 5px 10px;
+    text-shadow: 2px 3px 2px darkgreen;
+}
+
+.linea{
+    height: 5px;
+    background-color:yellowgreen;
+    border-radius: 10px;
+    border: transparent;
+    box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
+}
+
 /*-------------------------- TARJETAS FINAL --------------------------*/
 
 .tarjeta {
@@ -64,6 +89,8 @@ section {
     margin-bottom: 10px;
 }
 
+
+
 .tarjeta .contenido {
     display: flex;
     flex-direction: column;
@@ -88,6 +115,7 @@ section {
     cursor: pointer;
     color: black;
     /* color: #4B7F52; */
+    
 }
 
 .tarjeta .contenido p {
@@ -137,27 +165,6 @@ section {
 
 /* horizontal phones*/
 @media only screen and (max-height: 575.98px) and (orientation: landscape) {
-    /* body {
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 8% 2% 75% 15%;
-        grid-template-areas: "header"
-            "nav"
-            "section"
-            "footer";
-        height: 400vh !important;
-        width: 100%;
-        overflow-y: scroll;
-        overflow-x: hidden;
-    } */
-
-    /* header #logo_contenedor img {
-        width: 175px;
-    }
-
-    header #opciones {
-        padding-bottom: 20px;
-    } */
 
     .lightbox {
         height: 400vh !important;
@@ -171,11 +178,6 @@ section {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 
-    /* body {
-        height: 200vh;
-        grid-template-rows: 10% 2% 78% 10%;
-    } */
-
     .lightbox {
         height: 200vh;
     }
@@ -188,11 +190,6 @@ section {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
-    /* body {
-        height: 200vh;
-        grid-template-rows: 10% 2% 68% 20%;
-    } */
 
     .lightbox {
         height: 200vh;
@@ -225,11 +222,6 @@ section {
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1400px) {
-    /* body {
-        height: 125vh;
-        grid-template-rows: 16% 3% 59% 22%;
-    } */
-
     .lightbox {
         height: 125vh;
     }
