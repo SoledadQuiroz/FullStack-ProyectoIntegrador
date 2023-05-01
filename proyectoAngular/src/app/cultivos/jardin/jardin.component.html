@@ -14,7 +14,7 @@
             <p> <u>Categoría:</u> {{favorito.category}}</p>
         </div>
         <div class="botones">
-            <button type="button" class="sembrar"> SEMBRAR </button>
+            <button (click)="addCultivo(favorito)" type="button" class="sembrar"> SEMBRAR </button>
             <button type="button" class="favoritos"> QUITAR DE FAVORITOS ×</button>
         </div>
     </div>
