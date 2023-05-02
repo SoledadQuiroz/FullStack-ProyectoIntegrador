@@ -1,0 +1,21 @@
+#portada{
+    display: flex;
+    grid-area: portada;
+    justify-content: center;
+    align-items: center;
+    align-self:flex-start;
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+    background-image: url("../../../assets/fondo-portada-jardineria.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* margin-top: -20px !important; */
+}
+
+#portada h3{
+    font-size: 3rem;
+    color: var(--fuenteAlt);
+    font-family: secundaria1;
+}
