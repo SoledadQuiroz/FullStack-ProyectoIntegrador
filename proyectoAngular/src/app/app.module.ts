@@ -11,6 +11,7 @@ import { PortadaComponent } from './shop/portada/portada.component';
 import { LayoutTiendaComponent } from './shop/layout-tienda/layout-tienda.component';
 import { BuscadorComponent } from './shop/buscador/buscador.component';
 import { CarritoComponent } from './shop/carrito/carrito.component';
+import { ComponentesModule } from './componentes/componentes.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CarritoComponent } from './shop/carrito/carrito.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ComponentesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
