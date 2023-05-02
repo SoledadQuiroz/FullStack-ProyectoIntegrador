@@ -11,7 +11,8 @@ import { PortadaComponent } from './shop/portada/portada.component';
 import { LayoutTiendaComponent } from './shop/layout-tienda/layout-tienda.component';
 import { BuscadorComponent } from './shop/buscador/buscador.component';
 import { CarritoComponent } from './shop/carrito/carrito.component';
-import { ComponentesModule } from './componentes/componentes.module';
+import { CultivoComponent } from './mi-jardin/cultivo/cultivo.component';
+import { JardinComponent } from './mi-jardin/jardin/jardin.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,13 @@ import { ComponentesModule } from './componentes/componentes.module';
     PortadaComponent,
     LayoutTiendaComponent,
     BuscadorComponent,
-    CarritoComponent
+    CarritoComponent,
+    CultivoComponent,
+    JardinComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
