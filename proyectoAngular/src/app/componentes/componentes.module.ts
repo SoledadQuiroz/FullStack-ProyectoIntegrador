@@ -13,9 +13,9 @@ import { JardinComponent } from './jardin/jardin.component';
   imports: [
     CommonModule
   ],
-  exports:[
+  exports: [
     CultivoComponent,
     JardinComponent
   ]
 })
-export class CultivosModule { }
+export class ComponentesModule { }

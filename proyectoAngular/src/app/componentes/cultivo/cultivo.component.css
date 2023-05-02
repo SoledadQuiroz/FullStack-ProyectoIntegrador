@@ -204,9 +204,9 @@ section {
         height: 85%;
     }
 
-    .modal_tarjetas .header_modal {
-        /* background-image: url("../recursos/plantas-borde-inf-large.png"); */
-    }
+    /* .modal_tarjetas .header_modal {
+        background-image: url("../recursos/plantas-borde-inf-large.png");
+    } */
 
     .modal_tarjetas .botones_modal {
         flex-direction: row;

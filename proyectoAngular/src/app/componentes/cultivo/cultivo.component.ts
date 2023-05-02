@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Cultivo } from './cultivos.model';
 
 @Component({
@@ -7,7 +7,6 @@ import { Cultivo } from './cultivos.model';
   styleUrls: ['./cultivo.component.css']
 })
 export class CultivoComponent {
-
   cultivos:Cultivo[] = [
     {id:'aceituna', name:'ACEITUNA', img:'./assets/recursos/icono-aceituna.png', category:'frutas'},
     {id:'calabaza', name:'CALABAZA', img:'./assets/recursos/icono-calabaza.png', category:'vegetal'},
@@ -18,5 +17,4 @@ export class CultivoComponent {
     {id:'cebolla', name:'CEBOLLA', img:'./assets/recursos/icono-cebolla.png', category:'vegetal'},
     {id:'lechuga', name:'LECHUGA', img:'./assets/recursos/icono-lechuga.png', category:'vegetal'}
   ];
-
 }
