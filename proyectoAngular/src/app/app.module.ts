@@ -14,6 +14,7 @@ import { CarritoComponent } from './shop/carrito/carrito.component';
 import { CultivoComponent } from './mi-jardin/cultivo/cultivo.component';
 import { JardinComponent } from './mi-jardin/jardin/jardin.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes:Routes=[
   {path:'cultivos', component:CultivoComponent},
@@ -33,7 +34,8 @@ const appRoutes:Routes=[
     BuscadorComponent,
     CarritoComponent,
     CultivoComponent,
-    JardinComponent
+    JardinComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
