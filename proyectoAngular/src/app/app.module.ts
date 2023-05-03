@@ -13,6 +13,13 @@ import { BuscadorComponent } from './shop/buscador/buscador.component';
 import { CarritoComponent } from './shop/carrito/carrito.component';
 import { CultivoComponent } from './mi-jardin/cultivo/cultivo.component';
 import { JardinComponent } from './mi-jardin/jardin/jardin.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes:Routes=[
+  {path:'cultivos', component:CultivoComponent},
+  {path:'jardin', component:JardinComponent},
+  {path:'tienda', component:LayoutTiendaComponent}
+];
 
 @NgModule({
   declarations: [
@@ -31,6 +38,7 @@ import { JardinComponent } from './mi-jardin/jardin/jardin.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
