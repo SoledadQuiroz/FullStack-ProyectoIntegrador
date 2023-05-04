@@ -14,11 +14,17 @@ import { CarritoComponent } from './shop/carrito/carrito.component';
 import { CultivoComponent } from './mi-jardin/cultivo/cultivo.component';
 import { JardinComponent } from './mi-jardin/jardin/jardin.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ConsejoComponent } from './consejo/consejo.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistroComponent } from './auth/registro/registro.component';
 
 const appRoutes:Routes=[
   {path:'cultivos', component:CultivoComponent},
   {path:'jardin', component:JardinComponent},
-  {path:'tienda', component:LayoutTiendaComponent}
+  {path:'tienda', component:LayoutTiendaComponent},
+  {path:'consejo', component:ConsejoComponent},
+  {path:'login', component:LoginComponent},
+  {path:'registro', component:RegistroComponent}
 ];
 
 @NgModule({
@@ -33,7 +39,10 @@ const appRoutes:Routes=[
     BuscadorComponent,
     CarritoComponent,
     CultivoComponent,
-    JardinComponent
+    JardinComponent,
+    ConsejoComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
