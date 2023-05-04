@@ -1,17 +1,19 @@
-<nav>
-    <li id="menu"><u> Abrir Menu ↓</u></li>
-    <li id="inicio" class="nav_item"><a href="inicio.html">INICIO</a></li>
+<nav [ngClass]="estilosNav()">
+    <li id="menu" (click)="toggleNav()"><u> Menu ↓</u></li>
 
-    <li id="cultivos" class="nav_item">
+    <li id="inicio" class="nav_item" *ngIf="isNavOpen">
+        <a href="inicio.html">INICIO</a>
+    </li>
+    <li id="cultivos" class="nav_item" *ngIf="isNavOpen">
         <a routerLink="/cultivos">CULTIVOS</a>
     </li>
-    <li id="consejos" class="nav_item">
+    <li id="consejos" class="nav_item" *ngIf="isNavOpen">
         <a href="/consejo"> CONSEJOS</a>
     </li>
-    <li id="ventas" class="nav_item">
+    <li id="ventas" class="nav_item" *ngIf="isNavOpen">
         <a routerLink="/tienda">TIENDA</a>
     </li>
-    <li id="mi_jardin" class="nav_item">
+    <li id="mi_jardin" class="nav_item" *ngIf="isNavOpen">
         <a routerLink="/jardin">MI JARDIN</a>
     </li>
 </nav>

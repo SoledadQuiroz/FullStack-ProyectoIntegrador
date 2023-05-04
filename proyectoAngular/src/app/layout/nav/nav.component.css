@@ -37,9 +37,9 @@ nav li a {
     color: var(--fuenteAlt);
 }
 
-nav .nav_item {
+/* nav .nav_item {
     display: none;
-}
+} */
 
 nav #menu {
     background: var(--verde3);
@@ -69,4 +69,15 @@ nav #menu:hover {
         display: flex !important;
         border: none !important;
     }
+}
+
+/*-------------------------- CLASES RESOLUCION MOVIL ------------------------------*/
+.nav_movil{
+    height: 300px;
+    transition: 0.2s;
+}
+
+.nav_normal{
+    height: 40px;
+    transition: 0.2s;
 }

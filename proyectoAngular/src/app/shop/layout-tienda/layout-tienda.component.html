@@ -1,12 +1,16 @@
 <app-carrito></app-carrito>
-
 <div id="grid_principal" [ngClass]="getScreenSize()">
-    <!-- <app-header></app-header>
-    <app-nav></app-nav> -->
     <section id="tienda_grid">
-        <app-portada></app-portada>
-        <app-buscador></app-buscador>
+        <div id="portada">
+            <h3> Tienda Virtual</h3>
+        </div>
+        <form id="barra_buscador">
+            <label for="search" id="titulo_buscador">buscador:</label> <br>
+            <div id="input_wrapper">
+                <input type="text" id="buscar" name="buscar" placeholder="buscar...">
+                <button type="button" id="ok_buscar">OK</button>
+            </div>
+        </form>      
         <app-productos></app-productos>
     </section>
-    <!-- <app-footer></app-footer> -->
 </div>

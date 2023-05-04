@@ -10,29 +10,33 @@ export class ProductosComponent {
     {
       image: '../../../assets/pala-jardineria.JPG',
       name: 'Pala Jardinera',
+      precio: 0,
       category: 'Herramientas',
-      description: 'herramienta de alta calidad para tu jardin',
+      description: 'peso y dimensiones',
       stock: 10
     },
     {
       image: '../../../assets/regadora.jpg',
       name: 'Regadora',
+      precio: 0,
       category: 'herramientas',
-      description: 'para facilitar el regado',
+      description: 'peso y dimensiones',
       stock: 10
     },
     {
       image: '../../../assets/girasol.jpg',
       name: 'Semillas de Girasol',
+      precio: 0,
       category: 'semillas',
-      description: 'semillas ideales para proyectos simples',
+      description: 'peso y dimensiones',
       stock: 1000
     },
     {
       image: '../../../assets/semillas-calabaza.jpg',
       name: 'Semillas de Calabaza',
+      precio: 0,
       category: 'semillas',
-      description: 'semillas ideales para proyectos simples',
+      description: 'peso y dimensiones',
       stock: 10
     },
   ];

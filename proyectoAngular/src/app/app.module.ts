@@ -7,9 +7,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { NavComponent } from './layout/nav/nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ProductosComponent } from './shop/productos/productos.component';
-import { PortadaComponent } from './shop/portada/portada.component';
 import { LayoutTiendaComponent } from './shop/layout-tienda/layout-tienda.component';
-import { BuscadorComponent } from './shop/buscador/buscador.component';
 import { CarritoComponent } from './shop/carrito/carrito.component';
 import { CultivoComponent } from './mi-jardin/cultivo/cultivo.component';
 import { JardinComponent } from './mi-jardin/jardin/jardin.component';
@@ -34,9 +32,7 @@ const appRoutes:Routes=[
     NavComponent,
     FooterComponent,
     ProductosComponent,
-    PortadaComponent,
     LayoutTiendaComponent,
-    BuscadorComponent,
     CarritoComponent,
     CultivoComponent,
     JardinComponent,
