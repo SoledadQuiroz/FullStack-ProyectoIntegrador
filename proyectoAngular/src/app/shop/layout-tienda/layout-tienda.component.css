@@ -1,0 +1,57 @@
+/* ------------------ GRID GENERAL DE TODA LA PAGINA ------------------- */
+
+#grid_principal{
+    /* vista movil por default */
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 150px 35px auto 250px;
+    /* grid-template-areas: "header"
+                         "nav"
+                         "section"
+                         "footer"; */
+    /* height: 250vh; */
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+/* ------------------ CLASES PARA RESOLUCIONES RESPONSIVE ------------------- */
+.grid_principal_movil{
+    height: 200vh !important;
+}
+
+.grid_principal_tablet{
+    height: 150vh !important;
+}
+
+.grid_principal_escritorio{
+    height: 100vh !important;
+}
+
+/* ------------------ GRID SECTION  ------------------- */
+
+#tienda_grid{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    grid-template-areas: 'portada'
+                         'buscador'
+                         'productos'; 
+}
+
+/*------------------------MEDIA QUERIES --------------------------- */
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px){
+    /* #grid_principal{
+        height: 250vh !important;
+    } */
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px){} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {...} */

@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    /*------------------- PALETA DE COLORES ---------------------*/
+
+    /* paleta 1 */
+    --verde1: #2ECC71;
+    --verde2: #229954;
+    --verde3: #1E8449;
+    --verde4: #0E6655;
+    --verde5: #20B2AA;
+    --verde6: #3EB489;
+    --verde7: #0B5C4C;
+    --verde8: #00FF40;
+    --verde9: #00A693;
+    --verde10: #01796F;
+    --verde11: #01796F;
+    --verde12: #66CDAA;
+
+    /* paleta 2 */
+    --verde2A: #BCE784;
+    --verde2B: #5DD39E;
+    --azul: #348AA7;
+    --violeta1: #525174;
+    --violeta2: #513B56;
+
+    /* paleta 3 */
+    --verde3A: #4B7F52;
+    --verde3B: #7DD181;
+    --verde3C: #96E8BC;
+    --verde3D: #B6F9C9;
+    --verde3E: #C9FFE2;
+
+    /* colores fuentes */
+    --fuentePrin: black;
+    --fuentePrin2: #323333;
+    --fuenteAlt: white;
+    --gris1: #747474;
+
+    /*------------------- FONDOS ---------------------*/
+    --fondo_deg1: linear-gradient(180deg, rgba(0, 237, 100, 0.6783088235294117) 0%, rgba(255, 255, 255, 1) 42%);
+    --fondo_transparente: rgba(0, 0, 0, 0.4);
+    /*------------------- SOMBRAS ---------------------*/
+    --sombra1: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
+}
+
+/*------------------------------ FUENTES ---------------------------------*/
+@font-face {
+    font-family: "principal";
+    src: url("assets/fuentes/Karma-Regular.ttf");
+}
+
+@font-face {
+    font-family: "secundaria1";
+    src: url("assets/fuentes/Quicksand-Regular.ttf");
+}
+
+@font-face {
+    font-family: "secundaria2";
+    src: url("assets/fuentes/MADEOkineSansPERSONALUSE-Medium.otf");
+}
+
+@font-face {
+    font-family: "secundaria3";
+    src: url("assets/fuentes/Glorifydemo-BW3J3.otf");
+}
+
+@font-face {
+    font-family: "secundaria4";
+    src: url("assets/fuentes/TenorSans-Regular.ttf");
+}
+
+html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, variable, form, fieldset, blockquote {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    font-weight: normal;
+   }
+   table { border-collapse: collapse; border-spacing: 0; }
+   td, th, caption { font-weight: normal; text-align: left; }
+   img, fieldset { border: 0; }
+   ol { padding-left: 1.4em; list-style: decimal; }
+   ul { padding-left: 1.4em; list-style:square; }
+   q:before, q:after { content:''; }
