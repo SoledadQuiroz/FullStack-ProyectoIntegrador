@@ -4,12 +4,7 @@
     /* vista movil por default */
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 150px 35px auto 250px;
-    /* grid-template-areas: "header"
-                         "nav"
-                         "section"
-                         "footer"; */
-    /* height: 250vh; */
+    grid-template-rows: auto;
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -44,11 +39,8 @@
 
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px){
-    /* #grid_principal{
-        height: 250vh !important;
-    } */
-}
+/* @media only screen and (min-width: 768px){
+} */
 
 /* Large devices (laptops/desktops, 992px and up) */
 /* @media only screen and (min-width: 992px){} */
