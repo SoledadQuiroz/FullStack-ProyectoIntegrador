@@ -66,18 +66,18 @@ nav #menu:hover {
     }
 
     nav .nav_item {
-        display: flex;
+        display: flex !important;
         border: none;
     }
 }
 
-/*-------------------------- CLASES RESOLUCION MOVIL ------------------------------*/
-/* .nav_movil{
+/*-------------------------- NgClasses ------------------------------*/
+.nav_mov_abierto{
     height: 300px;
     transition: 0.2s;
 }
 
-.nav_normal{
+.nav_mov_cerrado{
     height: 40px;
     transition: 0.2s;
-} */
+}

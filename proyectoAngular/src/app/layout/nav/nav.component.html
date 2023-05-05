@@ -1,18 +1,18 @@
-<nav>
-    <li id="menu"><u> Menu ↓</u></li>
-    <li id="inicio" class="nav_item">
+<nav [ngClass]="{'nav_mov_abierto' : toggleEffect, 'nav_mov_cerrado' : !toggleEffect}">
+    <li id="menu" (click)="desplegarMenu()">{{ toggleEffect ? 'Cerrar menu ↑' : 'Abrir Menu ↓' }}</li>
+    <li id="inicio" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
         <a href="inicio.html">INICIO</a>
     </li>
-    <li id="cultivos" class="nav_item">
+    <li id="cultivos" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
         <a routerLink="/cultivos">CULTIVOS</a>
     </li>
-    <li id="consejos" class="nav_item">
+    <li id="consejos" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
         <a href="/consejo"> CONSEJOS</a>
     </li>
-    <li id="ventas" class="nav_item">
+    <li id="ventas" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
         <a routerLink="/tienda">TIENDA</a>
     </li>
-    <li id="mi_jardin" class="nav_item">
+    <li id="mi_jardin" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
         <a routerLink="/jardin">MI JARDIN</a>
     </li>
 </nav>
