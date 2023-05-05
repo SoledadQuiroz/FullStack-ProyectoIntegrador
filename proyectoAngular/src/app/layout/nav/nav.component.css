@@ -32,14 +32,14 @@ nav li:hover {
 
 }
 
+nav .nav_item{
+    display: none;
+}
+
 nav li a {
     text-decoration: none;
     color: var(--fuenteAlt);
 }
-
-/* nav .nav_item {
-    display: none;
-} */
 
 nav #menu {
     background: var(--verde3);
@@ -54,8 +54,8 @@ nav #menu:hover {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     nav {
-        display: flex;
-        height: 40px !important;
+        display: flex !important;
+        height: 40px ;
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
@@ -66,13 +66,13 @@ nav #menu:hover {
     }
 
     nav .nav_item {
-        display: flex !important;
-        border: none !important;
+        display: flex;
+        border: none;
     }
 }
 
 /*-------------------------- CLASES RESOLUCION MOVIL ------------------------------*/
-.nav_movil{
+/* .nav_movil{
     height: 300px;
     transition: 0.2s;
 }
@@ -80,4 +80,4 @@ nav #menu:hover {
 .nav_normal{
     height: 40px;
     transition: 0.2s;
-}
+} */
