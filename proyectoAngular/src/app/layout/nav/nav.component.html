@@ -1,7 +1,7 @@
 <nav [ngClass]="{'nav_mov_abierto' : toggleEffect, 'nav_mov_cerrado' : !toggleEffect}">
     <li id="menu" (click)="desplegarMenu()">{{ toggleEffect ? 'Cerrar menu ↑' : 'Abrir Menu ↓' }}</li>
     <li id="inicio" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
-        <a href="inicio.html">INICIO</a>
+        <a routerLink="/home">INICIO</a>
     </li>
     <li id="cultivos" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
         <a routerLink="/cultivos">CULTIVOS</a>

@@ -63,8 +63,8 @@
 }
 .detalles_producto ul{
     line-height: 1.5rem;
+    color: var(--fuentePrin3);
 }
-
 
 .productos .boton_wrapper{
     display: flex;

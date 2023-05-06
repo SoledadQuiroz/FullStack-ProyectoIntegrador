@@ -15,6 +15,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConsejoComponent } from './consejo/consejo.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes:Routes=[
   {path:'cultivos', component:CultivoComponent},
@@ -22,7 +23,8 @@ const appRoutes:Routes=[
   {path:'tienda', component:LayoutTiendaComponent},
   {path:'consejo', component:ConsejoComponent},
   {path:'login', component:LoginComponent},
-  {path:'registro', component:RegistroComponent}
+  {path:'registro', component:RegistroComponent},
+  {path:'home', component:HomeComponent}
 ];
 
 @NgModule({
@@ -38,7 +40,8 @@ const appRoutes:Routes=[
     JardinComponent,
     ConsejoComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

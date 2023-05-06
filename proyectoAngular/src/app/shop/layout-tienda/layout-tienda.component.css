@@ -84,6 +84,13 @@
     border-radius: 5px;
     font-size: 1.2rem;
     margin-bottom: 20px;
+    border: none;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.45);
+}
+#buscar:hover{
+    box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.7);
+    transition: 0.3s;
 }
 
 #ok_buscar{
