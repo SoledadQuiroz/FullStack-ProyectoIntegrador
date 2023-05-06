@@ -2,7 +2,7 @@
 // elementos DOM
 const nav = document.querySelector("nav");
 const navItems = document.querySelectorAll("nav .nav_item");
-const navMenu = document.querySelector("nav #menu");
+const navMenu = document.querySelector("nav #menu")
 // valor margen superior
 const sticky = nav.offsetTop;
 // variable booleana para desplegar / esconder el menu
