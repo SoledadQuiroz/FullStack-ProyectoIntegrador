@@ -16,6 +16,7 @@ import { ConsejoComponent } from './consejo/consejo.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { HomeComponent } from './home/home.component';
+import { MiCuentaComponent } from './auth/mi-cuenta/mi-cuenta.component';
 
 const appRoutes:Routes=[
   {path:'cultivos', component:CultivoComponent},
@@ -24,7 +25,8 @@ const appRoutes:Routes=[
   {path:'consejo', component:ConsejoComponent},
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegistroComponent},
-  {path:'home', component:HomeComponent}
+  {path:'home', component:HomeComponent},
+  {path:'micuenta', component:MiCuentaComponent}
 ];
 
 @NgModule({
@@ -41,7 +43,8 @@ const appRoutes:Routes=[
     ConsejoComponent,
     LoginComponent,
     RegistroComponent,
-    HomeComponent
+    HomeComponent,
+    MiCuentaComponent
   ],
   imports: [
     BrowserModule,

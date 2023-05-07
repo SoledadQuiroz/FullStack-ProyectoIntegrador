@@ -42,6 +42,10 @@
     --fondo_transparente: rgba(0, 0, 0, 0.4);
     /*------------------- SOMBRAS ---------------------*/
     --sombra1: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
+
+    /*------------------- COLORES ALTERNATIVOS ---------------------*/
+    --colorTextos: #928e8e67;
+    --fondo:linear-gradient(to right, #56ab2f, #a8e063);
 }
 
 /*------------------------------ FUENTES ---------------------------------*/
@@ -69,6 +73,11 @@
     font-family: "secundaria4";
     src: url("assets/fuentes/TenorSans-Regular.ttf");
 }
+
+/* @font-face {
+    font-family: "Roboto";
+    src: url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+} */
 
 html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, variable, form, fieldset, blockquote {
     padding: 0;
