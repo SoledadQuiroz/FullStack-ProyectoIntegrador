@@ -17,3 +17,15 @@ Integrantes:
 5.	Quiroz Angelica Soledad
 6.	Silva Bayón Iara Solange
 7.	Valles Cristian	
+
+--organizacion de las carpetas-- *documentacion: 
+    -modelado: mapa del sitio boceto de intefaz logo 
+    -2022:planilla presentacion del proyecto documento ieee380 (no inclute e-commerce) diagramas y modelado de bd(no inclute e-commerce) 
+    -2023:documento ieee380 actulizado con la inclusion de e-commerce diagramas de la tienda virtual modelo relacional de la tienda 
+
+*frontend-2022:html,css y javascript de la aplicacion 
+
+*proyecto angular: proyecto convertido en SPA utilizando angular
+
+*backend(en proceso):
+     -base de datos:archivos mwb con las tablas scripts sql
