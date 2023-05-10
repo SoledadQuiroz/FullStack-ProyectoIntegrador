@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
-export class ProductosComponent {
-  products = [
+export class ProductosComponent{
+  public products = [
     {
       image: '../../../assets/pala-jardineria.JPG',
       name: 'Pala Jardinera',

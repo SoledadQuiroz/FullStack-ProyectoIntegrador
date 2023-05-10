@@ -62,12 +62,17 @@ section #introduccion {
     align-items: center;
     height: 100%;
     width: 100%;
-    background: var(--verde6);
+    background-color: var(--verde6);
     text-align: center;
 }
 
+/* ---------------AJUSTES GENERALES PARA CADA SECCION------------------*/
 article{
     margin-bottom: 15px;
+    background-image: url("../../assets/wooden-background.jpg");
+    background-blend-mode: multiply;
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 
 article img {
@@ -107,7 +112,7 @@ article img:hover{
     align-items: center;
     height: 100%;
     width: 100%;
-    background: white;
+    background-color: white;
     text-align: center;
 }
 
@@ -222,6 +227,11 @@ article img:hover{
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+
+    section article{
+        background-repeat: repeat-x;
+        background-size: contain;
+    }
 
     section #introduccion {
         justify-content: flex-start !important;

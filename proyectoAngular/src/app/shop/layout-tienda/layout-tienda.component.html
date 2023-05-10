@@ -1,4 +1,8 @@
-<app-carrito></app-carrito>
+
+<div id="carrito_wrapper">
+    <img src="../../../assets/icono-ventas.png" id="icono_carrito" alt="icono_carrito">
+</div>
+
 <div id="grid_principal" [ngClass]="getScreenSize()">
     <section id="tienda_grid">
         <div id="portada">
@@ -7,10 +11,32 @@
         <form id="barra_buscador">
             <label for="search" id="titulo_buscador">buscador</label> <br>
             <div id="input_wrapper">
-                <input type="text" id="buscar" name="buscar" placeholder="buscar...">
-                <button type="button" id="ok_buscar">OK</button>
+                <input type="text" id="buscar" name="buscar" placeholder="buscar..." [(ngModel)] = "palabraBusqueda" (keydown)="buscarProducto()">
+                <button type="button" id="ok_buscar" (click)="buscarProducto()">OK</button>
             </div>
         </form>      
-        <app-productos></app-productos>
+        <!-- <app-productos></app-productos> -->
+        <div id="grid_productos">
+            <div class="productos" *ngFor="let product of products" id="{{ product.name}}" [ngStyle]="{'display' : product.display}">
+                <!-- imagen presentacion -->
+                <div class="img_wrapper">
+                    <img src="{{ product.image }}" alt="img_producto" class="icono_producto">
+                </div>
+                <!-- info producto -->
+                <div class="detalles_producto">
+                    <h4 class="titulo_producto"> {{ product.name }} </h4>
+                    <ul class="carac_producto">
+                        <li class="precios">Precio:{{product.precio}}</li>
+                        <li class="categ_producto">Categoria: {{ product.category }} </li>
+                        <li class="stock_producto">Stock: {{ product.stock }}</li>
+                        <li class="descripcion_producto">Descripción: {{ product.description}} </li>
+                    </ul>
+                </div>
+                <!-- boton de compra -->
+                <div class="boton_wrapper">
+                    <button type="button" class="boton_carrito"> Añadir al carrito</button>
+                </div>
+            </div>
+        </div>
     </section>
 </div>

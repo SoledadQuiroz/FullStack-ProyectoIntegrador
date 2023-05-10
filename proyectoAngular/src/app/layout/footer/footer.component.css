@@ -5,12 +5,13 @@ footer {
     grid-area: footer;
     height: 100%;
     width: 100%;
-    background: var(--verde3);
+    background: var(--fondo_footer);
     font-family: Principal, Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.3rem;
     color: var(--fuenteAlt);
     justify-content: space-evenly;
     align-items: center;
+    height: 200px;
 }
 
 footer #contenedor_isologo img {

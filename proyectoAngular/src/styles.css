@@ -40,6 +40,7 @@
     /*------------------- FONDOS ---------------------*/
     --fondo_deg1: linear-gradient(180deg, rgba(0, 237, 100, 0.6783088235294117) 0%, rgba(255, 255, 255, 1) 42%);
     --fondo_transparente: rgba(0, 0, 0, 0.4);
+    --fondo_footer: linear-gradient(180deg, rgba(8,108,56,1) 23%, rgba(30,132,73,1) 70%);
     /*------------------- SOMBRAS ---------------------*/
     --sombra1: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
 
