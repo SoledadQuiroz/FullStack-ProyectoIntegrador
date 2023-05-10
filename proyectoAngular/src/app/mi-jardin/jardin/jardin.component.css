@@ -20,19 +20,17 @@ section {
 
 
 .my-garden{
-    font-size: 42px;
-    font-weight: bold;
-    color: #7DD181;
     text-align: center;
-    margin: 50px 0;
-    /* text-shadow: 1px 1px 2px darkgreen; */
-    font-family: principal;
+    color: var(--verde3);
+    font-weight: bolder;
+    font-size: 2.2rem;
+    padding-top: 50px;
 }
 
 .titulo-h2{
     font-size: 32px;
-    font-weight: bold;
-    color: yellowgreen;
+    font-weight: 400;
+    color: var(--fuentePrin2);
     margin: 100px 5px 10px;
     /* text-shadow: 2px 3px 2px darkgreen; */
     font-family: secundaria3;
@@ -43,7 +41,7 @@ section {
     background-color:yellowgreen;
     border-radius: 10px;
     border: transparent;
-    box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--sombra1);
 }
 
 /*-------------------------- TARJETAS FINAL --------------------------*/
@@ -56,20 +54,20 @@ section {
     width: 80%;
     max-width: 550px;
     box-sizing: border-box;
-    background: #7DD181;
+    background: var(--verde3B);
     border-radius: 10px;
-    border: 5px solid #7DD181;
+    border: 5px solid var(--verde3B);
     color: white;
-    box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--sombra1);
     justify-self: center;
     align-self: flex-start;
     margin-top: 125px;
-
+    transition: 0.3s ease-in-out;
 }
 
 .tarjeta:hover {
-    border: 5px solid #4B7F52;
-    transition: 0.5s ease-in-out;
+    border: 5px solid var(--verde3A);
+    
 }
 
 .tarjeta .imagen_wrapper {
@@ -80,7 +78,7 @@ section {
     align-items: flex-end;
     height: 100%;
     width: 100%;
-    background: #B6F9C9;
+    background: var(--verde3D);
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
@@ -104,7 +102,7 @@ section {
     align-items: center;
     background: white;
     color: black;
-    /* color: #4B7F52; */
+    /* color: var(--verde3A); */
 }
 
 
@@ -116,7 +114,7 @@ section {
     color: white;
     cursor: pointer;
     color: black;
-    /* color: #4B7F52; */
+    /* color: var(--verde3A); */
     
 }
 
@@ -137,30 +135,31 @@ section {
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
-    background: #B6F9C9;
+    background: var(--verde3D);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
 
 .tarjeta .botones button {
-    background: #7DD181;
+    background: #67be6c;
     border: none;
     height: 50px;
     width: 130px;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--sombra1);
     justify-self: center !important;
     font-family: secundaria3;
     color: white;
+    transition: 0.3s ease-in-out;
 }
 
 .tarjeta .botones button:hover {
-    background: #4B7F52;
-    text-decoration: underline;
-    transition: 0.5s ease-in-out;
+    background: var(--verde3A);
+    /* text-decoration: underline; */
 }
+
 
 
 /* ------------------ MEDIA QUERIES -------------------*/
