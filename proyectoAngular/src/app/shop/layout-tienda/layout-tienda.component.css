@@ -170,12 +170,11 @@
     overflow: hidden;
     justify-content: center;
     align-items: center;
-    background: var(--verde2);
     width: 100%;
     height: 100%;
 }
 .productos .img_wrapper .icono_producto{
-    height: 125%;
+    height: 135%;
 }
 
 
@@ -222,4 +221,95 @@
 .boton_wrapper .boton_carrito:hover{
     background: var(--verde2);
     transition: 0.5s;
+}
+
+/* ------------------ VENTANA MODAL CARRITO ------------------- */
+/* ------------------ LIGHTBOX ------------------- */
+.lightbox{
+    display: flex;
+    position: absolute;
+    grid-column: 1/2;
+    grid-row: 1/4;
+    height: 200vh;
+    width: 100%;
+    z-index: 100 !important;
+    background: rgba(0,0,0,.6);
+    justify-content: center;
+    align-items: center;
+}
+/* ------------------ LAYOUT GENERAL ------------------- */
+.lightbox .cuadro_compra{
+    display: grid;
+    height: 35%;
+    width: 90%;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 30% 60%;
+    background: white;
+    overflow: hidden;
+    border-radius: 5px;
+    font-family: secundaria1;
+    color: var(--fuentePrin2);
+    font-size: 1.15rem;
+    box-shadow: 10px 10px 15px -2px rgba(0,0,0,0.6);
+}
+/* ------------------ CERRAR ------------------- */
+.cuadro_compra .barra_cerrar{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    background: var(--verde2);
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.cuadro_compra .barra_cerrar img{
+    height: 30px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+/* ------------------ LOGO ------------------- */
+.cuadro_compra .logo_producto{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    justify-content: center;
+    align-items: center;
+}
+
+.cuadro_compra .logo_producto img{
+    height: 75%;
+}
+/* ------------------ FORMULARIO ------------------- */
+.cuadro_compra .formulario{
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.cuadro_compra .formulario #field_cantidad{
+    width: 70px;
+}
+
+.cuadro_compra .formulario ul li{
+    line-height: 1.5rem;
+}
+
+.cuadro_compra .formulario .botones_form{
+    font-family: secundaria1;
+    background: var(--fuentePrin2);
+    color: white;
+    border-radius: 3px;
+    border: none;
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+    font-size: 1.15rem;
+}
+
+.cuadro_compra .formulario .botones_form:hover{
+    transition: 0.5s;
+    background: var(--verde2);
+    cursor: pointer;
 }

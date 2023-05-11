@@ -5,9 +5,11 @@
 
 <div id="grid_principal" [ngClass]="getScreenSize()">
     <section id="tienda_grid">
+        <!-- portada -->
         <div id="portada">
             <h3> Tienda Virtual</h3>
         </div>
+        <!-- buscador -->
         <form id="barra_buscador">
             <label for="search" id="titulo_buscador">buscador</label> <br>
             <div id="input_wrapper">
@@ -15,7 +17,7 @@
                 <button type="button" id="ok_buscar" (click)="buscarProducto()">OK</button>
             </div>
         </form>      
-        <!-- <app-productos></app-productos> -->
+        <!-- productos -->
         <div id="grid_productos">
             <div class="productos" *ngFor="let product of products" id="{{ product.name}}" [ngStyle]="{'display' : product.display}">
                 <!-- imagen presentacion -->
@@ -26,7 +28,7 @@
                 <div class="detalles_producto">
                     <h4 class="titulo_producto"> {{ product.name }} </h4>
                     <ul class="carac_producto">
-                        <li class="precios">Precio:{{product.precio}}</li>
+                        <li class="precios">Precio: $<b>{{product.precio}}</b></li>
                         <li class="categ_producto">Categoria: {{ product.category }} </li>
                         <li class="stock_producto">Stock: {{ product.stock }}</li>
                         <li class="descripcion_producto">Descripción: {{ product.description}} </li>
@@ -34,9 +36,40 @@
                 </div>
                 <!-- boton de compra -->
                 <div class="boton_wrapper">
-                    <button type="button" class="boton_carrito"> Añadir al carrito</button>
+                    <button type="button" class="boton_carrito" (click)="comprarProducto()"> Comprar</button>
                 </div>
+            </div>
+        </div>
+        <!-- ventana modal (añadir al carrito)-->
+        <div class="lightbox" *ngIf="abrirModal">
+            <div class="cuadro_compra">
+                <!-- cerrar -->
+                <div class="barra_cerrar">
+                    <img src="../../../assets/icono-cerrar.png" alt="cerrar" (click)="cerrarModalCompra()">
+                </div>
+                <!-- logo -->
+                <div class="logo_producto">
+                    <img src="../../../assets/isologo.png" alt="logo-pagina">
+                </div>
+                <!-- formulario (añadir al carrito)-->
+                <form class="formulario">
+                    <div id="cantidad_wrapper">
+                        <label for="cantidad">Cantidad: </label>
+                        <input type="number" name="cantidad" id="field_cantidad">
+                    </div>
+                    <ul class="detalles_formulario">
+                        <li id="precio_unitario">Precio unitario: <b></b> </li>
+                        <li id="cantidad_elegida">Cantidad Elegida: <b></b> </li>
+                        <li id="valor_comprado">Valor compra: <b></b> </li>
+                    </ul>
+                    <!-- botones -->
+                    <div class="button_wrapper">
+                        <button type="submit" id="anadir_carrito" class="botones_form">Añadir al carrito</button><br>
+                    <button type="submit" id="terminar_compra" class="botones_form">Terminar compra</button><br>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
 </div>
+

@@ -35,40 +35,52 @@ export class LayoutTiendaComponent{
   // lista de productos:
   products = [
     {
-      image: '../../../assets/pala-jardineria.JPG',
+      image: '../../../assets/imagenes-tienda/pala.jpeg',
       name: 'Pala Jardinera',
-      precio: 0,
+      precio: 1000,
       category: 'Herramientas',
       description: 'peso y dimensiones',
-      stock: 10,
+      stock: 100,
       display : "grid"
     },
     {
-      image: '../../../assets/regadora.jpg',
+      image: '../../../assets/imagenes-tienda/regadora.jpeg',
       name: 'Regadora',
-      precio: 0,
+      precio: 1500,
       category: 'herramientas',
       description: 'peso y dimensiones',
-      stock: 10,
+      stock: 100,
       display : "grid"
     },
     {
-      image: '../../../assets/girasol.jpg',
+      image: '../../../assets/imagenes-tienda/girasol.jpeg',
       name: 'Semillas de Girasol',
-      precio: 0,
+      precio: 20,
       category: 'semillas',
       description: 'peso y dimensiones',
       stock: 1000,
       display : "grid"
     },
     {
-      image: '../../../assets/semillas-calabaza.jpg',
+      image: '../../../assets/imagenes-tienda/calabaza.jpeg',
       name: 'Semillas de Calabaza',
-      precio: 0,
+      precio: 30,
       category: 'semillas',
       description: 'peso y dimensiones',
-      stock: 10,
+      stock: 1000,
       display : "grid"
     },
   ];
+
+  //funcionalidades modal carrito:
+  abrirModal:boolean = false;
+  comprarProducto(){
+    this.abrirModal = true;
+  }
+  cerrarModalCompra(){
+    this.abrirModal = false;
+  }
+
+  
+
 }
