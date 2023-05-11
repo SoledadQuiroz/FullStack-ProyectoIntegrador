@@ -1,5 +1,5 @@
 
-
+<div class="container">
 <h1 class="my-garden">Mi Jardín</h1>
 
 <h2 class="titulo-h2">Favoritos</h2>
@@ -11,20 +11,22 @@
         <div class="imagen_wrapper">
             <img [src]="favorito.img" alt="icono">
         </div>
-        <div class="contenido">
+        <div class="title">
             <h5 id="titulo_{{favorito.id}}" class="titulos"> {{favorito.name}} </h5>
+        </div>
+        <div class="category">
             <p> <u>Categoría:</u> {{favorito.category}}</p>
         </div>
         <div class="botones">
             <button (click)="addCultivo(favorito)" type="button" class="sembrar"> SEMBRAR </button>
-            <button type="button" class="favoritos"> QUITAR DE FAVORITOS ×</button>
+            <button type="button" class="favoritos">FAVORITOS X</button>
         </div>
     </div>
 
 </section>
 
 <ng-template #elseFavorite>
-    <p style="font-size: 24px; font-weight: bold; color: green; text-align: center; margin: 100px 0;">No hay ningún cultivo agregado a favoritos.</p>
+    <p style="font-size: 24px; font-weight: bold; color: antiquewhite; text-align: center; margin: 100px 0;">No hay ningún cultivo agregado a favoritos.</p>
 </ng-template>
 
 
@@ -37,8 +39,10 @@
         <div class="imagen_wrapper">
             <img [src]="cultivo.img" alt="icono">
         </div>
-        <div class="contenido">
+        <div class="title">
             <h5 id="titulo_{{cultivo.id}}" class="titulos"> {{cultivo.name}} </h5>
+        </div>
+        <div class="category">
             <p> <u>Categoría:</u> {{cultivo.category}}</p>
         </div>
         <div class="botones">
@@ -49,5 +53,7 @@
 </section>
 
 <ng-template #elseGarden>
-    <p style="font-size: 24px; font-weight: bold; color: var(--fuentePrin2); text-align: center; margin: 100px 0; font-family: secundaria1;">No hay ningún cultivo para sembrar.</p>
+    <p style="font-size: 24px; font-weight: bold; color: antiquewhite; text-align: center; margin: 100px 0; font-family: secundaria1;">No hay ningún cultivo para sembrar.</p>
 </ng-template>
+
+</div>

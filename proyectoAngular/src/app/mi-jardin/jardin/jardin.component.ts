@@ -7,18 +7,16 @@ import { Cultivo } from '../cultivo/cultivos.model';
   styleUrls: ['./jardin.component.css']
 })
 export class JardinComponent {
-  cultivos:Cultivo[] = [
-    // {id:'aceituna', name:'ACEITUNA', img:'./assets/recursos/icono-aceituna.png', category:'frutas'},
-    // {id:'calabaza', name:'CALABAZA', img:'./assets/recursos/icono-calabaza.png', category:'vegetal'}
-  ];
+  cultivos:Cultivo[] = [];
 
   favoritos:Cultivo[] = [
-    {id:'aceituna', name:'ACEITUNA', img:'./assets/recursos/icono-aceituna.png', category:'frutas'},
-    {id:'calabaza', name:'CALABAZA', img:'./assets/recursos/icono-calabaza.png', category:'vegetal'}
+    {id:'tomate', name:'TOMATE', img:'./assets/tomate.png', category:'frutas'},
+    {id:'calabaza', name:'CALABAZA', img:'./assets/calabaza.png', category:'vegetal'}
   ];
 
   addCultivo(favorito:Cultivo){
     console.log("Cultivo agregado", favorito);
     this.cultivos.push(favorito);
   }
+
 }

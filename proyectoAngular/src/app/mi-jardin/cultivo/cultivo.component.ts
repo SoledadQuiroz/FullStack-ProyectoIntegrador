@@ -7,10 +7,12 @@ import { Cultivo } from './cultivos.model';
   styleUrls: ['./cultivo.component.css']
 })
 export class CultivoComponent {
+
   cultivos:Cultivo[] = [
-    {id:'aceituna', name:'ACEITUNA', img:'./assets/recursos/icono-aceituna.png', category:'frutas'},
-    {id:'calabaza', name:'CALABAZA', img:'./assets/recursos/icono-calabaza.png', category:'vegetal'},
-    {id:'cebolla', name:'CEBOLLA', img:'./assets/recursos/icono-cebolla.png', category:'vegetal'},
-    {id:'lechuga', name:'LECHUGA', img:'./assets/recursos/icono-lechuga.png', category:'vegetal'}
+    {id:'tomate', name:'TOMATE', img:'./assets/tomate.png', category:'frutas'},
+    {id:'calabaza', name:'CALABAZA', img:'./assets/calabaza.png', category:'vegetal'},
+    {id:'cebolla', name:'CEBOLLA', img:'./assets/cebolla.png', category:'vegetal'},
+    {id:'lechuga', name:'LECHUGA', img:'./assets/lechuga.png', category:'vegetal'}
   ];
+
 }

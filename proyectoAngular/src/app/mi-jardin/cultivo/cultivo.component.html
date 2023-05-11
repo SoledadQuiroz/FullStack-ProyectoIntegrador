@@ -1,16 +1,17 @@
-
 <section>
 
     <div *ngFor="let cultivo of cultivos" class="tarjeta" id="{{cultivo.id}}">
         <div class="imagen_wrapper">
             <img [src]="cultivo.img" alt="icono">
         </div>
-        <div class="contenido">
+        <div class="title">
             <h5 id="titulo_{{cultivo.id}}" class="titulos">{{cultivo.name}}</h5>
+        </div>
+        <div class="category">
             <p> <u>Categoría:</u> {{cultivo.category}} </p>
         </div>
         <div class="botones">
-            <button type="button" class="sembrar"> SEMBRAR </button>
+            <button  type="button" class="sembrar"> SEMBRAR </button>
             <button type="button" class="favoritos"> A FAVORITOS ★</button>
         </div>
     </div>

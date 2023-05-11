@@ -1,36 +1,32 @@
-*{
-    margin: 0;
-    padding: 0;
+.container{
+    padding-bottom: 100px;
+    padding-top: 50px;
+    background-image: url('../../../assets/wooden-background-4.jpg');
+    background-position: center;
+    /* background-repeat: repeat-y; */
+    background-size: cover;
 }
 
-section {
-    display: grid;
+section{
+    display: flex;
     flex-direction: column;
-    grid-area: section;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-template-rows: 30rem;
-    /* gap: 50px; */
-    height: 100%;
-    width: 100%;
-    justify-content: center !important;
-    align-items: flex-start;
-    box-sizing: border-box;
+    justify-content: space-evenly;
 }
-
 
 
 .my-garden{
     text-align: center;
-    color: var(--verde3);
+    color: antiquewhite;
     font-weight: bolder;
     font-size: 2.2rem;
+    font-family: principal;
     padding-top: 50px;
 }
 
 .titulo-h2{
     font-size: 32px;
     font-weight: 400;
-    color: var(--fuentePrin2);
+    color: antiquewhite;
     margin: 100px 5px 10px;
     /* text-shadow: 2px 3px 2px darkgreen; */
     font-family: secundaria3;
@@ -38,193 +34,142 @@ section {
 
 .linea{
     height: 5px;
-    background-color:yellowgreen;
+    background-color: #00ff4484;
     border-radius: 10px;
     border: transparent;
     box-shadow: var(--sombra1);
 }
 
-/*-------------------------- TARJETAS FINAL --------------------------*/
-
 .tarjeta {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 30% 40% 30%;
-    height: 300px;
-    width: 80%;
-    max-width: 550px;
-    box-sizing: border-box;
-    background: var(--verde3B);
-    border-radius: 10px;
-    border: 5px solid var(--verde3B);
-    color: white;
-    box-shadow: var(--sombra1);
-    justify-self: center;
-    align-self: flex-start;
-    margin-top: 125px;
-    transition: 0.3s ease-in-out;
-}
-
-.tarjeta:hover {
-    border: 5px solid var(--verde3A);
-    
-}
-
-.tarjeta .imagen_wrapper {
-    display: flex;
-    grid-column: 1/2;
-    grid-row: 1/2;
-    justify-content: center;
-    align-items: flex-end;
-    height: 100%;
-    width: 100%;
-    background: var(--verde3D);
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-}
-
-.tarjeta .imagen_wrapper img {
-    height: 140px;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-
-
-.tarjeta .contenido {
+    max-width: 300px;
+    margin: 30px auto;
     display: flex;
     flex-direction: column;
-    grid-column: 1/2;
-    grid-row: 2/3;
-    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 10px 10px 19px 0px rgba(0,0,0,0.75);
+    transition: .3s all ease-in-out;
+}
+
+.tarjeta:hover{
+    transform: translateX(2px);
+    transform: translateY(6px);
+    box-shadow: 8px 8px 8px 0px rgba(0,0,0,0.75);
+}
+
+.tarjeta .imagen_wrapper{
+    background-color: #368d36b0;
+    /* background-color: rgba(255, 255, 255, 0.226); */
+    padding: 10px 0;
     width: 100%;
-    justify-content: space-evenly;
-    align-items: center;
-    background: white;
-    color: black;
-    /* color: var(--verde3A); */
-}
-
-
-.tarjeta .contenido h5 {
-    font-family: secundaria3, Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 2rem;
-    letter-spacing: 0.2rem;
-    color: white;
-    cursor: pointer;
-    color: black;
-    /* color: var(--verde3A); */
-    
-}
-
-.tarjeta .contenido p {
-    font-family: secundaria4;
-    font-size: 1.1rem;
-    font-weight: bold;
     text-align: center;
-    margin-left: 15px;
-    margin-right: 15px;
+    border-radius: 20px 20px 0px 0px;
 }
 
-.tarjeta .botones {
-    display: flex;
-    grid-column: 1/2;
-    grid-row: 3/4;
-    height: 100%;
+.tarjeta .imagen_wrapper img{
+    width: 50%;
+}
+
+.tarjeta .title{
+    background-color: #185218ba;
+    /* background-color: rgba(29, 89, 55, 0.374); */
+    text-align: center;
+}
+
+.tarjeta .title .titulos{
+    color: antiquewhite;
+    font-size: 32px;
+    padding: 20px 0;
+    font-family: var(--secundaria1);
+}
+
+.tarjeta .category{
+    padding: 30px 0 10px 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.tarjeta .category p{
+    font-family: var(--secundaria2);
+}
+
+.tarjeta .category p u{
+    text-decoration: none;
+    font-family: var(--secundaria4);
+}
+
+
+.tarjeta .botones{
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px 0px 20px 20px;
     width: 100%;
-    justify-content: space-evenly;
-    align-items: center;
-    background: var(--verde3D);
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px 0;
 }
 
-.tarjeta .botones button {
-    background: #67be6c;
-    border: none;
-    height: 50px;
-    width: 130px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: var(--sombra1);
-    justify-self: center !important;
-    font-family: secundaria3;
+.tarjeta .botones button{
+    border: transparent;
+    font-family: var(--secundaria3);
+    border-radius: 20px;
+    padding: 8px 8px;
     color: white;
-    transition: 0.3s ease-in-out;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+    transition: .3s all ease-in-out;
+    cursor: pointer;
 }
 
-.tarjeta .botones button:hover {
-    background: var(--verde3A);
-    /* text-decoration: underline; */
+.tarjeta .botones button:hover{
+    transform: translateX(5px);
+    transform: translateY(5px);
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
 }
 
 
-
-/* ------------------ MEDIA QUERIES -------------------*/
-
-/* horizontal phones*/
-@media only screen and (max-height: 575.98px) and (orientation: landscape) {
-
-    .lightbox {
-        height: 400vh !important;
-    }
-
-    .modal_tarjetas {
-        height: 85% !important;
-    }
+.tarjeta .botones .sembrar{
+    background-color: #1f481f;    
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+.tarjeta .botones .favoritos{
+    background-color: #fa4141;    
+}
 
-    .lightbox {
-        height: 200vh;
-    }
 
-    .modal_tarjetas {
-        height: 40%;
-        width: 90%;
+@media only screen and (max-height: 575.98px) and (orientation: landscape){
+    section{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        justify-content: space-around;
     }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-
-    .lightbox {
-        height: 200vh;
-        align-items: center;
-        position: absolute;
-    }
-
-    .modal_tarjetas {
-        height: 85%;
-    }
-
-
-    .modal_tarjetas .botones_modal {
-        flex-direction: row;
-    }
-
-    .modal_tarjetas .botones_modal button {
-        width: 30%;
-        font-size: 1.1rem;
-    }
-
-    .modal_tarjetas .icono_cerrar img {
-        height: 30px;
-    }
-
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1400px) {
-    .lightbox {
-        height: 125vh;
-    }
-
-    .modal_tarjetas {
-        height: 75%;
+@media only screen and (min-width: 768px){
+    section{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        justify-content: space-around;
     }
 }
+
+
+@media only screen and (min-width: 992px){
+    section{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        justify-content: space-around;
+    }
+}
+
+
+@media only screen and (min-width: 1400px){
+    section{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+        justify-content: space-around;
+    }
+}
+
