@@ -1,4 +1,3 @@
-
 <div id="carrito_wrapper">
     <img src="../../../assets/icono-ventas.png" id="icono_carrito" alt="icono_carrito">
 </div>
@@ -41,7 +40,7 @@
             </div>
         </div>
         <!-- ventana modal (añadir al carrito)-->
-        <div class="lightbox" *ngIf="abrirModal">
+        <div class="lightbox" *ngIf="abrirModal" [ngClass]="getScreenSize()">
             <div class="cuadro_compra">
                 <!-- cerrar -->
                 <div class="barra_cerrar">

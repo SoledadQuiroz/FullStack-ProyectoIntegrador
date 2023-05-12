@@ -1,26 +1,31 @@
 /* ------------------ GRID GENERAL DE TODA LA PAGINA ------------------- */
 
 #grid_principal{
-    /* vista movil por default */
-    /* display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: auto; */
     width: 100%;
     overflow-y:visible;
     overflow-x: hidden;
 }
 
 /* ------------------ CLASES PARA RESOLUCIONES RESPONSIVE ------------------- */
+/* ----movil (default)----*/
 .grid_principal_movil{
     height: 200vh !important;
 }
-
+/* ---- tablet ----*/
 .grid_principal_tablet{
     height: 150vh !important;
 }
-
+.grid_principal_tablet .lightbox .cuadro_compra{
+    width: 50%;
+}
+/* ---- escritorio ----*/
 .grid_principal_escritorio{
     height: 100vh !important;
+}
+
+.grid_principal_escritorio .lightbox .cuadro_compra{
+    width: 40%;
+    height: 70%;
 }
 
 /* ------------------ GRID SECTION  ------------------- */
@@ -241,7 +246,7 @@
 .lightbox .cuadro_compra{
     display: grid;
     height: 35%;
-    width: 90%;
+    width:85%;
     grid-template-columns: 100%;
     grid-template-rows: 10% 30% 60%;
     background: white;

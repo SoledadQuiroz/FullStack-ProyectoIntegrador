@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild, HostListener} from '@angular/core';
 
 @Component({
   selector: 'app-layout-tienda',
@@ -81,6 +81,10 @@ export class LayoutTiendaComponent{
     this.abrirModal = false;
   }
 
-  
+  scrollDistance:number = 0;
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    this.scrollDistance += window.pageYOffset;
+  }
 
 }
