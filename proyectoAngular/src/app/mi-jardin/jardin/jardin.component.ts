@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Cultivo } from '../cultivo/cultivos.model';
+import { CultivosService } from '../../services/cultivos.service';
 
 @Component({
   selector: 'app-jardin',
@@ -7,16 +8,34 @@ import { Cultivo } from '../cultivo/cultivos.model';
   styleUrls: ['./jardin.component.css']
 })
 export class JardinComponent {
-  cultivos:Cultivo[] = [];
+  activeAlert = false;
+  alertText = '';
 
-  favoritos:Cultivo[] = [
-    {id:'tomate', name:'TOMATE', img:'./assets/tomate.png', category:'frutas'},
-    {id:'calabaza', name:'CALABAZA', img:'./assets/calabaza.png', category:'vegetal'}
-  ];
+  constructor(private cultivosService:CultivosService) { }
 
-  addCultivo(favorito:Cultivo){
-    console.log("Cultivo agregado", favorito);
-    this.cultivos.push(favorito);
+  get cultivosToSembrar(): Cultivo[] {
+    return this.cultivosService.cultivoSembrar;
+  }
+
+
+  get cultivosToFavorito(): Cultivo[] {
+    return this.cultivosService.cultivoFavorito;
+  }
+
+  removeFavorito(index:number){
+    this.cultivosService.cultivoFavorito.splice(index, 1);
+    this.alertText = 'El Cultivo se elimino de Favoritos';
+    this.activeAlert = !this.activeAlert;
+  }
+
+  addToSembrar(cultivo:Cultivo){
+    this.cultivosService.cultivoSembrar.push(cultivo);
+    this.alertText = 'El Cultivo fue agregado para Sembrar';
+    this.activeAlert = !this.activeAlert;
+  }
+
+  showAlert(){
+    this.activeAlert = !this.activeAlert;
   }
 
 }

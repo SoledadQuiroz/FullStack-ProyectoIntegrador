@@ -1,5 +1,10 @@
+<div class="cover" [class.active]="activeAlert"></div>
 <section>
-
+    <div class="alertSembrar" [class.active]="activeAlert">
+        <p>{{ alertText }}</p>
+        <button (click)="showAlert()">Vale!</button>
+    </div>
+    
     <div *ngFor="let cultivo of cultivos" class="tarjeta" id="{{cultivo.id}}">
         <div class="imagen_wrapper">
             <img [src]="cultivo.img" alt="icono">
@@ -11,8 +16,8 @@
             <p> <u>Categoría:</u> {{cultivo.category}} </p>
         </div>
         <div class="botones">
-            <button  type="button" class="sembrar"> SEMBRAR </button>
-            <button type="button" class="favoritos"> A FAVORITOS ★</button>
+            <button (click)="addToSembrar(cultivo)" type="button" class="sembrar"> SEMBRAR </button>
+            <button (click)="addToFavorito(cultivo)" type="button" class="favoritos"> A FAVORITOS ★</button>
         </div>
     </div>
 
