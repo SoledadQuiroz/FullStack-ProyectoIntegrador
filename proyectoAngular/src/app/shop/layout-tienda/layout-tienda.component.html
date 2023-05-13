@@ -18,7 +18,7 @@
         </form>      
         <!-- productos -->
         <div id="grid_productos">
-            <div class="productos" *ngFor="let product of products" id="{{ product.name}}" [ngStyle]="{'display' : product.display}">
+            <div class="productos" *ngFor="let product of products" id="{{product.name}}" [ngStyle]="{'display' : product.display}">
                 <!-- imagen presentacion -->
                 <div class="img_wrapper">
                     <img src="{{ product.image }}" alt="img_producto" class="icono_producto">
@@ -35,11 +35,11 @@
                 </div>
                 <!-- boton de compra -->
                 <div class="boton_wrapper">
-                    <button type="button" class="boton_carrito" (click)="comprarProducto()"> Comprar</button>
+                    <button type="button" class="boton_carrito" (click)="comprarProducto($event)"> Comprar</button>
                 </div>
             </div>
         </div>
-        <!-- ventana modal (añadir al carrito)-->
+        <!-- ventana modal (compra)-->
         <div class="lightbox" *ngIf="abrirModal" [ngClass]="getScreenSize()">
             <div class="cuadro_compra">
                 <!-- cerrar -->
@@ -54,17 +54,58 @@
                 <form class="formulario">
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
-                        <input type="number" name="cantidad" id="field_cantidad">
+                        <input type="number" name="cantidad" id="field_cantidad" [(ngModel)] = cantidadElegida [disabled]="limiteStock">
                     </div>
                     <ul class="detalles_formulario">
-                        <li id="precio_unitario">Precio unitario: <b></b> </li>
-                        <li id="cantidad_elegida">Cantidad Elegida: <b></b> </li>
-                        <li id="valor_comprado">Valor compra: <b></b> </li>
+                        <li id="precio_unitario">Precio unitario: <b>${{valorUnitario}}</b> </li>
+                        <li id="cantidad_elegida">Cantidad Elegida: <b>{{cantidadElegida}}</b> </li>
+                        <li id="valor_comprado">Valor compra: <b>${{cantidadElegida * valorUnitario}}</b> </li>
+                        <p *ngIf="validarCantidad()"> <b>LLEGASTE AL LIMITE DEL STOCK</b> </p>
                     </ul>
                     <!-- botones -->
                     <div class="button_wrapper">
                         <button type="submit" id="anadir_carrito" class="botones_form">Añadir al carrito</button><br>
-                    <button type="submit" id="terminar_compra" class="botones_form">Terminar compra</button><br>
+                        <button type="submit" id="terminar_compra" class="botones_form" (click)="abrirMetodosPago()">Ir a la caja</button><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- ventana modal (formas de pago)-->
+        <div class="lightbox" *ngIf="abirFormasPago" [ngClass]="getScreenSize()">
+            <div class="cuadro_compra">
+                <!-- cerrar -->
+                <div class="barra_cerrar">
+                    <img src="../../../assets/icono-cerrar.png" alt="cerrar" (click)="cerrarMetodosPago()">
+                </div>
+                <!-- logo -->
+                <div class="logo_producto">
+                    <img src="../../../assets/isologo.png" alt="logo-pagina">
+                </div>
+                <!-- formulario (formas de pago)-->
+                <form class="formulario">
+                    <div class="detalles_formulario" id="detalles_pago">
+                        <!-- nro tarjeta -->
+                        <label for="tarjeta">Número de tarjeta de credito / debito: </label>
+                        <input type="number" name="tarjeta" id="field_tarjeta"> <br>
+                        <!-- codigo seguridad -->
+                        <label for="codigo"> Introduce el código de seguridad de la tarjeta: </label>
+                        <input type="number" name="codigo" id="codigo_seguridad">
+                        <!-- region --> <br>
+                        <p>Selecciona tu region:</p> <br>
+                        <input type="radio" name="ciudad" value="ciudad">
+                        <label for="ciudad">Córdoba Capital</label> <br>
+                        <input type="radio" name="provincia" value="provincia">
+                        <label for="provincia"> Interior Provincia de Córdoba</label> <br>
+                        <input type="radio" name="pais" value="pais">
+                        <label for="pais"> Otra provincia del pais</label> <br>
+                        <!-- costos -->
+                        <p>Costo compra: <b>$</b> </p>
+                        <p>Costo envio: <b>$</b> </p>
+                        <p>Total: <b>$</b> </p>
+                    </div>
+                    <!-- botones -->
+                    <div class="button_wrapper">
+                        <button type="submit" id="Finalizar" class="botones_form">Finalizar Compra</button><br>
                     </div>
                 </form>
             </div>

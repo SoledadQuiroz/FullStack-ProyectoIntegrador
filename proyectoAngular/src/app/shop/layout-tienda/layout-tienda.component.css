@@ -1,5 +1,4 @@
 /* ------------------ GRID GENERAL DE TODA LA PAGINA ------------------- */
-
 #grid_principal{
     width: 100%;
     overflow-y:visible;
@@ -11,21 +10,26 @@
 .grid_principal_movil{
     height: 200vh !important;
 }
+.grid_principal_movil .lightbox .cuadro_compra{
+    animation: entrada_movil 500ms !important;
+}
+
 /* ---- tablet ----*/
 .grid_principal_tablet{
     height: 150vh !important;
 }
 .grid_principal_tablet .lightbox .cuadro_compra{
-    width: 50%;
+    animation: entrada_tablet 500ms !important;
 }
+
 /* ---- escritorio ----*/
 .grid_principal_escritorio{
     height: 100vh !important;
 }
-
 .grid_principal_escritorio .lightbox .cuadro_compra{
     width: 40%;
     height: 70%;
+    animation: entrada_escritorio 500ms !important;;
 }
 
 /* ------------------ GRID SECTION  ------------------- */
@@ -272,6 +276,11 @@
     margin-right: 15px;
     cursor: pointer;
 }
+
+.cuadro_compra .barra_cerrar img:hover{
+    filter: brightness(200%);
+    transition: 500ms;
+}
 /* ------------------ LOGO ------------------- */
 .cuadro_compra .logo_producto{
     display: flex;
@@ -317,4 +326,38 @@
     transition: 0.5s;
     background: var(--verde2);
     cursor: pointer;
+}
+
+/* ------------------ ANIMACIONES MODAL ------------------- */
+@keyframes entrada_movil {
+    0%{
+        height: 20%;
+        width: 40%;
+    } 
+    100%{
+        height: 35% !important;
+        width: 85% !important;
+    }
+}
+
+@keyframes entrada_tablet {
+    0%{
+        height: 20%;
+        width: 25%;
+    } 
+    100%{
+        height: 45% !important;
+        width: 50% !important;
+    }
+}
+
+@keyframes entrada_escritorio {
+    0%{
+        width: 20%;
+        height: 35%;
+    } 
+    100%{
+        width: 40% !important;
+        height: 70% !important;
+    }
 }

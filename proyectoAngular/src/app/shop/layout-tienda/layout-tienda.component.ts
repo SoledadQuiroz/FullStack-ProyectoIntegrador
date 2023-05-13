@@ -1,4 +1,4 @@
-import { Component, ViewChild, HostListener} from '@angular/core';
+import { Component, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-layout-tienda',
@@ -6,6 +6,9 @@ import { Component, ViewChild, HostListener} from '@angular/core';
   styleUrls: ['./layout-tienda.component.css']
 })
 export class LayoutTiendaComponent{
+  // instruccion para utilizar el modulo elementRed
+  constructor(private elementRef: ElementRef){}
+
   // funcionalidad para vistas responsive
   public getScreenSize(): string {
     const width = window.innerWidth;
@@ -72,19 +75,57 @@ export class LayoutTiendaComponent{
     },
   ];
 
-  //funcionalidades modal carrito:
+  //valores para insertar en el modal de compra
+  prodSeleccionado:number = 0;
+  valorUnitario:number = 0;
+  stockProducto:number = 0;
+  cantidadElegida:number = 0;
+  limiteStock:boolean = false;
+
+  //funcionalidades modal COMPRA
   abrirModal:boolean = false;
-  comprarProducto(){
+  comprarProducto(event: MouseEvent){
+    // 1 - se abre el modal:
     this.abrirModal = true;
-  }
-  cerrarModalCompra(){
-    this.abrirModal = false;
+    // 2 - se identifica el producto clickeado:
+    const clickedItem = event.target as HTMLElement;
+    const productoSeleccionado = clickedItem.parentElement!.parentElement;
+    console.log(productoSeleccionado);
+    // 3 - se obtienen los valores interpolados asociados a este:
+    this.products.forEach(product => {
+      if (productoSeleccionado!.id == product.name){
+        this.prodSeleccionado = this.products.indexOf(product);
+        this.valorUnitario = product.precio;
+        this.stockProducto = product.stock;
+      }
+    });
   }
 
-  scrollDistance:number = 0;
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
-    this.scrollDistance += window.pageYOffset;
+  validarCantidad(){
+    if(this.cantidadElegida >= this.stockProducto || this.cantidadElegida < 0){
+      this.limiteStock = true;
+    } else{
+      this.limiteStock = false;
+    }
   }
+
+  cerrarModalCompra(){
+    // se resetean las variables de referencia:
+    this.abrirModal = false;
+    this.cantidadElegida = 0;
+    this.limiteStock = false;
+  }
+
+//funcionalidades modal TERMINAR COMPRA
+abirFormasPago:boolean = false;
+abrirMetodosPago(){
+  // se cierra el modal anterior y se abre uno nuevo:
+  this.cerrarModalCompra();
+  this.abirFormasPago = true;
+}
+
+cerrarMetodosPago(){
+  this.abirFormasPago = false;
+}
 
 }
