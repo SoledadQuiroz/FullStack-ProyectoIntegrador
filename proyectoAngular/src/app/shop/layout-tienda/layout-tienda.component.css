@@ -3,6 +3,7 @@
     width: 100%;
     overflow-y:visible;
     overflow-x: hidden;
+    background-image: url("../../../assets/imagenes-tienda/fondo.jpg");
 }
 
 /* ------------------ CLASES PARA RESOLUCIONES RESPONSIVE ------------------- */
@@ -54,11 +55,12 @@
     height: 250px;
     width: 100%;
     overflow: hidden;
-    background-image: url("../../../assets/fondo-portada-jardineria.jpg");
+    background-image: url("../../../assets/imagenes-tienda/fondo-portada-2.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     /* margin-top: -20px !important; */
+    border-bottom: 10px solid sandybrown;
 }
 
 #portada h3{
@@ -79,6 +81,7 @@
     align-items: center;
     margin-top: 40px;
     font-family: secundaria1;
+    color: white;
 }
 
 #titulo_buscador{
@@ -165,6 +168,7 @@
     border-radius: 5px;
     color: var(--fuentePrin2);
     margin-top: 50px;
+    background-color: white;
 }
 .productos:hover{
     box-shadow: 3px 3px 10px 5px rgba(0,0,0,.6);
