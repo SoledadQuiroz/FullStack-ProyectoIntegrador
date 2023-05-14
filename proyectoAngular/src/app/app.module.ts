@@ -20,14 +20,15 @@ import { HomeComponent } from './home/home.component';
 import { MiCuentaComponent } from './auth/mi-cuenta/mi-cuenta.component';
 
 const appRoutes:Routes=[
+  {path:'', component:HomeComponent},
   {path:'cultivos', component:CultivoComponent},
-  {path:'jardin', component:JardinComponent},
-  {path:'tienda', component:LayoutTiendaComponent},
   {path:'consejo', component:ConsejoComponent},
+  {path:'tienda', component:LayoutTiendaComponent},
+  {path:'jardin', component:JardinComponent},
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegistroComponent},
-  {path:'home', component:HomeComponent},
-  {path:'micuenta', component:MiCuentaComponent}
+  {path:'micuenta', component:MiCuentaComponent},
+  {path:'**', component:HomeComponent}
 ];
 
 @NgModule({
