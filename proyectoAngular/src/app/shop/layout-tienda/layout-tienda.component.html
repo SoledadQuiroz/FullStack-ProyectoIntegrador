@@ -55,12 +55,14 @@
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
                         <input type="number" name="cantidad" id="field_cantidad" [(ngModel)] = cantidadElegida [disabled]="limiteStock">
+                        <br><hr>
                     </div>
                     <ul class="detalles_formulario">
                         <li id="precio_unitario">Precio unitario: <b>${{valorUnitario}}</b> </li>
                         <li id="cantidad_elegida">Cantidad Elegida: <b>{{cantidadElegida}}</b> </li>
-                        <li id="valor_comprado">Valor compra: <b>${{cantidadElegida * valorUnitario}}</b> </li>
+                        <li id="valor_comprado">Valor compra: <b>${{valorUnitario * cantidadElegida}}</b> </li>
                         <p *ngIf="validarCantidad()"> <b>LLEGASTE AL LIMITE DEL STOCK</b> </p>
+                        <br><hr>
                     </ul>
                     <!-- botones -->
                     <div class="button_wrapper">
@@ -101,7 +103,7 @@
                             <input type="number" name="codigo">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
                             <!-- fecha expiración -->
-                            <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> 
+                            <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
                             <input type="date" name="expiracion">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
                         </div>
@@ -125,9 +127,9 @@
                         <hr>
                         <!-- costos -->
                         <p><b>Costos:</b></p>
-                        <p>Costo compra: <b>$</b> </p>
+                        <p>Costo compra: <b>$</b>{{costoCompra}}</p>
                         <p>Costo envio: <b>$</b> </p>
-                        <p>Total: <b>$</b> </p>
+                        <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: $ </b></p>
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">

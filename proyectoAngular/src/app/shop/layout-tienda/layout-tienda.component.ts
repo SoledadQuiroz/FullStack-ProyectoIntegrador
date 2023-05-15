@@ -122,6 +122,10 @@ abirFormasPago:boolean = false;
 metodoSeleccionado:string = "";
 mostrarEjemploCodigo:boolean = false;
 mostrarEjemploExpiracion:boolean = false;
+costoCompra:number = this.valorUnitario * this.cantidadElegida;
+envioCiudad:number = 500;
+envioProvincia:number = 1000;
+envioPais:number = 2000;
 
 abrirMetodosPago(){
   // se cierra el modal anterior y se abre uno nuevo:
