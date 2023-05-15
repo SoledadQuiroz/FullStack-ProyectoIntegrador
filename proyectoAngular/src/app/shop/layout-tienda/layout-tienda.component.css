@@ -16,8 +16,9 @@
     width: 85%;
 }
 .grid_principal_movil .lightbox #formas_pago_form{
-    height:45%;
-    width: 50%;
+    width: 90%;
+    height: 65%;
+    grid-template-rows: 5% 15% 80%;
 }
 
 /* ---- tablet ----*/
@@ -31,7 +32,7 @@
 
 .grid_principal_tablet .lightbox #formas_pago_form{
     height:60%;
-    width: 50%;
+    width: 70%;
 }
 
 /* ---- escritorio ----*/
@@ -352,14 +353,70 @@
 .cuadro_compra .formulario #detalles_pago{
     align-items: flex-start;
     width: 85%;
-    font-size: 0.85rem;
+    font-size: 1rem;
 }
 
-/* ------------------  AJUSTES MODAL CAJA ------------------- */
-#codigo_ejemplo:hover{
+
+.detalles_formulario input, select{
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(145, 144, 144);
+}
+
+.icono_tarjeta{
+    height: 15px;
+    cursor: hover;
+    margin-left: 5px;
+    filter: opacity(75%);
     cursor: pointer;
-    color: red;
-    transition: 0.5s;
+}
+
+.icono_tarjeta:hover{
+    filter: opacity(100%);
+    transition: 500ms;
+}
+
+/* ------------------  AJUSTES MODALES ejemplo (codigo y expiracion) ------------------- */
+.modal_ejemplo_wrapper{
+    display: flex;
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.4);
+    overflow: hidden;
+    z-index: 110;
+}
+
+.modal_ejemplo{
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    height: min-content;
+    justify-content: space-evenly;
+    align-self: center;
+    overflow: hidden;
+    background: white;
+    border-radius: 5px;
+    animation: blur-in-expand 400ms;
+}
+
+.modal_ejemplo .barra_cerrar_modal{
+    display: flex;
+    align-self:flex-start;
+    height: 10%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.modal_ejemplo .barra_cerrar_modal img{
+    height: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 /* ------------------ ANIMACIONES MODAL ------------------- */

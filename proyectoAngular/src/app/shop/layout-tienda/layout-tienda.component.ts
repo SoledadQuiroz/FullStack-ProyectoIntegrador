@@ -10,7 +10,7 @@ export class LayoutTiendaComponent{
   // instruccion para utilizar el modulo elementRed
   constructor(private elementRef: ElementRef){}
 
-  // funcionalidad para vistas responsive
+  // funcionalidades para vistas responsive
   public getScreenSize(): string {
     const width = window.innerWidth;
     if (width < 600) {
@@ -121,6 +121,7 @@ export class LayoutTiendaComponent{
 abirFormasPago:boolean = false;
 metodoSeleccionado:string = "";
 mostrarEjemploCodigo:boolean = false;
+mostrarEjemploExpiracion:boolean = false;
 
 abrirMetodosPago(){
   // se cierra el modal anterior y se abre uno nuevo:
@@ -132,7 +133,13 @@ cerrarMetodosPago(){
   this.abirFormasPago = false;
 }
 
-mostrarImagenTarjeta(){
-  this.mostrarEjemploCodigo = true;
+modalCodigo(){
+  this.mostrarEjemploCodigo = !this.mostrarEjemploCodigo;
 }
+
+modalExpiracion(){
+  this.mostrarEjemploExpiracion = !this.mostrarEjemploExpiracion;
+}
+
+
 }
