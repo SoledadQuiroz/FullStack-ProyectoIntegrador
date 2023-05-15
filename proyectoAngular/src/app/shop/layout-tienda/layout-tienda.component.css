@@ -15,6 +15,10 @@
     height: 35%;
     width: 85%;
 }
+.grid_principal_movil .lightbox #formas_pago_form{
+    height:45%;
+    width: 50%;
+}
 
 /* ---- tablet ----*/
 .grid_principal_tablet{
@@ -25,6 +29,11 @@
     width: 50%;
 }
 
+.grid_principal_tablet .lightbox #formas_pago_form{
+    height:60%;
+    width: 50%;
+}
+
 /* ---- escritorio ----*/
 .grid_principal_escritorio{
     height: 100vh !important;
@@ -32,6 +41,12 @@
 .grid_principal_escritorio .lightbox .cuadro_compra{
     width: 40%;
     height: 70%;
+}
+
+.grid_principal_escritorio .lightbox #formas_pago_form{
+    width: 40%;
+    height: 90%;
+    grid-template-rows: 7% 20% 73%;
 }
 
 /* ------------------ GRID SECTION  ------------------- */
@@ -338,6 +353,13 @@
     align-items: flex-start;
     width: 85%;
     font-size: 0.85rem;
+}
+
+/* ------------------  AJUSTES MODAL CAJA ------------------- */
+#codigo_ejemplo:hover{
+    cursor: pointer;
+    color: red;
+    transition: 0.5s;
 }
 
 /* ------------------ ANIMACIONES MODAL ------------------- */

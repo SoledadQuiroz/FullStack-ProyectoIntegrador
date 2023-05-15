@@ -72,7 +72,7 @@
         </div>
         <!-- ventana modal (formas de pago)-->
         <div class="lightbox" *ngIf="abirFormasPago" [ngClass]="getScreenSize()">
-            <div class="cuadro_compra">
+            <div class="cuadro_compra" id="formas_pago_form">
                 <!-- cerrar -->
                 <div class="barra_cerrar">
                     <img src="../../../assets/icono-cerrar.png" alt="cerrar" (click)="cerrarMetodosPago()">
@@ -84,21 +84,44 @@
                 <!-- formulario (formas de pago)-->
                 <form class="formulario">
                     <div class="detalles_formulario" id="detalles_pago">
-                        <!-- nro tarjeta -->
-                        <label for="tarjeta">Número de tarjeta de credito / debito: </label> <br>
-                        <input type="number" name="tarjeta" id="field_tarjeta"> <br>
-                        <!-- codigo seguridad -->
-                        <label for="codigo"> Introduce el código de seguridad de la tarjeta: </label> <br>
-                        <input type="number" name="codigo" id="codigo_seguridad"> <br> <hr>
+                        <!-- seleccionar forma de pago -->
+                        <label for="opciones_pago"><b>Selecciona una forma de pago:</b></label> <br>
+                        <select id="opciones_pago" name="pagos" [(ngModel)] ="metodoSeleccionado">
+                            <option value="tajeta_credito_debito">Tarjeta Credito / debito</option>
+                            <option value="mercadopago"> Mercadopago</option>
+                            <option value="billetera_virtual">Billetera virtual</option>
+                        </select>
+                        <hr>
+                        <!-- tarjeta credito o debito-->
+                        <div id="tarjeta_credito" *ngIf="metodoSeleccionado == 'tajeta_credito_debito'">
+                            <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
+                            <input type="number" name="tarjeta" id="field_tarjeta"> <br>
+                            <!-- codigo seguridad -->
+                            <label for="codigo"> <b id="codigo_ejemplo">Introduce el código de seguridad de la tarjeta:</b> </label> <br>
+                            <input type="number" name="codigo" id="codigo_seguridad"> <br> <hr>
+                            <!-- modal ejemplo -->
+                            <dialog *ngIf="mostrarEjemploCodigo" (click)="mostrarImagenTarjeta()">
+                                <img src="../../../assets/imagenes-tienda/codigo-tarjeta.jpg" alt="ejemplo-tarjeta">
+                            </dialog>
+                        </div>
+                        <!-- mercadopago-->
+                        <p *ngIf="metodoSeleccionado == 'mercadopago'" style="color:red"> Esta opción aun no esta disponible.</p>
+                        <!-- billetera virtual-->
+                        <p *ngIf="metodoSeleccionado == 'billetera_virtual'" style="color:red"> Esta opción aun no esta disponible.</p>
                         <!-- region -->
-                        <p>Selecciona tu region:</p>
+                        <p><b>Selecciona tu region:</b></p>
                         <input type="radio" name="ciudad" value="ciudad">
                         <label for="ciudad">Córdoba Capital</label> <br>
                         <input type="radio" name="provincia" value="provincia">
                         <label for="provincia"> Interior Provincia de Córdoba</label> <br>
                         <input type="radio" name="pais" value="pais">
                         <label for="pais"> Otra provincia del pais</label> <br> <hr>
+                        <!-- ingresa tu direccion -->
+                        <p><b>Ingresa tu dirección:</b></p>
+                        <input type="text">
+                        <hr>
                         <!-- costos -->
+                        <p><b>Costos:</b></p>
                         <p>Costo compra: <b>$</b> </p>
                         <p>Costo envio: <b>$</b> </p>
                         <p>Total: <b>$</b> </p>

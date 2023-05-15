@@ -1,3 +1,4 @@
+import { HtmlTagDefinition } from '@angular/compiler';
 import { Component, ElementRef} from '@angular/core';
 
 @Component({
@@ -118,6 +119,9 @@ export class LayoutTiendaComponent{
 
 //funcionalidades modal TERMINAR COMPRA
 abirFormasPago:boolean = false;
+metodoSeleccionado:string = "";
+mostrarEjemploCodigo:boolean = false;
+
 abrirMetodosPago(){
   // se cierra el modal anterior y se abre uno nuevo:
   this.cerrarModalCompra();
@@ -128,4 +132,7 @@ cerrarMetodosPago(){
   this.abirFormasPago = false;
 }
 
+mostrarImagenTarjeta(){
+  this.mostrarEjemploCodigo = true;
+}
 }
