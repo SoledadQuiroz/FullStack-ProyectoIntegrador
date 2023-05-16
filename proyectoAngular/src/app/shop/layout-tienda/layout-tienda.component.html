@@ -48,13 +48,14 @@
                 </div>
                 <!-- logo -->
                 <div class="logo_producto">
-                    <img src="../../../assets/isologo.png" alt="logo-pagina" class="isologo_modales">
+                    <img [src]="imagenProdSeleccionado">
                 </div>
                 <!-- formulario (añadir al carrito)-->
                 <form class="formulario">
+                    <h3>{{nombreProdSeleccionado}}</h3>
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
-                        <input type="number" name="cantidad" id="field_cantidad" [(ngModel)] = cantidadElegida [disabled]="limiteStock">
+                        <input type="number" name="cantidad" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
                         <br><hr>
                     </div>
                     <ul class="detalles_formulario">
@@ -64,10 +65,11 @@
                         <p *ngIf="validarCantidad()"> <b>LLEGASTE AL LIMITE DEL STOCK</b> </p>
                         <br><hr>
                     </ul>
+                    <p *ngIf="cantidadElegida == 0"><b>DEBES SELECCIONAR AL MENOS 1 UNIDAD!</b></p>
                     <!-- botones -->
                     <div class="button_wrapper">
                         <button type="submit" id="anadir_carrito" class="botones_form">Añadir al carrito</button><br>
-                        <button type="submit" id="terminar_compra" class="botones_form" (click)="abrirMetodosPago()">Ir a la caja</button><br>
+                        <button type="submit" id="terminar_compra" class="botones_form" (click)="abrirMetodosPago(cantidadElegida)">Ir a la caja</button><br>
                     </div>
                 </form>
             </div>
@@ -114,11 +116,11 @@
                         <!-- region -->
                         <form>
                             <p><b>Selecciona tu region:</b></p>
-                            <input type="radio" name="ciudad" value="ciudad">
+                            <input type="radio" name="region" value="ciudad" [(ngModel)] = "regionSeleccionada">
                             <label for="ciudad">Córdoba Capital</label> <br>
-                            <input type="radio" name="provincia" value="provincia">
+                            <input type="radio" name="region" value="provincia" [(ngModel)] = "regionSeleccionada">
                             <label for="provincia"> Interior Provincia de Córdoba</label> <br>
-                            <input type="radio" name="pais" value="pais">
+                            <input type="radio" name="region" value="pais" [(ngModel)] = "regionSeleccionada">
                             <label for="pais"> Otra provincia del pais</label> <br>
                         </form> <hr>
                         <!-- ingresa tu direccion -->
@@ -126,10 +128,12 @@
                         <input type="text">
                         <hr>
                         <!-- costos -->
-                        <p><b>Costos:</b></p>
-                        <p>Costo compra: <b>$</b>{{costoCompra}}</p>
-                        <p>Costo envio: <b>$</b> </p>
-                        <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: $ </b></p>
+                        <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
+                        <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
+                        <p>Costo compra: <b>${{costoCompra}}</b></p>
+                        <p>Costo envio: <b>${{calcularEnvio(regionSeleccionada)}}</b></p>
+                        <hr>
+                        <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{valorTotalCompra}} </b></p>
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">

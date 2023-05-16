@@ -76,8 +76,12 @@ export class LayoutTiendaComponent{
     },
   ];
 
-  //valores para insertar en el modal de compra
+  //valores para insertar en el modal de compra:
+  // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
+  //nombre prod seleccionado:
+  nombreProdSeleccionado:string = "";
+  imagenProdSeleccionado:string = "";
   valorUnitario:number = 0;
   stockProducto:number = 0;
   cantidadElegida:number = 0;
@@ -96,6 +100,8 @@ export class LayoutTiendaComponent{
     this.products.forEach(product => {
       if (productoSeleccionado!.id == product.name){
         this.prodSeleccionado = this.products.indexOf(product);
+        this.nombreProdSeleccionado = product.name;
+        this.imagenProdSeleccionado = product.image;
         this.valorUnitario = product.precio;
         this.stockProducto = product.stock;
       }
@@ -113,8 +119,8 @@ export class LayoutTiendaComponent{
   cerrarModalCompra(){
     // se resetean las variables de referencia:
     this.abrirModal = false;
-    this.cantidadElegida = 0;
-    this.limiteStock = false;
+    // this.cantidadElegida = 0;
+    // this.limiteStock = false;
   }
 
 //funcionalidades modal TERMINAR COMPRA
@@ -122,19 +128,45 @@ abirFormasPago:boolean = false;
 metodoSeleccionado:string = "";
 mostrarEjemploCodigo:boolean = false;
 mostrarEjemploExpiracion:boolean = false;
-costoCompra:number = this.valorUnitario * this.cantidadElegida;
+costoCompra:number = 0;
 envioCiudad:number = 500;
 envioProvincia:number = 1000;
 envioPais:number = 2000;
+regionSeleccionada:string = "";
+costoRegionSeleccionada:number = 0;
+valorTotalCompra:number = this.costoCompra + this.costoRegionSeleccionada;
 
-abrirMetodosPago(){
+abrirMetodosPago(cantidad:number){
   // se cierra el modal anterior y se abre uno nuevo:
-  this.cerrarModalCompra();
-  this.abirFormasPago = true;
+  if (cantidad>0){
+    // si el usuario selecciono al menos una unidad
+    this.cerrarModalCompra();
+    this.abirFormasPago = true;
+    // valor de la compra realizada
+    this.costoCompra = this.cantidadElegida * this.valorUnitario;
+  }
 }
 
 cerrarMetodosPago(){
   this.abirFormasPago = false;
+}
+
+calcularEnvio(region:string){
+  if (region == "ciudad"){
+    this.costoRegionSeleccionada = this.envioCiudad;
+    return this.costoRegionSeleccionada;
+
+  } else if(region == "provincia"){
+    this.costoRegionSeleccionada = this.envioProvincia;
+    return this.costoRegionSeleccionada;
+
+  } else if(region == "pais"){
+    this.costoRegionSeleccionada = this.envioPais;
+    return this.costoRegionSeleccionada;
+
+  } else{
+    return 0;
+  }
 }
 
 modalCodigo(){

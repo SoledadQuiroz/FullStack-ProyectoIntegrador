@@ -79,7 +79,6 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    /* margin-top: -20px !important; */
     border-bottom: 10px solid sandybrown;
 }
 
@@ -87,6 +86,7 @@
     font-size: 3rem;
     color: var(--fuenteAlt);
     font-family: secundaria1;
+    animation: tracking-in-expand 1000ms;
 }
 
 /* ------------------ BUSCADOR ------------------- */
@@ -107,6 +107,7 @@
 #titulo_buscador{
     font-weight: bold;
     font-size: 1.25rem;
+    /* animation: tracking-in-contract 500ms; */
 }
 
 
@@ -318,6 +319,7 @@
 
 .cuadro_compra .logo_producto img{
     height: 75%;
+    border-radius: 100%;
     animation: rotate-vertical-center 1000ms;
 }
 /* ------------------ FORMULARIO ------------------- */
@@ -328,6 +330,12 @@
     grid-row: 3/4;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.cuadro_compra .formulario h3{
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
 }
 .cuadro_compra .formulario #field_cantidad{
     width: 70px;
@@ -438,4 +446,15 @@
 @keyframes slide-top{
     0%{transform:translateY(0)}
     100%{transform:translateY(5px)}
+}
+
+@keyframes tracking-in-expand{
+    0%{letter-spacing:-.2em;opacity:0}
+    40%{opacity:.6}100%{opacity:1}
+}
+
+@keyframes tracking-in-contract{
+    0%{letter-spacing:.6em;opacity:0}
+    40%{opacity:.6}
+    100%{letter-spacing:normal;opacity:1}
 }
