@@ -15,13 +15,13 @@
     
     <div *ngFor="let favorito of cultivosToFavorito; let i = index" class="tarjeta" id="{{favorito.id}}">
         <div class="imagen_wrapper">
-            <img [src]="favorito.img" alt="icono">
+            <img [src]="favorito.imagen" alt="icono">
         </div>
         <div class="title">
-            <h5 id="titulo_{{favorito.id}}" class="titulos"> {{favorito.name}} </h5>
+            <h5 id="titulo_{{favorito.id}}" class="titulos"> {{favorito.nombre}} </h5>
         </div>
         <div class="category">
-            <p> <u>Categoría:</u> {{favorito.category}}</p>
+            <p> <u>Categoría:</u> {{favorito.tipo}}</p>
         </div>
         <div class="botones">
             <button (click)="addToSembrar(favorito)" type="button" class="sembrar"> SEMBRAR </button>
@@ -43,13 +43,13 @@
 
     <div *ngFor="let cultivo of cultivosToSembrar" class="tarjeta" id="{{cultivo.id}}">
         <div class="imagen_wrapper">
-            <img [src]="cultivo.img" alt="icono">
+            <img [src]="cultivo.imagen" alt="icono">
         </div>
         <div class="title">
-            <h5 id="titulo_{{cultivo.id}}" class="titulos"> {{cultivo.name}} </h5>
+            <h5 id="titulo_{{cultivo.id}}" class="titulos"> {{cultivo.nombre}} </h5>
         </div>
         <div class="category">
-            <p> <u>Categoría:</u> {{cultivo.category}}</p>
+            <p> <u>Categoría:</u> {{cultivo.tipo}}</p>
         </div>
         <div class="botones">
             <button type="button" class="sembrar"> SEMBRAR </button>

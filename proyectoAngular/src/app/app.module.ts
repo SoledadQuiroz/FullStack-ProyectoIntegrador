@@ -18,6 +18,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { HomeComponent } from './home/home.component';
 import { MiCuentaComponent } from './auth/mi-cuenta/mi-cuenta.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes:Routes=[
   {path:'', component:HomeComponent},
@@ -53,6 +54,7 @@ const appRoutes:Routes=[
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

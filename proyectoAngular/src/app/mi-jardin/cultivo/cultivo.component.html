@@ -7,13 +7,13 @@
     
     <div *ngFor="let cultivo of cultivos" class="tarjeta" id="{{cultivo.id}}">
         <div class="imagen_wrapper">
-            <img [src]="cultivo.img" alt="icono">
+            <img [src]="cultivo.imagen" alt="icono">
         </div>
         <div class="title">
-            <h5 id="titulo_{{cultivo.id}}" class="titulos">{{cultivo.name}}</h5>
+            <h5 id="titulo_{{cultivo.id}}" class="titulos">{{cultivo.nombre}}</h5>
         </div>
         <div class="category">
-            <p> <u>Categoría:</u> {{cultivo.category}} </p>
+            <p> <u>Categoría:</u> {{cultivo.tipo}} </p>
         </div>
         <div class="botones">
             <button (click)="addToSembrar(cultivo)" type="button" class="sembrar"> SEMBRAR </button>
