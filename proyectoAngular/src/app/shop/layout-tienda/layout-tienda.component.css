@@ -275,7 +275,7 @@
 /* ------------------ LAYOUT GENERAL ------------------- */
 .lightbox .cuadro_compra{
     display: grid;
-    height: 35%;
+    height: 50%;
     width:85%;
     grid-template-columns: 100%;
     grid-template-rows: 10% 30% 60%;
@@ -432,6 +432,10 @@
     cursor: pointer;
 }
 
+.icono_validacion{
+    height: 15px;
+    margin-right: 5px;
+}
 /* ------------------ ANIMACIONES MODAL ------------------- */
 @keyframes rotate-vertical-center{
     0%{transform:rotateY(0)}

@@ -1,15 +1,17 @@
-import { HtmlTagDefinition } from '@angular/compiler';
 import { Component, ElementRef} from '@angular/core';
+import { HtmlTagDefinition } from '@angular/compiler';
+import { Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-layout-tienda',
   templateUrl: './layout-tienda.component.html',
   styleUrls: ['./layout-tienda.component.css']
 })
+
 export class LayoutTiendaComponent{
   // instruccion para utilizar el modulo elementRed
   constructor(private elementRef: ElementRef){}
-
   // funcionalidades para vistas responsive
   public getScreenSize(): string {
     const width = window.innerWidth;
@@ -21,6 +23,7 @@ export class LayoutTiendaComponent{
       return 'grid_principal_escritorio';
     }
   }
+  
   // funcionalidad buscador:
   palabraBusqueda:string = "";
   buscarProducto(){
@@ -146,7 +149,27 @@ export class LayoutTiendaComponent{
   //expresiones regulares
   numeroTarjetaRegex = /^(\d{4}[- ]){3}\d{4}|\d{16}$/;
   codigoSeguridadRegex = /^\d{3}$/;
-
+  direccionRegex = /^[a-zA-Z0-9\s]*$/;
+  localidadRegex = /^[a-zA-Z\s]*$/;
+  provinciaRegex = /^[a-zA-Z\s]*$/;
+  // imagenes iconos validacion:
+  iconos = [
+    // done icon [0]
+    "../../../assets/imagenes-tienda/done-icon.png",
+    // not done icon [1]
+    "../../../assets/imagenes-tienda/not-done-icon.png",
+    // invalid [2]
+    "../../../assets/imagenes-tienda/invalid-icon.png"
+  ]
+  // almacenan el estado de cada input (valido o no):
+  // datos tarjeta:
+  numeroTarjetaEstado:boolean = false;
+  codigoTarjetaEstado:boolean = false;
+  expiracionTarjetaEstado:boolean = false;
+  // datos ubicacion:
+  direccionEstado:boolean = false;
+  localidadEstado:boolean = false;
+  provinciaEstado:boolean = false;
 
   abrirMetodosPago(cantidad:number){
   // se cierra el modal anterior y se abre uno nuevo:
@@ -203,4 +226,43 @@ export class LayoutTiendaComponent{
   this.mostrarEjemploExpiracion = !this.mostrarEjemploExpiracion;
   }
 
+  validarCamposTarjeta(valor:number,expreg:RegExp,estado:boolean){
+    // 1ro - se valida si el campo no esta en blanco:
+    if (valor.toString() == ""){
+      // en proceso de ser completado...
+      return this.iconos[1];
+      // campo no vacio:
+    } else{
+      // 2do - se valida si los valores ingresados son correctos:
+      if(expreg.test(valor.toString())){
+        // valor valido:
+        estado = true;
+        return this.iconos[0];
+      } else{
+        // valor invalido:
+        estado = false;
+        return this.iconos[2];
+      }
+    }
+  }
+
+  validarCamposDireccion(valor:string,expreg:RegExp,estado:boolean){
+    // 1ro - se valida si el campo no esta en blanco:
+    if (valor.toString() == ""){
+      // en proceso de ser completado...
+      return this.iconos[1];
+      // campo no vacio:
+    } else{
+      // 2do - se valida si los valores ingresados son correctos:
+      if(expreg.test(valor.toString())){
+        // valor valido:
+        estado = true;
+        return this.iconos[0];
+      } else{
+        // valor invalido:
+        estado = false;
+        return this.iconos[2];
+      }
+    }
+  }
 }
