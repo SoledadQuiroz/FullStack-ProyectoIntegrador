@@ -131,8 +131,8 @@ export class LayoutTiendaComponent{
   mostrarEjemploExpiracion:boolean = false;
   remarcarMensajeCantidad:boolean = false;
   // datos tarjeta
-  numeroTarjetaInput:number = 0;
-  codigoTarjetaInput:number = 0;
+  numeroTarjetaInput:string = "";
+  codigoTarjetaInput:string = "";
   expiracionTarjetaInput:string = "";
   // costos
   costoCompra:number = 0;
@@ -149,6 +149,7 @@ export class LayoutTiendaComponent{
   //expresiones regulares
   numeroTarjetaRegex = /^(\d{4}[- ]){3}\d{4}|\d{16}$/;
   codigoSeguridadRegex = /^\d{3}$/;
+  expiracionRegex = /^\d{4}-(0[1-9]|1[0-2])$/;
   direccionRegex = /^[a-zA-Z0-9\s]*$/;
   localidadRegex = /^[a-zA-Z\s]*$/;
   provinciaRegex = /^[a-zA-Z\s]*$/;
@@ -226,7 +227,7 @@ export class LayoutTiendaComponent{
   this.mostrarEjemploExpiracion = !this.mostrarEjemploExpiracion;
   }
 
-  validarCamposTarjeta(valor:number,expreg:RegExp,estado:boolean){
+  validarCamposTarjeta(valor:string,expreg:RegExp,estado:boolean){
     // 1ro - se valida si el campo no esta en blanco:
     if (valor.toString() == ""){
       // en proceso de ser completado...
@@ -264,5 +265,9 @@ export class LayoutTiendaComponent{
         return this.iconos[2];
       }
     }
+  }
+
+  sumarCostosFinales(){
+    return this.costoCompra + this.costoRegionSeleccionada;
   }
 }

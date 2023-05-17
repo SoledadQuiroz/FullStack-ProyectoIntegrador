@@ -104,16 +104,16 @@
                             <!-- numero tarjeta -->
                             <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
                             <img [src]="validarCamposTarjeta(numeroTarjetaInput,numeroTarjetaRegex,numeroTarjetaEstado)" class="icono_validacion">
-                            <input type="number" name="tarjeta" value="" [(ngModel)]="numeroTarjetaInput"> <br>
+                            <input type="text" name="tarjeta" value="" [(ngModel)]="numeroTarjetaInput"> <br>
                             <!-- codigo seguridad -->
                             <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
                             <img [src]="validarCamposTarjeta(codigoTarjetaInput,codigoSeguridadRegex,expiracionTarjetaEstado)" class="icono_validacion">
-                            <input type="number" name="codigo" value="" [(ngModel)]="codigoTarjetaInput">
+                            <input type="text" name="codigo" value="" [(ngModel)]="codigoTarjetaInput">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
                             <!-- fecha expiración -->
                             <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
-                            <img [src]="iconos[1]" class="icono_validacion">
-                            <input type="month" name="expiracion">
+                            <img [src]="validarCamposTarjeta(expiracionTarjetaInput,expiracionRegex,expiracionTarjetaEstado)" class="icono_validacion">
+                            <input type="month" name="expiracion" [(ngModel)] = "expiracionTarjetaInput">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
                         </div>
                         <!-- mercadopago-->
@@ -140,7 +140,7 @@
                         <p>Costo compra: <b>${{costoCompra}}</b></p>
                         <p>Costo envio: <b>{{calcularEnvio()}}</b></p>
                         <hr>
-                        <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{valorTotalCompra}} </b></p>
+                        <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
