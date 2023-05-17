@@ -458,3 +458,16 @@
     40%{opacity:.6}
     100%{letter-spacing:normal;opacity:1}
 }
+
+@keyframes shake-horizontal{
+    0%,100%{transform:translateX(0)}
+    10%,30%,50%,70%{transform:translateX(-10px)}
+    20%,40%,60%{transform:translateX(10px)}
+    80%{transform:translateX(8px)}
+    90%{transform:translateX(-8px)}
+}
+
+.shakeElement{
+    animation-name: shake-horizontal;
+    animation-duration: 500ms;
+}

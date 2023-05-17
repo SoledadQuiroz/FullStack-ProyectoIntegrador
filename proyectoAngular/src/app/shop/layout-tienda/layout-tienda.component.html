@@ -66,7 +66,9 @@
                         <p *ngIf="validarCantidad()"> <b>LLEGASTE AL LIMITE DEL STOCK</b> </p>
                         <br><hr>
                     </ul>
-                    <p *ngIf="cantidadElegida == 0"><b>DEBES SELECCIONAR AL MENOS 1 UNIDAD!</b></p>
+                    <p *ngIf="cantidadElegida == 0" [ngClass]="{'shakeElement': remarcarMensajeCantidad}">
+                        <b>DEBES SELECCIONAR AL MENOS 1 UNIDAD!</b>
+                    </p>
                     <!-- botones -->
                     <div class="button_wrapper">
                         <button type="submit" id="anadir_carrito" class="botones_form">Añadir al carrito</button><br>
@@ -100,39 +102,36 @@
                         <!-- tarjeta credito o debito-->
                         <div id="tarjeta_credito" *ngIf="metodoSeleccionado == 'tajeta_credito_debito'">
                             <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
-                            <input type="number" name="tarjeta"> <br>
+                            <input type="number" name="tarjeta" [(ngModel)]="numeroTarjetaInput"> <br>
                             <!-- codigo seguridad -->
                             <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
                             <input type="number" name="codigo">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
                             <!-- fecha expiración -->
                             <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
-                            <input type="date" name="expiracion">
+                            <input type="month" name="expiracion">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
                         </div>
                         <!-- mercadopago-->
                         <p *ngIf="metodoSeleccionado == 'mercadopago'" style="color:red"> Esta opción aun no esta disponible.</p>
                         <!-- billetera virtual-->
                         <p *ngIf="metodoSeleccionado == 'billetera_virtual'" style="color:red"> Esta opción aun no esta disponible.</p>
-                        <!-- region -->
-                        <form>
-                            <p><b>Selecciona tu region:</b></p>
-                            <input type="radio" name="region" value="ciudad" [(ngModel)] = "regionSeleccionada">
-                            <label for="ciudad">Córdoba Capital</label> <br>
-                            <input type="radio" name="region" value="provincia" [(ngModel)] = "regionSeleccionada">
-                            <label for="provincia"> Interior Provincia de Córdoba</label> <br>
-                            <input type="radio" name="region" value="pais" [(ngModel)] = "regionSeleccionada">
-                            <label for="pais"> Otra provincia del pais</label> <br>
-                        </form> <hr>
+
                         <!-- ingresa tu direccion -->
-                        <p><b>Ingresa tu dirección:</b></p>
-                        <input type="text">
+                        <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
+                        <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada"><br>
+                        
+                        <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
+                        <input type="text" name="provincia" [(ngModel)] = "provinciaSeleccionada"> <br>
+                        
+                        <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
+                        <input type="text" name="ciudad" [(ngModel)] = "ciudadSeleccionada"> <br>
                         <hr>
                         <!-- costos -->
                         <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
                         <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
                         <p>Costo compra: <b>${{costoCompra}}</b></p>
-                        <p>Costo envio: <b>${{calcularEnvio(regionSeleccionada)}}</b></p>
+                        <p>Costo envio: <b>{{calcularEnvio()}}</b></p>
                         <hr>
                         <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{valorTotalCompra}} </b></p>
                     </div>

@@ -21,7 +21,6 @@ export class LayoutTiendaComponent{
       return 'grid_principal_escritorio';
     }
   }
-
   // funcionalidad buscador:
   palabraBusqueda:string = "";
   buscarProducto(){
@@ -35,7 +34,6 @@ export class LayoutTiendaComponent{
       }
     });
   }
-
   // lista de productos:
   products = [
     {
@@ -75,7 +73,6 @@ export class LayoutTiendaComponent{
       display : "grid"
     },
   ];
-
   //valores para insertar en el modal de compra:
   // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
@@ -86,9 +83,9 @@ export class LayoutTiendaComponent{
   stockProducto:number = 0;
   cantidadElegida:number = 0;
   limiteStock:boolean = false;
-
   //funcionalidades modal COMPRA
   abrirModal:boolean = false;
+
   comprarProducto(event: MouseEvent){
     // 1 - se abre el modal:
     this.abrirModal = true;
@@ -123,20 +120,35 @@ export class LayoutTiendaComponent{
     // this.limiteStock = false;
   }
 
-//funcionalidades modal TERMINAR COMPRA
-abirFormasPago:boolean = false;
-metodoSeleccionado:string = "";
-mostrarEjemploCodigo:boolean = false;
-mostrarEjemploExpiracion:boolean = false;
-costoCompra:number = 0;
-envioCiudad:number = 500;
-envioProvincia:number = 1000;
-envioPais:number = 2000;
-regionSeleccionada:string = "";
-costoRegionSeleccionada:number = 0;
-valorTotalCompra:number = this.costoCompra + this.costoRegionSeleccionada;
+  //funcionalidades modal TERMINAR COMPRA
+  // elemento modal
+  abirFormasPago:boolean = false;
+  metodoSeleccionado:string = "";
+  mostrarEjemploCodigo:boolean = false;
+  mostrarEjemploExpiracion:boolean = false;
+  remarcarMensajeCantidad:boolean = false;
+  // datos tarjeta
+  numeroTarjetaInput:number = 0;
+  codigoTarjetaInput:number = 0;
+  expiracionTarjetaInput:string = "";
+  // costos
+  costoCompra:number = 0;
+  envioCiudad:number = 500;
+  envioProvincia:number = 1000;
+  envioPais:number = 2000;
+  // regiones
+  direccionSeleccionada:string = "";
+  ciudadSeleccionada:string = "";
+  provinciaSeleccionada:string = "";
+  costoRegionSeleccionada:number = 0;
+  // costo final
+  valorTotalCompra:number = this.costoCompra + this.costoRegionSeleccionada;
+  //expresiones regulares
+  numeroTarjetaRegex = /^(\d{4}[- ]){3}\d{4}|\d{16}$/;
+  codigoSeguridadRegex = /^\d{3}$/;
 
-abrirMetodosPago(cantidad:number){
+
+  abrirMetodosPago(cantidad:number){
   // se cierra el modal anterior y se abre uno nuevo:
   if (cantidad>0){
     // si el usuario selecciono al menos una unidad
@@ -144,38 +156,51 @@ abrirMetodosPago(cantidad:number){
     this.abirFormasPago = true;
     // valor de la compra realizada
     this.costoCompra = this.cantidadElegida * this.valorUnitario;
-  }
-}
-
-cerrarMetodosPago(){
-  this.abirFormasPago = false;
-}
-
-calcularEnvio(region:string){
-  if (region == "ciudad"){
-    this.costoRegionSeleccionada = this.envioCiudad;
-    return this.costoRegionSeleccionada;
-
-  } else if(region == "provincia"){
-    this.costoRegionSeleccionada = this.envioProvincia;
-    return this.costoRegionSeleccionada;
-
-  } else if(region == "pais"){
-    this.costoRegionSeleccionada = this.envioPais;
-    return this.costoRegionSeleccionada;
-
+    return;
   } else{
-    return 0;
+    // se remarca el mensaje que debe comprar al menos una unidad
+    this.remarcarMensajeCantidad = true;
   }
-}
+  }
 
-modalCodigo(){
+  cerrarMetodosPago(){
+  // se modifica el stock (solo para efecto visual por ahora):
+  this.products[this.prodSeleccionado].stock -= this.cantidadElegida;
+  // reseteo de propiedades:
+  this.cantidadElegida = 0;
+  this.remarcarMensajeCantidad = false;
+  // se cierra modal:
+  this.abirFormasPago = false;
+  
+  }
+
+  calcularEnvio(){
+  // 1ro - se valida que los campos esten completo
+  if (this.direccionSeleccionada != "" && this.provinciaSeleccionada != "" && this.ciudadSeleccionada != ""){
+    if (this.provinciaSeleccionada.toLowerCase() == "cordoba"){
+      // 2do - se valida si el envio es a la ciudad / provincia / resto del pais
+      if (this.ciudadSeleccionada.toLowerCase() == "cordoba capital"){
+        this.costoRegionSeleccionada = this.envioCiudad;
+        return "$" + this.costoRegionSeleccionada;
+      } else {
+        this.costoRegionSeleccionada = this.envioProvincia;
+        return "$" + this.costoRegionSeleccionada;
+      }
+    } else{
+      this.costoRegionSeleccionada = this.envioPais;
+      return "$" + this.costoRegionSeleccionada;
+    }
+  } else{
+    return "calculando..";
+  }
+  }
+
+  modalCodigo(){
   this.mostrarEjemploCodigo = !this.mostrarEjemploCodigo;
-}
+  }
 
-modalExpiracion(){
+  modalExpiracion(){
   this.mostrarEjemploExpiracion = !this.mostrarEjemploExpiracion;
-}
-
+  }
 
 }
