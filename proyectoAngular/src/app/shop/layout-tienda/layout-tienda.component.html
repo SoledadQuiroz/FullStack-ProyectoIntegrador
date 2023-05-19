@@ -123,15 +123,15 @@
 
                         <!-- ingresa tu direccion -->
                         <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
-                        <img [src]="validarCamposDireccion(direccionSeleccionada,direccionRegex,direccionEstado)" class="icono_validacion">
+                        <img [src]="validarCamposTarjeta(direccionSeleccionada,direccionRegex,direccionEstado)" class="icono_validacion">
                         <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada"><br>
                         
                         <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
-                        <img [src]="validarCamposDireccion(provinciaSeleccionada,provinciaRegex,provinciaEstado)" class="icono_validacion">
+                        <img [src]="validarCamposTarjeta(provinciaSeleccionada,provinciaRegex,provinciaEstado)" class="icono_validacion">
                         <input type="text" name="provincia" [(ngModel)] = "provinciaSeleccionada"> <br>
                         
                         <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
-                        <img [src]="validarCamposDireccion(ciudadSeleccionada,localidadRegex,localidadEstado)" class="icono_validacion">
+                        <img [src]="validarCamposTarjeta(ciudadSeleccionada,localidadRegex,localidadEstado)" class="icono_validacion">
                         <input type="text" name="ciudad" [(ngModel)] = "ciudadSeleccionada"> <br>
                         <hr>
                         <!-- costos -->
@@ -144,7 +144,7 @@
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
-                        <button type="submit" id="Finalizar" class="botones_form">Finalizar Compra</button><br>
+                        <button type="submit" id="Finalizar" class="botones_form" (click)="compraRealizada=true">Finalizar Compra</button><br>
                     </div>
                 </form>
             </div>
@@ -167,6 +167,24 @@
                 <img src="../../../assets/imagenes-tienda/image-card-sample-2.png" alt="ejemplo">
             </div>
         </div>
+        <!-- modal - compra realizada con exito! -->
+        <div class="lightbox" *ngIf="compraRealizada" [ngClass]="getScreenSize()">
+            <div class="finalizar_compra">
+                <div class="cerrar_modal_final">
+                    <img src="../../../assets/icono-cerrar.png" alt="cerrar" (click)="cerrarValidarCompra()">
+                </div>
+                <div class="contenido_modal_final">
+                    <img src="../../../assets/imagenes-tienda/delivery-icon.gif" alt="delivery">
+                    <div class="titulo">
+                        <img src="../../../assets/imagenes-tienda/done-icon.png" id="done_icon" alt="done">
+                        <h3>Compra realizada con exito</h3>
+                    </div>
+                    <p>Ya estamos gestionando el envío, via mail recibiras las notificaciones relacioandas
+                        al mismo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </section>
 </div>
-

@@ -416,7 +416,7 @@
     animation: blur-in-expand 400ms;
 }
 
-.modal_ejemplo .barra_cerrar_modal{
+.barra_cerrar_modal{
     display: flex;
     align-self:flex-start;
     height: 10%;
@@ -425,7 +425,7 @@
     align-items: center;
 }
 
-.modal_ejemplo .barra_cerrar_modal img{
+.barra_cerrar_modal img{
     height: 30px;
     margin-right: 10px;
     margin-top: 10px;
@@ -436,6 +436,79 @@
     height: 15px;
     margin-right: 5px;
 }
+/* ------------------  MODAL FINAL ------------------- */
+/*  notifica al usuario si completo el formulario de compra correctamente*/
+
+/* ajustes contenedor padre*/
+.finalizar_compra{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 370px;
+    border-radius: 10px;
+    background: white;
+    font-family: secundaria1;
+    overflow: hidden;
+    animation: tracking-in-expand 400ms;
+    margin-right: 10px;
+    margin-left: 10px;
+    box-shadow: 10px 10px 15px -2px rgba(0,0,0,0.6);
+}
+
+/* barra para cerrar*/
+.cerrar_modal_final{
+    display: flex;
+    align-self: flex-start;
+    height: 15%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    background: var(--verde2);
+}
+
+.cerrar_modal_final img{
+    margin-right: 10px;
+    height: 40px;
+}
+
+/* contenido del modal*/
+.contenido_modal_final{
+    display: flex;
+    flex-direction: column;
+    height: 85%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    align-self: flex-end;
+}
+
+.contenido_modal_final img{
+    height: 90px;
+    filter: opacity(50%);
+}
+
+.contenido_modal_final .titulo{
+    display: flex;
+    flex-direction: row;
+}
+
+.contenido_modal_final .titulo img{
+    height: 15px !important;
+    margin-right: 10px;
+    filter: opacity(100%);
+}
+
+.contenido_modal_final h3{
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
+
+.contenido_modal_final p{
+    text-align: center;
+}
+
+
+
 /* ------------------ ANIMACIONES MODAL ------------------- */
 @keyframes rotate-vertical-center{
     0%{transform:rotateY(0)}

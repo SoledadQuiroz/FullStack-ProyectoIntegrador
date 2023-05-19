@@ -10,6 +10,7 @@ import { Validators } from '@angular/forms';
 })
 
 export class LayoutTiendaComponent{
+
   // instruccion para utilizar el modulo elementRed
   constructor(private elementRef: ElementRef){}
   // funcionalidades para vistas responsive
@@ -23,7 +24,8 @@ export class LayoutTiendaComponent{
       return 'grid_principal_escritorio';
     }
   }
-  
+
+  // PROPIEDADES:
   // funcionalidad buscador:
   palabraBusqueda:string = "";
   buscarProducto(){
@@ -88,7 +90,59 @@ export class LayoutTiendaComponent{
   limiteStock:boolean = false;
   //funcionalidades modal COMPRA
   abrirModal:boolean = false;
-
+  //funcionalidades modal TERMINAR COMPRA
+  // elemento modal
+  abirFormasPago:boolean = false;
+  metodoSeleccionado:string = "";
+  mostrarEjemploCodigo:boolean = false;
+  mostrarEjemploExpiracion:boolean = false;
+  remarcarMensajeCantidad:boolean = false;
+  // datos tarjeta
+  numeroTarjetaInput:string = "";
+  codigoTarjetaInput:string = "";
+  expiracionTarjetaInput:string = "";
+  // costos
+  costoCompra:number = 0;
+  envioCiudad:number = 500;
+  envioProvincia:number = 1000;
+  envioPais:number = 2000;
+  // regiones
+  direccionSeleccionada:string = "";
+  ciudadSeleccionada:string = "";
+  provinciaSeleccionada:string = "";
+  costoRegionSeleccionada:number = 0;
+  // costo final
+  valorTotalCompra:number = this.costoCompra + this.costoRegionSeleccionada;
+  //expresiones regulares
+  numeroTarjetaRegex = /^(\d{4}[- ]){3}\d{4}|\d{16}$/;
+  codigoSeguridadRegex = /^\d{3}$/;
+  expiracionRegex = /^\d{4}-(0[1-9]|1[0-2])$/;
+  direccionRegex = /^[\wñáéíóú\s]+$/i;
+  localidadRegex = /^[\wñáéíóú\s]+$/i;
+  provinciaRegex = /^[\wñáéíóú\s]+$/i;
+  // imagenes iconos validacion:
+  iconos = [
+    // done icon [0]
+    "../../../assets/imagenes-tienda/done-icon.png",
+    // not done icon [1]
+    "../../../assets/imagenes-tienda/not-done-icon.png",
+    // invalid [2]
+    "../../../assets/imagenes-tienda/invalid-icon.png"
+  ]
+  // datos tarjeta:
+  numeroTarjetaEstado:boolean = false;
+  codigoTarjetaEstado:boolean = false;
+  expiracionTarjetaEstado:boolean = false;
+  datosTarjeta:boolean = false;
+  // datos ubicacion:
+  direccionEstado:boolean = false;
+  localidadEstado:boolean = false;
+  provinciaEstado:boolean = false;
+  datosUbicacion:boolean = false;
+  // variables booleanas (modales finalizar compra):
+  compraRealizada:boolean = false;
+  
+  // FUNCIONALIDADES:
   comprarProducto(event: MouseEvent){
     // 1 - se abre el modal:
     this.abrirModal = true;
@@ -122,55 +176,6 @@ export class LayoutTiendaComponent{
     // this.cantidadElegida = 0;
     // this.limiteStock = false;
   }
-
-  //funcionalidades modal TERMINAR COMPRA
-  // elemento modal
-  abirFormasPago:boolean = false;
-  metodoSeleccionado:string = "";
-  mostrarEjemploCodigo:boolean = false;
-  mostrarEjemploExpiracion:boolean = false;
-  remarcarMensajeCantidad:boolean = false;
-  // datos tarjeta
-  numeroTarjetaInput:string = "";
-  codigoTarjetaInput:string = "";
-  expiracionTarjetaInput:string = "";
-  // costos
-  costoCompra:number = 0;
-  envioCiudad:number = 500;
-  envioProvincia:number = 1000;
-  envioPais:number = 2000;
-  // regiones
-  direccionSeleccionada:string = "";
-  ciudadSeleccionada:string = "";
-  provinciaSeleccionada:string = "";
-  costoRegionSeleccionada:number = 0;
-  // costo final
-  valorTotalCompra:number = this.costoCompra + this.costoRegionSeleccionada;
-  //expresiones regulares
-  numeroTarjetaRegex = /^(\d{4}[- ]){3}\d{4}|\d{16}$/;
-  codigoSeguridadRegex = /^\d{3}$/;
-  expiracionRegex = /^\d{4}-(0[1-9]|1[0-2])$/;
-  direccionRegex = /^[a-zA-Z0-9\s]*$/;
-  localidadRegex = /^[a-zA-Z\s]*$/;
-  provinciaRegex = /^[a-zA-Z\s]*$/;
-  // imagenes iconos validacion:
-  iconos = [
-    // done icon [0]
-    "../../../assets/imagenes-tienda/done-icon.png",
-    // not done icon [1]
-    "../../../assets/imagenes-tienda/not-done-icon.png",
-    // invalid [2]
-    "../../../assets/imagenes-tienda/invalid-icon.png"
-  ]
-  // almacenan el estado de cada input (valido o no):
-  // datos tarjeta:
-  numeroTarjetaEstado:boolean = false;
-  codigoTarjetaEstado:boolean = false;
-  expiracionTarjetaEstado:boolean = false;
-  // datos ubicacion:
-  direccionEstado:boolean = false;
-  localidadEstado:boolean = false;
-  provinciaEstado:boolean = false;
 
   abrirMetodosPago(cantidad:number){
   // se cierra el modal anterior y se abre uno nuevo:
@@ -247,27 +252,33 @@ export class LayoutTiendaComponent{
     }
   }
 
-  validarCamposDireccion(valor:string,expreg:RegExp,estado:boolean){
-    // 1ro - se valida si el campo no esta en blanco:
-    if (valor.toString() == ""){
-      // en proceso de ser completado...
-      return this.iconos[1];
-      // campo no vacio:
-    } else{
-      // 2do - se valida si los valores ingresados son correctos:
-      if(expreg.test(valor.toString())){
-        // valor valido:
-        estado = true;
-        return this.iconos[0];
-      } else{
-        // valor invalido:
-        estado = false;
-        return this.iconos[2];
-      }
-    }
-  }
-
   sumarCostosFinales(){
     return this.costoCompra + this.costoRegionSeleccionada;
   }
+
+  //arreglar funcion!
+  validarDatosCompra(){
+    // se validan los datos de la tarjeta:
+    if (this.numeroTarjetaEstado && this.codigoTarjetaEstado && this.expiracionTarjetaEstado) {
+      this.datosTarjeta = true;
+    }
+    // se validan los datos de la documentacion:
+    if (this.direccionEstado && this.provinciaEstado && this.localidadEstado){
+      this.datosUbicacion = true;
+    }
+
+    // validacion final (tarjeta + ubicacion)
+    if (this.datosTarjeta && this.datosUbicacion) {
+      this.compraRealizada = true;
+    }
+  }
+
+  cerrarValidarCompra(){
+    // se cierra el modal:
+    this.compraRealizada = false;
+    // y el formulario de compra tambien:
+    //this.abirFormasPago = false;
+  }
+
+
 }
