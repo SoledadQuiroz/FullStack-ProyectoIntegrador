@@ -76,6 +76,28 @@ section{
 }
 
 
+.info{
+    position: absolute;
+    margin: 15px;
+    width: 30px;
+    height: 30px;
+    color: antiquewhite;
+    font-size: 22px;
+    background-color: #00000042;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+    z-index: 10;
+}
+
+.info:hover{
+    font-size: 26px;
+    background-color: antiquewhite;
+    color: black;
+}
+
+
 .my-garden{
     text-align: center;
     color: antiquewhite;
@@ -195,6 +217,64 @@ section{
 .tarjeta .botones .favoritos{
     background-color: #fa4141;    
 }
+
+
+.container-info{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 600px;
+    height: 80vh;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+    z-index: 100;
+    overflow-x: scroll;
+}
+
+.container-info .close{
+    position: relative;
+    top: 20px;
+    left: 10px;
+    padding: 8px 16px;
+    font-size: 18px;
+    color: #d00000;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    border: transparent;
+    transition: .5s all ease-in-out;
+}
+
+.container-info .close:hover{
+    border: 1px solid #d00000;
+}
+
+
+.container-info .info-cultivo{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.container-info .info-cultivo img{
+    width: 100px;
+    margin: 10px auto 20px;
+}
+
+.container-info .info-cultivo p{
+    padding: 6px 10px;
+    border-bottom: 1px solid yellowgreen;
+}
+
+.container-info .info-cultivo b{
+    color: yellowgreen;
+}
+
+/*MEDIAS QUERY*/
 
 
 @media only screen and (max-height: 575.98px) and (orientation: landscape){

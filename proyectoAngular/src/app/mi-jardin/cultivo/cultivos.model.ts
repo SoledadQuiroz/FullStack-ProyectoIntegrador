@@ -1,6 +1,15 @@
 export interface Cultivo{
-    id:string;
-    name: string;
-    img: string;
-    category:string;
+    id: number;
+    nombre: string;
+    imagen: string;
+    tipo: string;
+    germina: number;
+    cosecha: number;
+    temporada: string;
+    temperaturaMax: number;
+    temperaturaMin: number;
+    riego: string;
+    luz: string;
+    profundidadSembrado: number;
+    espacioPlantas: number;
 }

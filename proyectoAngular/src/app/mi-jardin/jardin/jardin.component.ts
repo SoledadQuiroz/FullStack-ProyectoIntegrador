@@ -8,8 +8,13 @@ import { CultivosService } from '../../services/cultivos.service';
   styleUrls: ['./jardin.component.css']
 })
 export class JardinComponent {
-  activeAlert = false;
-  alertText = '';
+  activeAlert:boolean = false;
+  activeCover:boolean = false;
+  activeInfo:boolean = false;
+  alertText:string = '';
+  infoCultivos: Cultivo[] = [];
+
+
 
   constructor(private cultivosService:CultivosService) { }
 
@@ -25,17 +30,32 @@ export class JardinComponent {
   removeFavorito(index:number){
     this.cultivosService.cultivoFavorito.splice(index, 1);
     this.alertText = 'El Cultivo se elimino de Favoritos';
+    this.activeCover = !this.activeCover;
     this.activeAlert = !this.activeAlert;
   }
 
   addToSembrar(cultivo:Cultivo){
     this.cultivosService.cultivoSembrar.push(cultivo);
     this.alertText = 'El Cultivo fue agregado para Sembrar';
+    this.activeCover = !this.activeCover;
     this.activeAlert = !this.activeAlert;
   }
 
   showAlert(){
     this.activeAlert = !this.activeAlert;
+    this.activeCover = !this.activeCover;
+  }
+
+  showInfo(info:Cultivo){
+    this.infoCultivos.push(info);
+    this.activeInfo = !this.activeInfo;
+    this.activeCover = !this.activeCover;
+  }
+
+  toggleInfo(){
+    this.infoCultivos.splice(0);
+    this.activeInfo = !this.activeInfo;
+    this.activeCover = !this.activeCover;
   }
 
 }
