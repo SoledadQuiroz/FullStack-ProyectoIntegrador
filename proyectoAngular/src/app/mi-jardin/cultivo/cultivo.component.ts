@@ -9,10 +9,13 @@ import { CultivosService } from '../../services/cultivos.service';
 })
 export class CultivoComponent implements OnInit{
 
-  activeAlert = false;
+  activeAlert:boolean = false;
+  activeCover:boolean = false;
+  activeInfo:boolean = false;
 
-  alertText = '';
+  alertText:string = '';
   cultivos: Cultivo[] = [];
+  infoCultivos: Cultivo[] = [];
 
   constructor(private cultivosService:CultivosService) { }
 
@@ -27,10 +30,12 @@ export class CultivoComponent implements OnInit{
     this.cultivosService.cultivoSembrar.push(cultivo);
     this.alertText = 'El Cultivo fue agregado a Mi Jardín';
     this.activeAlert = !this.activeAlert;
+    this.activeCover = !this.activeCover;
   }
 
   showAlert(){
     this.activeAlert = !this.activeAlert;
+    this.activeCover = !this.activeCover;
   }
 
   addToFavorito(cultivo:Cultivo){
@@ -39,10 +44,25 @@ export class CultivoComponent implements OnInit{
       this.cultivosService.readyInFavoritos.push(cultivo);
       this.alertText = 'El Cultivo fue agregado en Favoritos';
       this.activeAlert = !this.activeAlert;
+      this.activeCover = !this.activeCover;
     }else{
       this.alertText = 'El Cultivo ya se encuentra en Favoritos';
       this.activeAlert = !this.activeAlert;
+      this.activeCover = !this.activeCover;
     }
+  }
+
+  showInfo(info:Cultivo){
+    this.infoCultivos.push(info);
+    this.activeInfo = !this.activeInfo;
+    this.activeCover = !this.activeCover;
+  }
+
+  toggleInfo(){
+    this.infoCultivos.splice(0);
+    this.activeInfo = !this.activeInfo;
+    this.activeCover = !this.activeCover;
+    console.log(this.activeInfo)
   }
 
 }

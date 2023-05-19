@@ -2,19 +2,19 @@ from django.db import models
 
 class Cultivo(models.Model):
     estaciones = [
-        ('autumn','Otoño'),
-        ('winter','Invierno'),
-        ('spring','Primavera'),
-        ('summer','Verano'),
-        ('autumn-winter','Otoño, Invierno'),
-        ('spring-summer','Primavera, Verano'),
-        ('all','Todas las estaciones'),
+        ('Otoño','autumn'),
+        ('Invierno','winter'),
+        ('Primavera','spring'),
+        ('Verano','summer'),
+        ('Otoño, Invierno','autumn-winter'),
+        ('Primavera, Verano','spring-summer'),
+        ('Todas las estaciones','all'),
     ]
 
     luzSolar = [
-        ('poca','Poca luz'),
-        ('moderada','Luz Moderada'),
-        ('mucha','Bastante Luz')
+        ('Poca luz','poca'),
+        ('Luz Moderada','moderada'),
+        ('Bastante Luz','mucha')
     ]
 
     id = models.AutoField(primary_key=True)
@@ -23,7 +23,7 @@ class Cultivo(models.Model):
     tipo = models.CharField(max_length=50)
     germina = models.IntegerField()
     cosecha = models.IntegerField()
-    temporada = models.CharField(max_length=15, choices=estaciones)
+    temporada = models.CharField(max_length=50, choices=estaciones)
     temperaturaMax = models.IntegerField()
     temperaturaMin = models.IntegerField()
     riego = models.CharField(max_length=50)

@@ -1,4 +1,4 @@
-<div class="cover" [class.active]="activeAlert"></div>
+<div class="cover" [class.active]="activeCover"></div>
 <section>
     <div class="alertSembrar" [class.active]="activeAlert">
         <p>{{ alertText }}</p>
@@ -6,11 +6,12 @@
     </div>
     
     <div *ngFor="let cultivo of cultivos" class="tarjeta" id="{{cultivo.id}}">
+        <span class="info" (click)="showInfo(cultivo)">i</span>
         <div class="imagen_wrapper">
-            <img [src]="cultivo.imagen" alt="icono">
+            <img [src]="cultivo.imagen" alt="{{cultivo.nombre}}">
         </div>
         <div class="title">
-            <h5 id="titulo_{{cultivo.id}}" class="titulos">{{cultivo.nombre}}</h5>
+            <h5 id="titulo_{{cultivo.id}}" class="titulos">{{cultivo.nombre | uppercase}}</h5>
         </div>
         <div class="category">
             <p> <u>Categoría:</u> {{cultivo.tipo}} </p>
@@ -22,3 +23,21 @@
     </div>
 
 </section>
+
+<div class="container-info" *ngIf="activeInfo">
+    <span class="close" (click)="toggleInfo()">Close</span>
+    <div *ngFor="let cultivo of infoCultivos" class="info-cultivo">
+        <img [src]="cultivo.imagen">
+        <p>Nombre del cultivo: <b>{{cultivo.nombre}}</b></p>
+        <p>Tipo de cultivo: <b>{{cultivo.tipo}}</b></p>
+        <p>El cultivo germina en <b>{{cultivo.germina}} días</b></p>
+        <p>El cultivo se puede cosechar en <b>{{cultivo.cosecha}} días</b></p>
+        <p>Temporada para sembrar <b>{{cultivo.temporada}}</b></p>
+        <p>Temperatura máxima: <b>{{cultivo.temperaturaMax}}°C</b></p>
+        <p>Temperatura minima: <b>{{cultivo.temperaturaMin}}°C</b></p>
+        <p>Riego: <b>{{cultivo.riego}}</b></p>
+        <p>cantidad de luz solar: <b>{{cultivo.luz}}</b></p>
+        <p>Profundidad del sembrado: <b>{{cultivo.profundidadSembrado}} centímetros</b></p>
+        <p>Espacio entre cada planta: <b>{{cultivo.espacioPlantas}} centímetros</b></p>
+    </div>
+</div>
