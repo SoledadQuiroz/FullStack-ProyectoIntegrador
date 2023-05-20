@@ -103,17 +103,17 @@
                         <div id="tarjeta_credito" *ngIf="metodoSeleccionado == 'tajeta_credito_debito'">
                             <!-- numero tarjeta -->
                             <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
-                            <img [src]="validarCamposTarjeta(numeroTarjetaInput,numeroTarjetaRegex,numeroTarjetaEstado)" class="icono_validacion">
+                            <img [src]="cambiarIcono(numeroTarjetaInput,numeroTarjetaRegex)" class="icono_validacion">
                             <input type="text" name="tarjeta" value="" [(ngModel)]="numeroTarjetaInput"> <br>
                             <!-- codigo seguridad -->
                             <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
-                            <img [src]="validarCamposTarjeta(codigoTarjetaInput,codigoSeguridadRegex,expiracionTarjetaEstado)" class="icono_validacion">
+                            <img [src]="cambiarIcono(codigoTarjetaInput,codigoSeguridadRegex)" class="icono_validacion">
                             <input type="text" name="codigo" value="" [(ngModel)]="codigoTarjetaInput">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
                             <!-- fecha expiración -->
                             <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
-                            <img [src]="validarCamposTarjeta(expiracionTarjetaInput,expiracionRegex,expiracionTarjetaEstado)" class="icono_validacion">
-                            <input type="month" name="expiracion" [(ngModel)] = "expiracionTarjetaInput">
+                            <img [src]="cambiarIcono(expiracionTarjetaInput,expiracionRegex)" class="icono_validacion">
+                            <input type="month" name="expiracion" min="05-2023" [(ngModel)] ="expiracionTarjetaInput">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
                         </div>
                         <!-- mercadopago-->
@@ -123,15 +123,15 @@
 
                         <!-- ingresa tu direccion -->
                         <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
-                        <img [src]="validarCamposTarjeta(direccionSeleccionada,direccionRegex,direccionEstado)" class="icono_validacion">
+                        <img [src]="cambiarIcono(direccionSeleccionada,direccionRegex)" class="icono_validacion">
                         <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada"><br>
                         
                         <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
-                        <img [src]="validarCamposTarjeta(provinciaSeleccionada,provinciaRegex,provinciaEstado)" class="icono_validacion">
+                        <img [src]="cambiarIcono(provinciaSeleccionada,provinciaRegex)" class="icono_validacion">
                         <input type="text" name="provincia" [(ngModel)] = "provinciaSeleccionada"> <br>
                         
                         <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
-                        <img [src]="validarCamposTarjeta(ciudadSeleccionada,localidadRegex,localidadEstado)" class="icono_validacion">
+                        <img [src]="cambiarIcono(ciudadSeleccionada,localidadRegex)" class="icono_validacion">
                         <input type="text" name="ciudad" [(ngModel)] = "ciudadSeleccionada"> <br>
                         <hr>
                         <!-- costos -->
@@ -144,7 +144,7 @@
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
-                        <button type="submit" id="Finalizar" class="botones_form" (click)="compraRealizada=true">Finalizar Compra</button><br>
+                        <button type="submit" id="Finalizar" class="botones_form">Finalizar Compra</button><br>
                     </div>
                 </form>
             </div>

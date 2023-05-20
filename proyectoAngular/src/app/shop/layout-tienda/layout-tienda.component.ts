@@ -116,10 +116,10 @@ export class LayoutTiendaComponent{
   //expresiones regulares
   numeroTarjetaRegex = /^(\d{4}[- ]){3}\d{4}|\d{16}$/;
   codigoSeguridadRegex = /^\d{3}$/;
-  expiracionRegex = /^\d{4}-(0[1-9]|1[0-2])$/;
+  expiracionRegex = /^(20[2-9][3-9]|2[1-9][0-9]{2})-(0[5-9]|1[0-2])$/;
   direccionRegex = /^[\wñáéíóú\s]+$/i;
-  localidadRegex = /^[\wñáéíóú\s]+$/i;
-  provinciaRegex = /^[\wñáéíóú\s]+$/i;
+  localidadRegex = /^[\p{L}\sáéíóúñÁÉÍÓÚÑ]+$/u;
+  provinciaRegex = /^[\p{L}\sáéíóúñÁÉÍÓÚÑ]+$/u;
   // imagenes iconos validacion:
   iconos = [
     // done icon [0]
@@ -129,16 +129,17 @@ export class LayoutTiendaComponent{
     // invalid [2]
     "../../../assets/imagenes-tienda/invalid-icon.png"
   ]
-  // datos tarjeta:
-  numeroTarjetaEstado:boolean = false;
-  codigoTarjetaEstado:boolean = false;
-  expiracionTarjetaEstado:boolean = false;
-  datosTarjeta:boolean = false;
-  // datos ubicacion:
-  direccionEstado:boolean = false;
-  localidadEstado:boolean = false;
-  provinciaEstado:boolean = false;
-  datosUbicacion:boolean = false;
+  // varaibles tipo flag para validar cada input:
+  varCaja = {
+    // datos tarjeta:
+    numeroTarjetaEstado:false,
+    codigoTarjetaEstado:false,
+    expiracionTarjetaEstado:false,
+    // datos ubicacion:
+    direccionEstado:false,
+    localidadEstado:false,
+    provinciaEstado:false,
+  }
   // variables booleanas (modales finalizar compra):
   compraRealizada:boolean = false;
   
@@ -232,22 +233,41 @@ export class LayoutTiendaComponent{
   this.mostrarEjemploExpiracion = !this.mostrarEjemploExpiracion;
   }
 
-  validarCamposTarjeta(valor:string,expreg:RegExp,estado:boolean){
+  // cambia el icono dependiendo de lo que haya ingresado el usuario:
+  cambiarIcono(valor:string,expreg:RegExp){
     // 1ro - se valida si el campo no esta en blanco:
-    if (valor.toString() == ""){
+    if (valor == ""){
       // en proceso de ser completado...
       return this.iconos[1];
       // campo no vacio:
     } else{
       // 2do - se valida si los valores ingresados son correctos:
-      if(expreg.test(valor.toString())){
+      if(expreg.test(valor)){
         // valor valido:
-        estado = true;
         return this.iconos[0];
       } else{
         // valor invalido:
-        estado = false;
         return this.iconos[2];
+      }
+    }
+  }
+  
+  // valida que el campo se haya completado correctamente:
+  validacionCaja(valor:string,expreg:RegExp,estado:boolean){
+    // 1ro - se valida si el campo no esta en blanco:
+    if (valor == ""){
+      // en proceso de ser completado...
+      return estado;
+      // campo no vacio:
+    } else{
+      // 2do - se valida si los valores ingresados son correctos:
+      if(expreg.test(valor)){
+        // valor valido:
+        estado = true;
+        return estado;
+      } else{
+        estado = false;
+        return estado;
       }
     }
   }
@@ -256,20 +276,18 @@ export class LayoutTiendaComponent{
     return this.costoCompra + this.costoRegionSeleccionada;
   }
 
-  //arreglar funcion!
+  // arreglar funcion!!! (usar)
   validarDatosCompra(){
-    // se validan los datos de la tarjeta:
-    if (this.numeroTarjetaEstado && this.codigoTarjetaEstado && this.expiracionTarjetaEstado) {
-      this.datosTarjeta = true;
-    }
-    // se validan los datos de la documentacion:
-    if (this.direccionEstado && this.provinciaEstado && this.localidadEstado){
-      this.datosUbicacion = true;
-    }
-
-    // validacion final (tarjeta + ubicacion)
-    if (this.datosTarjeta && this.datosUbicacion) {
-      this.compraRealizada = true;
+    // valida que todos los datos ingresados sean correctos:
+    const values = Object.values(this.varCaja);
+    const allTrue = values.every((value) => value === true);
+    // si todos los datos ingresados son correctos
+    // se muestra un modal informandolo:
+    if(allTrue){
+      this.compraRealizada = true
+    } else{
+      alert("los datos ingresados no son correctos");
+      alert(values);
     }
   }
 
