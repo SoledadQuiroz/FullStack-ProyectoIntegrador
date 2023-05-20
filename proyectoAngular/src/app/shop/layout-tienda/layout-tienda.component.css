@@ -7,31 +7,58 @@
 }
 
 /* ------------------ CLASES PARA RESOLUCIONES RESPONSIVE ------------------- */
-/* ----movil (default)----*/
+/* -------MOVIL ---------*/
+/*---grid general---*/
 .grid_principal_movil{
     height: 200vh !important;
 }
+/*--- modal 1 (cant)---*/
 .grid_principal_movil .lightbox .cuadro_compra{
-    height: 35%;
+    height: 40%;
     width: 85%;
 }
+/*--- modal 2 (caja)---*/
+.grid_principal_movil .lightbox #formas_pago_form{
+    width: 90%;
+    height: 65%;
+    grid-template-rows: 5% 15% 80%;
+}
 
-/* ---- tablet ----*/
+/* ------- TABLET ---------*/
+/*---grid general---*/
 .grid_principal_tablet{
     height: 150vh !important;
 }
+/*--- modal 1 (cant)---*/
 .grid_principal_tablet .lightbox .cuadro_compra{
     height: 45%;
     width: 50%;
 }
-
-/* ---- escritorio ----*/
-.grid_principal_escritorio{
-    height: 100vh !important;
+/*--- modal 2 (caja)---*/
+.grid_principal_tablet .lightbox #formas_pago_form{
+    height:60%;
+    width: 70%;
 }
+
+/* ------- ESCRITORIO ---------*/
+/*---grid general---*/
+.grid_principal_escritorio{
+    height: 125vh !important;
+}
+/*--- modal 1 (cant)---*/
 .grid_principal_escritorio .lightbox .cuadro_compra{
     width: 40%;
     height: 70%;
+}
+/*--- modal 2 (caja)---*/
+.grid_principal_escritorio .lightbox #formas_pago_form{
+    width: 40%;
+    height: 90%;
+    grid-template-rows: 40px 100px auto;
+    
+}
+#formas_pago_form .detalles_formulario label, p{
+    font-size: 0.8rem;
 }
 
 /* ------------------ GRID SECTION  ------------------- */
@@ -60,7 +87,6 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    /* margin-top: -20px !important; */
     border-bottom: 10px solid sandybrown;
 }
 
@@ -68,6 +94,7 @@
     font-size: 3rem;
     color: var(--fuenteAlt);
     font-family: secundaria1;
+    animation: tracking-in-expand 1000ms;
 }
 
 /* ------------------ BUSCADOR ------------------- */
@@ -88,6 +115,7 @@
 #titulo_buscador{
     font-weight: bold;
     font-size: 1.25rem;
+    /* animation: tracking-in-contract 500ms; */
 }
 
 
@@ -173,7 +201,9 @@
 }
 .productos:hover{
     box-shadow: 3px 3px 10px 5px rgba(0,0,0,.6);
-    transition: 0.5s;
+    transition: 500ms;
+    /* animation: slide-top 400ms; */
+    translate: 3px 3px;
 }
 
 
@@ -253,7 +283,7 @@
 /* ------------------ LAYOUT GENERAL ------------------- */
 .lightbox .cuadro_compra{
     display: grid;
-    height: 35%;
+    height: 50%;
     width:85%;
     grid-template-columns: 100%;
     grid-template-rows: 10% 30% 60%;
@@ -297,6 +327,7 @@
 
 .cuadro_compra .logo_producto img{
     height: 75%;
+    border-radius: 100%;
     animation: rotate-vertical-center 1000ms;
 }
 /* ------------------ FORMULARIO ------------------- */
@@ -307,6 +338,12 @@
     grid-row: 3/4;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.cuadro_compra .formulario h3{
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
 }
 .cuadro_compra .formulario #field_cantidad{
     width: 70px;
@@ -337,8 +374,149 @@
 .cuadro_compra .formulario #detalles_pago{
     align-items: flex-start;
     width: 85%;
-    font-size: 0.85rem;
+    font-size: 1rem;
 }
+
+
+.detalles_formulario input, select{
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(145, 144, 144);
+}
+
+.icono_tarjeta{
+    height: 15px;
+    cursor: hover;
+    margin-left: 5px;
+    filter: opacity(75%);
+    cursor: pointer;
+}
+
+.icono_tarjeta:hover{
+    filter: opacity(100%);
+    transition: 500ms;
+}
+
+/* ------------------  AJUSTES MODALES ejemplo (codigo y expiracion) ------------------- */
+.modal_ejemplo_wrapper{
+    display: flex;
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.4);
+    overflow: hidden;
+    z-index: 110;
+}
+
+.modal_ejemplo{
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    height: min-content;
+    justify-content: space-evenly;
+    align-self: center;
+    overflow: hidden;
+    background: white;
+    border-radius: 5px;
+    animation: blur-in-expand 400ms;
+}
+
+.barra_cerrar_modal{
+    display: flex;
+    align-self:flex-start;
+    height: 10%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.barra_cerrar_modal img{
+    height: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.icono_validacion{
+    height: 15px;
+    margin-right: 5px;
+}
+/* ------------------  MODAL FINAL ------------------- */
+/*  notifica al usuario si completo el formulario de compra correctamente*/
+
+/* ajustes contenedor padre*/
+.finalizar_compra{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 370px;
+    border-radius: 10px;
+    background: white;
+    font-family: secundaria1;
+    overflow: hidden;
+    animation: tracking-in-expand 1000ms;
+    margin-right: 10px;
+    margin-left: 10px;
+    box-shadow: 10px 10px 15px -2px rgba(0,0,0,0.6);
+}
+
+/* barra para cerrar*/
+.cerrar_modal_final{
+    display: flex;
+    align-self: flex-start;
+    height: 15%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    background: var(--verde2);
+}
+
+.cerrar_modal_final img{
+    margin-right: 10px;
+    height: 25px;
+    cursor: pointer;
+}
+
+/* contenido del modal*/
+.contenido_modal_final{
+    display: flex;
+    flex-direction: column;
+    height: 85%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    align-self: flex-end;
+}
+
+.contenido_modal_final img{
+    height: 90px;
+    filter: opacity(50%);
+}
+
+.contenido_modal_final .titulo{
+    display: flex;
+    flex-direction: row;
+}
+
+.contenido_modal_final .titulo img{
+    height: 20px !important;
+    margin-right: 10px;
+    filter: opacity(100%);
+}
+
+.contenido_modal_final h3{
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
+
+.contenido_modal_final p{
+    text-align: center;
+}
+
+
 
 /* ------------------ ANIMACIONES MODAL ------------------- */
 @keyframes rotate-vertical-center{
@@ -349,4 +527,33 @@
 @keyframes blur-in-expand{
     0%{transform:scale(0);filter:blur(12px);opacity:0}
     100%{transform:scale(1);filter:blur(0);opacity:1}
+}
+
+@keyframes slide-top{
+    0%{transform:translateY(0)}
+    100%{transform:translateY(5px)}
+}
+
+@keyframes tracking-in-expand{
+    0%{letter-spacing:-.2em;opacity:0}
+    40%{opacity:.6}100%{opacity:1}
+}
+
+@keyframes tracking-in-contract{
+    0%{letter-spacing:.6em;opacity:0}
+    40%{opacity:.6}
+    100%{letter-spacing:normal;opacity:1}
+}
+
+@keyframes shake-horizontal{
+    0%,100%{transform:translateX(0)}
+    10%,30%,50%,70%{transform:translateX(-10px)}
+    20%,40%,60%{transform:translateX(10px)}
+    80%{transform:translateX(8px)}
+    90%{transform:translateX(-8px)}
+}
+
+.shakeElement{
+    animation-name: shake-horizontal;
+    animation-duration: 500ms;
 }

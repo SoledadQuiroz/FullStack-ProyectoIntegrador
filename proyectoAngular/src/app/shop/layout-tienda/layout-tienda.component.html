@@ -48,31 +48,38 @@
                 </div>
                 <!-- logo -->
                 <div class="logo_producto">
-                    <img src="../../../assets/isologo.png" alt="logo-pagina" class="isologo_modales">
+                    <!-- imagen dinamica -->
+                    <img [src]="imagenProdSeleccionado">
                 </div>
                 <!-- formulario (añadir al carrito)-->
                 <form class="formulario">
+                    <h3>{{nombreProdSeleccionado}}</h3>
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
-                        <input type="number" name="cantidad" id="field_cantidad" [(ngModel)] = cantidadElegida [disabled]="limiteStock">
+                        <input type="number" name="cantidad" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
+                        <br><hr>
                     </div>
                     <ul class="detalles_formulario">
                         <li id="precio_unitario">Precio unitario: <b>${{valorUnitario}}</b> </li>
                         <li id="cantidad_elegida">Cantidad Elegida: <b>{{cantidadElegida}}</b> </li>
-                        <li id="valor_comprado">Valor compra: <b>${{cantidadElegida * valorUnitario}}</b> </li>
+                        <li id="valor_comprado">Valor compra: <b>${{valorUnitario * cantidadElegida}}</b> </li>
                         <p *ngIf="validarCantidad()"> <b>LLEGASTE AL LIMITE DEL STOCK</b> </p>
+                        <br><hr>
                     </ul>
+                    <p *ngIf="cantidadElegida == 0" [ngClass]="{'shakeElement': remarcarMensajeCantidad}">
+                        <b>DEBES SELECCIONAR AL MENOS 1 UNIDAD!</b>
+                    </p>
                     <!-- botones -->
                     <div class="button_wrapper">
                         <button type="submit" id="anadir_carrito" class="botones_form">Añadir al carrito</button><br>
-                        <button type="submit" id="terminar_compra" class="botones_form" (click)="abrirMetodosPago()">Ir a la caja</button><br>
+                        <button type="submit" id="terminar_compra" class="botones_form" (click)="abrirMetodosPago(cantidadElegida)">Ir a la caja</button><br>
                     </div>
                 </form>
             </div>
         </div>
         <!-- ventana modal (formas de pago)-->
         <div class="lightbox" *ngIf="abirFormasPago" [ngClass]="getScreenSize()">
-            <div class="cuadro_compra">
+            <div class="cuadro_compra" id="formas_pago_form">
                 <!-- cerrar -->
                 <div class="barra_cerrar">
                     <img src="../../../assets/icono-cerrar.png" alt="cerrar" (click)="cerrarMetodosPago()">
@@ -84,24 +91,56 @@
                 <!-- formulario (formas de pago)-->
                 <form class="formulario">
                     <div class="detalles_formulario" id="detalles_pago">
-                        <!-- nro tarjeta -->
-                        <label for="tarjeta">Número de tarjeta de credito / debito: </label>
-                        <input type="number" name="tarjeta" id="field_tarjeta"> <br>
-                        <!-- codigo seguridad -->
-                        <label for="codigo"> Introduce el código de seguridad de la tarjeta: </label> <br>
-                        <input type="number" name="codigo" id="codigo_seguridad"> <br> <hr>
-                        <!-- region -->
-                        <p>Selecciona tu region:</p>
-                        <input type="radio" name="ciudad" value="ciudad">
-                        <label for="ciudad">Córdoba Capital</label> <br>
-                        <input type="radio" name="provincia" value="provincia">
-                        <label for="provincia"> Interior Provincia de Córdoba</label> <br>
-                        <input type="radio" name="pais" value="pais">
-                        <label for="pais"> Otra provincia del pais</label> <br> <hr>
+                        <!-- seleccionar forma de pago -->
+                        <label for="opciones_pago"><b>Selecciona una forma de pago:</b></label> <br>
+                        <select id="opciones_pago" name="pagos" [(ngModel)] ="metodoSeleccionado">
+                            <option value="tajeta_credito_debito">Tarjeta Credito / debito</option>
+                            <option value="mercadopago"> Mercadopago</option>
+                            <option value="billetera_virtual">Billetera virtual</option>
+                        </select>
+                        <hr>
+                        <!-- tarjeta credito o debito-->
+                        <div id="tarjeta_credito" *ngIf="metodoSeleccionado == 'tajeta_credito_debito'">
+                            <!-- numero tarjeta -->
+                            <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
+                            <img [src]="cambiarIcono(numeroTarjetaInput,numeroTarjetaRegex)" class="icono_validacion">
+                            <input type="text" name="tarjeta" value="" [(ngModel)]="numeroTarjetaInput"> <br>
+                            <!-- codigo seguridad -->
+                            <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
+                            <img [src]="cambiarIcono(codigoTarjetaInput,codigoSeguridadRegex)" class="icono_validacion">
+                            <input type="text" name="codigo" value="" [(ngModel)]="codigoTarjetaInput">
+                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
+                            <!-- fecha expiración -->
+                            <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
+                            <img [src]="cambiarIcono(expiracionTarjetaInput,expiracionRegex)" class="icono_validacion">
+                            <input type="month" name="expiracion" min="05-2023" [(ngModel)] ="expiracionTarjetaInput">
+                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
+                        </div>
+                        <!-- mercadopago-->
+                        <p *ngIf="metodoSeleccionado == 'mercadopago'" style="color:red"> Esta opción aun no esta disponible.</p>
+                        <!-- billetera virtual-->
+                        <p *ngIf="metodoSeleccionado == 'billetera_virtual'" style="color:red"> Esta opción aun no esta disponible.</p>
+
+                        <!-- ingresa tu direccion -->
+                        <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
+                        <img [src]="cambiarIcono(direccionSeleccionada,direccionRegex)" class="icono_validacion">
+                        <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada"><br>
+                        
+                        <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
+                        <img [src]="cambiarIcono(provinciaSeleccionada,provinciaRegex)" class="icono_validacion">
+                        <input type="text" name="provincia" [(ngModel)] = "provinciaSeleccionada"> <br>
+                        
+                        <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
+                        <img [src]="cambiarIcono(ciudadSeleccionada,localidadRegex)" class="icono_validacion">
+                        <input type="text" name="ciudad" [(ngModel)] = "ciudadSeleccionada"> <br>
+                        <hr>
                         <!-- costos -->
-                        <p>Costo compra: <b>$</b> </p>
-                        <p>Costo envio: <b>$</b> </p>
-                        <p>Total: <b>$</b> </p>
+                        <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
+                        <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
+                        <p>Costo compra: <b>${{costoCompra}}</b></p>
+                        <p>Costo envio: <b>{{calcularEnvio()}}</b></p>
+                        <hr>
+                        <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
@@ -110,6 +149,42 @@
                 </form>
             </div>
         </div>
+        <!-- ejemplo modal (codigo seguridad)-->
+        <div class="lightbox" *ngIf="mostrarEjemploCodigo" [ngClass]="getScreenSize()">
+            <div class="modal_ejemplo">
+                <div class="barra_cerrar_modal">
+                    <img src="../../../assets/icono-cerrar.png" id="cerrar_modal_1" (click)="modalCodigo()">
+                </div>
+                <img src="../../../assets/imagenes-tienda/image-card-sample-1.png" alt="ejemplo">
+            </div>
+        </div>
+        <!-- ejemplo modal (fecha expiracion)-->
+        <div class="lightbox" *ngIf="mostrarEjemploExpiracion" [ngClass]="getScreenSize()">
+            <div class="modal_ejemplo">
+                <div class="barra_cerrar_modal">
+                    <img src="../../../assets/icono-cerrar.png" id="cerrar_modal_1" (click)="modalExpiracion()">
+                </div>
+                <img src="../../../assets/imagenes-tienda/image-card-sample-2.png" alt="ejemplo">
+            </div>
+        </div>
+        <!-- modal - compra realizada con exito! -->
+        <div class="lightbox" *ngIf="compraRealizada" [ngClass]="getScreenSize()">
+            <div class="finalizar_compra">
+                <div class="cerrar_modal_final">
+                    <img src="../../../assets/icono-cerrar.png" alt="cerrar" (click)="cerrarValidarCompra()">
+                </div>
+                <div class="contenido_modal_final">
+                    <img src="../../../assets/imagenes-tienda/delivery-icon.gif" alt="delivery">
+                    <div class="titulo">
+                        <img src="../../../assets/imagenes-tienda/done-icon.png" id="done_icon" alt="done">
+                        <h3>Compra realizada con exito</h3>
+                    </div>
+                    <p>Ya estamos gestionando el envío, via mail recibiras las notificaciones relacioandas
+                        al mismo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </section>
 </div>
-
