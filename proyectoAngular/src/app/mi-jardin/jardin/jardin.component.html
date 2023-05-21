@@ -1,45 +1,57 @@
+<div class="cover" [class.active]="activeCover"></div>
 
-
+<div class="container">
 <h1 class="my-garden">Mi Jardín</h1>
 
 <h2 class="titulo-h2">Favoritos</h2>
 <hr class="linea">
 
-<section *ngIf="favoritos.length > 0; else elseFavorite">
+<div class="alertSembrar" [class.active]="activeAlert">
+    <p>{{ alertText }}</p>
+    <button (click)="showAlert()">Vale!</button>
+</div>
+<section *ngIf="cultivosToFavorito.length > 0; else elseFavorite">
 
-    <div *ngFor="let favorito of favoritos" class="tarjeta" id="{{favorito.id}}">
+    
+    <div *ngFor="let favorito of cultivosToFavorito; let i = index" class="tarjeta" id="{{favorito.id}}">
+        <span class="info" (click)="showInfo(favorito)">i</span>
         <div class="imagen_wrapper">
-            <img [src]="favorito.img" alt="icono">
+            <img [src]="favorito.imagen" alt="icono">
         </div>
-        <div class="contenido">
-            <h5 id="titulo_{{favorito.id}}" class="titulos"> {{favorito.name}} </h5>
-            <p> <u>Categoría:</u> {{favorito.category}}</p>
+        <div class="title">
+            <h5 id="titulo_{{favorito.id}}" class="titulos"> {{favorito.nombre}} </h5>
+        </div>
+        <div class="category">
+            <p> <u>Categoría:</u> {{favorito.tipo}}</p>
         </div>
         <div class="botones">
-            <button (click)="addCultivo(favorito)" type="button" class="sembrar"> SEMBRAR </button>
-            <button type="button" class="favoritos"> QUITAR DE FAVORITOS ×</button>
+            <button (click)="addToSembrar(favorito)" type="button" class="sembrar"> SEMBRAR </button>
+            <button (click)="removeFavorito(i)" type="button" class="favoritos">FAVORITOS X</button>
         </div>
     </div>
 
 </section>
 
 <ng-template #elseFavorite>
-    <p style="font-size: 24px; font-weight: bold; color: green; text-align: center; margin: 100px 0;">No hay ningún cultivo agregado a favoritos.</p>
+    <p style="font-size: 24px; font-weight: bold; color: antiquewhite; text-align: center; margin: 100px 0; font-family: secundaria1;">No hay ningún cultivo agregado a favoritos.</p>
 </ng-template>
 
 
 <h2 class="titulo-h2">Listos para sembrar</h2>
 <hr class="linea">
 
-<section *ngIf="cultivos.length > 0; else elseGarden">
+<section *ngIf="cultivosToSembrar.length > 0; else elseGarden">
 
-    <div *ngFor="let cultivo of cultivos" class="tarjeta" id="{{cultivo.id}}">
+    <div *ngFor="let cultivo of cultivosToSembrar" class="tarjeta" id="{{cultivo.id}}">
+        <span class="info" (click)="showInfo(cultivo)">i</span>
         <div class="imagen_wrapper">
-            <img [src]="cultivo.img" alt="icono">
+            <img [src]="cultivo.imagen" alt="icono">
         </div>
-        <div class="contenido">
-            <h5 id="titulo_{{cultivo.id}}" class="titulos"> {{cultivo.name}} </h5>
-            <p> <u>Categoría:</u> {{cultivo.category}}</p>
+        <div class="title">
+            <h5 id="titulo_{{cultivo.id}}" class="titulos"> {{cultivo.nombre}} </h5>
+        </div>
+        <div class="category">
+            <p> <u>Categoría:</u> {{cultivo.tipo}}</p>
         </div>
         <div class="botones">
             <button type="button" class="sembrar"> SEMBRAR </button>
@@ -49,5 +61,26 @@
 </section>
 
 <ng-template #elseGarden>
-    <p style="font-size: 24px; font-weight: bold; color: green; text-align: center; margin: 100px 0;">No hay ningún cultivo para sembrar.</p>
+    <p style="font-size: 24px; font-weight: bold; color: antiquewhite; text-align: center; margin: 100px 0; font-family: secundaria1;">No hay ningún cultivo para sembrar.</p>
 </ng-template>
+
+</div>
+
+
+<div class="container-info" *ngIf="activeInfo">
+    <span class="close" (click)="toggleInfo()">Close</span>
+    <div *ngFor="let cultivo of infoCultivos" class="info-cultivo">
+        <img [src]="cultivo.imagen">
+        <p>Nombre del cultivo: <b>{{cultivo.nombre}}</b></p>
+        <p>Tipo de cultivo: <b>{{cultivo.tipo}}</b></p>
+        <p>El cultivo germina en <b>{{cultivo.germina}} días</b></p>
+        <p>El cultivo se puede cosechar en <b>{{cultivo.cosecha}} días</b></p>
+        <p>Temporada para sembrar <b>{{cultivo.temporada}}</b></p>
+        <p>Temperatura máxima: <b>{{cultivo.temperaturaMax}}°C</b></p>
+        <p>Temperatura minima: <b>{{cultivo.temperaturaMin}}°C</b></p>
+        <p>Riego: <b>{{cultivo.riego}}</b></p>
+        <p>cantidad de luz solar: <b>{{cultivo.luz}}</b></p>
+        <p>Profundidad del sembrado: <b>{{cultivo.profundidadSembrado}} centímetros</b></p>
+        <p>Espacio entre cada planta: <b>{{cultivo.espacioPlantas}} centímetros</b></p>
+    </div>
+</div>

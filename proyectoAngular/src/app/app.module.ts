@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,16 +18,18 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { HomeComponent } from './home/home.component';
 import { MiCuentaComponent } from './auth/mi-cuenta/mi-cuenta.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes:Routes=[
+  {path:'', component:HomeComponent},
   {path:'cultivos', component:CultivoComponent},
-  {path:'jardin', component:JardinComponent},
-  {path:'tienda', component:LayoutTiendaComponent},
   {path:'consejo', component:ConsejoComponent},
+  {path:'tienda', component:LayoutTiendaComponent},
+  {path:'jardin', component:JardinComponent},
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegistroComponent},
-  {path:'home', component:HomeComponent},
-  {path:'micuenta', component:MiCuentaComponent}
+  {path:'micuenta', component:MiCuentaComponent},
+  {path:'**', component:HomeComponent}
 ];
 
 @NgModule({
@@ -49,7 +52,9 @@ const appRoutes:Routes=[
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

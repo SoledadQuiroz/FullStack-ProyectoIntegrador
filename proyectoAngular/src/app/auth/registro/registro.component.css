@@ -1,169 +1,116 @@
-:root {
-    /*------------------- PALETA DE COLORES ---------------------*/
+/* :root {
+    --colorTextos: #928e8e67;
+    --fondo:linear-gradient(to right, #56ab2f, #a8e063);
+} */
 
-    /* paleta 1 */
-    --verde1: #2ECC71;
-    --verde2: #229954;
-    --verde3: #1E8449;
-    --verde4: #0E6655;
-    --verde5: #20B2AA;
-    --verde6: #3EB489;
-    --verde7: #0B5C4C;
-    --verde8: #00FF40;
-    --verde9: #00A693;
-    --verde10: #01796F;
-    --verde11: #01796F;
-    --verde12: #66CDAA;
-
-    /* paleta 2 */
-    --verde2A: #BCE784;
-    --verde2B: #5DD39E;
-    --azul: #348AA7;
-    --violeta1: #525174;
-    --violeta2: #513B56;
-
-    /* paleta 3 */
-    --verde3A: #4B7F52;
-    --verde3B: #7DD181;
-    --verde3C: #96E8BC;
-    --verde3D: #B6F9C9;
-    --verde3E: #C9FFE2;
-
-    /* colores fuentes */
-    --fuentePrin: black;
-    --fuenteAlt: white;
-    --gris1: #747474;
-
-    /*------------------- FONDOS ---------------------*/
-    --fondo_deg1: linear-gradient(180deg, rgba(0, 237, 100, 0.6783088235294117) 0%, rgba(255, 255, 255, 1) 42%);
-    --fondo_transparente: rgba(0, 0, 0, 0.4);
-    /*------------------- SOMBRAS ---------------------*/
-    --sombra1: 5px 5px 5px -3px rgba(0, 0, 0, 0.5);
-}
-
-/*------------------------------ FUENTES ---------------------------------*/
-@font-face {
-    font-family: "principal";
-    src: url("../../../assets/fuentes/Karma-Regular.ttf");
-}
-
-@font-face {
-    font-family: "secundaria1";
-    src: url("../../../assets/fuentes/Quicksand-Regular.ttf");
-}
-
-@font-face {
-    font-family: "secundaria2";
-    src: url("../../../assets/fuentes/MADEOkineSansPERSONALUSE-Medium.otf");
-}
-
-@font-face {
-    font-family: "secundaria3";
-    src: url("../../../assets/fuentes/Glorifydemo-BW3J3.otf");
-}
-
-@font-face {
-    font-family: "secundaria4";
-    src: url("../../../assets/fuentes/TenorSans-Regular.ttf");
-}
-
-* {
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
-
-:root {
-    --colorTextos: #49454567
-}
-
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: linear-gradient(to right, #56ab2f, #a8e063);
-    height: 650px;
     display: flex;
+    font-family: 'Roboto';
+    background: var(--fondo);
+    height: 95vh;
     justify-content: center;
     align-items: center;
 }
 
-.container {
-    max-width: 90%;
-    margin: auto;
-
-}
-
-form {
+main{
+    display: flex;
+    flex-direction: column;
+    width: auto;
     background: #fff;
-    padding: 10px 0;
-    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+    padding: 10px 0; 
     border-radius: 18px;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+    
 }
-
-.form {
-    max-width: 400px;
-    margin: auto;
-    margin-top: 10px;
-    padding: 30px 50px;
-    background: white
+img{
+    width: 125px;
+    margin: 10px auto;
+    display: block;
 }
 
 h1 {
     text-align: center;
     font-weight: 600;
+    
 }
 
-.imagen {
-    text-align: center;
+form{
+    margin: 45px;
+    display: grid;
+    column-count: 2;
+    grid-template-columns: repeat(2, 1fr);
+    gap:1rem
+    
 }
-
-.form-input {
-    margin-bottom: 30px;
-}
-
-.form-input label {
+input {
+    background: none;
+    color: #c6c6c6;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
     display: block;
-    margin-top: 10px;
-    font-size: 15px;
-    color: #8f8b8b;
-}
-
-.form-input input {
     width: 100%;
     border: none;
+    border-bottom: 1px solid var(--colorTextos);
+}
+input:focus {
     outline: none;
-    background: none;
-    border-bottom: 1px solid #8f8b8b;
+    color: #5e5d5d;
+
+}
+input[type="date"] {
+    color: rgba(0, 0, 0, 0);
+    border-bottom: 1px solid var(--colorTextos)
+   
 }
 
-.form-input input:focus+label {
-    font-weight: bold;
-    color: #8f8b8b
+input[type="date"]:focus {
+    opacity: 0.3;
+    color:#5e5d5d ;
+    transition: 0.5s ease all;
+    
+  }
+
+input:focus~label,
+input:valid~label {
+    top: -14px;
+    font-size: 12px;
+    color: var(--verde4);
 }
 
-.boton input {
-    text-align: center;
-    background-color: #56ab2f;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    padding: 10px 50px;
-    font-size: 20px;
+label {
+    color: var(--colorTextos);
+    font-size: 16px;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    transition: 0.5s ease all;
+    pointer-events: none;
+}
+
+form div{
+    position: relative;
+   
+}
+button {
+    font-family: 'roboto';
+    background: #56ab2f;
     border: none;
+    display: block;
+    width: 80%;
+    margin: 10px auto;
     color: #fff;
-}
-
-.chclave {
-    text-align: center;
-}
-
-.mensajeError {
-    color: red;
-    margin-top: 0px;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.mensajeCorrecto {
-    color: rgb(14, 165, 14);
-    margin-top: 0px;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-self: center;
 }

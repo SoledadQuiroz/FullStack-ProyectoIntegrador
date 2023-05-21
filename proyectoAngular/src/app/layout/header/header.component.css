@@ -12,6 +12,7 @@ header {
     background-position: left, right;
     background-repeat: no-repeat;
     background-size: contain;
+    height: 130px;
 }
 
 header #logo_contenedor {
@@ -90,6 +91,7 @@ header #opciones li a:hover {
 @media only screen and (min-width: 992px) {
     header {
         background-image: url("../../../assets/fondo-izq.png"), url("../../../assets/fondo-der.png");
+        max-height: 125px !important;
     }
 
     header img {

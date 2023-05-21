@@ -4,6 +4,7 @@ section {
     /*background-color: #96E8BC;*/
     grid-auto-rows: 30rem;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 25rem), 1fr));
+    background-image: url("../../assets/imagenes-tienda/fondo.jpg");
 }
 
 /*CARDS*/
