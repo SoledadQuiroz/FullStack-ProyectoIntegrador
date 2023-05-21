@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AplicacionConfig(AppConfig):
+class AbmConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'Apps.Aplicacion'
+    name = 'ABM'
