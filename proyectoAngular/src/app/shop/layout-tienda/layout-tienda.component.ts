@@ -1,6 +1,6 @@
 import { Component, ElementRef} from '@angular/core';
 import { HtmlTagDefinition } from '@angular/compiler';
-import { Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -130,16 +130,16 @@ export class LayoutTiendaComponent{
     "../../../assets/imagenes-tienda/invalid-icon.png"
   ]
   // varaibles tipo flag para validar cada input:
-  varCaja = {
-    // datos tarjeta:
-    numeroTarjetaEstado:false,
-    codigoTarjetaEstado:false,
-    expiracionTarjetaEstado:false,
-    // datos ubicacion:
-    direccionEstado:false,
-    localidadEstado:false,
-    provinciaEstado:false,
-  }
+  // varCaja = {
+  //   // datos tarjeta:
+  //   numeroTarjetaEstado:false,
+  //   codigoTarjetaEstado:false,
+  //   expiracionTarjetaEstado:false,
+  //   // datos ubicacion:
+  //   direccionEstado:false,
+  //   localidadEstado:false,
+  //   provinciaEstado:false,
+  // }
   // variables booleanas (modales finalizar compra):
   compraRealizada:boolean = false;
   
@@ -207,9 +207,9 @@ export class LayoutTiendaComponent{
   calcularEnvio(){
   // 1ro - se valida que los campos esten completo
   if (this.direccionSeleccionada != "" && this.provinciaSeleccionada != "" && this.ciudadSeleccionada != ""){
-    if (this.provinciaSeleccionada.toLowerCase() == "cordoba"){
+    if (this.provinciaSeleccionada.toLowerCase() == "cordoba" ||this.provinciaSeleccionada.toLowerCase() == "córdoba"){
       // 2do - se valida si el envio es a la ciudad / provincia / resto del pais
-      if (this.ciudadSeleccionada.toLowerCase() == "cordoba capital"){
+      if (this.ciudadSeleccionada.toLowerCase() == "cordoba capital" ||this.ciudadSeleccionada.toLowerCase() == "córdoba capital"){
         this.costoRegionSeleccionada = this.envioCiudad;
         return "$" + this.costoRegionSeleccionada;
       } else {
@@ -252,43 +252,8 @@ export class LayoutTiendaComponent{
     }
   }
   
-  // valida que el campo se haya completado correctamente:
-  validacionCaja(valor:string,expreg:RegExp,estado:boolean){
-    // 1ro - se valida si el campo no esta en blanco:
-    if (valor == ""){
-      // en proceso de ser completado...
-      return estado;
-      // campo no vacio:
-    } else{
-      // 2do - se valida si los valores ingresados son correctos:
-      if(expreg.test(valor)){
-        // valor valido:
-        estado = true;
-        return estado;
-      } else{
-        estado = false;
-        return estado;
-      }
-    }
-  }
-
   sumarCostosFinales(){
     return this.costoCompra + this.costoRegionSeleccionada;
-  }
-
-  // arreglar funcion!!! (usar)
-  validarDatosCompra(){
-    // valida que todos los datos ingresados sean correctos:
-    const values = Object.values(this.varCaja);
-    const allTrue = values.every((value) => value === true);
-    // si todos los datos ingresados son correctos
-    // se muestra un modal informandolo:
-    if(allTrue){
-      this.compraRealizada = true
-    } else{
-      alert("los datos ingresados no son correctos");
-      alert(values);
-    }
   }
 
   cerrarValidarCompra(){
@@ -298,5 +263,38 @@ export class LayoutTiendaComponent{
     //this.abirFormasPago = false;
   }
 
+  // validacion datos ingresados en caja:
+  cajaValidacion = new FormGroup({
+    //metodo de pago:
+    medioPagoSeleccionado: new FormControl('',Validators.required),
+    // datos tarjeta
+    InputNumeroTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.numeroTarjetaRegex)]),
+    InputCodSegTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.codigoSeguridadRegex)]),
+    InputExpTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.expiracionRegex)]),
+    // datos direccion
+    InputDireccion: new FormControl('', [Validators.required, Validators.pattern(this.direccionRegex)]),
+    InputProvincia: new FormControl('', [Validators.required, Validators.pattern(this.provinciaRegex)]),
+    InputLocalidad: new FormControl('', [Validators.required, Validators.pattern(this.localidadRegex)]),
+  });
+
+  // permite clickear "finalizar compra" solo si todos los valores
+  // fueron ingresados correctamente:
+  // arreglar funcion
+  onSubmit(){
+    console.log('Raw form values:', this.cajaValidacion.getRawValue());
+    if (this.cajaValidacion.valid) {
+      this.compraRealizada = true;
+    } else {
+      alert("hay campos que no fueron completados exitosamente");
+    }
+  }
+
+  ngOnInit() {
+    this.cajaValidacion.get('medioPagoSeleccionado')!.valueChanges.subscribe(value => {
+      if (value === 'tajeta_credito_debito') {
+        this.metodoSeleccionado = "tajeta_credito_debito";
+      }
+    });
+  }
 
 }

@@ -89,31 +89,31 @@
                     <img src="../../../assets/isologo.png" alt="logo-pagina" class="isologo_modales">
                 </div>
                 <!-- formulario (formas de pago)-->
-                <form class="formulario">
+                <form class="formulario" [formGroup]="cajaValidacion">
                     <div class="detalles_formulario" id="detalles_pago">
                         <!-- seleccionar forma de pago -->
                         <label for="opciones_pago"><b>Selecciona una forma de pago:</b></label> <br>
-                        <select id="opciones_pago" name="pagos" [(ngModel)] ="metodoSeleccionado">
+                        <select id="opciones_pago" name="pagos" formControlName="medioPagoSeleccionado">
                             <option value="tajeta_credito_debito">Tarjeta Credito / debito</option>
-                            <option value="mercadopago"> Mercadopago</option>
+                            <option value="transferencia"> Transferencia bancaria</option>
                             <option value="billetera_virtual">Billetera virtual</option>
                         </select>
                         <hr>
                         <!-- tarjeta credito o debito-->
-                        <div id="tarjeta_credito" *ngIf="metodoSeleccionado == 'tajeta_credito_debito'">
+                        <div id="tarjeta_credito" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'tajeta_credito_debito'">
                             <!-- numero tarjeta -->
                             <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
                             <img [src]="cambiarIcono(numeroTarjetaInput,numeroTarjetaRegex)" class="icono_validacion">
-                            <input type="text" name="tarjeta" value="" [(ngModel)]="numeroTarjetaInput"> <br>
+                            <input type="text" name="tarjeta" value="" [(ngModel)]="numeroTarjetaInput" formControlName="InputNumeroTarjeta"> <br>
                             <!-- codigo seguridad -->
                             <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
                             <img [src]="cambiarIcono(codigoTarjetaInput,codigoSeguridadRegex)" class="icono_validacion">
-                            <input type="text" name="codigo" value="" [(ngModel)]="codigoTarjetaInput">
+                            <input type="text" name="codigo" value="" [(ngModel)]="codigoTarjetaInput" formControlName="InputCodSegTarjeta">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
                             <!-- fecha expiración -->
                             <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
                             <img [src]="cambiarIcono(expiracionTarjetaInput,expiracionRegex)" class="icono_validacion">
-                            <input type="month" name="expiracion" min="05-2023" [(ngModel)] ="expiracionTarjetaInput">
+                            <input type="month" name="expiracion" min="05-2023" [(ngModel)] ="expiracionTarjetaInput" formControlName="InputExpTarjeta">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
                         </div>
                         <!-- mercadopago-->
@@ -122,18 +122,20 @@
                         <p *ngIf="metodoSeleccionado == 'billetera_virtual'" style="color:red"> Esta opción aun no esta disponible.</p>
 
                         <!-- ingresa tu direccion -->
-                        <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
-                        <img [src]="cambiarIcono(direccionSeleccionada,direccionRegex)" class="icono_validacion">
-                        <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada"><br>
-                        
-                        <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
-                        <img [src]="cambiarIcono(provinciaSeleccionada,provinciaRegex)" class="icono_validacion">
-                        <input type="text" name="provincia" [(ngModel)] = "provinciaSeleccionada"> <br>
-                        
-                        <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
-                        <img [src]="cambiarIcono(ciudadSeleccionada,localidadRegex)" class="icono_validacion">
-                        <input type="text" name="ciudad" [(ngModel)] = "ciudadSeleccionada"> <br>
-                        <hr>
+                        <div id="info_direccion">
+                            <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
+                            <img [src]="cambiarIcono(direccionSeleccionada,direccionRegex)" class="icono_validacion">
+                            <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada" formControlName="InputDireccion"><br>
+                            
+                            <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
+                            <img [src]="cambiarIcono(provinciaSeleccionada,provinciaRegex)" class="icono_validacion">
+                            <input type="text" name="provincia" [(ngModel)] = "provinciaSeleccionada" formControlName="InputProvincia"> <br>
+                            
+                            <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
+                            <img [src]="cambiarIcono(ciudadSeleccionada,localidadRegex)" class="icono_validacion">
+                            <input type="text" name="ciudad" [(ngModel)] = "ciudadSeleccionada" formControlName="InputLocalidad"> <br>
+                            <hr>
+                        </div>
                         <!-- costos -->
                         <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
                         <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
@@ -144,7 +146,7 @@
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
-                        <button type="submit" id="Finalizar" class="botones_form">Finalizar Compra</button><br>
+                        <button type="submit" id="Finalizar" class="botones_form" [disabled]="!cajaValidacion.valid">Finalizar Compra</button><br>
                     </div>
                 </form>
             </div>
