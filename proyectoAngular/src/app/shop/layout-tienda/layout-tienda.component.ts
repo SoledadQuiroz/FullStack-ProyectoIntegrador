@@ -283,13 +283,14 @@ export class LayoutTiendaComponent{
   onSubmit(){
     console.log('Raw form values:', this.cajaValidacion.getRawValue());
     if (this.cajaValidacion.valid) {
+      console.log("compra realizada con exito");
       this.compraRealizada = true;
     } else {
-      alert("hay campos que no fueron completados exitosamente");
+      console.log("hay campos que no fueron completados exitosamente");
     }
   }
 
-  ngOnInit() {
+  ngOnInit(){
     this.cajaValidacion.get('medioPagoSeleccionado')!.valueChanges.subscribe(value => {
       if (value === 'tajeta_credito_debito') {
         this.metodoSeleccionado = "tajeta_credito_debito";

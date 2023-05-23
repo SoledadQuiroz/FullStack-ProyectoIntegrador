@@ -89,7 +89,7 @@
                     <img src="../../../assets/isologo.png" alt="logo-pagina" class="isologo_modales">
                 </div>
                 <!-- formulario (formas de pago)-->
-                <form class="formulario" [formGroup]="cajaValidacion">
+                <form class="formulario" [formGroup]="cajaValidacion" (ngSubmit)="onSubmit()">
                     <div class="detalles_formulario" id="detalles_pago">
                         <!-- seleccionar forma de pago -->
                         <label for="opciones_pago"><b>Selecciona una forma de pago:</b></label> <br>
