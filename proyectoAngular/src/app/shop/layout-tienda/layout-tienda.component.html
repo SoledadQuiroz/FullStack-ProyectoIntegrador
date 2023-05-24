@@ -104,11 +104,11 @@
                             <!-- numero tarjeta -->
                             <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputNumeroTarjeta'], numeroTarjetaRegex)" class="icono_validacion">
-                            <input type="text" name="tarjeta" formControlName="InputNumeroTarjeta"> <br>
+                            <input type="number" name="tarjeta" formControlName="InputNumeroTarjeta"> <br>
                             <!-- codigo seguridad -->
                             <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputCodSegTarjeta'], codigoSeguridadRegex)" class="icono_validacion">
-                            <input type="text" name="codigo" formControlName="InputCodSegTarjeta">
+                            <input type="number" name="codigo" formControlName="InputCodSegTarjeta">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
                             <!-- fecha expiración -->
                             <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
