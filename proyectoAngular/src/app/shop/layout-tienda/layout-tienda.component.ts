@@ -1,4 +1,4 @@
-import { Component, ElementRef} from '@angular/core';
+import { Component, ElementRef, Input} from '@angular/core';
 import { HtmlTagDefinition } from '@angular/compiler';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -129,17 +129,11 @@ export class LayoutTiendaComponent{
     // invalid [2]
     "../../../assets/imagenes-tienda/invalid-icon.png"
   ]
-  // varaibles tipo flag para validar cada input:
-  // varCaja = {
-  //   // datos tarjeta:
-  //   numeroTarjetaEstado:false,
-  //   codigoTarjetaEstado:false,
-  //   expiracionTarjetaEstado:false,
-  //   // datos ubicacion:
-  //   direccionEstado:false,
-  //   localidadEstado:false,
-  //   provinciaEstado:false,
-  // }
+   // propiedades para validar fecha de expiracion
+  currentDate = new Date();
+  currentMonth = this.currentDate.getMonth() + 1; // Add 1 because getMonth() returns values from 0 to 11
+  currentYear = this.currentDate.getFullYear();
+  minLimit = this.currentMonth.toString() + this.currentYear.toString();
   // variables booleanas (modales finalizar compra):
   compraRealizada:boolean = false;
   
@@ -204,27 +198,6 @@ export class LayoutTiendaComponent{
   
   }
 
-  calcularEnvio(){
-  // 1ro - se valida que los campos esten completo
-  if (this.direccionSeleccionada != "" && this.provinciaSeleccionada != "" && this.ciudadSeleccionada != ""){
-    if (this.provinciaSeleccionada.toLowerCase() == "cordoba" ||this.provinciaSeleccionada.toLowerCase() == "córdoba"){
-      // 2do - se valida si el envio es a la ciudad / provincia / resto del pais
-      if (this.ciudadSeleccionada.toLowerCase() == "cordoba capital" ||this.ciudadSeleccionada.toLowerCase() == "córdoba capital"){
-        this.costoRegionSeleccionada = this.envioCiudad;
-        return "$" + this.costoRegionSeleccionada;
-      } else {
-        this.costoRegionSeleccionada = this.envioProvincia;
-        return "$" + this.costoRegionSeleccionada;
-      }
-    } else{
-      this.costoRegionSeleccionada = this.envioPais;
-      return "$" + this.costoRegionSeleccionada;
-    }
-  } else{
-    return "calculando..";
-  }
-  }
-
   modalCodigo(){
   this.mostrarEjemploCodigo = !this.mostrarEjemploCodigo;
   }
@@ -277,10 +250,8 @@ export class LayoutTiendaComponent{
     InputLocalidad: new FormControl('', [Validators.required, Validators.pattern(this.localidadRegex)]),
   });
 
-  // permite clickear "finalizar compra" solo si todos los valores
-  // fueron ingresados correctamente:
-  // arreglar funcion
   onSubmit(){
+    // validacion final
     console.log('Raw form values:', this.cajaValidacion.getRawValue());
     if (this.cajaValidacion.valid) {
       console.log("compra realizada con exito");
@@ -291,6 +262,7 @@ export class LayoutTiendaComponent{
   }
 
   ngOnInit(){
+    // valida el metodo de pago seleccionado:
     this.cajaValidacion.get('medioPagoSeleccionado')!.valueChanges.subscribe(value => {
       if (value === 'tajeta_credito_debito') {
         this.metodoSeleccionado = "tajeta_credito_debito";
@@ -298,4 +270,47 @@ export class LayoutTiendaComponent{
     });
   }
 
+  cambiarIconoSrc(campo:FormControl, regexp:RegExp){
+    const getValue = campo.value;
+    // campo vacio
+    if(getValue == ""){
+      return this.iconos[1];
+    } else{
+      // campo completado / en proceso:
+      if(regexp.test(getValue)){
+        // valid
+        return this.iconos[0];
+      } else{
+        //invalid
+        return this.iconos[2];
+      }
+    }
+
+  }
+
+  calcularEnvio(direccion:FormControl, provincia:FormControl, localidad:FormControl){
+    // 1ro - se valida que los campos esten completo
+    const dirValue = direccion.value;
+    const proValue = provincia.value;
+    const locValue = localidad.value;
+    // 1ro - se validan si los campos estan completados:
+    if (dirValue != "" && proValue != "" && locValue != ""){
+      // 2do - se valida si el envio es a otra provincia:
+      if (proValue.toLowerCase() == "cordoba" || proValue.toLowerCase() == "córdoba"){
+        // 3ro - se valida si el envio es al interior de la provincia o la capital:
+        if (locValue.toLowerCase() == "cordoba capital" || locValue.toLowerCase() == "córdoba capital"){
+          this.costoRegionSeleccionada = this.envioCiudad;
+          return "$" + this.costoRegionSeleccionada;
+        } else {
+          this.costoRegionSeleccionada = this.envioProvincia;
+          return "$" + this.costoRegionSeleccionada;
+        }
+      } else{
+        this.costoRegionSeleccionada = this.envioPais;
+        return "$" + this.costoRegionSeleccionada;
+      }
+    } else{
+      return "calculando..";
+    }
+  }
 }

@@ -103,17 +103,17 @@
                         <div id="tarjeta_credito" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'tajeta_credito_debito'">
                             <!-- numero tarjeta -->
                             <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
-                            <img [src]="cambiarIcono(numeroTarjetaInput,numeroTarjetaRegex)" class="icono_validacion">
-                            <input type="text" name="tarjeta" value="" [(ngModel)]="numeroTarjetaInput" formControlName="InputNumeroTarjeta"> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputNumeroTarjeta'], numeroTarjetaRegex)" class="icono_validacion">
+                            <input type="text" name="tarjeta" formControlName="InputNumeroTarjeta"> <br>
                             <!-- codigo seguridad -->
                             <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
-                            <img [src]="cambiarIcono(codigoTarjetaInput,codigoSeguridadRegex)" class="icono_validacion">
-                            <input type="text" name="codigo" value="" [(ngModel)]="codigoTarjetaInput" formControlName="InputCodSegTarjeta">
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputCodSegTarjeta'], codigoSeguridadRegex)" class="icono_validacion">
+                            <input type="text" name="codigo" formControlName="InputCodSegTarjeta">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
                             <!-- fecha expiración -->
                             <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
-                            <img [src]="cambiarIcono(expiracionTarjetaInput,expiracionRegex)" class="icono_validacion">
-                            <input type="month" name="expiracion" min="05-2023" [(ngModel)] ="expiracionTarjetaInput" formControlName="InputExpTarjeta">
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputExpTarjeta'], expiracionRegex)" class="icono_validacion">
+                            <input type="month" name="expiracion" min={{minLimit}} formControlName="InputExpTarjeta">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
                         </div>
                         <!-- mercadopago-->
@@ -124,23 +124,23 @@
                         <!-- ingresa tu direccion -->
                         <div id="info_direccion">
                             <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
-                            <img [src]="cambiarIcono(direccionSeleccionada,direccionRegex)" class="icono_validacion">
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputDireccion'], direccionRegex)" class="icono_validacion">
                             <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada" formControlName="InputDireccion"><br>
                             
                             <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
-                            <img [src]="cambiarIcono(provinciaSeleccionada,provinciaRegex)" class="icono_validacion">
-                            <input type="text" name="provincia" [(ngModel)] = "provinciaSeleccionada" formControlName="InputProvincia"> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputProvincia'], provinciaRegex)" class="icono_validacion">
+                            <input type="text" name="provincia" formControlName="InputProvincia"> <br>
                             
                             <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
-                            <img [src]="cambiarIcono(ciudadSeleccionada,localidadRegex)" class="icono_validacion">
-                            <input type="text" name="ciudad" [(ngModel)] = "ciudadSeleccionada" formControlName="InputLocalidad"> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputLocalidad'], localidadRegex)" class="icono_validacion">
+                            <input type="text" name="ciudad" formControlName="InputLocalidad"> <br>
                             <hr>
                         </div>
                         <!-- costos -->
                         <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
                         <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
                         <p>Costo compra: <b>${{costoCompra}}</b></p>
-                        <p>Costo envio: <b>{{calcularEnvio()}}</b></p>
+                        <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['InputDireccion'], cajaValidacion.controls['InputProvincia'], cajaValidacion.controls['InputLocalidad'] )}}</b></p>
                         <hr>
                         <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
                     </div>
