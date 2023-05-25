@@ -56,7 +56,7 @@
                     <h3>{{nombreProdSeleccionado}}</h3>
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
-                        <input type="number" name="cantidad" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
+                        <input type="number" name="cantidad" min="1" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
                         <br><hr>
                     </div>
                     <ul class="detalles_formulario">
@@ -91,6 +91,7 @@
                 <!-- formulario (formas de pago)-->
                 <form class="formulario" [formGroup]="cajaValidacion" (ngSubmit)="onSubmit()">
                     <div class="detalles_formulario" id="detalles_pago">
+
                         <!-- seleccionar forma de pago -->
                         <label for="opciones_pago"><b>Selecciona una forma de pago:</b></label> <br>
                         <select id="opciones_pago" name="pagos" formControlName="medioPagoSeleccionado">
@@ -99,50 +100,88 @@
                             <option value="billetera_virtual">Billetera virtual</option>
                         </select>
                         <hr>
+
                         <!-- tarjeta credito o debito-->
                         <div id="tarjeta_credito" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'tajeta_credito_debito'">
                             <!-- numero tarjeta -->
                             <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputNumeroTarjeta'], numeroTarjetaRegex)" class="icono_validacion">
                             <input type="number" name="tarjeta" formControlName="InputNumeroTarjeta"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputNumeroTarjeta'])">numero invalido!</p>
                             <!-- codigo seguridad -->
                             <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputCodSegTarjeta'], codigoSeguridadRegex)" class="icono_validacion">
                             <input type="number" name="codigo" formControlName="InputCodSegTarjeta">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputCodSegTarjeta'])">solo debe contener 3 numeros!</p>
                             <!-- fecha expiración -->
                             <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputExpTarjeta'], expiracionRegex)" class="icono_validacion">
-                            <input type="month" name="expiracion" min={{minLimit}} formControlName="InputExpTarjeta">
-                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
+                            <input type="month" name="expiracion" formControlName="InputExpTarjeta">
+                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> 
+                            <hr>
                         </div>
-                        <!-- mercadopago-->
-                        <p *ngIf="metodoSeleccionado == 'mercadopago'" style="color:red"> Esta opción aun no esta disponible.</p>
+                        <!-- transferencia -->
+                        <div id="transferencia" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'transferencia'">
+                            <h6>Datos de nuestra cuenta bancaria:</h6>
+                            <ul>
+                                <li><b>CBU:</b> 123123123123121</li>
+                                <li><b>ALIAS:</b> gardening.friend</li>
+                                <li><b>BANCO:</b> Santander</li>
+                            </ul>
+                            <p> Una vez que realices tu pago envia el comprobante a nuestro mail <i>gardeningfriend@gmail.com</i> 
+                                para poder validarlo</p>
+                            <hr>
+                        </div>
                         <!-- billetera virtual-->
-                        <p *ngIf="metodoSeleccionado == 'billetera_virtual'" style="color:red"> Esta opción aun no esta disponible.</p>
+                        <div id="billetera" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'billetera_virtual'">
+                            <!-- numero tarjeta -->
+                            <label for="tarjeta_billetera"><b>Número de tarjeta de credito / debito: </b></label> <br>
+                            <img [src]="" class="icono_validacion">
+                            <input type="number" name="tarjeta_billetera" formControlName=""> <br>
+                            <p class="mensaje_error" *ngIf="">numero invalido!</p>
+                            <!-- codigo seguridad -->
+                            <label for="codigo_billetera"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
+                            <img [src]="" class="icono_validacion">
+                            <input type="number" name="codigo_billetera" formControlName="">
+                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
+                            <p class="mensaje_error" *ngIf="">solo debe contener 3 numeros!</p>
+                            <!-- fecha expiración -->
+                            <label for="expiracion_billetera"><b>Selecciona la fecha de expiración:</b></label> <br>
+                            <img [src]="" class="icono_validacion">
+                            <input type="month" name="expiracion_billetera" formControlName="">
+                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> 
+                            <hr>
+                        </div>
 
                         <!-- ingresa tu direccion -->
                         <div id="info_direccion">
-                            <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
+                            <label for="direccion"><b>Ingresa tu dirección:</b> {{cajaValidacion.controls['InputDireccion'].value}}</label><br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputDireccion'], direccionRegex)" class="icono_validacion">
-                            <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada" formControlName="InputDireccion"><br>
+                            <input type="text" name="direccion" formControlName="InputDireccion"><br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputDireccion'])">solo se permiten caracteres alfanumericos!</p>
                             
-                            <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
+                            <label for="provincia" ><b> Provincia:</b> {{cajaValidacion.controls['InputProvincia'].value}} </label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputProvincia'], provinciaRegex)" class="icono_validacion">
                             <input type="text" name="provincia" formControlName="InputProvincia"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputProvincia'])">no se permiten numeros ni carac. especiales!</p>
                             
-                            <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
+                            <label for="ciudad"><b> Localidad: </b> {{cajaValidacion.controls['InputLocalidad'].value}} </label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputLocalidad'], localidadRegex)" class="icono_validacion">
                             <input type="text" name="ciudad" formControlName="InputLocalidad"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputLocalidad'])">no se permiten numeros ni carac. especiales! </p>
                             <hr>
                         </div>
+
                         <!-- costos -->
-                        <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
-                        <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
-                        <p>Costo compra: <b>${{costoCompra}}</b></p>
-                        <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['InputDireccion'], cajaValidacion.controls['InputProvincia'], cajaValidacion.controls['InputLocalidad'] )}}</b></p>
-                        <hr>
-                        <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
+                        <div id="detalles_costos">
+                            <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
+                            <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
+                            <p>Costo compra: <b>${{costoCompra}}</b></p>
+                            <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['InputDireccion'], cajaValidacion.controls['InputProvincia'], cajaValidacion.controls['InputLocalidad'] )}}</b></p>
+                            <hr>
+                            <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
+                        </div>
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
@@ -182,7 +221,7 @@
                         <h3>Compra realizada con exito</h3>
                     </div>
                     <p>Ya estamos gestionando el envío, via mail recibiras las notificaciones relacioandas
-                        al mismo.
+                        al mismo. La factura será enviada por mail también.
                     </p>
                 </div>
             </div>

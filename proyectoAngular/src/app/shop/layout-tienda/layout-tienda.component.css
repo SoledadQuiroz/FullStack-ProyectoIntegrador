@@ -516,7 +516,36 @@
     text-align: center;
 }
 
+#transferencia h6{
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
 
+#transferencia ul{
+    font-size: 0.75rem;
+    list-style-image: url("../../../assets/imagenes-tienda/bank-icon.png");
+}
+
+#transferencia ul li{
+    margin-left: 10px;
+}
+
+#transferencia i{
+    font-weight: bold;
+    color: var(--verde2);
+}
+
+
+
+/* ------------------ Estilos validaciones ------------------- */
+.mensaje_error{
+    display: block;
+    font-style: italic;
+    color: red;
+    font-size: 0.75rem;
+    animation: shake-horizontal 300ms;
+}
 
 /* ------------------ ANIMACIONES MODAL ------------------- */
 @keyframes rotate-vertical-center{

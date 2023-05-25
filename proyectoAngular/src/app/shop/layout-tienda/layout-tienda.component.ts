@@ -121,19 +121,12 @@ export class LayoutTiendaComponent{
   localidadRegex = /^[\p{L}\sáéíóúñÁÉÍÓÚÑ]+$/u;
   provinciaRegex = /^[\p{L}\sáéíóúñÁÉÍÓÚÑ]+$/u;
   // imagenes iconos validacion:
-  iconos = [
-    // done icon [0]
-    "../../../assets/imagenes-tienda/done-icon.png",
-    // not done icon [1]
-    "../../../assets/imagenes-tienda/not-done-icon.png",
-    // invalid [2]
-    "../../../assets/imagenes-tienda/invalid-icon.png"
-  ]
-   // propiedades para validar fecha de expiracion
-  currentDate = new Date();
-  currentMonth = this.currentDate.getMonth() + 1; // Add 1 because getMonth() returns values from 0 to 11
-  currentYear = this.currentDate.getFullYear();
-  minLimit = this.currentMonth.toString() + this.currentYear.toString();
+  iconos = {
+    doneIcon: "../../../assets/imagenes-tienda/done-icon.png",
+    notDoneIcon: "../../../assets/imagenes-tienda/not-done-icon.png",
+    invalidIcon: "../../../assets/imagenes-tienda/invalid-icon.png"
+  }
+
   // variables booleanas (modales finalizar compra):
   compraRealizada:boolean = false;
   
@@ -205,25 +198,6 @@ export class LayoutTiendaComponent{
   modalExpiracion(){
   this.mostrarEjemploExpiracion = !this.mostrarEjemploExpiracion;
   }
-
-  // cambia el icono dependiendo de lo que haya ingresado el usuario:
-  cambiarIcono(valor:string,expreg:RegExp){
-    // 1ro - se valida si el campo no esta en blanco:
-    if (valor == ""){
-      // en proceso de ser completado...
-      return this.iconos[1];
-      // campo no vacio:
-    } else{
-      // 2do - se valida si los valores ingresados son correctos:
-      if(expreg.test(valor)){
-        // valor valido:
-        return this.iconos[0];
-      } else{
-        // valor invalido:
-        return this.iconos[2];
-      }
-    }
-  }
   
   sumarCostosFinales(){
     return this.costoCompra + this.costoRegionSeleccionada;
@@ -243,7 +217,7 @@ export class LayoutTiendaComponent{
     // datos tarjeta
     InputNumeroTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.numeroTarjetaRegex)]),
     InputCodSegTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.codigoSeguridadRegex)]),
-    InputExpTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.expiracionRegex)]),
+    InputExpTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.validarExpiracion())]),
     // datos direccion
     InputDireccion: new FormControl('', [Validators.required, Validators.pattern(this.direccionRegex)]),
     InputProvincia: new FormControl('', [Validators.required, Validators.pattern(this.provinciaRegex)]),
@@ -274,15 +248,15 @@ export class LayoutTiendaComponent{
     const getValue = campo.value;
     // campo vacio
     if(getValue == ""){
-      return this.iconos[1];
+      return this.iconos.notDoneIcon;
     } else{
       // campo completado / en proceso:
       if(regexp.test(getValue)){
         // valid
-        return this.iconos[0];
+        return this.iconos.doneIcon;
       } else{
         //invalid
-        return this.iconos[2];
+        return this.iconos.invalidIcon;
       }
     }
 
@@ -313,4 +287,36 @@ export class LayoutTiendaComponent{
       return "calculando..";
     }
   }
+
+  mostrarError(campo:FormControl){
+    const valorCampo = campo.value;
+    if(!campo.valid && valorCampo != ""){
+      // si el valor ingresado es inavlido se muestra el error:
+      return true;
+    } else{
+      // de lo contrario se mantiene oculto:
+      return false;
+    }
+  }
+
+  //validar fecha expiracion:
+  validarExpiracion(){
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth() + 1; // Adding 1 to match the format of the month input field
+      
+    const monthInputValue = this.expiracionTarjetaInput; // Example value from the month input field
+    const [inputYearString, inputMonthString] = monthInputValue.split("-"); // Extracts year and month values from the input value
+    const inputYear = parseInt(inputYearString);
+    const inputMonth = parseInt(inputMonthString);
+      
+    const regexPattern = new RegExp(
+      `^${currentYear}${currentMonth > 9 ? "|" + (currentYear + 1) : ""}-${currentMonth > 9 ? "1[0-2]|" : `${currentMonth}|`}0${currentMonth}${
+        inputYear > currentYear || (inputYear == currentYear && inputMonth >= currentMonth) ? "|0[1-9]|1[0-2]" : ""
+      }$`
+    );
+    
+    return regexPattern;
+  }
+  
 }
