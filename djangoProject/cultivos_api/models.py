@@ -17,6 +17,12 @@ class Cultivo(models.Model):
         ('Bastante Luz','mucha')
     ]
 
+    riegoCantidad = [
+        ('Mucha o diariamente','bastante'),
+        ('Moderada o cada 3 días','moderada'),
+        ('poca o cada 5 días','poca'),
+    ]
+
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     imagen = models.CharField(max_length=250)
@@ -26,7 +32,7 @@ class Cultivo(models.Model):
     temporada = models.CharField(max_length=50, choices=estaciones)
     temperaturaMax = models.IntegerField()
     temperaturaMin = models.IntegerField()
-    riego = models.CharField(max_length=50)
+    riego = models.CharField(max_length=50, choices=riegoCantidad)
     luz = models.CharField(max_length=15, choices=luzSolar)
     profundidadSembrado = models.IntegerField()
     espacioPlantas = models.IntegerField()
