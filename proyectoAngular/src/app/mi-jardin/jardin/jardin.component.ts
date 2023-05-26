@@ -11,10 +11,9 @@ export class JardinComponent {
   activeAlert:boolean = false;
   activeCover:boolean = false;
   activeInfo:boolean = false;
+
   alertText:string = '';
   infoCultivos: Cultivo[] = [];
-
-
 
   constructor(private cultivosService:CultivosService) { }
 
@@ -30,6 +29,13 @@ export class JardinComponent {
   removeFavorito(index:number){
     this.cultivosService.cultivoFavorito.splice(index, 1);
     this.alertText = 'El Cultivo se elimino de Favoritos';
+    this.activeCover = !this.activeCover;
+    this.activeAlert = !this.activeAlert;
+  }
+
+  eliminarCultivo(index:number){
+    this.cultivosService.cultivoSembrar.splice(index, 1);
+    this.alertText = 'El Cultivo se elimino';
     this.activeCover = !this.activeCover;
     this.activeAlert = !this.activeAlert;
   }
@@ -57,5 +63,28 @@ export class JardinComponent {
     this.activeInfo = !this.activeInfo;
     this.activeCover = !this.activeCover;
   }
+  
+
+  startCountDown(index: number): void {
+    console.log('Starting countdown for item at index', index);
+    const item: Cultivo = this.cultivosService.cultivoSembrar[index];
+    if(!item.countdownActive){
+      item.countdown = item.cosecha;
+      const timerId = setInterval(() => {
+        item.countdown--;
+        if (item.countdown <= 0) {//si el tiempo acaba
+          this.alertText = 'El cultivo ' + item.nombre + ' ya se puede cosechar';
+          this.activeCover = !this.activeCover;
+          this.activeAlert = !this.activeAlert;
+          clearInterval(timerId);
+          this.cultivosService.cultivoSembrar.splice(index, 1); // remueve el cultivo
+        }
+      }, 1000);//1000 * 60 * 60 * 24 intervalo por dia
+      item.countdownActive = true;  
+    }
+  }
+  
+
+  
 
 }

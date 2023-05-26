@@ -12,4 +12,6 @@ export interface Cultivo{
     luz: string;
     profundidadSembrado: number;
     espacioPlantas: number;
+    countdown: number;
+    countdownActive:boolean;
 }
