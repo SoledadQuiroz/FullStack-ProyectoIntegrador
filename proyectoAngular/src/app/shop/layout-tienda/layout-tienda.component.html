@@ -137,19 +137,19 @@
                         <div id="billetera" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'billetera_virtual'">
                             <!-- numero tarjeta -->
                             <label for="tarjeta_billetera"><b>Número de tarjeta de credito / debito: </b></label> <br>
-                            <img [src]="" class="icono_validacion">
-                            <input type="number" name="tarjeta_billetera" formControlName=""> <br>
-                            <p class="mensaje_error" *ngIf="">numero invalido!</p>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputNumeroBilletera'], numeroTarjetaRegex)" class="icono_validacion">
+                            <input type="number" name="tarjeta_billetera" formControlName="InputNumeroBilletera"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputNumeroBilletera'])">numero invalido!</p>
                             <!-- codigo seguridad -->
                             <label for="codigo_billetera"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
-                            <img [src]="" class="icono_validacion">
-                            <input type="number" name="codigo_billetera" formControlName="">
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputCodSegBilletera'], codigoSeguridadRegex)" class="icono_validacion">
+                            <input type="number" name="codigo_billetera" formControlName="InputCodSegBilletera">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
-                            <p class="mensaje_error" *ngIf="">solo debe contener 3 numeros!</p>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputCodSegBilletera'])">solo debe contener 3 numeros!</p>
                             <!-- fecha expiración -->
                             <label for="expiracion_billetera"><b>Selecciona la fecha de expiración:</b></label> <br>
-                            <img [src]="" class="icono_validacion">
-                            <input type="month" name="expiracion_billetera" formControlName="">
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputExpBilletera'], expiracionRegex)" class="icono_validacion">
+                            <input type="month" name="expiracion_billetera" formControlName="InputExpBilletera">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> 
                             <hr>
                         </div>
@@ -185,7 +185,7 @@
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
-                        <button type="submit" id="Finalizar" class="botones_form" [disabled]="!cajaValidacion.valid">Finalizar Compra</button><br>
+                        <button type="submit" id="Finalizar" class="botones_form">Finalizar Compra</button><br>
                     </div>
                 </form>
             </div>
@@ -218,11 +218,15 @@
                     <img src="../../../assets/imagenes-tienda/delivery-icon.gif" alt="delivery">
                     <div class="titulo">
                         <img src="../../../assets/imagenes-tienda/done-icon.png" id="done_icon" alt="done">
-                        <h3>Compra realizada con exito</h3>
+                        <h3 *ngIf="!pagoTransferencia">Compra realizada con exito</h3>
+                        <h3 *ngIf="pagoTransferencia">Se esta validando tu transferencia</h3>
                     </div>
-                    <p>Ya estamos gestionando el envío, via mail recibiras las notificaciones relacioandas
-                        al mismo. La factura será enviada por mail también.
-                    </p>
+                    <div id="informacion_envio">
+                        <p>Via mail seras notificado cuando el envio este en camino.
+                            Gracias por tu Compra!
+                        </p>
+                        <p style="color: green; margin-top: 10px;"><b>GardeningFriend©</b></p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -42,7 +42,7 @@ export class LayoutTiendaComponent{
   // lista de productos:
   products = [
     {
-      image: '../../../assets/imagenes-tienda/pala.jpeg',
+      image: '../../../assets/imagenes-tienda/pala-logo.jpeg',
       name: 'Pala Jardinera',
       precio: 1000,
       category: 'Herramientas',
@@ -51,7 +51,7 @@ export class LayoutTiendaComponent{
       display : "grid"
     },
     {
-      image: '../../../assets/imagenes-tienda/regadora.jpeg',
+      image: '../../../assets/imagenes-tienda/regadora-logo.jpeg',
       name: 'Regadora',
       precio: 1500,
       category: 'herramientas',
@@ -60,16 +60,16 @@ export class LayoutTiendaComponent{
       display : "grid"
     },
     {
-      image: '../../../assets/imagenes-tienda/girasol.jpeg',
-      name: 'Semillas de Girasol',
-      precio: 20,
+      image: '../../../assets/imagenes-tienda/tomate.jpg',
+      name: 'Semillas de Tomate',
+      precio: 30,
       category: 'semillas',
       description: 'peso y dimensiones',
       stock: 1000,
       display : "grid"
     },
     {
-      image: '../../../assets/imagenes-tienda/calabaza.jpeg',
+      image: '../../../assets/imagenes-tienda/calabaza.jpg',
       name: 'Semillas de Calabaza',
       precio: 30,
       category: 'semillas',
@@ -129,6 +129,9 @@ export class LayoutTiendaComponent{
 
   // variables booleanas (modales finalizar compra):
   compraRealizada:boolean = false;
+  datosPagoOk:boolean = false;
+  datosDireccion:boolean = false;
+  pagoTransferencia:boolean = false;
   
   // FUNCIONALIDADES:
   comprarProducto(event: MouseEvent){
@@ -188,6 +191,7 @@ export class LayoutTiendaComponent{
   this.remarcarMensajeCantidad = false;
   // se cierra modal:
   this.abirFormasPago = false;
+  this.compraRealizada = false;
   
   }
 
@@ -214,24 +218,54 @@ export class LayoutTiendaComponent{
   cajaValidacion = new FormGroup({
     //metodo de pago:
     medioPagoSeleccionado: new FormControl('',Validators.required),
-    // datos tarjeta
+    // datos tarjeta credito / debito:
     InputNumeroTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.numeroTarjetaRegex)]),
     InputCodSegTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.codigoSeguridadRegex)]),
     InputExpTarjeta: new FormControl('', [Validators.required, Validators.pattern(this.validarExpiracion())]),
-    // datos direccion
+    //datos billetera virtual:
+    InputNumeroBilletera: new FormControl('', [Validators.required, Validators.pattern(this.numeroTarjetaRegex)]),
+    InputCodSegBilletera: new FormControl('', [Validators.required, Validators.pattern(this.codigoSeguridadRegex)]),
+    InputExpBilletera: new FormControl('', [Validators.required, Validators.pattern(this.validarExpiracion())]),
+    // datos direccion:
     InputDireccion: new FormControl('', [Validators.required, Validators.pattern(this.direccionRegex)]),
     InputProvincia: new FormControl('', [Validators.required, Validators.pattern(this.provinciaRegex)]),
     InputLocalidad: new FormControl('', [Validators.required, Validators.pattern(this.localidadRegex)]),
   });
 
   onSubmit(){
-    // validacion final
-    console.log('Raw form values:', this.cajaValidacion.getRawValue());
-    if (this.cajaValidacion.valid) {
-      console.log("compra realizada con exito");
+    // validacion final de campos (medios de pago):
+    if(this.cajaValidacion.controls['medioPagoSeleccionado'].value == "tajeta_credito_debito"){
+      if(this.cajaValidacion.controls['InputExpTarjeta'].valid && 
+        this.cajaValidacion.controls['InputCodSegTarjeta'].valid &&
+        this.cajaValidacion.controls['InputExpTarjeta'].valid){
+      } else{
+        alert("faltan campos por completar!");
+      }
+    // si todos los valores de la billetera virtual estan OK:
+    } else if(this.cajaValidacion.controls['medioPagoSeleccionado'].value == "billetera_virtual"){
+      if(this.cajaValidacion.controls['InputNumeroBilletera'].valid && 
+        this.cajaValidacion.controls['InputCodSegBilletera'].valid &&
+        this.cajaValidacion.controls['InputExpBilletera'].valid){
+          this.datosPagoOk = true;
+      } else{
+        alert("faltan campos por completar!");
+      }
+    // la validacion se hace via backend / revisando comprobante
+    } else if(this.cajaValidacion.controls['medioPagoSeleccionado'].value == "transferencia"){
+      this.datosPagoOk = true;
+      this.pagoTransferencia = true;
+    } else {alert("no seleccionaste ningún medio de pago!")};
+    
+    // validacion campos direccion
+    if(this.cajaValidacion.controls['InputDireccion'].valid &&
+      this.cajaValidacion.controls['InputProvincia'].valid &&
+      this.cajaValidacion.controls['InputLocalidad'].valid){
+        this.datosDireccion = true;
+      }
+  
+    // validacion final (datos pago + direccion):
+    if (this.datosPagoOk && this.datosDireccion){
       this.compraRealizada = true;
-    } else {
-      console.log("hay campos que no fueron completados exitosamente");
     }
   }
 
