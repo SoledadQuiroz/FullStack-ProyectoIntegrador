@@ -56,7 +56,7 @@
                     <h3>{{nombreProdSeleccionado}}</h3>
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
-                        <input type="number" name="cantidad" min="1" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
+                        <input type="number" name="cantidad" min="1" value="1" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
                         <br><hr>
                     </div>
                     <ul class="detalles_formulario">
@@ -156,6 +156,7 @@
 
                         <!-- ingresa tu direccion -->
                         <div id="info_direccion">
+                            <!-- especifica tu direccion -->
                             <label for="direccion"><b>Ingresa tu dirección:</b> {{cajaValidacion.controls['InputDireccion'].value}}</label><br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputDireccion'], direccionRegex)" class="icono_validacion">
                             <input type="text" name="direccion" formControlName="InputDireccion"><br>
@@ -170,7 +171,24 @@
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputLocalidad'], localidadRegex)" class="icono_validacion">
                             <input type="text" name="ciudad" formControlName="InputLocalidad"> <br>
                             <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputLocalidad'])">no se permiten numeros ni carac. especiales! </p>
-                            <hr>
+                            
+                            <!-- select para provincia -->
+                            <!-- <label for="provincia">Selecciona una provincia:</label> <br>
+                            <select id="provincia" name="provincia">
+                                <option *ngFor="let item of itemsProvincias$ | async" [value]="item.id">{{item.nombre}}</option>
+                            </select> <br> -->
+                            
+                            <!-- select para municipio -->
+                            <!-- <label for="municipio">Selecciona una provincia:</label> <br>
+                            <select id="municipio" name="municipio">
+                                <option value="elegir_municipio">Elige un municipio</option>
+                            </select> <br> -->
+
+                            <!-- select para localidad -->
+                            <!-- <label for="localidad">Selecciona una localidad:</label> <br>
+                            <select id="localidad" name="localidad">
+                                <option value="elegir_localidad">Elige una localidad</option>
+                            </select> <br> -->
                         </div>
 
                         <!-- costos -->
@@ -181,6 +199,12 @@
                             <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['InputDireccion'], cajaValidacion.controls['InputProvincia'], cajaValidacion.controls['InputLocalidad'] )}}</b></p>
                             <hr>
                             <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
+                        </div>
+
+                        <!-- mensaje error -->
+                        <div id="error_formulario" *ngIf="noHayMedioPago || errorInputs">
+                            <img src="../../../assets/imagenes-tienda/error-icon.gif" alt="error">
+                            <p> Hay errores y/o campos incompletos en el formulario, revisa tus datos!</p> <br>
                         </div>
                     </div>
                     <!-- botones -->
@@ -230,6 +254,5 @@
                 </div>
             </div>
         </div>
-
     </section>
 </div>
