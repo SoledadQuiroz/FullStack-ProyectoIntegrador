@@ -7,11 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class ApiRegionesService {
 
-  //private urlProvincias = 'https://apis.datos.gob.ar/georef/api/provincias';
-
   constructor(private http: HttpClient) { }
 
   getDataProvincias() {
     return this.http.get('https://apis.datos.gob.ar/georef/api/provincias');
+  }
+
+  getDataMunicipios(provinciaID:number){
+    return this.http.get(`https://apis.datos.gob.ar/georef/api/municipios?provincia=${provinciaID}&campos=id,nombre&max=100`);
+  }
+
+  getDataLocalidades(MunicipioID:number){
+    return this.http.get(`https://apis.datos.gob.ar/georef/api/localidades?municipio=${MunicipioID}&campos=id,nombre&max=100`);
   }
 }

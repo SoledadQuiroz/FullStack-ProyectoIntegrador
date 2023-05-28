@@ -25,9 +25,8 @@ export class LayoutTiendaComponent implements OnInit{
     }
   }
   // regiones obtenidas por la API
-  //itemsProvincias$:any = [];
-  //listaProvincias$:any;
   dataProvincias$:any;
+  dataMunicipios$:any;
   dataLocalidades$: any;
 
   constructor(private ApiRegionesService: ApiRegionesService) { }
@@ -114,10 +113,11 @@ export class LayoutTiendaComponent implements OnInit{
   envioProvincia:number = 1000;
   envioPais:number = 2000;
   // regiones
-  direccionSeleccionada:string = "";
-  ciudadSeleccionada:string = "";
-  provinciaSeleccionada:string = "";
   costoRegionSeleccionada:number = 0;
+  direccionSeleccionada:string = "";
+  nombreProvincia:any;
+  nombreMunicipio:any;
+  nombreLocalidad:any;
   // costo final
   valorTotalCompra:number = this.costoCompra + this.costoRegionSeleccionada;
   //expresiones regulares
@@ -269,6 +269,11 @@ export class LayoutTiendaComponent implements OnInit{
     InputDireccion: new FormControl('', [Validators.required, Validators.pattern(this.direccionRegex)]),
     InputProvincia: new FormControl('', [Validators.required, Validators.pattern(this.provinciaRegex)]),
     InputLocalidad: new FormControl('', [Validators.required, Validators.pattern(this.localidadRegex)]),
+    // datos select region:
+    SelectProvincia: new FormControl('',Validators.required),
+    SelectMunicipio: new FormControl('',Validators.required),
+    SelectLocalidad: new FormControl('',Validators.required),
+
   });
 
   ngOnInit(){
@@ -283,18 +288,15 @@ export class LayoutTiendaComponent implements OnInit{
       }
     });
     
-    // consume los datos de pronvica desde la API:
+    // consume los datos de cada provincia desde la API:
     this.ApiRegionesService.getDataProvincias().subscribe((response: any) => {
       // datos provincias:
       this.dataProvincias$ = response.provincias;
-      console.log(this.dataProvincias$);
-      // datos localidades:
-      this.dataProvincias$ = response.provincias;
+      console.log("provincias", this.dataProvincias$);
     });
+
   }
   
-
-
   onSubmit(){
     // validacion final de campos (medios de pago):
     if(this.metodoSeleccionado == "tajeta_credito_debito"){
@@ -321,8 +323,9 @@ export class LayoutTiendaComponent implements OnInit{
     } else {this.noHayMedioPago = true};
     // validacion campos direccion
     if(this.cajaValidacion.controls['InputDireccion'].valid &&
-      this.cajaValidacion.controls['InputProvincia'].valid &&
-      this.cajaValidacion.controls['InputLocalidad'].valid){
+      this.cajaValidacion.controls['SelectProvincia'].valid &&
+      this.cajaValidacion.controls['SelectMunicipio'].valid &&
+      this.cajaValidacion.controls['SelectLocalidad'].valid){
         this.datosDireccion = true;
       }
     // validacion final (datos pago + direccion):
@@ -351,29 +354,22 @@ export class LayoutTiendaComponent implements OnInit{
 
   }
 
-  calcularEnvio(direccion:FormControl, provincia:FormControl, localidad:FormControl){
+  calcularEnvio(provincia:FormControl){
     // 1ro - se valida que los campos esten completo
-    const dirValue = direccion.value;
     const proValue = provincia.value;
-    const locValue = localidad.value;
-    // 1ro - se validan si los campos estan completados:
-    if (dirValue != "" && proValue != "" && locValue != ""){
-      // 2do - se valida si el envio es a otra provincia:
-      if (proValue.toLowerCase() == "cordoba" || proValue.toLowerCase() == "córdoba"){
-        // 3ro - se valida si el envio es al interior de la provincia o la capital:
-        if (locValue.toLowerCase() == "cordoba capital" || locValue.toLowerCase() == "córdoba capital"){
-          this.costoRegionSeleccionada = this.envioCiudad;
-          return "$" + this.costoRegionSeleccionada;
-        } else {
-          this.costoRegionSeleccionada = this.envioProvincia;
-          return "$" + this.costoRegionSeleccionada;
-        }
-      } else{
-        this.costoRegionSeleccionada = this.envioPais;
-        return "$" + this.costoRegionSeleccionada;
-      }
+    if(proValue == "Córdoba"){
+      // envio a provincia:
+      this.costoRegionSeleccionada = this.envioProvincia;
+      return "$" + this.costoRegionSeleccionada;
+
+    } else if(proValue == ""){
+      // campo vacio:
+      return "calulando..";
+
     } else{
-      return "calculando..";
+      // otra provincia:
+      this.costoRegionSeleccionada = this.envioPais;
+      return "$" + this.costoRegionSeleccionada;
     }
   }
 
@@ -387,4 +383,25 @@ export class LayoutTiendaComponent implements OnInit{
       return false;
     }
   }
+
+  onSelectProvincia(){
+    // se obtiene la prov seleccionada:
+    this.nombreProvincia = this.cajaValidacion.get('SelectProvincia')!.value;
+    // se seleccionan los municipios correspondientes a la provincia:
+    this.ApiRegionesService.getDataMunicipios(this.nombreProvincia).subscribe((response:any) => {
+      this.dataMunicipios$ = response.municipios;
+      console.log("municipios", this.dataMunicipios$);
+    });
+  }
+
+  onSelectMunicipio(){
+    //se obtiene el municipio seleccionado:
+    this.nombreMunicipio = this.cajaValidacion.get('SelectMunicipio')!.value;
+    // se muestran as localidades correspondientes:
+    this.ApiRegionesService.getDataLocalidades(this.nombreMunicipio).subscribe((response:any) => {
+      this.dataLocalidades$ = response.localidades;
+      console.log("localidades", this.dataMunicipios$);
+    });
+  }
+
 }

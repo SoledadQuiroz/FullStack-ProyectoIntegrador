@@ -162,33 +162,26 @@
                             <input type="text" name="direccion" formControlName="InputDireccion"><br>
                             <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputDireccion'])">solo se permiten caracteres alfanumericos!</p>
                             
-                            <label for="provincia" ><b> Provincia:</b> {{cajaValidacion.controls['InputProvincia'].value}} </label> <br>
-                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputProvincia'], provinciaRegex)" class="icono_validacion">
-                            <input type="text" name="provincia" formControlName="InputProvincia"> <br>
-                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputProvincia'])">no se permiten numeros ni carac. especiales!</p>
-                            
-                            <label for="ciudad"><b> Localidad: </b> {{cajaValidacion.controls['InputLocalidad'].value}} </label> <br>
-                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputLocalidad'], localidadRegex)" class="icono_validacion">
-                            <input type="text" name="ciudad" formControlName="InputLocalidad"> <br>
-                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputLocalidad'])">no se permiten numeros ni carac. especiales! </p>
-                            
                             <!-- select para provincia -->
                             <label for="provincia">Selecciona una provincia:</label> <br>
-                            <select id="provincia" name="provincia">
-                                <option *ngFor="let item of dataProvincias$" [value]="item.id">{{item.nombre}}</option>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectProvincia'], provinciaRegex)" class="icono_validacion">
+                            <select id="provincia" name="provincia" formControlName="SelectProvincia" (change)="onSelectProvincia()">
+                                <option *ngFor="let item of dataProvincias$" [value]="item.nombre"> {{item.nombre}}</option>
                             </select> <br>
                             
                             <!-- select para municipio -->
-                            <!-- <label for="municipio">Selecciona una provincia:</label> <br>
-                            <select id="municipio" name="municipio">
-                                <option value="elegir_municipio">Elige un municipio</option>
-                            </select> <br> -->
+                            <label for="municipio">Selecciona un municipio:</label> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectMunicipio'], localidadRegex)" class="icono_validacion">
+                            <select id="municipio" name="municipio" formControlName="SelectMunicipio" (change)="onSelectMunicipio()" >
+                                <option *ngFor="let item of dataMunicipios$" [value]="item.nombre" > {{item.nombre}}</option>
+                            </select> <br>
 
                             <!-- select para localidad -->
-                            <!-- <label for="localidad">Selecciona una localidad:</label> <br>
-                            <select id="localidad" name="localidad">
-                                <option value="elegir_localidad">Elige una localidad</option>
-                            </select> <br> -->
+                            <label for="localidad">Selecciona una localidad:</label> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectLocalidad'], localidadRegex)" class="icono_validacion">
+                            <select id="localidad" name="localidad" type="" formControlName="SelectLocalidad">
+                                <option *ngFor="let item of dataLocalidades$" [value]="item.nombre"> {{item.nombre}}</option>
+                            </select> <br>
                         </div>
 
                         <!-- costos -->
@@ -196,7 +189,7 @@
                             <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
                             <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
                             <p>Costo compra: <b>${{costoCompra}}</b></p>
-                            <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['InputDireccion'], cajaValidacion.controls['InputProvincia'], cajaValidacion.controls['InputLocalidad'] )}}</b></p>
+                            <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['SelectProvincia'])}}</b></p>
                             <hr>
                             <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
                         </div>
