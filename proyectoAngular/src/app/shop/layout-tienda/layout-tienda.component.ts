@@ -25,8 +25,10 @@ export class LayoutTiendaComponent implements OnInit{
     }
   }
   // regiones obtenidas por la API
-  itemsProvincias$:any = [];
-  listaProvincias: any = [];
+  //itemsProvincias$:any = [];
+  //listaProvincias$:any;
+  dataProvincias$:any;
+  dataLocalidades$: any;
 
   constructor(private ApiRegionesService: ApiRegionesService) { }
 
@@ -282,11 +284,16 @@ export class LayoutTiendaComponent implements OnInit{
     });
     
     // consume los datos de pronvica desde la API:
-    this.ApiRegionesService.getDataProvincias().subscribe(data => {
-      this.itemsProvincias$.push(data);
+    this.ApiRegionesService.getDataProvincias().subscribe((response: any) => {
+      // datos provincias:
+      this.dataProvincias$ = response.provincias;
+      console.log(this.dataProvincias$);
+      // datos localidades:
+      this.dataProvincias$ = response.provincias;
     });
-    console.log(this.itemsProvincias$);
   }
+  
+
 
   onSubmit(){
     // validacion final de campos (medios de pago):
