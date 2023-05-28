@@ -25,7 +25,8 @@ export class LayoutTiendaComponent implements OnInit{
     }
   }
   // regiones obtenidas por la API
-  itemsProvincias$:any;
+  itemsProvincias$:any = [];
+  listaProvincias: any = [];
 
   constructor(private ApiRegionesService: ApiRegionesService) { }
 
@@ -281,7 +282,10 @@ export class LayoutTiendaComponent implements OnInit{
     });
     
     // consume los datos de pronvica desde la API:
-    this.itemsProvincias$ = this.ApiRegionesService.getDataProvincias();
+    this.ApiRegionesService.getDataProvincias().subscribe(data => {
+      this.itemsProvincias$.push(data);
+    });
+    console.log(this.itemsProvincias$);
   }
 
   onSubmit(){

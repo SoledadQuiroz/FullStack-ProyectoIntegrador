@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class ApiRegionesService {
 
-  private urlProvincias = 'https://apis.datos.gob.ar/georef/api/provincias';
+  //private urlProvincias = 'https://apis.datos.gob.ar/georef/api/provincias';
 
   constructor(private http: HttpClient) { }
 
-  getDataProvincias(): Observable<any> {
-    return this.http.get<any>(this.urlProvincias);
+  getDataProvincias() {
+    return this.http.get('https://apis.datos.gob.ar/georef/api/provincias');
   }
 }
