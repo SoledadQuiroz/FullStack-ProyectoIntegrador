@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-productos',
@@ -6,38 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent{
-  public products = [
-    {
-      image: '../../../assets/pala-jardineria.JPG',
-      name: 'Pala Jardinera',
-      precio: 0,
-      category: 'Herramientas',
-      description: 'peso y dimensiones',
-      stock: 10
-    },
-    {
-      image: '../../../assets/regadora.jpg',
-      name: 'Regadora',
-      precio: 0,
-      category: 'herramientas',
-      description: 'peso y dimensiones',
-      stock: 10
-    },
-    {
-      image: '../../../assets/girasol.jpg',
-      name: 'Semillas de Girasol',
-      precio: 0,
-      category: 'semillas',
-      description: 'peso y dimensiones',
-      stock: 1000
-    },
-    {
-      image: '../../../assets/semillas-calabaza.jpg',
-      name: 'Semillas de Calabaza',
-      precio: 0,
-      category: 'semillas',
-      description: 'peso y dimensiones',
-      stock: 10
-    },
-  ];
+  constructor(private dialogRef: MatDialogRef<ProductosComponent>) {}
+
+  close(): void {
+    this.dialogRef.close();
+  }
 }

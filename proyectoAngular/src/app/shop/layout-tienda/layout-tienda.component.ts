@@ -2,6 +2,8 @@ import { Component, ElementRef, Input, OnInit} from '@angular/core';
 import { HtmlTagDefinition } from '@angular/compiler';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiRegionesService } from '../../services/api-regiones.service';
+import { ProductosComponent } from '../productos/productos.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-layout-tienda',
@@ -10,6 +12,8 @@ import { ApiRegionesService } from '../../services/api-regiones.service';
 })
 
 export class LayoutTiendaComponent implements OnInit{
+  
+  constructor(private ApiRegionesService: ApiRegionesService, private dialog: MatDialog){ }
 
   // instruccion para utilizar el modulo elementRed
   //constructor(private elementRef: ElementRef){}
@@ -28,9 +32,6 @@ export class LayoutTiendaComponent implements OnInit{
   dataProvincias$:any;
   dataMunicipios$:any;
   dataLocalidades$: any;
-
-  constructor(private ApiRegionesService: ApiRegionesService) { }
-
   // PROPIEDADES:
   // funcionalidad buscador:
   palabraBusqueda:string = "";
@@ -142,6 +143,9 @@ export class LayoutTiendaComponent implements OnInit{
   noHayMedioPago:boolean = false;
   // propiedades API regiones:
   provincias_options: Array<object> = [];
+  // modal detalles productos
+  detallesProducto:boolean = false;
+  detallesProdNombre:string = "";
 
   // FUNCIONALIDADES:
   comprarProducto(event: MouseEvent){
@@ -402,6 +406,25 @@ export class LayoutTiendaComponent implements OnInit{
       this.dataLocalidades$ = response.localidades;
       console.log("localidades", this.dataMunicipios$);
     });
+  }
+
+  mostrarDetalles(event:MouseEvent){
+    // 1 - se abre el modal:
+    this.detallesProducto = true;
+    // 2 - se identifica el producto clickeado:
+    const clickedItem = event.target as HTMLElement;
+    const productoSeleccionado = clickedItem.parentElement!.parentElement;
+    console.log(productoSeleccionado);
+    // 3 - se busca el mismo en el array 'products':
+    this.products.forEach(element => {
+      if (productoSeleccionado!.id == element.name){
+        this.detallesProdNombre = element.name;
+      }
+    });
+  }
+
+  openDialogDetalles(): void {
+    this.dialog.open(ProductosComponent);
   }
 
 }

@@ -37,6 +37,9 @@
     --fuenteAlt: white;
     --gris1: #747474;
 
+    /* colores botones*/
+    --grisBtn: rgb(49, 49, 49);
+
     /*------------------- FONDOS ---------------------*/
     --fondo_deg1: linear-gradient(180deg, rgba(0, 237, 100, 0.6783088235294117) 0%, rgba(255, 255, 255, 1) 42%);
     --fondo_transparente: rgba(0, 0, 0, 0.4);
@@ -92,3 +95,5 @@ html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, variable,
    ol { padding-left: 1.4em; list-style: decimal; }
    ul { padding-left: 1.4em; list-style:square; }
    q:before, q:after { content:''; }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

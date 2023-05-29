@@ -33,9 +33,16 @@
                         <li class="descripcion_producto">Descripción: {{ product.description}} </li>
                     </ul>
                 </div>
-                <!-- boton de compra -->
+                <!-- boton de compra y detalles -->
                 <div class="boton_wrapper">
-                    <button type="button" class="boton_carrito" (click)="comprarProducto($event)"> Comprar</button>
+                    <button type="button" id="btn_comprar" class="boton_tarjeta" (click)="comprarProducto($event)">
+                        <img src="../../../assets/imagenes-tienda/icons8-buying-16.png" alt="icon">
+                        Comprar
+                    </button>
+                    <button type="button" id="btn_detalles" class="boton_tarjeta" (click)="openDialogDetalles()">
+                        <img src="../../../assets/imagenes-tienda/icons8-info-16.png" alt="icon">
+                        Detalles
+                    </button>
                 </div>
             </div>
         </div>
@@ -95,6 +102,7 @@
                         <!-- seleccionar forma de pago -->
                         <label for="opciones_pago"><b>Selecciona una forma de pago:</b></label> <br>
                         <select id="opciones_pago" name="pagos" formControlName="medioPagoSeleccionado">
+                            <option value="" disabled selected>Selecciona metodo de pago</option>
                             <option value="tajeta_credito_debito">Tarjeta Credito / debito</option>
                             <option value="transferencia"> Transferencia bancaria</option>
                             <option value="billetera_virtual">Billetera virtual</option>
@@ -166,6 +174,7 @@
                             <label for="provincia">Selecciona una provincia:</label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectProvincia'], provinciaRegex)" class="icono_validacion">
                             <select id="provincia" name="provincia" formControlName="SelectProvincia" (change)="onSelectProvincia()">
+                                <option value="" disabled selected>Selecciona una opción</option>
                                 <option *ngFor="let item of dataProvincias$" [value]="item.nombre"> {{item.nombre}}</option>
                             </select> <br>
                             
@@ -173,6 +182,7 @@
                             <label for="municipio">Selecciona un municipio:</label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectMunicipio'], localidadRegex)" class="icono_validacion">
                             <select id="municipio" name="municipio" formControlName="SelectMunicipio" (change)="onSelectMunicipio()" >
+                                <option value="" disabled selected>Selecciona una opción</option>
                                 <option *ngFor="let item of dataMunicipios$" [value]="item.nombre" > {{item.nombre}}</option>
                             </select> <br>
 
@@ -180,6 +190,7 @@
                             <label for="localidad">Selecciona una localidad:</label> <br>
                             <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectLocalidad'], localidadRegex)" class="icono_validacion">
                             <select id="localidad" name="localidad" type="" formControlName="SelectLocalidad">
+                                <option value="" disabled selected>Selecciona una opción</option>
                                 <option *ngFor="let item of dataLocalidades$" [value]="item.nombre"> {{item.nombre}}</option>
                             </select> <br>
                         </div>
