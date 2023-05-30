@@ -1,78 +1,92 @@
-/* ------------------- Estilos modal detalles producto ----------------------*/
-/* ajustes generales */
-#contenedor_modal{
+
+/* ------------------------GRID GENERAL----------------------- */
+#grid_productos{
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas: "titulo"
-                          "contenido"
-                          "boton";
-    font-family: secundaria1;
-    box-shadow: var(--sombra1);
-    height: 450px;
+    grid-area: productos;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    grid-auto-rows: minmax(150px, 700px);
+}
+/* ------------------------ARTICULOS----------------------- */
+.productos{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 40% 45% 15% !important;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
     overflow: hidden;
-}
-/* 1ra parte - titulo */
-#contenedor_modal h3{
-    display: flex;
-    grid-area: titulo;
-    height: 100%;
-    width: 100%;
-    background: var(--verde3);
-    justify-content: center;
-    align-items: center;
-    align-self: flex-start;
-    color: white;
-    font-size: bold ;
-    font-size: 1.3rem;
-    font-family: secundaria1;
-}
-/* 2da parte - contenido */
-#contenedor_modal .cnt_modal{
-    display: flex;
-    grid-area: contenido;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    align-self: center;
-    justify-self: center;
-    justify-content: space-evenly;
-    align-items: center;
-    font-size: 1.1rem;
-}
-
-.cnt_modal img{
-    width: 100px;
-    justify-self: center;
-}
-.cnt_modal ul li{
-    margin-top: 10px;
-}
-
-/* 3ra parte - boton cerrar */
-#contenedor_modal .btn_wrapper{
-    display: flex;
-    grid-area: "boton";
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    align-self: flex-end;
-}
-
-button{
-    font-family: secundaria1;
-    background: var(--grisBtn);
-    color: white;
+    font-family: secundaria2;
+    margin: 20px;
+    max-height: 500px;
+    max-width: 500px;
+    box-shadow: 3px 3px 10px 5px var(--fondo_transparente);
     border-radius: 5px;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+    color: var(--fuentePrin2);
+    margin-top: 50px;
 }
-
-button:hover{
-    background: var(--verde3);
+.productos:hover{
+    box-shadow: 3px 3px 10px 5px rgba(0,0,0,.6);
     transition: 0.5s;
 }
 
 
+.productos .img_wrapper{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    background: var(--verde2);
+    width: 100%;
+    height: 100%;
+}
+.productos .img_wrapper .icono_producto{
+    height: 125%;
+}
+
+
+.productos .detalles_producto{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    flex-direction: column;
+    justify-content: space-evenly;
+    justify-self: center;
+    align-items: center;
+    width: 85%;
+    height: 100%;
+}
+.detalles_producto h4{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.detalles_producto ul{
+    line-height: 1.5rem;
+    color: var(--fuentePrin3);
+}
+
+.productos .boton_wrapper{
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.boton_wrapper .boton_carrito{
+    cursor: pointer;
+    color: white;
+    background: var(--fuentePrin2);
+    padding: 5px;
+    font-family: secundaria1;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 2px;
+}
+
+.boton_wrapper .boton_carrito:hover{
+    background: var(--verde2);
+    transition: 0.5s;
+}
