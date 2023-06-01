@@ -1,23 +1,29 @@
-<div id="grid_productos">
-    <div class="productos" *ngFor="let product of products" id="{{ product.name}}">
-        <!-- imagen presentacion -->
-        <div class="img_wrapper">
-            <img src="{{ product.image }}" alt="img_producto" class="icono_producto">
+
+<div class="modal_detalles">
+    <!-- titulo -->
+    <div class="titulo_wrapper">
+        <h4>Descripcion Producto</h4>
+    </div>
+    <!-- descripcion -->
+    <div class="descripcion_detalles">
+        <div id="logo_wrapper">
+            <img src="../../../assets/isologo.png" alt="isologo">
         </div>
-        <!-- info producto -->
-        <div class="detalles_producto">
-            <h4 class="titulo_producto"> {{ product.name }} </h4>
-            <ul class="carac_producto">
-                <li class="precios">Precio:{{product.precio}}</li>
-                <li class="categ_producto">Categoria: {{ product.category }} </li>
-                <li class="stock_producto">Stock: {{ product.stock }}</li>
-                <li class="descripcion_producto">Descripción: {{ product.description}} </li>
-            </ul>
-        </div>
-        <!-- boton de compra -->
-        <div class="boton_wrapper">
-            <button type="button" class="boton_carrito"> Añadir al carrito</button>
-        </div>
+        <ul>
+            <li>Nombre: </li>
+            <li>Categoria: </li>
+            <li>Descripción:</li>
+            <li>Peso: </li>
+            <li>Dimensión: </li>
+            <li>Stock: </li>
+        </ul>
+    </div>
+    <!-- boton cerrar -->
+    <div class="btn_wrapper">
+        <button type="button">
+            cerrar
+        </button>
     </div>
 </div>
+
 

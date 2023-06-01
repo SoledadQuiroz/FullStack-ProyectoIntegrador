@@ -255,7 +255,9 @@
     width: 100%;
     height: 100%;
 }
-.boton_wrapper .boton_carrito{
+
+
+.boton_wrapper .boton_producto{
     cursor: pointer;
     color: white;
     background: var(--fuentePrin2);
@@ -264,9 +266,15 @@
     font-size: 1.1rem;
     border: none;
     border-radius: 2px;
+    justify-content: center;
+    align-items: center;
 }
 
-.boton_wrapper .boton_carrito:hover{
+.boton_wrapper #btn_compra{
+    margin-right: 10px;
+}
+
+.boton_wrapper .boton_producto:hover{
     background: var(--verde2);
     transition: 0.5s;
 }

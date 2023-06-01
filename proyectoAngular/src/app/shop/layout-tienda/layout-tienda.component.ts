@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit} from '@angular/core';
 import { HtmlTagDefinition } from '@angular/compiler';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiRegionesService } from '../../services/api-regiones.service';
+import { ProductosComponent } from '../productos/productos.component';
 
 @Component({
   selector: 'app-layout-tienda',
@@ -142,6 +143,9 @@ export class LayoutTiendaComponent implements OnInit{
   noHayMedioPago:boolean = false;
   // propiedades API regiones:
   provincias_options: Array<object> = [];
+  // valores que se pasan al componente hijo:
+  abrirModDetalles:boolean = true;
+  nombreProductoDetalles:string = "hola";
 
   // FUNCIONALIDADES:
   comprarProducto(event: MouseEvent){
@@ -403,5 +407,15 @@ export class LayoutTiendaComponent implements OnInit{
       console.log("localidades", this.dataMunicipios$);
     });
   }
+
+  verDetalles(event: MouseEvent){
+    // 1 - se abre el modal de los detalles:
+    this.abrirModDetalles = true;
+    // 2 - se identifica el producto clickeado:
+    const clickedItem = event.target as HTMLElement;
+    const producto = clickedItem.parentElement!.parentElement;
+    this.nombreProductoDetalles = producto!.id;
+  }
+
 
 }
