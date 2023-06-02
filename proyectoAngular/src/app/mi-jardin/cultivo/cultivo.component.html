@@ -49,15 +49,17 @@
         <img [src]="cultivo.imagen">
         <p>Nombre del cultivo: <b>{{cultivo.nombre}}</b></p>
         <p>Tipo de cultivo: <b>{{cultivo.tipo}}</b></p>
-        <p>El cultivo germina en <b>{{cultivo.germina}} días</b></p>
-        <p>El cultivo se puede cosechar en <b>{{cultivo.cosecha | convertDaysTo}}</b></p>
-        <p>Temporada para sembrar <b>{{cultivo.temporada}}</b></p>
-        <p>Temperatura máxima: <b>{{cultivo.temperaturaMax}}°C</b></p>
-        <p>Temperatura minima: <b>{{cultivo.temperaturaMin}}°C</b></p>
-        <p>Riego: <b>{{cultivo.riego}}</b></p>
-        <p>cantidad de luz solar: <b>{{cultivo.luz}}</b></p>
-        <p>Profundidad del sembrado: <b>{{cultivo.profundidadSembrado}} centímetros</b></p>
-        <p>Espacio entre cada planta: <b>{{cultivo.espacioPlantas}} centímetros</b></p>
+        <div *ngFor="let crecimiento of cultivo.crecimiento_set">
+        <p>El cultivo germina en <b>{{crecimiento.germina}} días</b></p>
+        <p>El cultivo se puede cosechar en <b>{{crecimiento.cosecha | convertDaysTo}}</b></p>
+        <p>Temporada para sembrar <b>{{crecimiento.temporada}}</b></p>
+        <p>Temperatura máxima: <b>{{crecimiento.temperaturaMax}}°C</b></p>
+        <p>Temperatura minima: <b>{{crecimiento.temperaturaMin}}°C</b></p>
+        <p>Riego: <b>{{crecimiento.riego}}</b></p>
+        <p>cantidad de luz solar: <b>{{crecimiento.luz}}</b></p>
+        <p>Profundidad del sembrado: <b>{{crecimiento.profundidadSembrado}} centímetros</b></p>
+        <p>Espacio entre cada planta: <b>{{crecimiento.espacioPlantas}} centímetros</b></p>
+        </div>
     </div>
 </div>
 

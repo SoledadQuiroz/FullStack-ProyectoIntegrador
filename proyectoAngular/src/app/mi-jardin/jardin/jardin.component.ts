@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Cultivo } from '../cultivo/cultivos.model';
+import { Cultivo, Crecimiento } from '../cultivo/cultivos.model';
 import { CultivosService } from '../../services/cultivos.service';
 
 @Component({
@@ -68,21 +68,27 @@ export class JardinComponent {
   startCountDown(index: number): void {
     console.log('Starting countdown for item at index', index);
     const item: Cultivo = this.cultivosService.cultivoSembrar[index];
-    if(!item.countdownActive){
-      item.countdown = item.cosecha;
+    const crecimiento: Crecimiento = item.crecimiento_set[0]; // Suponemos que solo hay un objeto en crecimiento_set
+    
+    if (!crecimiento.countdownActive) {
+      crecimiento.countdown = crecimiento.cosecha;
+      
       const timerId = setInterval(() => {
-        item.countdown--;
-        if (item.countdown <= 0) {//si el tiempo acaba
+        crecimiento.countdown--;
+        
+        if (crecimiento.countdown <= 0) {
           this.alertText = 'El cultivo ' + item.nombre + ' ya se puede cosechar';
           this.activeCover = !this.activeCover;
           this.activeAlert = !this.activeAlert;
           clearInterval(timerId);
-          this.cultivosService.cultivoSembrar.splice(index, 1); // remueve el cultivo
+          this.cultivosService.cultivoSembrar.splice(index, 1);
         }
       }, 1000);//1000 * 60 * 60 * 24 intervalo por dia
-      item.countdownActive = true;  
+      
+      crecimiento.countdownActive = true;
     }
   }
+  
   
 
   
