@@ -144,7 +144,7 @@ export class LayoutTiendaComponent implements OnInit{
   // propiedades API regiones:
   provincias_options: Array<object> = [];
   // valores que se pasan al componente hijo:
-  abrirModDetalles:boolean = true;
+  abrirModDetalles:boolean = false;
   nombreProductoDetalles:string = "hola";
 
   // FUNCIONALIDADES:
@@ -416,6 +416,10 @@ export class LayoutTiendaComponent implements OnInit{
     const producto = clickedItem.parentElement!.parentElement;
     this.nombreProductoDetalles = producto!.id;
   }
+
+   onBooleanChanged(value: boolean) {
+     this.abrirModDetalles = value;
+   }
 
 
 }

@@ -12,6 +12,8 @@
     background: white;
     border-radius: 5px;
     font-family: secundaria1;
+    box-shadow: var(--sombra1);
+    animation: blur-in-expand 500ms;
 }
 
 .titulo_wrapper{
@@ -74,6 +76,7 @@
     padding: 10px;
     border: none;
     font-size: 1.1rem;
+    cursor: pointer;
 }
 
 .btn_wrapper button:hover{

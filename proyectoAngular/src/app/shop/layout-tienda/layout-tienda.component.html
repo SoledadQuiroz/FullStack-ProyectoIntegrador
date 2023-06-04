@@ -39,7 +39,7 @@
                         <img src="../../../assets/imagenes-tienda/shopping-icon-20px.png" alt="icon">
                         Comprar
                     </button>
-                    <button type="button" class="boton_producto"> 
+                    <button type="button" class="boton_producto" (click)="verDetalles($event)"> 
                         <img src="../../../assets/imagenes-tienda/info-icon-20px.png" alt="icon" id="btn_detalles">
                         Detalles
                     </button>
@@ -260,8 +260,8 @@
         </div>
         <!-- modal - detalles producto -->
         <!-- componente hijo-->
-        <div class="lightbox" *ngIf="abrirModDetalles">
-            <app-productos [prodNombre]="nombreProductoDetalles" *ngIf="abrirModDetalles"></app-productos>
+        <div class="lightbox" *ngIf="abrirModDetalles" [ngClass]="getScreenSize()">
+            <app-productos [prodNombre]="nombreProductoDetalles" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
         </div>
 
     </section>
