@@ -21,6 +21,7 @@ import { MiCuentaComponent } from './auth/mi-cuenta/mi-cuenta.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ConvertDaysToPipe } from './pipes/convert-days-to.pipe';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 const appRoutes:Routes=[
   {path:'', component:HomeComponent},
@@ -31,6 +32,7 @@ const appRoutes:Routes=[
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegistroComponent},
   {path:'micuenta', component:MiCuentaComponent},
+  {path:'dashboard', component:DashboardComponent},
   {path:'**', component:HomeComponent}
 ];
 
@@ -51,7 +53,8 @@ const appRoutes:Routes=[
     HomeComponent,
     MiCuentaComponent,
     FilterPipe,
-    ConvertDaysToPipe
+    ConvertDaysToPipe,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
