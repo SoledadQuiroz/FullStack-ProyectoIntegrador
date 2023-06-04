@@ -1,10 +1,10 @@
 <body>
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form">
             <img src="../../assets/isologo.png" />
             <h1>Iniciar sesión</h1>
             <div class="grupo">
-                <input formControlName="email" type="email" name="" id="email" required  /><span class="barra"></span>
+                <input formControlName="email" type="email" name="" id="email" required  class="form-control" [ngClass]="{ 'is-valid': email.valid, 'is-invalid': email.invalid && (email.dirty || email.touched) }"/><span class="barra"></span>
                 <label for="">Email</label>
                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
 
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="grupo">
-                <input formControlName="password" type="password" name="" id="password" required /><span
+                <input formControlName="password" type="password" name="" id="password" required class="form-control" [ngClass]="{ 'is-valid': password.valid, 'is-invalid': password.invalid && (password.dirty || password.touched) }"/><span
                     class="barra"></span>
                 <label for="">Password</label>
                 <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <p id="mensaje_login"></p>
-            <button type="submit" (click)="login()">Ingresar</button>
+            <button type="submit">Ingresar</button>
             <div class="cuenta">
                 <p>¿No tienes cuenta?</p>
                 <a routerLink="/registro">Registrarse</a>

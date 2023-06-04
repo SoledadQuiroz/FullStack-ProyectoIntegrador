@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
-    password: ["", Validators.required],
+    password: ["", Validators.required,Validators.minLength(8)],
   })
 
   constructor(private formBuilder: FormBuilder, private router: Router) { }
@@ -24,7 +24,7 @@ export class LoginComponent {
     return this.loginForm.controls.password;
   }
   
-  login() {
+  onSubmit() {
     if (this.loginForm.valid) {
       console.log("Llamar al servicio de login");
       this.router.navigateByUrl("");
