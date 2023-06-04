@@ -167,6 +167,8 @@ section{
     font-family: var(--secundaria1);
 }
 
+/* CATEGORY */
+
 .tarjeta .category{
     padding: 30px 0 10px 20px;
     background-color: rgb(255, 255, 255);
@@ -181,6 +183,7 @@ section{
     font-family: var(--secundaria4);
 }
 
+/* BOTONES */
 
 .tarjeta .botones{
     background-color: rgb(255, 255, 255);
@@ -218,6 +221,22 @@ section{
     background-color: #fa4141;    
 }
 
+.tarjeta .botones .eliminar{
+    background-color: #fa4141;    
+}
+
+/* TIEMPO DE COSECHA */
+
+.tarjeta .tiempoCosecha{
+    padding: 10px 10px 20px;
+    font-family: var(--secundaria2);
+    text-align: center;
+}
+
+.tarjeta .tiempoCosecha b{
+    font-family: var(--secundaria4);
+    color: yellowgreen;
+}
 
 .container-info{
     position: fixed;

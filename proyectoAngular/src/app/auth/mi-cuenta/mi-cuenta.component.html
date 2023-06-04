@@ -8,27 +8,27 @@
             <h1>Mi cuenta</h1>
         </picture>
         <!-- formulario de registro  -->
-        <form action="" method="post">
+        <form action="" method="post" (ngSubmit)="updateUser()" *ngIf="user">
             
             <div>
-                <input type="text" required>
-                <label for="">usuario</label>
+                <input type="text" id="user" [(ngModel)]="user.user" name="user" required>
+                <label for="user">usuario</label>
             </div>
             <div>
-                <input type="text" required>
-                <label for="">nombre</label>
+                <input type="text" id="name" [(ngModel)]="user.name" name="name" required>
+                <label for="name">nombre</label>
             </div>
             <div>
-                <input type="email" name="email" required>
-                <label for="">correo electronico</label>
+                <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+                <label for="email">correo electronico</label>
             </div>
             <div>
-                <input type="date" required>
-                <label for="">fecha de nacimiento</label>
+                <input type="date" id="born" [(ngModel)]="user.nacimiento" name="born" required>
+                <label for="born">fecha de nacimiento</label>
             </div>
             <div>
-                <input type="password" required>
-                <label for="">contraseña</label>
+                <input type="password" id="pass" [(ngModel)]="user.password" name="pass" required>
+                <label for="pass">contraseña</label>
             </div>
             <div>
                 <input type="password" required>

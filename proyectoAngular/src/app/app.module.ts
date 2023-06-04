@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +19,9 @@ import { RegistroComponent } from './auth/registro/registro.component';
 import { HomeComponent } from './home/home.component';
 import { MiCuentaComponent } from './auth/mi-cuenta/mi-cuenta.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ConvertDaysToPipe } from './pipes/convert-days-to.pipe';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 const appRoutes:Routes=[
   {path:'', component:HomeComponent},
@@ -30,6 +32,7 @@ const appRoutes:Routes=[
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegistroComponent},
   {path:'micuenta', component:MiCuentaComponent},
+  {path:'dashboard', component:DashboardComponent},
   {path:'**', component:HomeComponent}
 ];
 
@@ -48,7 +51,10 @@ const appRoutes:Routes=[
     LoginComponent,
     RegistroComponent,
     HomeComponent,
-    MiCuentaComponent
+    MiCuentaComponent,
+    FilterPipe,
+    ConvertDaysToPipe,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,7 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

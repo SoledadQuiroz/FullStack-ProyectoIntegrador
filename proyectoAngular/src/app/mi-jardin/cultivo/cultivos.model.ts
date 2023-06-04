@@ -3,6 +3,11 @@ export interface Cultivo{
     nombre: string;
     imagen: string;
     tipo: string;
+    crecimiento_set: Crecimiento[]
+}
+
+export interface Crecimiento {
+    id_crecimiento: number;
     germina: number;
     cosecha: number;
     temporada: string;
@@ -12,4 +17,6 @@ export interface Cultivo{
     luz: string;
     profundidadSembrado: number;
     espacioPlantas: number;
-}
+    countdown: number;
+    countdownActive:boolean;
+  }
