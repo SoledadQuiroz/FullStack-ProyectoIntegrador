@@ -261,7 +261,7 @@
         <!-- modal - detalles producto -->
         <!-- componente hijo-->
         <div class="lightbox" *ngIf="abrirModDetalles" [ngClass]="getScreenSize()">
-            <app-productos [prodNombre]="nombreProductoDetalles" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
+            <app-productos [prodNombre]="nombreProductoDetalles" [prodDetalles]="products" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
         </div>
 
     </section>

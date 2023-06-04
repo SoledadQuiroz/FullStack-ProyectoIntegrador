@@ -1,7 +1,7 @@
 <div class="modal_detalles">
     <!-- titulo -->
     <div class="titulo_wrapper">
-        <h4>Descripcion Producto</h4>
+        <h4>Detalles de Producto</h4>
     </div>
     <!-- descripcion -->
     <div class="descripcion_detalles">
@@ -9,12 +9,12 @@
             <img src="../../../assets/isologo.png" alt="isologo">
         </div>
         <ul>
-            <li>Nombre: </li>
-            <li>Categoria: </li>
-            <li>Descripción:</li>
-            <li>Peso: </li>
-            <li>Dimensión: </li>
-            <li>Stock: </li>
+            <!-- se cargan los datos desde la API -->
+            <li>Nombre: <b>{{nombre}}</b> </li>
+            <li>Categoría: <b>{{categoria}}</b> </li>
+            <li>Peso: <b>{{peso}}</b> </li>
+            <li>Dimensión: <b>{{dimension}}</b> </li>
+            <li>Stock: <b>{{stock}}</b> </li>
         </ul>
     </div>
     <!-- boton cerrar -->

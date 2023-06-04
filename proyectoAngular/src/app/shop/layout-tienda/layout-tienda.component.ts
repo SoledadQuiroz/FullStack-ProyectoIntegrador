@@ -53,36 +53,44 @@ export class LayoutTiendaComponent implements OnInit{
       name: 'Pala Jardinera',
       precio: 1000,
       category: 'Herramientas',
-      description: 'peso y dimensiones',
+      description: 'producto de alta calidad',
       stock: 100,
-      display : "grid"
+      display : "grid",
+      peso: "200grs",
+      dimension: "40cm",
     },
     {
       image: '../../../assets/imagenes-tienda/regadora-logo.jpeg',
       name: 'Regadora',
       precio: 1500,
       category: 'herramientas',
-      description: 'peso y dimensiones',
+      description: 'producto de alta calidad',
       stock: 100,
-      display : "grid"
+      display : "grid",
+      peso: "(capacidad): 2lts",
+      dimension: "30cm"
     },
     {
       image: '../../../assets/imagenes-tienda/tomate.jpg',
       name: 'Semillas de Tomate',
       precio: 30,
       category: 'semillas',
-      description: 'peso y dimensiones',
+      description: 'producto de alta calidad',
       stock: 1000,
-      display : "grid"
+      display : "grid",
+      peso: "2grs",
+      dimension: "3mm",
     },
     {
       image: '../../../assets/imagenes-tienda/calabaza.jpg',
       name: 'Semillas de Calabaza',
       precio: 30,
       category: 'semillas',
-      description: 'peso y dimensiones',
+      description: 'producto de alta calidad',
       stock: 1000,
-      display : "grid"
+      display : "grid",
+      peso: "2grs",
+      dimension: "3mm",
     },
   ];
   //valores para insertar en el modal de compra:
