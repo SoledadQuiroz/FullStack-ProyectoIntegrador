@@ -1,18 +1,36 @@
 <body>
-    <form action="" method="POST" id="form">
+    <form [formGroup]="loginForm">
         <div class="form">
             <img src="../../assets/isologo.png" />
             <h1>Iniciar sesión</h1>
             <div class="grupo">
-                <input type="email" name="" id="email" required /><span class="barra"></span>
+                <input formControlName="email" type="email" name="" id="email" required  /><span class="barra"></span>
                 <label for="">Email</label>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                    <div *ngIf="email.errors?.['required']">
+                        El email es requerido.
+                    </div>
+                    <div *ngIf="email.errors?.['email']">
+                        El email debe tener un formato válido.
+                    </div>
+
+                </div>
             </div>
             <div class="grupo">
-                <input type="password" name="" id="password" required /><span class="barra"></span>
+                <input formControlName="password" type="password" name="" id="password" required /><span
+                    class="barra"></span>
                 <label for="">Password</label>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+
+                    <div *ngIf="password.errors?.['required']">
+                        El password es requerido.
+                    </div>
+
+                </div>
             </div>
             <p id="mensaje_login"></p>
-            <button type="submit" onclick="return validarDatos()">Ingresar</button>
+            <button type="submit" (click)="login()">Ingresar</button>
             <div class="cuenta">
                 <p>¿No tienes cuenta?</p>
                 <a routerLink="/registro">Registrarse</a>

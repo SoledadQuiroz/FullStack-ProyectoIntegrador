@@ -208,3 +208,13 @@ img {
     color: var(--verde4);
     padding-top: 20px;
 }
+
+/* validacion */
+
+.ng-valid:not(form).ng-touched {
+    border-left: 5px solid green;
+}
+
+.ng-invalid:not(form).ng-touched {
+    border-left: 5px solid red;
+}
