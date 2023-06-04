@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class MiCuentaComponent implements OnInit {
   userForm = this.formBuilder.group({
-    username: ['', Validators.required,Validators.minLength(4)],
-    password: ['', Validators.required,Validators.minLength(8)],
+    username: ['',[ Validators.required,Validators.minLength(4)]],
+    password: ['',[ Validators.required,Validators.minLength(8)]],
     confirmPassword: ['', Validators.required],
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],

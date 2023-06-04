@@ -9,13 +9,17 @@
         </picture>
         <!-- formulario de registro  -->
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-
             <div>
                 <input type="text" formControlName="username" class="form-control" required>
                 <label for="username">Usuario</label>
                 <div *ngIf="userForm.controls.username.invalid && userForm.controls.username.touched"
                     class="error-message">
-                    Usuario es requerido.
+                    <div *ngIf="userForm.controls.username.errors?.['required']">
+                        Usuario es requerido.
+                    </div>
+                    <div *ngIf="userForm.controls.username.errors?.['minlength']">
+                        Usuario debe tener al menos 4 caracteres.
+                    </div>
                 </div>
             </div>
             <div>
@@ -45,7 +49,12 @@
                 <label for="password">Contraseña</label>
                 <div *ngIf="userForm.controls.password.invalid && userForm.controls.password.touched"
                     class="error-message">
-                    Contraseña es requerida.
+                    <div *ngIf="userForm.controls.password.errors?.['required']">
+                        Contraseña es requerida.
+                    </div>
+                    <div *ngIf="userForm.controls.password.errors?.['minlength']">
+                        Contraseña debe tener al menos 8 caracteres.
+                    </div>
                 </div>
             </div>
             <div>
@@ -61,8 +70,8 @@
                 </div>
             </div>
             <button type="submit" [disabled]="userForm.invalid">Registrarme</button>
-
         </form>
+
 
 
     </main>
