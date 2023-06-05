@@ -2,7 +2,11 @@
     --colorTextos: #928e8e67;
     --fondo:linear-gradient(to right, #56ab2f, #a8e063);
 } */
-
+/*------------------------------ FUENTES ---------------------------------*/
+@font-face {
+    font-family: "principal";
+    src: url("../../../assets/fuentes/Karma-Regular.ttf");
+}
 *,
 ::before,
 ::after {
@@ -12,7 +16,7 @@
 }
 body {
     display: flex;
-    font-family: 'Roboto';
+    font-family: 'principal';
     background: var(--fondo);
     height: 95vh;
     justify-content: center;
@@ -99,7 +103,7 @@ form div{
    
 }
 button {
-    font-family: 'roboto';
+    font-family: 'principal';
     background: #56ab2f;
     border: none;
     display: block;
@@ -108,9 +112,21 @@ button {
     color: #fff;
     height: 40px;
     font-size: 16px;
-    font-weight: 600;
     cursor: pointer;
     grid-column-start: 1;
     grid-column-end: 3;
     justify-self: center;
+    border: none;
+    display: block;
+    margin: 10px auto;
+    color: #fff;
+    height: 40px;
+    cursor: pointer;
 }
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
