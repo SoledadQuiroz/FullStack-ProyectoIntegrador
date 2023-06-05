@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ABM',
+    'Api',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +89,7 @@ DATABASES = {
         'NAME':'Ecommerce',
         'USER': 'root',
         'HOST': 'localhost',
-        'PASSWORD': '2141',
+        'PASSWORD': '',
         'PORT':'3306',
     }
 }
