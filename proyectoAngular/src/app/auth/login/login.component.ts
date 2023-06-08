@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../user.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +10,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  user: User = {
+    id: 0,
+    username: '',
+    name: '',
+    email: '',
+    birthdate: '',
+    password: '',
+    isAdmin: false
+  };
+
   loginForm = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required, Validators.minLength(8)]],
   })
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void { }
 
@@ -24,9 +36,17 @@ export class LoginComponent {
     return this.loginForm.controls.password;
   }
 
-  onSubmit() {
+  onSubmit(event: Event, usuario: User) {
     if (this.loginForm.valid) {
       console.log("Llamar al servicio de login");
+      event.preventDefault;
+      this.authService.login(this.user)
+      .subscribe(
+        data => {
+          console.log("DATA"+ JSON.stringify( data));   
+          this.router.navigate(['/home']);
+        }
+      );
       this.router.navigateByUrl("");
       this.loginForm.reset();
     }

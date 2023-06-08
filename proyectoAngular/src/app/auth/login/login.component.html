@@ -1,10 +1,10 @@
 <body>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event, user)">
         <div class="form">
             <img src="../../assets/isologo.png" />
             <h1>Iniciar sesión</h1>
             <div class="grupo">
-                <input formControlName="email" type="email" name="" id="email" required class="form-control"
+                <input formControlName="email" [(ngModel)]="user.email" type="email" name="" id="email" required class="form-control"
                     [ngClass]="{ 'is-valid': email.valid, 'is-invalid': email.invalid && (email.dirty || email.touched) }" /><span
                     class="barra"></span>
                 <label for="">Email</label>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="grupo">
-                <input formControlName="password" type="password" name="" id="password" required class="form-control"
+                <input formControlName="password" [(ngModel)]="user.password" type="password" name="" id="password" required class="form-control"
                     [ngClass]="{ 'is-valid': password.valid, 'is-invalid': password.invalid && (password.dirty || password.touched) }" /><span
                     class="barra"></span>
                 <label for="">Password</label>

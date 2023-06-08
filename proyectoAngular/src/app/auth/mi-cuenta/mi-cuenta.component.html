@@ -2,13 +2,11 @@
     <main>
         <!-- logo del sitio -->
         <picture>
-            <a routerLink="/home">
-                <img src="../../../assets/isologo.png" alt="logo gardenigfriend">
-            </a>
+            <img routerLink="/home" src="../../../assets/isologo.png" alt="logo gardenigfriend">
             <h1>Registro</h1>
         </picture>
         <!-- formulario de registro  -->
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit($event, user)">
             <div>
                 <input type="text" formControlName="username" class="form-control" required>
                 <label for="username">Usuario</label>
@@ -76,7 +74,7 @@
                 </div>
             </div>
 
-            <button type="submit" [disabled]="userForm.invalid">Registrarme</button>
+            <button type="submit" [disabled]="userForm.invalid">Actualizar</button>
         </form>
 
     </main>

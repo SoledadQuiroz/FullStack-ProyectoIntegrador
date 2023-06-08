@@ -1,10 +1,11 @@
 export interface User {
     id: number;
-    user:string;
+    username:string;
     name: string;
     email: string;
-    nacimiento:string;
+    birthdate:string;
     password:string;
     isAdmin: boolean;
+    token?: string;
     // Agregar las propiedades necesarias
 }  

@@ -12,7 +12,15 @@ import { Router } from '@angular/router';
 export class MiCuentaComponent implements OnInit{
   userForm!: FormGroup;
 
-  user: User | undefined;
+  user: User = {
+    id: 0,
+    username: '',
+    name: '',
+    email: '',
+    birthdate: '',
+    password: '',
+    isAdmin: false
+  }
 
   constructor(private formBuilder: FormBuilder, private router: Router, private usersService: UsersService) {}
 
@@ -26,13 +34,6 @@ export class MiCuentaComponent implements OnInit{
       birthdate: ['', Validators.required]
     });
 
-    // Asumiendo que la ID del login es obtenido por la autenticacion 
-    const userId = 123; // Remplazar por la logica de autenticacion
-
-    this.usersService.getUserById(userId).subscribe(
-      user => this.user = user,
-      error => console.log('Error fetching user:', error)
-    );
   }
 
   passwordMatchValidator: ValidatorFn = (control: AbstractControl): { [key: string]: boolean } | null => {
@@ -46,10 +47,14 @@ export class MiCuentaComponent implements OnInit{
     return null;
   };
 
-  onSubmit() {
+  onSubmit(event: Event, user: User) {
     if (this.userForm.valid) {
       console.log(this.userForm.value);
       this.router.navigateByUrl('');
+      this.usersService.updateUser(user).subscribe(
+        data => {
+          console.log(data.id);
+        })
       this.userForm.reset();
     } else {
       this.userForm.markAllAsTouched();
