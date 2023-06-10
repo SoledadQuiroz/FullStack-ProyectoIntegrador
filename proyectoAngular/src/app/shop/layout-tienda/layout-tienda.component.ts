@@ -3,6 +3,7 @@ import { HtmlTagDefinition } from '@angular/compiler';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiRegionesService } from '../../services/api-regiones.service';
 import { ProductosComponent } from '../productos/productos.component';
+import { MercadopagoService } from '../../services/mercadopago.service';
 
 @Component({
   selector: 'app-layout-tienda',
@@ -30,7 +31,8 @@ export class LayoutTiendaComponent implements OnInit{
   dataMunicipios$:any;
   dataLocalidades$: any;
 
-  constructor(private ApiRegionesService: ApiRegionesService) { }
+  constructor(private ApiRegionesService: ApiRegionesService, private MercadopagoService: MercadopagoService){
+  }
 
   // PROPIEDADES:
   // funcionalidad buscador:
@@ -93,6 +95,8 @@ export class LayoutTiendaComponent implements OnInit{
       dimension: "3mm",
     },
   ];
+  stripeProducts = [];
+  stripePrices = [];
   //valores para insertar en el modal de compra:
   // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
@@ -156,6 +160,20 @@ export class LayoutTiendaComponent implements OnInit{
   nombreProductoDetalles:string = "hola";
 
   // FUNCIONALIDADES:
+  obtenerProductos(){
+    this.MercadopagoService.getProducts().subscribe((response:any) =>{
+      this.stripeProducts = response.data;
+      console.log(this.stripeProducts);
+    })
+  }
+
+  obtenerPrecios(){
+    this.MercadopagoService.getPrices().subscribe((response:any) =>{
+      this.stripePrices = response.data;
+      console.log(this.stripePrices);
+    })
+  }
+
   comprarProducto(event: MouseEvent){
     // 1 - se abre el modal:
     this.abrirModal = true;
@@ -307,6 +325,10 @@ export class LayoutTiendaComponent implements OnInit{
       console.log("provincias", this.dataProvincias$);
     });
 
+    // se extraen los valores / datos de los productos de la BD stripe:
+    this.obtenerProductos();
+    this.obtenerPrecios();
+
   }
   
   onSubmit(){
@@ -425,9 +447,9 @@ export class LayoutTiendaComponent implements OnInit{
     this.nombreProductoDetalles = producto!.id;
   }
 
-   onBooleanChanged(value: boolean) {
-     this.abrirModDetalles = value;
-   }
+  onBooleanChanged(value: boolean) {
+    this.abrirModDetalles = value;
+  }
 
 
 }

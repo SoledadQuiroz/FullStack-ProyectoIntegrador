@@ -410,6 +410,10 @@
     transition: 500ms;
 }
 
+#formas_pago_form{
+    overflow-y: scroll;
+}
+
 /* ------------------  AJUSTES MODALES ejemplo (codigo y expiracion) ------------------- */
 .modal_ejemplo_wrapper{
     display: flex;
