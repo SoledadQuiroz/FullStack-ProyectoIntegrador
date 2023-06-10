@@ -97,6 +97,7 @@ export class LayoutTiendaComponent implements OnInit{
   ];
   stripeProducts = [];
   stripePrices = [];
+  stripeArticles = [];
   //valores para insertar en el modal de compra:
   // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
@@ -160,19 +161,6 @@ export class LayoutTiendaComponent implements OnInit{
   nombreProductoDetalles:string = "hola";
 
   // FUNCIONALIDADES:
-  obtenerProductos(){
-    this.MercadopagoService.getProducts().subscribe((response:any) =>{
-      this.stripeProducts = response.data;
-      console.log(this.stripeProducts);
-    })
-  }
-
-  obtenerPrecios(){
-    this.MercadopagoService.getPrices().subscribe((response:any) =>{
-      this.stripePrices = response.data;
-      console.log(this.stripePrices);
-    })
-  }
 
   comprarProducto(event: MouseEvent){
     // 1 - se abre el modal:
@@ -325,9 +313,18 @@ export class LayoutTiendaComponent implements OnInit{
       console.log("provincias", this.dataProvincias$);
     });
 
-    // se extraen los valores / datos de los productos de la BD stripe:
-    this.obtenerProductos();
-    this.obtenerPrecios();
+    // obtiene los datos de los productos:
+    this.MercadopagoService.getProducts().subscribe((response:any) =>{
+      this.stripeProducts = response.data;
+      console.log(this.stripeProducts);
+    });
+
+    // obtiene los datos de los precios:
+    this.MercadopagoService.getPrices().subscribe((response:any) =>{
+      this.stripePrices = response.data;
+      console.log(this.stripePrices);
+    });
+
 
   }
   
