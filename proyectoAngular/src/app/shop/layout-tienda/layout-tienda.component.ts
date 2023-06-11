@@ -1,9 +1,14 @@
+// funcionalidades de Angular
 import { Component, ElementRef, Input, OnInit} from '@angular/core';
-import { HtmlTagDefinition } from '@angular/compiler';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+// servicios:
 import { ApiRegionesService } from '../../services/api-regiones.service';
-import { ProductosComponent } from '../productos/productos.component';
 import { MercadopagoService } from '../../services/mercadopago.service';
+// componente hijo:
+import { ProductosComponent } from '../productos/productos.component';
+// interfaces:
+import { productos} from './prod-detalles.model';
+import { precios} from './prod-detalles.model';
 
 @Component({
   selector: 'app-layout-tienda',
@@ -95,9 +100,11 @@ export class LayoutTiendaComponent implements OnInit{
       dimension: "3mm",
     },
   ];
-  stripeProducts = [];
-  stripePrices = [];
-  stripeArticles = [];
+  // datos que se obtienen de stripe:
+  stripeProducts:any;
+  stripePrices:any;
+  stripeArticles:any;
+
   //valores para insertar en el modal de compra:
   // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
@@ -316,14 +323,17 @@ export class LayoutTiendaComponent implements OnInit{
     // obtiene los datos de los productos:
     this.MercadopagoService.getProducts().subscribe((response:any) =>{
       this.stripeProducts = response.data;
-      console.log(this.stripeProducts);
+      console.log("productos: ", this.stripeProducts);
     });
-
     // obtiene los datos de los precios:
     this.MercadopagoService.getPrices().subscribe((response:any) =>{
       this.stripePrices = response.data;
-      console.log(this.stripePrices);
-    });
+      console.log("precios: " , this.stripePrices);
+    })
+    // se realiza un merge, para obtener una nueva estructura 
+    // que contanga los datos de los productos + precios:
+    this.stripeArticles = this.stripePrices.concat(this.stripeProducts).reduce();
+    console.log(this.stripeArticles);
 
 
   }

@@ -18,17 +18,17 @@
         </form>      
         <!-- productos -->
         <div id="grid_productos">
-            <div class="productos" *ngFor="let product of products" id="{{product.name}}" [ngStyle]="{'display' : product.display}">
+            <div class="productos" *ngFor="let product of stripeProducts" id="{{product.name}}">
                 <!-- imagen presentacion -->
                 <div class="img_wrapper">
-                    <img src="{{ product.image }}" alt="img_producto" class="icono_producto">
+                    <img src="{{ product.images }}" alt="img_producto" class="icono_producto">
                 </div>
                 <!-- info producto -->
                 <div class="detalles_producto">
                     <h4 class="titulo_producto"> {{ product.name }} </h4>
                     <ul class="carac_producto">
-                        <li class="precios">Precio: $<b>{{product.precio}}</b></li>
-                        <li class="categ_producto">Categoria: {{ product.category }} </li>
+                        <li class="precios">Precio: $<b>{{product.default_price}}</b></li>
+                        <li class="categ_producto">Categoria: {{product.categoria}}</li>
                         <li class="stock_producto">Stock: {{ product.stock }}</li>
                         <li class="descripcion_producto">Descripción: {{ product.description}} </li>
                     </ul>

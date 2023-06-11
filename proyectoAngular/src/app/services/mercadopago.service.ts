@@ -1,10 +1,15 @@
+// funcionalidades angular
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+// interfaces
+import { productos } from '../shop/layout-tienda/prod-detalles.model';
+import { precios } from '../shop/layout-tienda/prod-detalles.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class MercadopagoService {
 
   constructor(private http: HttpClient){}
@@ -25,6 +30,12 @@ export class MercadopagoService {
     return this.http.get("https://api.stripe.com/v1/prices", this.options);
   }
 
-
-
+  // addAllProducts(){
+  //   let product:any = {}
+  //   this.getProducts().subscribe(data =>{
+  //     product.name = data.name;
+  //     product.images = data.images;
+  //     product.description = data.description
+  //   })
+  // }
 }
