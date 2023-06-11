@@ -7,7 +7,7 @@ import { User } from '../auth/user.model';
   providedIn: 'root'
 })
 export class UsersService {
-  apiUrl = 'http://localhost:3000/api/users';
+  apiUrl = 'http://127.0.0.1:8000/Api/user/';
 
   constructor(private http: HttpClient) {
     console.log("Servicio User está corriendo");
