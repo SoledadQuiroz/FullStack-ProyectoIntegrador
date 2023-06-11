@@ -89,7 +89,7 @@ DATABASES = {
         'NAME':'Ecommerce',
         'USER': 'root',
         'HOST': 'localhost',
-        'PASSWORD': '',
+        'PASSWORD': 'fabigailmysql',
         'PORT':'3306',
     }
 }
