@@ -6,11 +6,18 @@ export interface productos{
     description: string,
     images: string,
     //metadata
-    stock: string,
+    metadata: medatadata
+}
+
+export interface medatadata{
     categoria: string,
+    stock: number,
+    peso: string,
+    dimension : string
 }
 
 export interface precios{
     id: string,
-    unit_amount: number,
+    unit_amount_decimal: string,
 }
+

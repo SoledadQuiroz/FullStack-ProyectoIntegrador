@@ -29,13 +29,4 @@ export class MercadopagoService {
   getPrices(){
     return this.http.get("https://api.stripe.com/v1/prices", this.options);
   }
-
-  // addAllProducts(){
-  //   let product:any = {}
-  //   this.getProducts().subscribe(data =>{
-  //     product.name = data.name;
-  //     product.images = data.images;
-  //     product.description = data.description
-  //   })
-  // }
 }

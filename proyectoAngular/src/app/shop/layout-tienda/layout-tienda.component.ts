@@ -101,9 +101,10 @@ export class LayoutTiendaComponent implements OnInit{
     },
   ];
   // datos que se obtienen de stripe:
-  stripeProducts:any;
-  stripePrices:any;
+  stripeProducts:productos[] = [];
+  stripePrices:precios[] = [];
   stripeArticles:any;
+  idProduct:string = "";
 
   //valores para insertar en el modal de compra:
   // ubicacion numerica en el array:
@@ -168,6 +169,24 @@ export class LayoutTiendaComponent implements OnInit{
   nombreProductoDetalles:string = "hola";
 
   // FUNCIONALIDADES:
+
+  datosProductos(){
+    // obtiene los datos de los productos:
+    this.MercadopagoService.getProducts().subscribe((response:any) =>{
+      this.stripeProducts = response.data;
+      console.log("productos: ", this.stripeProducts);
+    });
+    // obtiene los datos de los precios:
+    this.MercadopagoService.getPrices().subscribe((response:any) =>{
+      this.stripePrices = response.data
+      // quita los dos decimales del final:
+      this.stripePrices.forEach(element => {
+        element.unit_amount_decimal = element.unit_amount_decimal.slice(0, -2);
+      });
+      console.log("precios: " , this.stripePrices);
+    });
+    // combina los arrays "precios" y "productos" en uno solo:
+  }
 
   comprarProducto(event: MouseEvent){
     // 1 - se abre el modal:
@@ -320,22 +339,8 @@ export class LayoutTiendaComponent implements OnInit{
       console.log("provincias", this.dataProvincias$);
     });
 
-    // obtiene los datos de los productos:
-    this.MercadopagoService.getProducts().subscribe((response:any) =>{
-      this.stripeProducts = response.data;
-      console.log("productos: ", this.stripeProducts);
-    });
-    // obtiene los datos de los precios:
-    this.MercadopagoService.getPrices().subscribe((response:any) =>{
-      this.stripePrices = response.data;
-      console.log("precios: " , this.stripePrices);
-    })
-    // se realiza un merge, para obtener una nueva estructura 
-    // que contanga los datos de los productos + precios:
-    this.stripeArticles = this.stripePrices.concat(this.stripeProducts).reduce();
-    console.log(this.stripeArticles);
-
-
+    // consume los datos de cada producto desde la API de Stripe:
+    this.datosProductos();
   }
   
   onSubmit(){
@@ -451,7 +456,8 @@ export class LayoutTiendaComponent implements OnInit{
     // 2 - se identifica el producto clickeado:
     const clickedItem = event.target as HTMLElement;
     const producto = clickedItem.parentElement!.parentElement;
-    this.nombreProductoDetalles = producto!.id;
+    this.nombreProdSeleccionado = producto!.id;
+    // console.log("seleccion:", this.nombreProdSeleccionado);
   }
 
   onBooleanChanged(value: boolean) {

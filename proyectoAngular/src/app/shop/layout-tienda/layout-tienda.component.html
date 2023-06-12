@@ -18,7 +18,7 @@
         </form>      
         <!-- productos -->
         <div id="grid_productos">
-            <div class="productos" *ngFor="let product of stripeProducts" id="{{product.name}}">
+            <div class="productos" *ngFor="let product of stripeProducts; let i = index" id="{{product.name}}">
                 <!-- imagen presentacion -->
                 <div class="img_wrapper">
                     <img src="{{ product.images }}" alt="img_producto" class="icono_producto">
@@ -27,13 +27,13 @@
                 <div class="detalles_producto">
                     <h4 class="titulo_producto"> {{ product.name }} </h4>
                     <ul class="carac_producto">
-                        <li class="precios">Precio: $<b>{{product.default_price}}</b></li>
-                        <li class="categ_producto">Categoria: {{product.categoria}}</li>
-                        <li class="stock_producto">Stock: {{ product.stock }}</li>
+                        <li class="precios">Precio: $<b>{{stripePrices[i].unit_amount_decimal}}</b></li>
+                        <li class="categ_producto">Categoria: {{product.metadata.categoria}}</li>
+                        <li class="stock_producto">Stock: {{ product.metadata.stock }}</li>
                         <li class="descripcion_producto">Descripción: {{ product.description}} </li>
                     </ul>
                 </div>
-                <!-- boton de compra -->
+                <!-- botones de compra y detalles-->
                 <div class="boton_wrapper">
                     <button type="button" class="boton_producto" (click)="comprarProducto($event)" id="btn_compra">
                         <img src="../../../assets/imagenes-tienda/shopping-icon-20px.png" alt="icon">
@@ -261,7 +261,7 @@
         <!-- modal - detalles producto -->
         <!-- componente hijo-->
         <div class="lightbox" *ngIf="abrirModDetalles" [ngClass]="getScreenSize()">
-            <app-productos [prodNombre]="nombreProductoDetalles" [prodDetalles]="products" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
+            <app-productos [prodID]="nombreProdSeleccionado" [prodDetalles]="stripeProducts" [prodPrecios]="stripePrices" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
         </div>
 
     </section>
