@@ -37,10 +37,11 @@ export class LoginComponent {
         },
         complete: () => {
           console.info("Login completo");
+          this.router.navigateByUrl("");
+          this.loginForm.reset();
         }
       });
-      this.router.navigateByUrl("");
-      this.loginForm.reset();
+
     }
     else {
       this.loginForm.markAllAsTouched();
