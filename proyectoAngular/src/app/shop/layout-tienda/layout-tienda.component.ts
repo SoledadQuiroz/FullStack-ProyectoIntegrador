@@ -43,75 +43,25 @@ export class LayoutTiendaComponent implements OnInit{
   // funcionalidad buscador:
   palabraBusqueda:string = "";
   buscarProducto(){
-    this.products.forEach(product => {
-      if(product.name.toLowerCase().includes(this.palabraBusqueda.toLowerCase())){
-        product.display = "grid";
-        return product.display;
+    this.stripeProducts.forEach(element => {
+      if(element.name.toLowerCase().includes(this.palabraBusqueda.toLowerCase())){
+        return element.visibilidad = false;
       } else{
-        product.display = "none";
-        return product.display;
+        return element.visibilidad = true;
       }
     });
   }
-  // lista de productos:
-  products = [
-    {
-      image: '../../../assets/imagenes-tienda/pala-logo.jpeg',
-      name: 'Pala Jardinera',
-      precio: 1000,
-      category: 'Herramientas',
-      description: 'producto de alta calidad',
-      stock: 100,
-      display : "grid",
-      peso: "200grs",
-      dimension: "40cm",
-    },
-    {
-      image: '../../../assets/imagenes-tienda/regadora-logo.jpeg',
-      name: 'Regadora',
-      precio: 1500,
-      category: 'herramientas',
-      description: 'producto de alta calidad',
-      stock: 100,
-      display : "grid",
-      peso: "(capacidad): 2lts",
-      dimension: "30cm"
-    },
-    {
-      image: '../../../assets/imagenes-tienda/tomate.jpg',
-      name: 'Semillas de Tomate',
-      precio: 30,
-      category: 'semillas',
-      description: 'producto de alta calidad',
-      stock: 1000,
-      display : "grid",
-      peso: "2grs",
-      dimension: "3mm",
-    },
-    {
-      image: '../../../assets/imagenes-tienda/calabaza.jpg',
-      name: 'Semillas de Calabaza',
-      precio: 30,
-      category: 'semillas',
-      description: 'producto de alta calidad',
-      stock: 1000,
-      display : "grid",
-      peso: "2grs",
-      dimension: "3mm",
-    },
-  ];
   // datos que se obtienen de stripe:
   stripeProducts:productos[] = [];
   stripePrices:precios[] = [];
   stripeArticles:any;
   idProduct:string = "";
-
   //valores para insertar en el modal de compra:
   // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
   //nombre prod seleccionado:
   nombreProdSeleccionado:string = "";
-  imagenProdSeleccionado:string = "";
+  imagenProdSeleccionado:any;
   valorUnitario:number = 0;
   stockProducto:number = 0;
   cantidadElegida:number = 0;
@@ -196,13 +146,13 @@ export class LayoutTiendaComponent implements OnInit{
     const productoSeleccionado = clickedItem.parentElement!.parentElement;
     console.log(productoSeleccionado);
     // 3 - se obtienen los valores interpolados asociados a este:
-    this.products.forEach(product => {
+    this.stripeProducts.forEach(product => {
       if (productoSeleccionado!.id == product.name){
-        this.prodSeleccionado = this.products.indexOf(product);
+        this.prodSeleccionado = this.stripeProducts.indexOf(product);
         this.nombreProdSeleccionado = product.name;
-        this.imagenProdSeleccionado = product.image;
-        this.valorUnitario = product.precio;
-        this.stockProducto = product.stock;
+        this.imagenProdSeleccionado = product.images;
+        this.valorUnitario = product.metadata.precio;
+        this.stockProducto = product.metadata.stock;
       }
     });
   }

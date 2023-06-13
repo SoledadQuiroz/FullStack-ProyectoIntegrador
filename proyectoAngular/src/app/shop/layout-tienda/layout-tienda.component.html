@@ -18,7 +18,7 @@
         </form>      
         <!-- productos -->
         <div id="grid_productos">
-            <div class="productos" *ngFor="let product of stripeProducts; let i = index" id="{{product.name}}">
+            <div class="productos" *ngFor="let product of stripeProducts; let i = index" id="{{product.name}}" [hidden]="product.visibilidad">
                 <!-- imagen presentacion -->
                 <div class="img_wrapper">
                     <img src="{{ product.images }}" alt="img_producto" class="icono_producto">

@@ -4,16 +4,18 @@ export interface productos{
     id:string,
     default_price: string,
     description: string,
-    images: string,
+    images: Array<string>,
     //metadata
-    metadata: medatadata
+    metadata: medatadata,
+    visibilidad: boolean
 }
 
 export interface medatadata{
     categoria: string,
     stock: number,
     peso: string,
-    dimension : string
+    dimensiones : string,
+    precio: number,
 }
 
 export interface precios{
