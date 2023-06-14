@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl,FormControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user.model';
 import { UsersService } from '../../services/users.service';
@@ -11,7 +11,6 @@ import { UsersService } from '../../services/users.service';
 })
 export class RegistroComponent implements OnInit{
   userForm!: FormGroup;
-
   user: User = {
     id: 0,
     username: '',
@@ -20,7 +19,7 @@ export class RegistroComponent implements OnInit{
     birthdate: '',
     password: '',
     isAdmin: false
-  }
+  };
 
   constructor(private formBuilder: FormBuilder, private router: Router, private usersService: UsersService) {}
 
@@ -32,9 +31,9 @@ export class RegistroComponent implements OnInit{
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       birthdate: ['', Validators.required]
-    });
-
+    }) as FormGroup; // Utilizamos el operador de aserción de tipo para indicar que userForm es de tipo FormGroup
   }
+  
 
   passwordMatchValidator: ValidatorFn = (control: AbstractControl): { [key: string]: boolean } | null => {
     const password = this.userForm?.get('password')?.value;
@@ -47,9 +46,11 @@ export class RegistroComponent implements OnInit{
     return null;
   };
 
-  onSubmit(event: Event, user:User) {
+  onSubmit(event: Event, user:User):void {
+    event.preventDefault();
+
     if (this.userForm.valid) {
-      console.log(this.userForm.value);
+      //console.log(this.userForm.value);
       console.log("Enviando  al servidor...");
       console.log(user);
       this.usersService.createUser(user).subscribe(
@@ -61,10 +62,26 @@ export class RegistroComponent implements OnInit{
               this.router.navigate(['/login'])
             }
         })
-      this.router.navigateByUrl('');
-      this.userForm.reset();
+      //this.router.navigateByUrl('');
+      //this.userForm.reset();
     } else {
       this.userForm.markAllAsTouched();
     }
+  }
+
+  get Mail(){
+    return this.userForm.get("email");
+  }
+  get Password(){
+    return this.userForm.get("password");
+  }
+  get Password2(){
+    return this.userForm.get("confirmPassword");
+  }
+  get Nombre(){
+    return this.userForm.get("name");
+  }
+  get Username(){
+    return this.userForm.get("username");
   }
 }
