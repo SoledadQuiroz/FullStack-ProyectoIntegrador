@@ -45,7 +45,7 @@ export class LoginComponent {
       .subscribe(
         data => {
           console.log("DATA"+ JSON.stringify( data));   
-          this.router.navigate(['/home']);
+          this.router.navigate(['/dashboard']);
         }
       );
       
