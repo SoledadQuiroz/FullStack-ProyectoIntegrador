@@ -67,4 +67,52 @@ export class RegistroComponent implements OnInit{
       this.userForm.markAllAsTouched();
     }
   }
+
+  get Password(){
+    return this.userForm.get("password");
+  }
+
+  get ConfirmPassword(){
+    return this.userForm.get("confirmPassword");
+  }
+
+  get Mail(){
+    return this.userForm.get("email");
+  }
+
+  get Nombre(){
+    return this.userForm.get("nombre");
+  }
+
+  get Username(){
+    return this.userForm.get("username");
+  }
+
+  get FechaNacimiento(){
+    return this.userForm.get("birthdate");
+  }
+
+  get MailValid(){
+    return this.Mail?.touched && !this.Mail?.valid;
+  }
+
+  get NombreValid(){
+    return this.Nombre?.touched && !this.Nombre?.valid;
+  }
+
+  get UsernameValid(){
+    return this.Username?.touched && !this.Username?.valid;
+  }
+
+  get PasswordValid(){
+    return this.Password?.touched && !this.Password?.valid;
+  }
+
+  get Password2Valid(){
+    return this.ConfirmPassword?.touched && !this.ConfirmPassword?.valid;
+  }
+
+  get FechaNacimientoValid(){
+    return this.FechaNacimiento?.touched && !this.FechaNacimiento?.valid;
+  }
 }

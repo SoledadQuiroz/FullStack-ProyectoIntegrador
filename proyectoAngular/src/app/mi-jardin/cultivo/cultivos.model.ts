@@ -19,4 +19,4 @@ export interface Crecimiento {
     espacioPlantas: number;
     countdown: number;
     countdownActive:boolean;
-  }
+}
