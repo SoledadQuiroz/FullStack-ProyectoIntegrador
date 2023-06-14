@@ -104,8 +104,8 @@
                         <select id="opciones_pago" name="pagos" formControlName="medioPagoSeleccionado">
                             <option value="" disabled selected>Selecciona metodo de pago</option>
                             <option value="tajeta_credito_debito">Tarjeta Credito / debito</option>
-                            <option value="transferencia"> Transferencia bancaria</option>
-                            <option value="billetera_virtual">Billetera virtual</option>
+                            <option value="billetera_virtual">Mercadopago</option>
+                            <!-- <option value="transferencia"> Transferencia bancaria</option> -->
                         </select>
                         <hr>
 
@@ -130,7 +130,7 @@
                             <hr>
                         </div>
                         <!-- transferencia -->
-                        <div id="transferencia" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'transferencia'">
+                        <!-- <div id="transferencia" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'transferencia'">
                             <h6>Datos de nuestra cuenta bancaria:</h6>
                             <ul>
                                 <li><b>CBU:</b> 123123123123121</li>
@@ -140,7 +140,7 @@
                             <p> Una vez que realices tu pago envia el comprobante a nuestro mail <i>gardeningfriend@gmail.com</i> 
                                 para poder validarlo</p>
                             <hr>
-                        </div>
+                        </div> -->
                         <!-- billetera virtual-->
                         <div id="billetera" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'billetera_virtual'">
                             <!-- numero tarjeta -->
@@ -213,7 +213,7 @@
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
-                        <button type="submit" id="Finalizar" class="botones_form">Finalizar Compra</button><br>
+                        <button type="submit" id="Finalizar" class="botones_form">Realizar Pago</button><br>
                     </div>
                 </form>
             </div>
