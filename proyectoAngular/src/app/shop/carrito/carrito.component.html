@@ -12,13 +12,13 @@
             <div class="detalles_wrapper">
                 <h5>{{producto.name}}</h5>
                 <p>Cantidad: <b>{{producto.cantidad}}</b></p>
-                <p>Precio Total: <b>{{producto.precioTotal}}</b></p>
+                <p>Precio Total: <b>${{producto.precioTotal}}</b></p>
             </div>
         </figure>
     </div>
     <!-- botones (terminar compra & cerrar) -->
     <div class="botones_wrapper">
-        <button type="button">Terminar compra</button>
-        <button type="button">Cerrar</button>
+        <button type="button" (click)="enviarTotales()">Terminar compra</button>
+        <button type="button" (click)="cerrarCarrito()">Cerrar</button>
     </div>
 </div>

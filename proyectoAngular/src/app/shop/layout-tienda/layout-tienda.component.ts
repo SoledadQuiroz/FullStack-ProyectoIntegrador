@@ -125,6 +125,7 @@ export class LayoutTiendaComponent implements OnInit{
 
   // FUNCIONALIDADES:
 
+  // carga los datos de los productos desde la API
   datosProductos(){
     // obtiene los datos de los productos:
     this.MercadopagoService.getProducts().subscribe((response:any) =>{
@@ -143,6 +144,7 @@ export class LayoutTiendaComponent implements OnInit{
     // combina los arrays "precios" y "productos" en uno solo:
   }
 
+  // extrae los datos del prod. seleccionado para hacer la compra
   comprarProducto(event: MouseEvent){
     // 1 - se abre el modal:
     this.abrirModal = true;
@@ -173,8 +175,10 @@ export class LayoutTiendaComponent implements OnInit{
   cerrarModalCompra(){
     // se resetean las variables de referencia:
     this.abrirModal = false;
-    // this.cantidadElegida = 0;
-    // this.limiteStock = false;
+    this.cantidadElegida = 0;
+    this.remarcarMensajeCantidad = false;
+    this.mensajeCarrito = false;
+
   }
 
   abrirMetodosPago(cantidad:number){
@@ -425,7 +429,7 @@ export class LayoutTiendaComponent implements OnInit{
       name: this.nombreProdSeleccionado,
       images: this.imagenProdSeleccionado,
       cantidad: this.cantidadElegida,
-      precioTotal: this.costoCompra
+      precioTotal: this.valorUnitario * this.cantidadElegida,
     }
     // 3 - finalmente se agrega la compra al array de productos:
     this.selecCarrito.push(productos);
@@ -435,4 +439,16 @@ export class LayoutTiendaComponent implements OnInit{
     //toggle function
     this.carrito = !this.carrito;
   }
+
+  cerrarCarrito(event:boolean){
+    // toma el valor que se recibe del componente hijo "carrito" via output;
+    this.carrito = event;
+  }
+
+  abrirMetodosPagoCarrito(event:number){
+    this.costoCompra = event;
+    this.carrito = false;
+    this.abirFormasPago = true;
+  }
+
 }

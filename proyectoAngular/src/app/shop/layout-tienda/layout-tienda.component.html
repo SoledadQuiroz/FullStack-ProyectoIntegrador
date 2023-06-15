@@ -29,7 +29,7 @@
                     <ul class="carac_producto">
                         <li class="precios">Precio: $<b>{{stripePrices[i].unit_amount_decimal}}</b></li>
                         <li class="categ_producto">Categoria: {{product.metadata.categoria}}</li>
-                        <li class="stock_producto">Stock: {{ product.metadata.stock }}</li>
+                        <li class="stock_producto">Stock: Disponible </li>
                         <li class="descripcion_producto">Descripción: {{ product.description}} </li>
                     </ul>
                 </div>
@@ -273,7 +273,7 @@
         </div>
         <!-- modal - carrito -->
         <div class="lightbox" *ngIf="carrito" [ngClass]="getScreenSize()">
-            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" ></app-carrito>
+            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" (propBooleana)="cerrarCarrito($event)" (enviarTotal)="abrirMetodosPagoCarrito($event)" ></app-carrito>
         </div>
     </section>
 </div>
