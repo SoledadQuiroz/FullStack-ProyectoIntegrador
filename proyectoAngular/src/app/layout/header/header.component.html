@@ -3,6 +3,6 @@
     <div id="opciones">
         <li  *ngIf="!estaAutenticado" id="login_boton"> <a routerLink="/login"> Login </a> </li>
         <li  *ngIf="estaAutenticado" id="cerrar_sesion"> <a (click)="onCerrarSesion()"> Cerrar Sesión </a> </li>
-        <li  *ngIf="!estaAutenticado" id="cuenta_boton"> <a routerLink="/micuenta"> Mi Cuenta </a> </li>
+        <li  *ngIf="!estaAutenticado" id="cuenta_boton"> <a routerLink="/registro"> Registrarse </a> </li>
     </div>
 </header>
