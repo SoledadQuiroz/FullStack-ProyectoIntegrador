@@ -1,5 +1,5 @@
 <div id="carrito_wrapper">
-    <img src="../../../assets/icono-ventas.png" id="icono_carrito" alt="icono_carrito">
+    <img src="../../../assets/icono-ventas.png" id="icono_carrito" alt="icono_carrito" (click)="abrirCarrito()">
 </div>
 
 <div id="grid_principal" [ngClass]="getScreenSize()">
@@ -60,12 +60,15 @@
                 </div>
                 <!-- formulario (añadir al carrito)-->
                 <form class="formulario">
+                    <!-- titulo -->
                     <h3>{{nombreProdSeleccionado}}</h3>
+                    <!-- input cantidad -->
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
                         <input type="number" name="cantidad" min="1" value="1" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
                         <br><hr>
                     </div>
+                    <!-- detalles producto -->
                     <ul class="detalles_formulario">
                         <li id="precio_unitario">Precio unitario: <b>${{valorUnitario}}</b> </li>
                         <li id="cantidad_elegida">Cantidad Elegida: <b>{{cantidadElegida}}</b> </li>
@@ -73,12 +76,17 @@
                         <p *ngIf="validarCantidad()"> <b>LLEGASTE AL LIMITE DEL STOCK</b> </p>
                         <br><hr>
                     </ul>
+                    <!-- notificacion (0 cantidad) -->
                     <p *ngIf="cantidadElegida == 0" [ngClass]="{'shakeElement': remarcarMensajeCantidad}">
                         <b>DEBES SELECCIONAR AL MENOS 1 UNIDAD!</b>
                     </p>
-                    <!-- botones -->
+                    <!-- notificacion (agregado al carrito) -->
+                    <p id="mensaje_carrito" *ngIf="mensajeCarrito && cantidadElegida> 0">
+                        <b>Tu selección ha sido añadida al carrito!</b>
+                    </p>
+                    <!-- botones (comprar & carrito) -->
                     <div class="button_wrapper">
-                        <button type="submit" id="anadir_carrito" class="botones_form">Añadir al carrito</button><br>
+                        <button type="submit" id="anadir_carrito" class="botones_form" (click)="mensajeCarrito = true; agregarCarrito()">Añadir al carrito</button><br>
                         <button type="submit" id="terminar_compra" class="botones_form" (click)="abrirMetodosPago(cantidadElegida)">Ir a la caja</button><br>
                     </div>
                 </form>
@@ -263,6 +271,9 @@
         <div class="lightbox" *ngIf="abrirModDetalles" [ngClass]="getScreenSize()">
             <app-productos [prodID]="nombreProdSeleccionado" [prodDetalles]="stripeProducts" [prodPrecios]="stripePrices" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
         </div>
-
+        <!-- modal - carrito -->
+        <div class="lightbox" *ngIf="carrito" [ngClass]="getScreenSize()">
+            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" ></app-carrito>
+        </div>
     </section>
 </div>

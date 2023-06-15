@@ -9,6 +9,7 @@ import { ProductosComponent } from '../productos/productos.component';
 // interfaces:
 import { productos} from './prod-detalles.model';
 import { precios} from './prod-detalles.model';
+import { selecCarrito } from './prod-detalles.model';
 
 @Component({
   selector: 'app-layout-tienda',
@@ -117,6 +118,10 @@ export class LayoutTiendaComponent implements OnInit{
   // valores que se pasan al componente hijo:
   abrirModDetalles:boolean = false;
   nombreProductoDetalles:string = "hola";
+  // carrito
+  mensajeCarrito:boolean = false;
+  carrito:boolean = false;
+  selecCarrito:selecCarrito[] = [];
 
   // FUNCIONALIDADES:
 
@@ -193,6 +198,7 @@ export class LayoutTiendaComponent implements OnInit{
   // reseteo de propiedades:
   this.cantidadElegida = 0;
   this.remarcarMensajeCantidad = false;
+  this.mensajeCarrito = false;
   this.datosPagoOk = false;
   this.datosDireccion = false;
   this.pagoTransferencia = false;
@@ -201,7 +207,6 @@ export class LayoutTiendaComponent implements OnInit{
   this.compraRealizada = false;
   // se cierra modal:
   this.abirFormasPago = false;
-  
   }
 
   modalCodigo(){
@@ -414,5 +419,20 @@ export class LayoutTiendaComponent implements OnInit{
     this.abrirModDetalles = value;
   }
 
+  agregarCarrito(){
+    // 1 - se crea objeto representado el prod elegido
+    let productos:selecCarrito = {
+      name: this.nombreProdSeleccionado,
+      images: this.imagenProdSeleccionado,
+      cantidad: this.cantidadElegida,
+      precioTotal: this.costoCompra
+    }
+    // 3 - finalmente se agrega la compra al array de productos:
+    this.selecCarrito.push(productos);
+  }
 
+  abrirCarrito(){
+    //toggle function
+    this.carrito = !this.carrito;
+  }
 }

@@ -23,3 +23,10 @@ export interface precios{
     unit_amount_decimal: string,
 }
 
+export interface selecCarrito{
+    name: string,
+    images: Array<string>,
+    cantidad: number,
+    precioTotal: number
+}
+

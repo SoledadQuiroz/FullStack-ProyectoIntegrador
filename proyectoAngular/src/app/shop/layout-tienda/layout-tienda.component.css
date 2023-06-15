@@ -365,6 +365,12 @@
     line-height: 1.5rem;
 }
 
+.cuadro_compra .formulario #mensaje_carrito{
+    animation: tracking-in-expand 500ms;
+    font-size: 1.1rem;
+    color: var(--verde3);
+}
+
 .cuadro_compra .formulario .botones_form{
     font-family: secundaria1;
     background: var(--fuentePrin2);
