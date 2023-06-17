@@ -17,9 +17,8 @@ export class MiCuentaComponent implements OnInit{
     username: '',
     name: '',
     email: '',
-    birthdate: '',
+    birth_date: '',
     password: '',
-    isAdmin: false
   }
 
   constructor(private formBuilder: FormBuilder, private router: Router, private usersService: UsersService) {}
@@ -31,7 +30,7 @@ export class MiCuentaComponent implements OnInit{
       confirmPassword: ['', [Validators.required, this.passwordMatchValidator]],
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      birthdate: ['', Validators.required]
+      birth_date: ['', Validators.required]
     });
 
   }

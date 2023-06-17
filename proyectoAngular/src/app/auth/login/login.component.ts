@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user.model';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/Auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +15,8 @@ export class LoginComponent {
     username: '',
     name: '',
     email: '',
-    birthdate: '',
-    password: '',
-    isAdmin: false
+    birth_date: '',
+    password: ''
   };
 
   loginForm = this.formBuilder.group({
@@ -36,7 +35,7 @@ export class LoginComponent {
     return this.loginForm.controls.password;
   }
 
-  onSubmit(event: Event, usuario: User) {
+  onSubmit(event: Event, usuario: User) : void{
     if (this.loginForm.valid) {
       console.log("Llamar al servicio de login");
       event.preventDefault;
@@ -44,11 +43,10 @@ export class LoginComponent {
       .subscribe(
         data => {
           console.log("DATA"+ JSON.stringify( data));   
-          this.router.navigate(['/home']);
+          this.router.navigate(['/dashboard']);
         }
       );
-      this.router.navigateByUrl("");
-      this.loginForm.reset();
+      
     }
     else {
       this.loginForm.markAllAsTouched();

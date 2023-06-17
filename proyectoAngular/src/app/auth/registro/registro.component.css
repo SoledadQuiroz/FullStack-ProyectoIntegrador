@@ -2,7 +2,10 @@
     --colorTextos: #928e8e67;
     --fondo:linear-gradient(to right, #56ab2f, #a8e063);
 } */
-
+@font-face {
+    font-family: "principal";
+    src: url("../../../assets/fuentes/Karma-Regular.ttf");
+}
 *,
 ::before,
 ::after {
@@ -12,7 +15,7 @@
 }
 body {
     display: flex;
-    font-family: 'Roboto';
+    font-family: 'principal';
     background: var(--fondo);
     height: 95vh;
     justify-content: center;
@@ -100,7 +103,7 @@ form div{
    
 }
 button {
-    font-family: 'roboto';
+    font-family: 'principal';
     background: #56ab2f;
     border: none;
     display: block;

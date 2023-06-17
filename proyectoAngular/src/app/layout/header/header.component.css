@@ -70,6 +70,10 @@ header #opciones li a:hover {
     text-decoration: underline;
 }
 
+#cerrar_sesion{
+    margin-right: 5px;
+    margin-left: 5px;
+}
 
 /*------------------------------ MEDIA QUERIES ---------------------------------*/
 /* Medium devices (landscape tablets, 768px and up) */

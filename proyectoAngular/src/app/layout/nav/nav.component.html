@@ -1,22 +1,22 @@
 <nav [ngClass]="{'nav_mov_abierto' : toggleEffect, 'nav_mov_cerrado' : !toggleEffect}">
-    <li id="menu" (click)="desplegarMenu()">{{ toggleEffect ? 'Cerrar menu ↑' : 'Abrir Menu ↓' }}</li>
-    <li id="inicio" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
-        <a routerLink="/home">INICIO</a>
-    </li>
-    <li id="cultivos" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
-        <a routerLink="/cultivos">CULTIVOS</a>
-    </li>
-    <li id="consejos" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
-        <a routerLink="/consejo"> CONSEJOS</a>
-    </li>
-    <li id="ventas" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
-        <a routerLink="/tienda">TIENDA</a>
-    </li>
-    <li id="mi_jardin" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
-        <a routerLink="/jardin">MI JARDIN</a>
-    </li>
-    <li id="dashboard" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
-        <a routerLink="/dashboard">DASHBOARD</a>
-    </li>
+  <li id="menu" (click)="desplegarMenu()">{{ toggleEffect ? 'Cerrar menu ↑' : 'Abrir Menu ↓' }}</li>
+  <li id="inicio" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
+      <a routerLink="/home">INICIO</a>
+  </li>
+  <li id="cultivos" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
+      <a routerLink="/cultivos">CULTIVOS</a>
+  </li>
+  <li id="consejos" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
+      <a routerLink="/consejo"> CONSEJOS</a>
+  </li>
+  <li *ngIf="estaAutenticado" id="ventas" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
+      <a routerLink="/tienda">TIENDA</a>
+  </li>
+  <li *ngIf="estaAutenticado" id="mi_jardin" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
+      <a routerLink="/jardin">MI JARDIN</a>
+  </li>
+  <li *ngIf="estaAutenticado" id="dashboard" class="nav_item" [ngStyle]="{'display': toggleEffect? 'flex' : 'none'}">
+      <a routerLink="/dashboard">DASHBOARD</a>
+  </li>
 </nav>
 <router-outlet></router-outlet>

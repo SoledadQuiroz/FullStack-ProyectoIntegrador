@@ -3,9 +3,9 @@ export interface User {
     username:string;
     name: string;
     email: string;
-    birthdate:string;
+    birth_date:string;
     password:string;
-    isAdmin: boolean;
+    // isAdmin: boolean;
     token?: string;
-    // Agregar las propiedades necesarias
+    // // Agregar las propiedades necesarias
 }  

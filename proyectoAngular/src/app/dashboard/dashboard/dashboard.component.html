@@ -1,10 +1,12 @@
-<div *ngIf="users.length > 0; else elseDashboard">
+<div class="container-table" *ngIf="users.length > 0; else elseDashboard">
+    <h2>Usuarios Registrados</h2>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
