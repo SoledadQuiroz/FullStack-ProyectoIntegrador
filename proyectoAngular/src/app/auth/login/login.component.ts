@@ -15,9 +15,8 @@ export class LoginComponent {
     username: '',
     name: '',
     email: '',
-    birthdate: '',
-    password: '',
-    isAdmin: false
+    birth_date: '',
+    password: ''
   };
 
   loginForm = this.formBuilder.group({
@@ -37,7 +36,6 @@ export class LoginComponent {
   }
 
   onSubmit(event: Event, usuario: User) : void{
-   
     if (this.loginForm.valid) {
       console.log("Llamar al servicio de login");
       event.preventDefault;

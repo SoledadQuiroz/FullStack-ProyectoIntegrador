@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
+  private baseUrl = 'http://127.0.0.1:8000/django_api/';
+
   url = "https://reqres.in/api/login";
   loggedIn = new BehaviorSubject<boolean>(false);
   currentUserSubject: BehaviorSubject<User>;
@@ -19,8 +21,23 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  login(user: User): Observable<any> {
-    return this.http.post<any>(this.url, user)
+  register(userData: User): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}auth/registro/`, userData);
+  }
+
+  // login(credentials: Pick<User, 'email' | 'password'>): Observable<User> {
+  //   return this.http.post<User>(`${this.baseUrl}auth/login/`, credentials);
+  // }
+
+  // logout(): Observable<any> {
+  //   return this.http.post(`${this.baseUrl}auth/logout/`, {});
+  // }
+
+
+
+
+  login(user: User): Observable<User> {
+    return this.http.post<any>(`${this.baseUrl}auth/login/`, user)
       .pipe(map(data => {
         localStorage.setItem('currentUser', JSON.stringify(data));
         this.currentUserSubject.next(data);
