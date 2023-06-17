@@ -6,15 +6,15 @@
     <!-- descripcion -->
     <div class="descripcion_detalles">
         <div id="logo_wrapper">
-            <img src="../../../assets/isologo.png" alt="isologo">
+            <img [src]="this.prodSeleccionado.images" alt="isologo">
         </div>
         <ul>
             <!-- se cargan los datos desde la API -->
-            <li>Nombre: <b>{{nombre}}</b> </li>
-            <li>Categoría: <b>{{categoria}}</b> </li>
-            <li>Peso: <b>{{peso}}</b> </li>
-            <li>Dimensión: <b>{{dimension}}</b> </li>
-            <li>Stock: <b>{{stock}}</b> </li>
+            <li>Nombre: <b>{{this.prodSeleccionado.name}}</b> </li>
+            <li>Categoría: <b>{{this.prodSeleccionado.metadata.categoria}}</b> </li>
+            <li>Peso: <b> {{this.prodSeleccionado.metadata.peso}} </b> </li>
+            <li>Dimensión: <b>{{this.prodSeleccionado.metadata.dimensiones}}</b> </li>
+            <li>Stock: <b> {{this.prodSeleccionado.metadata.stock}} </b> </li>
         </ul>
     </div>
     <!-- boton cerrar -->

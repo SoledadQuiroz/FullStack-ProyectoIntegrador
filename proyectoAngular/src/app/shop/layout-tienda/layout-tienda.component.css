@@ -353,7 +353,7 @@
 }
 
 .cuadro_compra .formulario h3{
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: bolder;
     margin-bottom: 10px;
 }
@@ -363,6 +363,12 @@
 
 .cuadro_compra .formulario ul li{
     line-height: 1.5rem;
+}
+
+.cuadro_compra .formulario #mensaje_carrito{
+    animation: tracking-in-expand 500ms;
+    font-size: 1.1rem;
+    color: var(--verde3);
 }
 
 .cuadro_compra .formulario .botones_form{
@@ -408,6 +414,10 @@
 .icono_tarjeta:hover{
     filter: opacity(100%);
     transition: 500ms;
+}
+
+#formas_pago_form{
+    overflow-y: scroll;
 }
 
 /* ------------------  AJUSTES MODALES ejemplo (codigo y expiracion) ------------------- */

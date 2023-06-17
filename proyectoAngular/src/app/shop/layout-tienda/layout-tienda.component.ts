@@ -1,8 +1,15 @@
+// funcionalidades de Angular
 import { Component, ElementRef, Input, OnInit} from '@angular/core';
-import { HtmlTagDefinition } from '@angular/compiler';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+// servicios:
 import { ApiRegionesService } from '../../services/api-regiones.service';
+import { MercadopagoService } from '../../services/mercadopago.service';
+// componente hijo:
 import { ProductosComponent } from '../productos/productos.component';
+// interfaces:
+import { productos} from './prod-detalles.model';
+import { precios} from './prod-detalles.model';
+import { selecCarrito } from './prod-detalles.model';
 
 @Component({
   selector: 'app-layout-tienda',
@@ -30,75 +37,32 @@ export class LayoutTiendaComponent implements OnInit{
   dataMunicipios$:any;
   dataLocalidades$: any;
 
-  constructor(private ApiRegionesService: ApiRegionesService) { }
+  constructor(private ApiRegionesService: ApiRegionesService, private MercadopagoService: MercadopagoService){
+  }
 
   // PROPIEDADES:
   // funcionalidad buscador:
   palabraBusqueda:string = "";
   buscarProducto(){
-    this.products.forEach(product => {
-      if(product.name.toLowerCase().includes(this.palabraBusqueda.toLowerCase())){
-        product.display = "grid";
-        return product.display;
+    this.stripeProducts.forEach(element => {
+      if(element.name.toLowerCase().includes(this.palabraBusqueda.toLowerCase())){
+        return element.visibilidad = false;
       } else{
-        product.display = "none";
-        return product.display;
+        return element.visibilidad = true;
       }
     });
   }
-  // lista de productos:
-  products = [
-    {
-      image: '../../../assets/imagenes-tienda/pala-logo.jpeg',
-      name: 'Pala Jardinera',
-      precio: 1000,
-      category: 'Herramientas',
-      description: 'producto de alta calidad',
-      stock: 100,
-      display : "grid",
-      peso: "200grs",
-      dimension: "40cm",
-    },
-    {
-      image: '../../../assets/imagenes-tienda/regadora-logo.jpeg',
-      name: 'Regadora',
-      precio: 1500,
-      category: 'herramientas',
-      description: 'producto de alta calidad',
-      stock: 100,
-      display : "grid",
-      peso: "(capacidad): 2lts",
-      dimension: "30cm"
-    },
-    {
-      image: '../../../assets/imagenes-tienda/tomate.jpg',
-      name: 'Semillas de Tomate',
-      precio: 30,
-      category: 'semillas',
-      description: 'producto de alta calidad',
-      stock: 1000,
-      display : "grid",
-      peso: "2grs",
-      dimension: "3mm",
-    },
-    {
-      image: '../../../assets/imagenes-tienda/calabaza.jpg',
-      name: 'Semillas de Calabaza',
-      precio: 30,
-      category: 'semillas',
-      description: 'producto de alta calidad',
-      stock: 1000,
-      display : "grid",
-      peso: "2grs",
-      dimension: "3mm",
-    },
-  ];
+  // datos que se obtienen de stripe:
+  stripeProducts:productos[] = [];
+  stripePrices:precios[] = [];
+  stripeArticles:any;
+  idProduct:string = "";
   //valores para insertar en el modal de compra:
   // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
   //nombre prod seleccionado:
   nombreProdSeleccionado:string = "";
-  imagenProdSeleccionado:string = "";
+  imagenProdSeleccionado:any;
   valorUnitario:number = 0;
   stockProducto:number = 0;
   cantidadElegida:number = 0;
@@ -154,8 +118,33 @@ export class LayoutTiendaComponent implements OnInit{
   // valores que se pasan al componente hijo:
   abrirModDetalles:boolean = false;
   nombreProductoDetalles:string = "hola";
+  // carrito
+  mensajeCarrito:boolean = false;
+  carrito:boolean = false;
+  selecCarrito:selecCarrito[] = [];
 
   // FUNCIONALIDADES:
+
+  // carga los datos de los productos desde la API
+  datosProductos(){
+    // obtiene los datos de los productos:
+    this.MercadopagoService.getProducts().subscribe((response:any) =>{
+      this.stripeProducts = response.data;
+      console.log("productos: ", this.stripeProducts);
+    });
+    // obtiene los datos de los precios:
+    this.MercadopagoService.getPrices().subscribe((response:any) =>{
+      this.stripePrices = response.data
+      // quita los dos decimales del final:
+      this.stripePrices.forEach(element => {
+        element.unit_amount_decimal = element.unit_amount_decimal.slice(0, -2);
+      });
+      console.log("precios: " , this.stripePrices);
+    });
+    // combina los arrays "precios" y "productos" en uno solo:
+  }
+
+  // extrae los datos del prod. seleccionado para hacer la compra
   comprarProducto(event: MouseEvent){
     // 1 - se abre el modal:
     this.abrirModal = true;
@@ -164,13 +153,13 @@ export class LayoutTiendaComponent implements OnInit{
     const productoSeleccionado = clickedItem.parentElement!.parentElement;
     console.log(productoSeleccionado);
     // 3 - se obtienen los valores interpolados asociados a este:
-    this.products.forEach(product => {
+    this.stripeProducts.forEach(product => {
       if (productoSeleccionado!.id == product.name){
-        this.prodSeleccionado = this.products.indexOf(product);
+        this.prodSeleccionado = this.stripeProducts.indexOf(product);
         this.nombreProdSeleccionado = product.name;
-        this.imagenProdSeleccionado = product.image;
-        this.valorUnitario = product.precio;
-        this.stockProducto = product.stock;
+        this.imagenProdSeleccionado = product.images;
+        this.valorUnitario = product.metadata.precio;
+        this.stockProducto = product.metadata.stock;
       }
     });
   }
@@ -186,8 +175,10 @@ export class LayoutTiendaComponent implements OnInit{
   cerrarModalCompra(){
     // se resetean las variables de referencia:
     this.abrirModal = false;
-    // this.cantidadElegida = 0;
-    // this.limiteStock = false;
+    this.cantidadElegida = 0;
+    this.remarcarMensajeCantidad = false;
+    this.mensajeCarrito = false;
+
   }
 
   abrirMetodosPago(cantidad:number){
@@ -211,6 +202,7 @@ export class LayoutTiendaComponent implements OnInit{
   // reseteo de propiedades:
   this.cantidadElegida = 0;
   this.remarcarMensajeCantidad = false;
+  this.mensajeCarrito = false;
   this.datosPagoOk = false;
   this.datosDireccion = false;
   this.pagoTransferencia = false;
@@ -219,7 +211,6 @@ export class LayoutTiendaComponent implements OnInit{
   this.compraRealizada = false;
   // se cierra modal:
   this.abirFormasPago = false;
-  
   }
 
   modalCodigo(){
@@ -307,6 +298,8 @@ export class LayoutTiendaComponent implements OnInit{
       console.log("provincias", this.dataProvincias$);
     });
 
+    // consume los datos de cada producto desde la API de Stripe:
+    this.datosProductos();
   }
   
   onSubmit(){
@@ -422,12 +415,40 @@ export class LayoutTiendaComponent implements OnInit{
     // 2 - se identifica el producto clickeado:
     const clickedItem = event.target as HTMLElement;
     const producto = clickedItem.parentElement!.parentElement;
-    this.nombreProductoDetalles = producto!.id;
+    this.nombreProdSeleccionado = producto!.id;
+    // console.log("seleccion:", this.nombreProdSeleccionado);
   }
 
-   onBooleanChanged(value: boolean) {
-     this.abrirModDetalles = value;
-   }
+  onBooleanChanged(value: boolean) {
+    this.abrirModDetalles = value;
+  }
 
+  agregarCarrito(){
+    // 1 - se crea objeto representado el prod elegido
+    let productos:selecCarrito = {
+      name: this.nombreProdSeleccionado,
+      images: this.imagenProdSeleccionado,
+      cantidad: this.cantidadElegida,
+      precioTotal: this.valorUnitario * this.cantidadElegida,
+    }
+    // 3 - finalmente se agrega la compra al array de productos:
+    this.selecCarrito.push(productos);
+  }
+
+  abrirCarrito(){
+    //toggle function
+    this.carrito = !this.carrito;
+  }
+
+  cerrarCarrito(event:boolean){
+    // toma el valor que se recibe del componente hijo "carrito" via output;
+    this.carrito = event;
+  }
+
+  abrirMetodosPagoCarrito(event:number){
+    this.costoCompra = event;
+    this.carrito = false;
+    this.abirFormasPago = true;
+  }
 
 }

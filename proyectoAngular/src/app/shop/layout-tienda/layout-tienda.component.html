@@ -1,5 +1,5 @@
 <div id="carrito_wrapper">
-    <img src="../../../assets/icono-ventas.png" id="icono_carrito" alt="icono_carrito">
+    <img src="../../../assets/icono-ventas.png" id="icono_carrito" alt="icono_carrito" (click)="abrirCarrito()">
 </div>
 
 <div id="grid_principal" [ngClass]="getScreenSize()">
@@ -18,22 +18,22 @@
         </form>      
         <!-- productos -->
         <div id="grid_productos">
-            <div class="productos" *ngFor="let product of products" id="{{product.name}}" [ngStyle]="{'display' : product.display}">
+            <div class="productos" *ngFor="let product of stripeProducts; let i = index" id="{{product.name}}" [hidden]="product.visibilidad">
                 <!-- imagen presentacion -->
                 <div class="img_wrapper">
-                    <img src="{{ product.image }}" alt="img_producto" class="icono_producto">
+                    <img src="{{ product.images }}" alt="img_producto" class="icono_producto">
                 </div>
                 <!-- info producto -->
                 <div class="detalles_producto">
                     <h4 class="titulo_producto"> {{ product.name }} </h4>
                     <ul class="carac_producto">
-                        <li class="precios">Precio: $<b>{{product.precio}}</b></li>
-                        <li class="categ_producto">Categoria: {{ product.category }} </li>
-                        <li class="stock_producto">Stock: {{ product.stock }}</li>
+                        <li class="precios">Precio: $<b>{{stripePrices[i].unit_amount_decimal}}</b></li>
+                        <li class="categ_producto">Categoria: {{product.metadata.categoria}}</li>
+                        <li class="stock_producto">Stock: Disponible </li>
                         <li class="descripcion_producto">Descripción: {{ product.description}} </li>
                     </ul>
                 </div>
-                <!-- boton de compra -->
+                <!-- botones de compra y detalles-->
                 <div class="boton_wrapper">
                     <button type="button" class="boton_producto" (click)="comprarProducto($event)" id="btn_compra">
                         <img src="../../../assets/imagenes-tienda/shopping-icon-20px.png" alt="icon">
@@ -60,12 +60,15 @@
                 </div>
                 <!-- formulario (añadir al carrito)-->
                 <form class="formulario">
+                    <!-- titulo -->
                     <h3>{{nombreProdSeleccionado}}</h3>
+                    <!-- input cantidad -->
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
                         <input type="number" name="cantidad" min="1" value="1" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
                         <br><hr>
                     </div>
+                    <!-- detalles producto -->
                     <ul class="detalles_formulario">
                         <li id="precio_unitario">Precio unitario: <b>${{valorUnitario}}</b> </li>
                         <li id="cantidad_elegida">Cantidad Elegida: <b>{{cantidadElegida}}</b> </li>
@@ -73,12 +76,17 @@
                         <p *ngIf="validarCantidad()"> <b>LLEGASTE AL LIMITE DEL STOCK</b> </p>
                         <br><hr>
                     </ul>
+                    <!-- notificacion (0 cantidad) -->
                     <p *ngIf="cantidadElegida == 0" [ngClass]="{'shakeElement': remarcarMensajeCantidad}">
                         <b>DEBES SELECCIONAR AL MENOS 1 UNIDAD!</b>
                     </p>
-                    <!-- botones -->
+                    <!-- notificacion (agregado al carrito) -->
+                    <p id="mensaje_carrito" *ngIf="mensajeCarrito && cantidadElegida> 0">
+                        <b>Tu selección ha sido añadida al carrito!</b>
+                    </p>
+                    <!-- botones (comprar & carrito) -->
                     <div class="button_wrapper">
-                        <button type="submit" id="anadir_carrito" class="botones_form">Añadir al carrito</button><br>
+                        <button type="submit" id="anadir_carrito" class="botones_form" (click)="mensajeCarrito = true; agregarCarrito()">Añadir al carrito</button><br>
                         <button type="submit" id="terminar_compra" class="botones_form" (click)="abrirMetodosPago(cantidadElegida)">Ir a la caja</button><br>
                     </div>
                 </form>
@@ -104,8 +112,8 @@
                         <select id="opciones_pago" name="pagos" formControlName="medioPagoSeleccionado">
                             <option value="" disabled selected>Selecciona metodo de pago</option>
                             <option value="tajeta_credito_debito">Tarjeta Credito / debito</option>
-                            <option value="transferencia"> Transferencia bancaria</option>
-                            <option value="billetera_virtual">Billetera virtual</option>
+                            <option value="billetera_virtual">Mercadopago</option>
+                            <!-- <option value="transferencia"> Transferencia bancaria</option> -->
                         </select>
                         <hr>
 
@@ -130,7 +138,7 @@
                             <hr>
                         </div>
                         <!-- transferencia -->
-                        <div id="transferencia" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'transferencia'">
+                        <!-- <div id="transferencia" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'transferencia'">
                             <h6>Datos de nuestra cuenta bancaria:</h6>
                             <ul>
                                 <li><b>CBU:</b> 123123123123121</li>
@@ -140,7 +148,7 @@
                             <p> Una vez que realices tu pago envia el comprobante a nuestro mail <i>gardeningfriend@gmail.com</i> 
                                 para poder validarlo</p>
                             <hr>
-                        </div>
+                        </div> -->
                         <!-- billetera virtual-->
                         <div id="billetera" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'billetera_virtual'">
                             <!-- numero tarjeta -->
@@ -213,7 +221,7 @@
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
-                        <button type="submit" id="Finalizar" class="botones_form">Finalizar Compra</button><br>
+                        <button type="submit" id="Finalizar" class="botones_form">Realizar Pago</button><br>
                     </div>
                 </form>
             </div>
@@ -261,8 +269,11 @@
         <!-- modal - detalles producto -->
         <!-- componente hijo-->
         <div class="lightbox" *ngIf="abrirModDetalles" [ngClass]="getScreenSize()">
-            <app-productos [prodNombre]="nombreProductoDetalles" [prodDetalles]="products" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
+            <app-productos [prodID]="nombreProdSeleccionado" [prodDetalles]="stripeProducts" [prodPrecios]="stripePrices" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
         </div>
-
+        <!-- modal - carrito -->
+        <div class="lightbox" *ngIf="carrito" [ngClass]="getScreenSize()">
+            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" (propBooleana)="cerrarCarrito($event)" (enviarTotal)="abrirMetodosPagoCarrito($event)" ></app-carrito>
+        </div>
     </section>
 </div>
