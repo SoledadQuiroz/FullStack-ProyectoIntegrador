@@ -36,7 +36,11 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/../Backend/Django/env/
 
 # System files
 .DS_Store
 Thumbs.db
+
+#Virtual Envioronments
+/../Backend/Django/Ecommerce/VE/

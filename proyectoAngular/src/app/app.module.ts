@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,18 +18,26 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { HomeComponent } from './home/home.component';
 import { MiCuentaComponent } from './auth/mi-cuenta/mi-cuenta.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ConvertDaysToPipe } from './pipes/convert-days-to.pipe';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { AuthGuard } from './services/Auth/auth.guard';
+import { Interceptor } from './services/Auth/interceptor';
+import { ErrorInterceptor } from './services/Auth/error.interceptor';
+import { UsersService } from './services/users.service';
 
-const appRoutes:Routes=[
-  {path:'', component:HomeComponent},
-  {path:'cultivos', component:CultivoComponent},
-  {path:'consejo', component:ConsejoComponent},
-  {path:'tienda', component:LayoutTiendaComponent},
-  {path:'jardin', component:JardinComponent},
-  {path:'login', component:LoginComponent},
-  {path:'registro', component:RegistroComponent},
-  {path:'micuenta', component:MiCuentaComponent},
-  {path:'**', component:HomeComponent}
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },//el canActivate va en las rutas que requieren autenticacion
+  { path: 'cultivos', component: CultivoComponent },
+  { path: 'consejo', component: ConsejoComponent },
+  { path: 'tienda', component: LayoutTiendaComponent, canActivate: [AuthGuard] },
+  { path: 'jardin', component: JardinComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'micuenta', component: MiCuentaComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
@@ -47,16 +55,22 @@ const appRoutes:Routes=[
     LoginComponent,
     RegistroComponent,
     HomeComponent,
-    MiCuentaComponent
+    MiCuentaComponent,
+    FilterPipe,
+    ConvertDaysToPipe,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [UsersService,
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CultivosService {
 
-  API_URL = 'http://127.0.0.1:8000/cultivos_api/cultivos/';
+  API_URL = 'http://127.0.0.1:8000/cultivos/crops/';
 
   cultivoSembrar: Cultivo[] = [];
   

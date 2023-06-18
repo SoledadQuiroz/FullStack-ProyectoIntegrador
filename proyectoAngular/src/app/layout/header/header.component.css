@@ -56,6 +56,11 @@ header #opciones #cuenta_boton {
     text-align: center;
 }
 
+#cerrar_sesion{
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
 header #opciones li a {
     color: white;
     text-decoration: none;
@@ -63,6 +68,11 @@ header #opciones li a {
 
 header #opciones li a:hover {
     text-decoration: underline;
+}
+
+#cerrar_sesion{
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 /*------------------------------ MEDIA QUERIES ---------------------------------*/

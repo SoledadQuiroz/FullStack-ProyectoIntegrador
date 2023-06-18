@@ -1,5 +1,5 @@
 <div id="carrito_wrapper">
-    <img src="../../../assets/icono-ventas.png" id="icono_carrito" alt="icono_carrito">
+    <img src="../../../assets/icono-ventas.png" id="icono_carrito" alt="icono_carrito" (click)="abrirCarrito()">
 </div>
 
 <div id="grid_principal" [ngClass]="getScreenSize()">
@@ -18,24 +18,31 @@
         </form>      
         <!-- productos -->
         <div id="grid_productos">
-            <div class="productos" *ngFor="let product of products" id="{{product.name}}" [ngStyle]="{'display' : product.display}">
+            <div class="productos" *ngFor="let product of stripeProducts; let i = index" id="{{product.name}}" [hidden]="product.visibilidad">
                 <!-- imagen presentacion -->
                 <div class="img_wrapper">
-                    <img src="{{ product.image }}" alt="img_producto" class="icono_producto">
+                    <img src="{{ product.images }}" alt="img_producto" class="icono_producto">
                 </div>
                 <!-- info producto -->
                 <div class="detalles_producto">
                     <h4 class="titulo_producto"> {{ product.name }} </h4>
                     <ul class="carac_producto">
-                        <li class="precios">Precio: $<b>{{product.precio}}</b></li>
-                        <li class="categ_producto">Categoria: {{ product.category }} </li>
-                        <li class="stock_producto">Stock: {{ product.stock }}</li>
+                        <li class="precios">Precio: $<b>{{stripePrices[i].unit_amount_decimal}}</b></li>
+                        <li class="categ_producto">Categoria: {{product.metadata.categoria}}</li>
+                        <li class="stock_producto">Stock: Disponible </li>
                         <li class="descripcion_producto">Descripción: {{ product.description}} </li>
                     </ul>
                 </div>
-                <!-- boton de compra -->
+                <!-- botones de compra y detalles-->
                 <div class="boton_wrapper">
-                    <button type="button" class="boton_carrito" (click)="comprarProducto($event)"> Comprar</button>
+                    <button type="button" class="boton_producto" (click)="comprarProducto($event)" id="btn_compra">
+                        <img src="../../../assets/imagenes-tienda/shopping-icon-20px.png" alt="icon">
+                        Comprar
+                    </button>
+                    <button type="button" class="boton_producto" (click)="verDetalles($event)"> 
+                        <img src="../../../assets/imagenes-tienda/info-icon-20px.png" alt="icon" id="btn_detalles">
+                        Detalles
+                    </button>
                 </div>
             </div>
         </div>
@@ -53,12 +60,15 @@
                 </div>
                 <!-- formulario (añadir al carrito)-->
                 <form class="formulario">
+                    <!-- titulo -->
                     <h3>{{nombreProdSeleccionado}}</h3>
+                    <!-- input cantidad -->
                     <div id="cantidad_wrapper">
                         <label for="cantidad">Cantidad: </label>
-                        <input type="number" name="cantidad" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
+                        <input type="number" name="cantidad" min="1" value="1" id="field_cantidad" [disabled]="limiteStock" [(ngModel)] = "cantidadElegida">
                         <br><hr>
                     </div>
+                    <!-- detalles producto -->
                     <ul class="detalles_formulario">
                         <li id="precio_unitario">Precio unitario: <b>${{valorUnitario}}</b> </li>
                         <li id="cantidad_elegida">Cantidad Elegida: <b>{{cantidadElegida}}</b> </li>
@@ -66,12 +76,17 @@
                         <p *ngIf="validarCantidad()"> <b>LLEGASTE AL LIMITE DEL STOCK</b> </p>
                         <br><hr>
                     </ul>
+                    <!-- notificacion (0 cantidad) -->
                     <p *ngIf="cantidadElegida == 0" [ngClass]="{'shakeElement': remarcarMensajeCantidad}">
                         <b>DEBES SELECCIONAR AL MENOS 1 UNIDAD!</b>
                     </p>
-                    <!-- botones -->
+                    <!-- notificacion (agregado al carrito) -->
+                    <p id="mensaje_carrito" *ngIf="mensajeCarrito && cantidadElegida> 0">
+                        <b>Tu selección ha sido añadida al carrito!</b>
+                    </p>
+                    <!-- botones (comprar & carrito) -->
                     <div class="button_wrapper">
-                        <button type="submit" id="anadir_carrito" class="botones_form">Añadir al carrito</button><br>
+                        <button type="submit" id="anadir_carrito" class="botones_form" (click)="mensajeCarrito = true; agregarCarrito()">Añadir al carrito</button><br>
                         <button type="submit" id="terminar_compra" class="botones_form" (click)="abrirMetodosPago(cantidadElegida)">Ir a la caja</button><br>
                     </div>
                 </form>
@@ -89,62 +104,124 @@
                     <img src="../../../assets/isologo.png" alt="logo-pagina" class="isologo_modales">
                 </div>
                 <!-- formulario (formas de pago)-->
-                <form class="formulario">
+                <form class="formulario" [formGroup]="cajaValidacion" (ngSubmit)="onSubmit()">
                     <div class="detalles_formulario" id="detalles_pago">
+
                         <!-- seleccionar forma de pago -->
                         <label for="opciones_pago"><b>Selecciona una forma de pago:</b></label> <br>
-                        <select id="opciones_pago" name="pagos" [(ngModel)] ="metodoSeleccionado">
+                        <select id="opciones_pago" name="pagos" formControlName="medioPagoSeleccionado">
+                            <option value="" disabled selected>Selecciona metodo de pago</option>
                             <option value="tajeta_credito_debito">Tarjeta Credito / debito</option>
-                            <option value="mercadopago"> Mercadopago</option>
-                            <option value="billetera_virtual">Billetera virtual</option>
+                            <option value="billetera_virtual">Mercadopago</option>
+                            <!-- <option value="transferencia"> Transferencia bancaria</option> -->
                         </select>
                         <hr>
+
                         <!-- tarjeta credito o debito-->
-                        <div id="tarjeta_credito" *ngIf="metodoSeleccionado == 'tajeta_credito_debito'">
+                        <div id="tarjeta_credito" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'tajeta_credito_debito'">
                             <!-- numero tarjeta -->
                             <label for="tarjeta"><b>Número de tarjeta de credito / debito: </b></label> <br>
-                            <img [src]="cambiarIcono(numeroTarjetaInput,numeroTarjetaRegex)" class="icono_validacion">
-                            <input type="text" name="tarjeta" value="" [(ngModel)]="numeroTarjetaInput"> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputNumeroTarjeta'], numeroTarjetaRegex)" class="icono_validacion">
+                            <input type="number" name="tarjeta" formControlName="InputNumeroTarjeta"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputNumeroTarjeta'])">numero invalido!</p>
                             <!-- codigo seguridad -->
                             <label for="codigo"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
-                            <img [src]="cambiarIcono(codigoTarjetaInput,codigoSeguridadRegex)" class="icono_validacion">
-                            <input type="text" name="codigo" value="" [(ngModel)]="codigoTarjetaInput">
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputCodSegTarjeta'], codigoSeguridadRegex)" class="icono_validacion">
+                            <input type="number" name="codigo" formControlName="InputCodSegTarjeta">
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputCodSegTarjeta'])">solo debe contener 3 numeros!</p>
                             <!-- fecha expiración -->
                             <label for="expiracion"><b>Selecciona la fecha de expiración:</b></label> <br>
-                            <img [src]="cambiarIcono(expiracionTarjetaInput,expiracionRegex)" class="icono_validacion">
-                            <input type="month" name="expiracion" min="05-2023" [(ngModel)] ="expiracionTarjetaInput">
-                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> <hr>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputExpTarjeta'], expiracionRegex)" class="icono_validacion">
+                            <input type="month" name="expiracion" formControlName="InputExpTarjeta">
+                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> 
+                            <hr>
                         </div>
-                        <!-- mercadopago-->
-                        <p *ngIf="metodoSeleccionado == 'mercadopago'" style="color:red"> Esta opción aun no esta disponible.</p>
+                        <!-- transferencia -->
+                        <!-- <div id="transferencia" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'transferencia'">
+                            <h6>Datos de nuestra cuenta bancaria:</h6>
+                            <ul>
+                                <li><b>CBU:</b> 123123123123121</li>
+                                <li><b>ALIAS:</b> gardening.friend</li>
+                                <li><b>BANCO:</b> Santander</li>
+                            </ul>
+                            <p> Una vez que realices tu pago envia el comprobante a nuestro mail <i>gardeningfriend@gmail.com</i> 
+                                para poder validarlo</p>
+                            <hr>
+                        </div> -->
                         <!-- billetera virtual-->
-                        <p *ngIf="metodoSeleccionado == 'billetera_virtual'" style="color:red"> Esta opción aun no esta disponible.</p>
+                        <div id="billetera" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'billetera_virtual'">
+                            <!-- numero tarjeta -->
+                            <label for="tarjeta_billetera"><b>Número de tarjeta de credito / debito: </b></label> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputNumeroBilletera'], numeroTarjetaRegex)" class="icono_validacion">
+                            <input type="number" name="tarjeta_billetera" formControlName="InputNumeroBilletera"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputNumeroBilletera'])">numero invalido!</p>
+                            <!-- codigo seguridad -->
+                            <label for="codigo_billetera"> <b>Introduce el código de seguridad de la tarjeta:</b> </label> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputCodSegBilletera'], codigoSeguridadRegex)" class="icono_validacion">
+                            <input type="number" name="codigo_billetera" formControlName="InputCodSegBilletera">
+                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalCodigo()"> <br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputCodSegBilletera'])">solo debe contener 3 numeros!</p>
+                            <!-- fecha expiración -->
+                            <label for="expiracion_billetera"><b>Selecciona la fecha de expiración:</b></label> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputExpBilletera'], expiracionRegex)" class="icono_validacion">
+                            <input type="month" name="expiracion_billetera" formControlName="InputExpBilletera">
+                            <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> 
+                            <hr>
+                        </div>
 
                         <!-- ingresa tu direccion -->
-                        <label for="direccion"><b>Ingresa tu dirección:</b> {{direccionSeleccionada}}</label><br>
-                        <img [src]="cambiarIcono(direccionSeleccionada,direccionRegex)" class="icono_validacion">
-                        <input type="text" name="direccion" [(ngModel)] = "direccionSeleccionada"><br>
-                        
-                        <label for="provincia" ><b> Provincia:</b> {{provinciaSeleccionada}} </label> <br>
-                        <img [src]="cambiarIcono(provinciaSeleccionada,provinciaRegex)" class="icono_validacion">
-                        <input type="text" name="provincia" [(ngModel)] = "provinciaSeleccionada"> <br>
-                        
-                        <label for="ciudad"><b> Localidad: </b> {{ciudadSeleccionada}}</label> <br>
-                        <img [src]="cambiarIcono(ciudadSeleccionada,localidadRegex)" class="icono_validacion">
-                        <input type="text" name="ciudad" [(ngModel)] = "ciudadSeleccionada"> <br>
-                        <hr>
+                        <div id="info_direccion">
+                            <!-- especifica tu direccion -->
+                            <label for="direccion"><b>Ingresa tu dirección:</b> {{cajaValidacion.controls['InputDireccion'].value}}</label><br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['InputDireccion'], direccionRegex)" class="icono_validacion">
+                            <input type="text" name="direccion" formControlName="InputDireccion"><br>
+                            <p class="mensaje_error" *ngIf="mostrarError(cajaValidacion.controls['InputDireccion'])">solo se permiten caracteres alfanumericos!</p>
+                            
+                            <!-- select para provincia -->
+                            <label for="provincia">Selecciona una provincia:</label> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectProvincia'], provinciaRegex)" class="icono_validacion">
+                            <select id="provincia" name="provincia" formControlName="SelectProvincia" (change)="onSelectProvincia()">
+                                <option value="" disabled selected>Selecciona una provincia:</option>
+                                <option *ngFor="let item of dataProvincias$" [value]="item.nombre"> {{item.nombre}}</option>
+                            </select> <br>
+                            
+                            <!-- select para municipio -->
+                            <label for="municipio">Selecciona un municipio:</label> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectMunicipio'], localidadRegex)" class="icono_validacion">
+                            <select id="municipio" name="municipio" formControlName="SelectMunicipio" (change)="onSelectMunicipio()" >
+                                <option value="" disabled selected>Selecciona un municipio:</option>
+                                <option *ngFor="let item of dataMunicipios$" [value]="item.nombre" > {{item.nombre}}</option>
+                            </select> <br>
+
+                            <!-- select para localidad -->
+                            <label for="localidad">Selecciona una localidad:</label> <br>
+                            <img [src]="cambiarIconoSrc(cajaValidacion.controls['SelectLocalidad'], localidadRegex)" class="icono_validacion">
+                            <select id="localidad" name="localidad" type="" formControlName="SelectLocalidad">
+                                <option value="" disabled selected>Selecciona una localidad:</option>
+                                <option *ngFor="let item of dataLocalidades$" [value]="item.nombre"> {{item.nombre}}</option>
+                            </select> <br>
+                        </div>
+
                         <!-- costos -->
-                        <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
-                        <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
-                        <p>Costo compra: <b>${{costoCompra}}</b></p>
-                        <p>Costo envio: <b>{{calcularEnvio()}}</b></p>
-                        <hr>
-                        <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
+                        <div id="detalles_costos">
+                            <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
+                            <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
+                            <p>Costo compra: <b>${{costoCompra}}</b></p>
+                            <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['SelectProvincia'])}}</b></p>
+                            <hr>
+                            <p style="font-size: 1.1rem; margin-top: 10px;"><b>Total: ${{sumarCostosFinales()}} </b></p>
+                        </div>
+
+                        <!-- mensaje error -->
+                        <div id="error_formulario" *ngIf="noHayMedioPago || errorInputs">
+                            <img src="../../../assets/imagenes-tienda/error-icon.gif" alt="error">
+                            <p> Hay errores y/o campos incompletos en el formulario, revisa tus datos!</p> <br>
+                        </div>
                     </div>
                     <!-- botones -->
                     <div class="button_wrapper">
-                        <button type="submit" id="Finalizar" class="botones_form">Finalizar Compra</button><br>
+                        <button type="submit" id="Finalizar" class="botones_form">Realizar Pago</button><br>
                     </div>
                 </form>
             </div>
@@ -177,14 +254,26 @@
                     <img src="../../../assets/imagenes-tienda/delivery-icon.gif" alt="delivery">
                     <div class="titulo">
                         <img src="../../../assets/imagenes-tienda/done-icon.png" id="done_icon" alt="done">
-                        <h3>Compra realizada con exito</h3>
+                        <h3 *ngIf="!pagoTransferencia">Compra realizada con exito</h3>
+                        <h3 *ngIf="pagoTransferencia">Se esta validando tu transferencia</h3>
                     </div>
-                    <p>Ya estamos gestionando el envío, via mail recibiras las notificaciones relacioandas
-                        al mismo.
-                    </p>
+                    <div id="informacion_envio">
+                        <p>Via mail seras notificado cuando el envio este en camino.
+                            Gracias por tu Compra!
+                        </p>
+                        <p style="color: green; margin-top: 10px;"><b>GardeningFriend©</b></p>
+                    </div>
                 </div>
             </div>
         </div>
-
+        <!-- modal - detalles producto -->
+        <!-- componente hijo-->
+        <div class="lightbox" *ngIf="abrirModDetalles" [ngClass]="getScreenSize()">
+            <app-productos [prodID]="nombreProdSeleccionado" [prodDetalles]="stripeProducts" [prodPrecios]="stripePrices" *ngIf="abrirModDetalles" (booleanProperty)="onBooleanChanged($event)"></app-productos>
+        </div>
+        <!-- modal - carrito -->
+        <div class="lightbox" *ngIf="carrito" [ngClass]="getScreenSize()">
+            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" (propBooleana)="cerrarCarrito($event)" (enviarTotal)="abrirMetodosPagoCarrito($event)" ></app-carrito>
+        </div>
     </section>
 </div>

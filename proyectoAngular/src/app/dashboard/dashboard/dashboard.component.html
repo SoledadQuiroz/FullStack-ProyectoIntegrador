@@ -1,0 +1,32 @@
+<div class="container-table" *ngIf="users.length > 0; else elseDashboard">
+    <h2>Usuarios Registrados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <a class="enlace-edit">edit</a>
+                <a class="enlace-delete">delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #elseDashboard>
+    <div style="height: 100vh;">
+        <p style="font-size: 24px; font-weight: bold; color: darkgreen; text-align: center; margin: 100px 0; font-family: secundaria1;">No hay usuarios registrados por el momento.</p>
+    </div>
+</ng-template>

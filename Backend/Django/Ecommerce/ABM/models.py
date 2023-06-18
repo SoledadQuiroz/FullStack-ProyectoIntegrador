@@ -25,7 +25,20 @@ class ciudad(models.Model):
         return self.nombre
     def __str__(self):
         return self.nombre
-    
+
+class municipio(models.Model):
+    id_municipio=models.AutoField(primary_key=True)
+    nombre=models.CharField(max_length=1000, blank=False)
+    id_provincia=models.ForeignKey(provincia, on_delete=models.CASCADE)
+    class Meta:
+        db_table = 'municipio'
+        verbose_name = 'Municipio'
+        verbose_name_plural = 'Municipios'
+    def __unicode__(self):
+        return self.nombre
+    def __str__(self):
+        return self.nombre
+
 class usuario(models.Model):
     id_usuario=models.AutoField(primary_key=True)
     nombre=models.CharField(max_length=1000, blank=False)
@@ -48,10 +61,12 @@ class usuario(models.Model):
   
 
 class cultivo(models.Model):
-    id_cultivo=models.AutoField(primary_key=True)
-    tipo=models.CharField(max_length=1000, blank=False)
-    categoria=models.CharField(max_length=1000, blank=False)
-    favorito=models.CharField(max_length=1000, blank=False)
+    id_cultivo = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=1000, blank=False)
+    imagen = models.CharField(max_length=250, blank=False)
+    categoria = models.CharField(max_length=1000, blank=False)
+    tipo = models.CharField(max_length=1000, blank=False)
+    favorito = models.CharField(max_length=1000, blank=False)
     class Meta:
         db_table = 'cultivo'
         verbose_name = 'Cultivo'
@@ -62,11 +77,41 @@ class cultivo(models.Model):
         return self.tipo
     
 class crecimiento(models.Model):
-    id_crecimiento=models.AutoField(primary_key=True)
-    cosecha=models.CharField(max_length=1000, blank=False)
-    siembra=models.CharField(max_length=1000, blank=False)
-    germinacion=models.CharField(max_length=1000, blank=False)
-    id_cultivo=models.ForeignKey(cultivo, on_delete=models.CASCADE)
+    estaciones = [
+        ('Otoño','autumn'),
+        ('Invierno','winter'),
+        ('Primavera','spring'),
+        ('Verano','summer'),
+        ('Otoño, Invierno','autumn-winter'),
+        ('Primavera, Verano','spring-summer'),
+        ('Todas las estaciones','all'),
+    ]
+
+    luzSolar = [
+        ('Poca luz','poca'),
+        ('Luz Moderada','moderada'),
+        ('Bastante Luz','mucha')
+    ]
+
+    riegoCantidad = [
+        ('Mucha o diariamente','bastante'),
+        ('Regular o cada 3 días','regular'),
+        ('poca o cada 5 días','poca'),
+    ]
+
+    id_crecimiento = models.AutoField(primary_key=True)
+    cosecha = models.CharField(max_length=1000, blank=False)
+    siembra = models.CharField(max_length=1000, blank=False)
+    germinacion = models.CharField(max_length=1000, blank=False)
+    temporada = models.CharField(max_length=50, choices=estaciones, blank=False)
+    temperaturaMax = models.IntegerField()
+    temperaturaMin = models.IntegerField()
+    riego = models.CharField(max_length=50, choices=riegoCantidad, blank=False)
+    luz = models.CharField(max_length=15, choices=luzSolar, blank=False)
+    profundidadSembrado = models.IntegerField()
+    espacioPlantas = models.IntegerField()
+    id_cultivo = models.ForeignKey(cultivo, on_delete=models.CASCADE)
+
     class Meta:
         db_table = 'crecimiento'
         verbose_name = 'Crecimiento'
@@ -109,9 +154,13 @@ class tipo_produto(models.Model):
 class producto(models.Model):
     id_producto=models.AutoField(primary_key=True)
     nombre=models.CharField(max_length=1000, blank=False)
+    imagen = models.CharField(max_length=250, blank=False)
     costo=models.IntegerField()
     valor=models.IntegerField()
     cantidad=models.IntegerField()
+    peso = models.FloatField()
+    dimensiones = models.CharField(max_length=100, blank=False)
+    descripcion = models.CharField(max_length=250, blank=False)
     fecha_ingreso=models.DateField(default=datetime.now)
     id_tipo_prod=models.ForeignKey(tipo_produto, on_delete=models.CASCADE)
     class Meta:
