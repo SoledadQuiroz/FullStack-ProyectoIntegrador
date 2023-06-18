@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
+
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,18 +83,43 @@ WSGI_APPLICATION = 'DjangoRestApi.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'djangobase',
+    #     'USER': 'root',
+    #     'PASSWORD': '2141',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    #     'OPTIONS': {
+    #         'sql_mode': 'traditional',
+            
+    #     }
+    # }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME':'gardening',
+    #     'USER': 'usuario1',
+    #     'HOST': 'localhost',
+    #     'PASSWORD': 'usuario123',
+    #     'PORT':3306
+    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangobase',
-        'USER': 'root',
-        'PASSWORD': '2141',
-        'HOST': 'localhost',
+        'NAME': 'bvsmaewmlzvdalxf7wbb',
+        'USER': 'uzz0ipsrekz9rwes',
+        'PASSWORD': 'nWfigliP7gXpFCIpbrMk',
+        'HOST': 'bvsmaewmlzvdalxf7wbb-mysql.services.clever-cloud.com',
         'PORT': '3306',
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-            
-        }
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': os.environ.get('DB_NAME'),
+    #     'HOST': os.environ.get('DB_HOST'),
+    #     'PORT': os.environ.get('DB_PORT'),
+    #     'USER': os.environ.get('DB_USER'),
+    #     'PASSWORD': os.environ.get('DB_PASSWORD'),
+    #     'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+    # }
 }
 
 
