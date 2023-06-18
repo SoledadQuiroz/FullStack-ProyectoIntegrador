@@ -1,4 +1,6 @@
 .container{
+    width: 100%;
+    max-width: 1980px;
     padding-bottom: 100px;
     padding-top: 50px;
     background-image: url('../../../assets/wooden-background-4.jpg');
@@ -38,7 +40,7 @@ section{
     bottom: 0;
     margin: auto;
     width: 250px;
-    height: 100px;
+    height: 180px;
     background-color: #1f481f;
     padding: 20px;
     border-radius: 20px;

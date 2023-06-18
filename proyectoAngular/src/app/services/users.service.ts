@@ -7,27 +7,23 @@ import { User } from '../auth/user.model';
   providedIn: 'root'
 })
 export class UsersService {
-  // apiUrl = 'https://reqres.in/api/users/2';
-  apiUrl = 'http://127.0.0.1:8000/django_api/auth/registro/';
+  apiUrl = 'https://reqres.in/api/users/2';
+  baseUrl = 'http://127.0.0.1:8000/django_api/';
 
   constructor(private http: HttpClient) {
     console.log("Servicio User está corriendo");
   }
 
-  registerUser(userData: User) {
-    return this.http.post(this.apiUrl, userData);
+  register(userData: User): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}auth/registro/`, userData);
   }
 
-  listUsers(): Observable<User>{
-    return this.http.get<User>(this.apiUrl);
+  listUsers(): Observable<User[]>{
+    return this.http.get<User[]>(`${this.baseUrl}usuarios/`);
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
-  }
-
-  createUser(usuario:User):Observable<User>{
-    return this.http.post<User>(this.apiUrl, usuario);
+    return this.http.get<User[]>(`${this.baseUrl}user/profile/`);
   }
 
   updateUser(usuario: User): Observable<User> {

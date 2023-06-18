@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class MiCuentaComponent implements OnInit{
   userForm!: FormGroup;
 
+  myUser: User[] = []
+
   user: User = {
     id: 0,
     username: '',
@@ -24,6 +26,11 @@ export class MiCuentaComponent implements OnInit{
   constructor(private formBuilder: FormBuilder, private router: Router, private usersService: UsersService) {}
 
   ngOnInit() {
+    this.usersService.getUsers().subscribe((data: User[]) => {
+      this.myUser = data;
+      console.log("Mi cuenta user:", this.myUser);
+    })
+
     this.userForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
