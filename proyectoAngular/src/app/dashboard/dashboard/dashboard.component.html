@@ -4,6 +4,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Username</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Actions</th>
@@ -12,8 +13,13 @@
         <tbody>
         <tr *ngFor="let user of users">
             <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
+            <td>
+                <a class="enlace-edit">edit</a>
+                <a class="enlace-delete">delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

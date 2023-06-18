@@ -30,4 +30,5 @@ urlpatterns = [
     # Api routes
     path('django_api/', include('django_api.urls')),
     path('django_api/', include(router.urls)),
+    path('cultivos/', include('cultivos.urls'))
 ]

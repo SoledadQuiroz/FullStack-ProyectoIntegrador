@@ -72,7 +72,7 @@ class agregarProducto(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProfileView(generics.RetrieveUpdateAPIView):
-    permission_classes = [IsAuthenticated] #Solo usuarios logueados pueden ver.
+    permission_classes = [AllowAny] #Solo usuarios logueados pueden ver.
     serializer_class = UserSerializer
     http_method_names = ['get', 'patch']
     def get_object(self):
@@ -86,10 +86,10 @@ class ProfileView(generics.RetrieveUpdateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ListarUsuarios(generics.ListCreateAPIView):
+    permission_classes = [AllowAny]
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     http_method_names = ['get']
-    permission_classes = [IsAdminUser]
     def list(self, request):
         queryset = self.get_queryset()
         serializer = UserSerializer(queryset, many=True)

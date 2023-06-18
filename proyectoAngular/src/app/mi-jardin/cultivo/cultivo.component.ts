@@ -18,7 +18,93 @@ export class CultivoComponent implements OnInit{
   activeInfo:boolean = false;
 
   alertText:string = '';
-  cultivos: Cultivo[] = [];
+  cultivos: Cultivo[] = [
+    // { 
+    //   id: 1,
+    //   nombre: "Tomate",
+    //   imagen: "./assets/tomate.png",
+    //   tipo: "Frutal",
+    //   germina: 14,
+    //   cosecha: 123,
+    //   temporada: "Otoño",
+    //   temperaturaMax: 25,
+    //   temperaturaMin: 12,
+    //   riego: "Regular o cada 3 días",
+    //   luz: "Bastante Luz",
+    //   profundidadSembrado: 2,
+    //   espacioPlantas: 24,
+    //   countdown: 0,
+    //   countdownActive:false
+    // },
+    // { 
+    //   id: 1,
+    //   nombre: "Cebolla",
+    //   imagen: "./assets/cebolla.png",
+    //   tipo: "Vegetal",
+    //   germina: 14,
+    //   cosecha: 123,
+    //   temporada: "Otoño",
+    //   temperaturaMax: 25,
+    //   temperaturaMin: 12,
+    //   riego: "Regular o cada 3 días",
+    //   luz: "Bastante Luz",
+    //   profundidadSembrado: 2,
+    //   espacioPlantas: 24,
+    //   countdown: 0,
+    //   countdownActive:false
+    // },
+    // { 
+    //   id: 2,
+    //   nombre: "Ajo",
+    //   imagen: "./assets/ajo.png",
+    //   tipo: "Vegetal",
+    //   germina: 14,
+    //   cosecha: 123,
+    //   temporada: "Otoño",
+    //   temperaturaMax: 25,
+    //   temperaturaMin: 12,
+    //   riego: "Regular o cada 3 días",
+    //   luz: "Bastante Luz",
+    //   profundidadSembrado: 2,
+    //   espacioPlantas: 24,
+    //   countdown: 0,
+    //   countdownActive:false
+    // },
+    // { 
+    //   id: 3,
+    //   nombre: "Lechuga",
+    //   imagen: "./assets/lechuga.png",
+    //   tipo: "Vegetal",
+    //   germina: 14,
+    //   cosecha: 123,
+    //   temporada: "Otoño",
+    //   temperaturaMax: 25,
+    //   temperaturaMin: 12,
+    //   riego: "Regular o cada 3 días",
+    //   luz: "Bastante Luz",
+    //   profundidadSembrado: 2,
+    //   espacioPlantas: 24,
+    //   countdown: 0,
+    //   countdownActive:false
+    // },
+    // { 
+    //   id: 4,
+    //   nombre: "Albahaca",
+    //   imagen: "./assets/albahaca.png",
+    //   tipo: "Aromática",
+    //   germina: 14,
+    //   cosecha: 123,
+    //   temporada: "Otoño",
+    //   temperaturaMax: 25,
+    //   temperaturaMin: 12,
+    //   riego: "Regular o cada 3 días",
+    //   luz: "Bastante Luz",
+    //   profundidadSembrado: 2,
+    //   espacioPlantas: 24,
+    //   countdown: 0,
+    //   countdownActive:false
+    // },
+  ];
   infoCultivos: Cultivo[] = [];
 
   tipos = ['Todas', 'Vegetal', 'Frutal', 'Aromática'];

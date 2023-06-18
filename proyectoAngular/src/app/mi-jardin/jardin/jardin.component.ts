@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Cultivo, Crecimiento } from '../cultivo/cultivos.model';
+import { Cultivo } from '../cultivo/cultivos.model';
 import { CultivosService } from '../../services/cultivos.service';
 
 @Component({
@@ -68,7 +68,7 @@ export class JardinComponent {
   startCountDown(index: number): void {
     console.log('Starting countdown for item at index', index);
     const item: Cultivo = this.cultivosService.cultivoSembrar[index];
-    const crecimiento: Crecimiento = item.crecimiento_set[0]; // Suponemos que solo hay un objeto en crecimiento_set
+    const crecimiento: Cultivo = item; 
     
     if (!crecimiento.countdownActive) {
       crecimiento.countdown = crecimiento.cosecha;
