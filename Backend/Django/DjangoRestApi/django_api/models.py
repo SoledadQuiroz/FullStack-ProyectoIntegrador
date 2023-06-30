@@ -2,30 +2,30 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+#from django.contrib.auth.models import AbstractUser
 
 
-class CustomUser(AbstractUser):
-    email = models.EmailField(max_length=150, unique=True)
-    username = models.CharField(max_length=150, unique=True)
-    name = models.CharField(max_length=150)  # Agrega este campo
-    birth_date = models.DateField()  # Agrega este campo
-    password = models.CharField(max_length=128)
+#class CustomUser(AbstractUser):
+#    email = models.EmailField(max_length=150, unique=True)
+#    username = models.CharField(max_length=150, unique=True)
+#    name = models.CharField(max_length=150)  # Agrega este campo
+#    birth_date = models.DateField()  # Agrega este campo
+#    password = models.CharField(max_length=128)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'name', 'birth_date', 'password']
+#    USERNAME_FIELD = 'email'
+#    REQUIRED_FIELDS = ['username', 'name', 'birth_date', 'password']
 
 
-class Garden(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+#class Garden(models.Model):
+#    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     # Agrega aquí los otros campos que deseas para el modelo Garden
 
-    def __str__(self):
-        return self.name
+#    def __str__(self):
+#        return self.name
 
 
 class Cultivo(models.Model):
-    garden = models.ForeignKey(Garden, on_delete=models.CASCADE, null=True, blank=True)
+#    garden = models.ForeignKey(Garden, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     # Agrega aquí los otros campos que deseas para el modelo Cultivo

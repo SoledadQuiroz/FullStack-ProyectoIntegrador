@@ -1,29 +1,49 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import CarritoCompras, Categoria, Producto, Cultivo, Garden
-from django.contrib.auth.hashers import make_password
+from .models import CarritoCompras, Categoria, Producto, Cultivo#, Garden
+#from django.contrib.auth.hashers import make_password
 from django.db import models
-
+from django.contrib.auth.models import User
 class UserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(required=True)
-    username = serializers.CharField(required=True)
-    name = serializers.CharField(required=True)
-    birth_date = serializers.DateField(required=True)
-    password = serializers.CharField(min_length=8)
-
     class Meta:
-        model = get_user_model()
-        fields = ('username', 'name', 'email', 'birth_date', 'password')
+        model = User
+        fields = ('id', 'username', 'email')
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+       model = User
+       fields = ('id', 'username', 'email', 'password')
+       extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        # Hash the password before saving the user
-        validated_data['password'] = make_password(validated_data['password'])
-        return super().create(validated_data)
+        user = User.objects.create_user(validated_data['username'], validated_data['email'], validated_data['password'])
+
+        return user
     
-class GardenSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Garden
-        fields = '__all__'
+
+
+
+
+#class UserSerializer(serializers.ModelSerializer):
+#    email = serializers.EmailField(required=True)
+#    username = serializers.CharField(required=True)
+#    name = serializers.CharField(required=True)
+#    birth_date = serializers.DateField(required=True)
+#    password = serializers.CharField(min_length=8)
+
+#    class Meta:
+#        model = get_user_model()
+#        fields = ('username', 'name', 'email', 'birth_date', 'password')
+
+#    def create(self, validated_data):
+        # Hash the password before saving the user
+#        validated_data['password'] = make_password(validated_data['password'])
+#        return super().create(validated_data)
+    
+#class GardenSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Garden
+#        fields = '__all__'
 
 class CultivoSerializer(serializers.ModelSerializer):
     class Meta:
