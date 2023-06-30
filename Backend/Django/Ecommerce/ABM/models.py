@@ -44,9 +44,8 @@ class usuario(models.Model):
     nombre=models.CharField(max_length=1000, blank=False)
     apellido=models.CharField(max_length=1000, blank=False)
     direccion=models.TextField(max_length=1000, blank=False)
-    correo=models.EmailField(max_length=1000, blank=False)
-    provincia=models.CharField(max_length=1000, blank=False)
-    localidad=models.CharField(max_length=1000, blank=False)
+    edad=models.DateField(default=datetime.now)
+    email=models.EmailField(max_length=1000, blank=False)
     telefono=models.IntegerField()
     password=models.CharField(blank=False, null=False, max_length=50)
     id_ciudad=models.ForeignKey(ciudad, on_delete=models.CASCADE)
@@ -155,12 +154,10 @@ class producto(models.Model):
     id_producto=models.AutoField(primary_key=True)
     nombre=models.CharField(max_length=1000, blank=False)
     imagen = models.CharField(max_length=250, blank=False)
-    costo=models.IntegerField()
-    valor=models.IntegerField()
-    cantidad=models.IntegerField()
-    peso = models.FloatField()
-    dimensiones = models.CharField(max_length=100, blank=False)
     descripcion = models.CharField(max_length=250, blank=False)
+    cantidad=models.IntegerField()
+    peso = models.DecimalField(max_length=10, blank=False, decimal_places=2, max_digits=10)
+    precio=models.DecimalField(max_length=10, blank=False, decimal_places=2, max_digits=10)
     fecha_ingreso=models.DateField(default=datetime.now)
     id_tipo_prod=models.ForeignKey(tipo_produto, on_delete=models.CASCADE)
     class Meta:
@@ -177,8 +174,6 @@ class factura(models.Model):
     nombre=models.CharField(max_length=1000, blank=False)
     total=models.IntegerField()
     tipo=models.IntegerField()
-    fecha_apertura=models.DateField(default=datetime.now)
-    fecha_cierre=models.DateField(default=datetime.now)
     dir_envio=models.TextField(max_length=1000, blank=False)
     id_usuario=models.ForeignKey(usuario, on_delete=models.CASCADE)
     class Meta:
@@ -190,8 +185,8 @@ class factura(models.Model):
     def __str__(self):
         return self.nombre
 
-class venta(models.Model):
-    id_venta=models.AutoField(primary_key=True)
+class Deatalle_Factura(models.Model):
+    id_prod_factura=models.AutoField(primary_key=True)
     descripcion=models.TextField(max_length=1000, blank=False)
     cantidad=models.IntegerField()
     descuento=models.FloatField()

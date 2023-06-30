@@ -8,7 +8,7 @@ from .models import jardin
 from .models import tipo_produto
 from .models import factura
 from .models import producto
-from .models import venta
+from .models import Deatalle_Factura
 from .models import municipio
 
 
@@ -20,7 +20,7 @@ class CiudadAdmin(admin.ModelAdmin):
 class MunicipioAdmin(admin.ModelAdmin):
     list_display =('nombre', 'id_municipio')
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display =('nombre', 'apellido', 'direccion', 'correo', 'provincia', 'localidad', 'telefono', 'id_usuario')
+    list_display =('nombre', 'apellido', 'direccion', 'email', 'edad','telefono','password', 'id_usuario')
 class CultivoAdmin(admin.ModelAdmin):
     list_display =('tipo', 'imagen', 'categoria', 'favorito', 'id_cultivo')
 class CrecimientoAdmin(admin.ModelAdmin):
@@ -30,11 +30,11 @@ class JardinAdmin(admin.ModelAdmin):
 class Tipo_ProductoAdmin(admin.ModelAdmin):
     list_display =('nombre', 'id_tipo_producto')
 class ProductoAdmin(admin.ModelAdmin):
-    list_display =('nombre', 'imagen', 'costo', 'valor', 'cantidad', 'peso', 'dimensiones', 'descripcion', 'fecha_ingreso','id_producto')
+    list_display =('nombre', 'imagen', 'precio','cantidad', 'peso','descripcion', 'fecha_ingreso','id_producto')
 class FacturaAdmin(admin.ModelAdmin):
-    list_display =('nombre','total','tipo', 'fecha_apertura', 'fecha_cierre', 'dir_envio', 'id_factura')
-class VentaAdmin(admin.ModelAdmin):
-    list_display =('descripcion','cantidad', 'descuento','id_venta')
+    list_display =('nombre','total','tipo','dir_envio', 'id_factura')
+class Detalle_FacturaAdmin(admin.ModelAdmin):
+    list_display =('descripcion','cantidad', 'descuento','id_prod_factura')
 
 admin.site.register(provincia, ProvinciaAdmin)
 admin.site.register(ciudad, CiudadAdmin)
@@ -46,4 +46,4 @@ admin.site.register(jardin,JardinAdmin)
 admin.site.register(tipo_produto, Tipo_ProductoAdmin)
 admin.site.register(producto,ProductoAdmin)
 admin.site.register(factura,FacturaAdmin)
-admin.site.register(venta,VentaAdmin)
+admin.site.register(Deatalle_Factura,Detalle_FacturaAdmin)
