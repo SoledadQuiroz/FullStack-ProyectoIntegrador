@@ -11,7 +11,9 @@ export class AuthService {
   private baseUrl = 'http://127.0.0.1:8000/django_api/';
 
   url = "https://reqres.in/api/login";
-  loggedIn = new BehaviorSubject<boolean>(false);
+  // se cambia a true para realizar pruebas
+  //loggedIn = new BehaviorSubject<boolean>(false);
+  loggedIn = new BehaviorSubject<boolean>(true);
   currentUserSubject: BehaviorSubject<User>;
   currentUser: Observable<User>;
 

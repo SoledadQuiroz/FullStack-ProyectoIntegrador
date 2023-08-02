@@ -22,12 +22,20 @@ export class CarritoComponent implements OnInit{
   @Output() enviarTotal = new EventEmitter<number>();
   // valor total de la compra
   valorTotal:number = 0;
+  // propiedad local que representa los productos seleccionados
+  carritoProds:selecCarrito[]
   
   constructor(){
     // inicializando propiedades:
     this.seleccion = []
     this.estadoModal = false;
+    this.carritoProds = []
   }
+  
+  ngOnInit(){
+    this.carritoProds = this.seleccion
+  }
+
 
   //funcion para actualizar el estado booleano del modal:
   cerrarCarrito(){
@@ -35,22 +43,39 @@ export class CarritoComponent implements OnInit{
     this.propBooleana.emit(this.estadoModal);
   }
   
+  
+  //funcion para quitar producto del carrito
+  quitar_producto(event : MouseEvent){
+    let contador:number =  0;
+    this.carritoProds.forEach(element => {
+      contador += 1;
+      // se identifica el elemento que disparo el evento
+      const prodClickeado = event.target as HTMLElement;
+      const figureClickeado = prodClickeado.parentElement!.parentElement;
+      const nameProdClickeado = prodClickeado.id;
+      if (nameProdClickeado == element.name){
+        // posteriormente se lo elimina del array:
+        this.carritoProds.slice(contador,1);
+        figureClickeado!.style.display = "none";
+        console.log(`el prodcto ${element.name} fue eliminado`);
+      }
+    });
+    console.log(this.carritoProds)
+  }
+  
   // suma el valor total de todos los productos seleccionados:
   calcularTotal(){
-    this.seleccion.forEach(element => {
+    this.carritoProds.forEach(element => {
       this.valorTotal += element.precioTotal
+      console.log(element.name)
     });
     console.log("costo final: $", this.valorTotal);
   }
-  ngOnInit(){
-    this.calcularTotal();
-  }
-
 
   // funcion para enviar el monto total al elem padre:
   enviarTotales(){
+    this.calcularTotal();
     this.enviarTotal.emit(this.valorTotal);
   }
 
-  
 }

@@ -14,6 +14,9 @@
                 <p>Cantidad: <b>{{producto.cantidad}}</b></p>
                 <p>Precio Total: <b>${{producto.precioTotal}}</b></p>
             </div>
+            <div class="eliminar_producto">
+                <img src="../../../assets/icono-cerrar.png" alt="cerrar" [id]="producto.name" (click)="quitar_producto($event)">
+            </div>
         </figure>
     </div>
     <!-- botones (terminar compra & cerrar) -->
