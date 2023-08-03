@@ -20,6 +20,8 @@ export class CarritoComponent implements OnInit{
   @Output() propBooleana = new EventEmitter<boolean>();
   // propiedad para pasar el total de la compra al componente padre:
   @Output() enviarTotal = new EventEmitter<number>();
+  // propiedad para enviar los productos seleccionados:
+  @Output() prodFinales = new EventEmitter<selecCarrito[]>();
   // valor total de la compra
   valorTotal:number = 0;
   // propiedad local que representa los productos seleccionados
@@ -47,20 +49,26 @@ export class CarritoComponent implements OnInit{
   //funcion para quitar producto del carrito
   quitar_producto(event : MouseEvent){
     let contador:number =  0;
-    this.carritoProds.forEach(element => {
-      contador += 1;
-      // se identifica el elemento que disparo el evento
-      const prodClickeado = event.target as HTMLElement;
-      const figureClickeado = prodClickeado.parentElement!.parentElement;
-      const nameProdClickeado = prodClickeado.id;
-      if (nameProdClickeado == element.name){
-        // posteriormente se lo elimina del array:
-        this.carritoProds.slice(contador,1);
+    // se identifica el elemento que disparo el evento
+    const prodClickeado = event.target as HTMLElement;
+    const figureClickeado = prodClickeado.parentElement!.parentElement;
+    const nameProdClickeado = prodClickeado.id;
+    // se lo busca en el array
+    this.carritoProds = this.carritoProds.filter(element => {
+
+      // find index of item in array
+      const index = this.carritoProds.findIndex(el => el.name === nameProdClickeado);
+    
+      if (element.name === nameProdClickeado) {
+        // remove element at index
+        this.carritoProds.splice(index, 1); 
         figureClickeado!.style.display = "none";
-        console.log(`el prodcto ${element.name} fue eliminado`);
+        return false; // filter it out
       }
+    
+      return true; // keep all other elements
     });
-    console.log(this.carritoProds)
+
   }
   
   // suma el valor total de todos los productos seleccionados:
@@ -76,6 +84,11 @@ export class CarritoComponent implements OnInit{
   enviarTotales(){
     this.calcularTotal();
     this.enviarTotal.emit(this.valorTotal);
+  }
+  // funcion para enviar los productos seleccionados al elem padre:
+  enviarProductosFinales(){
+    this.prodFinales.emit(this.carritoProds);
+    console.log(this.prodFinales);
   }
 
 }

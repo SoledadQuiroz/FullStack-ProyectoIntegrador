@@ -137,18 +137,6 @@
                             <img src="../../../assets/imagenes-tienda/card-sample.png" class="icono_tarjeta" (click)="modalExpiracion()"> <br> 
                             <hr>
                         </div>
-                        <!-- transferencia -->
-                        <!-- <div id="transferencia" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'transferencia'">
-                            <h6>Datos de nuestra cuenta bancaria:</h6>
-                            <ul>
-                                <li><b>CBU:</b> 123123123123121</li>
-                                <li><b>ALIAS:</b> gardening.friend</li>
-                                <li><b>BANCO:</b> Santander</li>
-                            </ul>
-                            <p> Una vez que realices tu pago envia el comprobante a nuestro mail <i>gardeningfriend@gmail.com</i> 
-                                para poder validarlo</p>
-                            <hr>
-                        </div> -->
                         <!-- billetera virtual-->
                         <div id="billetera" *ngIf="cajaValidacion.get('medioPagoSeleccionado')!.value === 'billetera_virtual'">
                             <!-- numero tarjeta -->
@@ -206,7 +194,12 @@
                         <!-- costos -->
                         <div id="detalles_costos">
                             <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
-                            <p>Producto elegido: <b>{{nombreProdSeleccionado}}</b></p>
+                            <!-- <p>Producto/s elegido/s: </p>
+                            <ul>
+                                <li *ngFor="let producto of nombreProdSeleccionado">
+                                    {{producto}}
+                                </li>
+                            </ul> -->
                             <p>Costo compra: <b>${{costoCompra}}</b></p>
                             <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['SelectProvincia'])}}</b></p>
                             <hr>
@@ -273,7 +266,7 @@
         </div>
         <!-- modal - carrito -->
         <div class="lightbox" *ngIf="carrito" [ngClass]="getScreenSize()">
-            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" (propBooleana)="cerrarCarrito($event)" (enviarTotal)="abrirMetodosPagoCarrito($event)" ></app-carrito>
+            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" (propBooleana)="cerrarCarrito($event)" (enviarTotal)="abrirMetodosPagoCarrito($event)" (enviarProductosFinales)="recibirProductosFinales($event)" ></app-carrito>
         </div>
     </section>
 </div>

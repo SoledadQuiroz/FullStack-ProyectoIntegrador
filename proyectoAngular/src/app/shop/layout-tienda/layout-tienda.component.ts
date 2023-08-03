@@ -61,7 +61,7 @@ export class LayoutTiendaComponent implements OnInit{
   // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
   //nombre prod seleccionado:
-  nombreProdSeleccionado:string = "";
+  nombreProdSeleccionado:any;
   imagenProdSeleccionado:any;
   valorUnitario:number = 0;
   stockProducto:number = 0;
@@ -122,6 +122,7 @@ export class LayoutTiendaComponent implements OnInit{
   mensajeCarrito:boolean = false;
   carrito:boolean = false;
   selecCarrito:selecCarrito[] = [];
+  selecCarritoFinal:selecCarrito[] = []
 
   // FUNCIONALIDADES:
 
@@ -449,6 +450,10 @@ export class LayoutTiendaComponent implements OnInit{
     this.costoCompra = event;
     this.carrito = false;
     this.abirFormasPago = true;
+  }
+
+  recibirProductosFinales(event: any){
+    this.nombreProdSeleccionado = event;
   }
 
 }
