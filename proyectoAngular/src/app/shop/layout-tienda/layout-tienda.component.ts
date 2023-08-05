@@ -61,7 +61,7 @@ export class LayoutTiendaComponent implements OnInit{
   // ubicacion numerica en el array:
   prodSeleccionado:number = 0;
   //nombre prod seleccionado:
-  nombreProdSeleccionado:any;
+  nombreProdSeleccionado:string = "";
   imagenProdSeleccionado:any;
   valorUnitario:number = 0;
   stockProducto:number = 0;
@@ -121,11 +121,10 @@ export class LayoutTiendaComponent implements OnInit{
   // carrito
   mensajeCarrito:boolean = false;
   carrito:boolean = false;
-  selecCarrito:selecCarrito[] = [];
-  selecCarritoFinal:selecCarrito[] = []
+  selecCarrito:selecCarrito[] = []; //propiedad que se envia al componente "carrito" (input)
+  prodSeleccionadosFinal:selecCarrito[] = []; //propiedad que se obtiene del componente hijo (output)
 
   // FUNCIONALIDADES:
-
   // carga los datos de los productos desde la API
   datosProductos(){
     // obtiene los datos de los productos:
@@ -193,8 +192,17 @@ export class LayoutTiendaComponent implements OnInit{
     return;
   } else{
     // se remarca el mensaje que debe comprar al menos una unidad
-    this.remarcarMensajeCantidad = true;
-  }
+    this.remarcarMensajeCantidad = true;}
+
+    // se crea objeto representado la compra
+    let compra:selecCarrito = {
+      name : this.nombreProdSeleccionado,
+      precioTotal : this.costoCompra,
+      cantidad : this.cantidadElegida,
+      images : this.imagenProdSeleccionado
+    }
+    this.prodSeleccionadosFinal.push(compra);
+
   }
 
   cerrarMetodosPago(){
@@ -446,14 +454,19 @@ export class LayoutTiendaComponent implements OnInit{
     this.carrito = event;
   }
 
-  abrirMetodosPagoCarrito(event:number){
-    this.costoCompra = event;
+  recibirTotalProductos(monto:number){
+    // recibe el monto de la compra acumulada
+    this.costoCompra = monto;
+    // cierra el modal del carrito
     this.carrito = false;
+    // abre el modal para validar y realizar pago
     this.abirFormasPago = true;
   }
 
-  recibirProductosFinales(event: any){
-    this.nombreProdSeleccionado = event;
+  recibirProductosFinales(productosCarrito: selecCarrito[]){
+    // se añaden los productos al carrito:
+    this.prodSeleccionadosFinal = productosCarrito;
+    alert('exito');
   }
 
 }

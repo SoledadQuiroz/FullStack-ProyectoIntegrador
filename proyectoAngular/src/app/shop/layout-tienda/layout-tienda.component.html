@@ -113,7 +113,6 @@
                             <option value="" disabled selected>Selecciona metodo de pago</option>
                             <option value="tajeta_credito_debito">Tarjeta Credito / debito</option>
                             <option value="billetera_virtual">Mercadopago</option>
-                            <!-- <option value="transferencia"> Transferencia bancaria</option> -->
                         </select>
                         <hr>
 
@@ -194,12 +193,14 @@
                         <!-- costos -->
                         <div id="detalles_costos">
                             <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
-                            <!-- <p>Producto/s elegido/s: </p>
+                            
+                            <p>Producto/s elegido/s: </p>
                             <ul>
-                                <li *ngFor="let producto of nombreProdSeleccionado">
-                                    {{producto}}
+                                <li *ngFor="let producto of prodSeleccionadosFinal">
+                                    <p>{{producto.name}}</p>
                                 </li>
-                            </ul> -->
+                            </ul>
+                            
                             <p>Costo compra: <b>${{costoCompra}}</b></p>
                             <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['SelectProvincia'])}}</b></p>
                             <hr>
@@ -266,7 +267,7 @@
         </div>
         <!-- modal - carrito -->
         <div class="lightbox" *ngIf="carrito" [ngClass]="getScreenSize()">
-            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" (propBooleana)="cerrarCarrito($event)" (enviarTotal)="abrirMetodosPagoCarrito($event)" (enviarProductosFinales)="recibirProductosFinales($event)" ></app-carrito>
+            <app-carrito [seleccion]="selecCarrito" [estadoModal]="carrito" (propBooleana)="cerrarCarrito($event)" (enviarTotal)="recibirTotalProductos($event)" (prodFinales)="recibirProductosFinales($event)" ></app-carrito>
         </div>
     </section>
 </div>

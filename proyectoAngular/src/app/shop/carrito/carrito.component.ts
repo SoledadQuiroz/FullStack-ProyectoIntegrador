@@ -25,17 +25,17 @@ export class CarritoComponent implements OnInit{
   // valor total de la compra
   valorTotal:number = 0;
   // propiedad local que representa los productos seleccionados
-  carritoProds:selecCarrito[]
+  carritoProds:selecCarrito[];
   
   constructor(){
     // inicializando propiedades:
-    this.seleccion = []
+    this.seleccion = [];
     this.estadoModal = false;
-    this.carritoProds = []
+    this.carritoProds = [];
   }
   
   ngOnInit(){
-    this.carritoProds = this.seleccion
+    this.carritoProds = this.seleccion;
   }
 
 
@@ -65,7 +65,6 @@ export class CarritoComponent implements OnInit{
         figureClickeado!.style.display = "none";
         return false; // filter it out
       }
-    
       return true; // keep all other elements
     });
 
@@ -74,21 +73,25 @@ export class CarritoComponent implements OnInit{
   // suma el valor total de todos los productos seleccionados:
   calcularTotal(){
     this.carritoProds.forEach(element => {
-      this.valorTotal += element.precioTotal
-      console.log(element.name)
+      this.valorTotal += element.precioTotal;
+      console.log(element.name);
     });
     console.log("costo final: $", this.valorTotal);
+    console.log(this.carritoProds);
   }
 
   // funcion para enviar el monto total al elem padre:
   enviarTotales(){
+    // 1 - calcula el total de la compra
     this.calcularTotal();
+    // 2 - envia al componente padre el valor final
     this.enviarTotal.emit(this.valorTotal);
+    // 3 - finalmente se cierra el carrito
+    this.cerrarCarrito();
   }
   // funcion para enviar los productos seleccionados al elem padre:
   enviarProductosFinales(){
     this.prodFinales.emit(this.carritoProds);
-    console.log(this.prodFinales);
   }
 
 }
