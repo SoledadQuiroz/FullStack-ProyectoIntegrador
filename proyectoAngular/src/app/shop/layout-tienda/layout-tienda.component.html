@@ -194,11 +194,12 @@
                         <div id="detalles_costos">
                             <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
                             
-                            <p>Producto/s elegido/s: </p>
-                            <ul>
-                                <li *ngFor="let producto of prodSeleccionadosFinal">
-                                    <p>{{producto.name}}</p>
-                                </li>
+                            <p>Productos Elegidos: </p>
+                            <ul class="detalles_prods_carrito" *ngFor = "let producto of prodSeleccionadosFinal">
+                                <img src='{{ producto.images }}' class="img_prod" alt="img_prod">
+                                <h5><b>{{producto.name}}</b></h5>
+                                <li class="caracteristicas">Cantidad: {{producto.cantidad}}</li>
+                                <li class="caracteristicas">Precio: ${{producto.precioTotal}}</li>
                             </ul>
                             
                             <p>Costo compra: <b>${{costoCompra}}</b></p>

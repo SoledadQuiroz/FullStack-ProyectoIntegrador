@@ -1,5 +1,5 @@
 // funcionalidades angular
-import { Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, ViewChild} from '@angular/core';
 // componente padre
 import { LayoutTiendaComponent} from '../layout-tienda/layout-tienda.component';
 // interfaces
@@ -79,6 +79,11 @@ export class CarritoComponent implements OnInit{
     console.log("costo final: $", this.valorTotal);
     console.log(this.carritoProds);
   }
+  
+  // funcion para enviar los productos seleccionados al elem padre:
+  enviarProductosFinales(){
+    this.prodFinales.emit(this.carritoProds);
+  }
 
   // funcion para enviar el monto total al elem padre:
   enviarTotales(){
@@ -86,12 +91,11 @@ export class CarritoComponent implements OnInit{
     this.calcularTotal();
     // 2 - envia al componente padre el valor final
     this.enviarTotal.emit(this.valorTotal);
+    // tambien se envian los datos de los productos elegidos:
+    this.enviarProductosFinales();
     // 3 - finalmente se cierra el carrito
     this.cerrarCarrito();
-  }
-  // funcion para enviar los productos seleccionados al elem padre:
-  enviarProductosFinales(){
-    this.prodFinales.emit(this.carritoProds);
+
   }
 
 }

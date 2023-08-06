@@ -38,6 +38,7 @@ export class LayoutTiendaComponent implements OnInit{
   dataLocalidades$: any;
 
   constructor(private ApiRegionesService: ApiRegionesService, private MercadopagoService: MercadopagoService){
+
   }
 
   // PROPIEDADES:
@@ -466,7 +467,6 @@ export class LayoutTiendaComponent implements OnInit{
   recibirProductosFinales(productosCarrito: selecCarrito[]){
     // se añaden los productos al carrito:
     this.prodSeleccionadosFinal = productosCarrito;
-    alert('exito');
   }
 
 }
