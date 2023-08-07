@@ -46,28 +46,20 @@ export class CarritoComponent implements OnInit{
   }
   
   
-  //funcion para quitar producto del carrito
-  quitar_producto(event : MouseEvent){
-    let contador:number =  0;
-    // se identifica el elemento que disparo el evento
-    const prodClickeado = event.target as HTMLElement;
-    const figureClickeado = prodClickeado.parentElement!.parentElement;
+  quitar_producto(event: MouseEvent) {
+    // 1ro - se identifica el producto clickeado:
+    const prodClickeado = event.target as HTMLElement;  
     const nameProdClickeado = prodClickeado.id;
-    // se lo busca en el array
-    this.carritoProds = this.carritoProds.filter(element => {
-
-      // find index of item in array
-      const index = this.carritoProds.findIndex(el => el.name === nameProdClickeado);
-    
-      if (element.name === nameProdClickeado) {
-        // remove element at index
-        this.carritoProds.splice(index, 1); 
-        figureClickeado!.style.display = "none";
-        return false; // filter it out
-      }
-      return true; // keep all other elements
-    });
-
+    // 2do - se identifica el index de dicho producto
+    const index = this.carritoProds.findIndex(el => el.name === nameProdClickeado);
+    // 3ro - se elimina el producto del array del 'carrito'
+    if (index > -1) {
+      this.carritoProds.splice(index, 1); 
+    }
+    // 4to - finalmente se esconde el elemento eliminado 
+    // (en caso de que por algun bug este siga presente en el carrito luego de ser eliminado)
+    const figureClickeado = prodClickeado.parentElement!.parentElement;
+    figureClickeado!.style.display = "none";
   }
   
   // suma el valor total de todos los productos seleccionados:

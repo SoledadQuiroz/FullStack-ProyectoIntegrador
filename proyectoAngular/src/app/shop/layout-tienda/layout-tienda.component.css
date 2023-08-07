@@ -426,6 +426,11 @@
     align-items: flex-start;
 }
 
+#prods_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 .detalles_prods_carrito{
     display: flex;
@@ -435,7 +440,12 @@
     font-size: 0.9rem !important;
     border: 2px solid rgb(203, 201, 201);
     border-radius: 5px;
-    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 10px;
+    overflow: hidden;
 }
 
 .detalles_prods_carrito .caracteristicas{
@@ -446,6 +456,7 @@
     width: 50px; 
     height: 50px;
     border-radius: 100%;
+    margin-bottom: 10px;
 }
 
 /* ------------------  AJUSTES MODALES ejemplo (codigo y expiracion) ------------------- */

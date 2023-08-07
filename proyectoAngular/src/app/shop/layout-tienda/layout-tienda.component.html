@@ -195,13 +195,16 @@
                             <p style="margin-bottom: 7px;"><b>Detalles Compra:</b></p>
                             
                             <p>Productos Elegidos: </p>
-                            <ul class="detalles_prods_carrito" *ngFor = "let producto of prodSeleccionadosFinal">
-                                <img src='{{ producto.images }}' class="img_prod" alt="img_prod">
-                                <h5><b>{{producto.name}}</b></h5>
-                                <li class="caracteristicas">Cantidad: {{producto.cantidad}}</li>
-                                <li class="caracteristicas">Precio: ${{producto.precioTotal}}</li>
-                            </ul>
-                            
+
+                            <div id="prods_wrapper">
+                                <ul class="detalles_prods_carrito" *ngFor = "let producto of prodSeleccionadosFinal">
+                                    <img src='{{ producto.images }}' class="img_prod" alt="img_prod">
+                                    <h5><b>{{producto.name}}</b></h5>
+                                    <li class="caracteristicas">Cantidad: {{producto.cantidad}}</li>
+                                    <li class="caracteristicas">Precio: ${{producto.precioTotal}}</li>
+                                </ul>
+                            </div>
+
                             <p>Costo compra: <b>${{costoCompra}}</b></p>
                             <p>Costo envio: <b>{{calcularEnvio(cajaValidacion.controls['SelectProvincia'])}}</b></p>
                             <hr>
